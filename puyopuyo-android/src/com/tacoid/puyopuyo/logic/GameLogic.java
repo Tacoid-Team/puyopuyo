@@ -1,0 +1,328 @@
+package com.tacoid.puyopuyo.logic;
+
+import java.util.ArrayList;
+
+public class GameLogic {
+
+	public final int LINES = 12;
+	public final int COLUMNS = 6;
+	private int grid[][] = new int[LINES + 1][COLUMNS];
+	private boolean gridFF[][];
+	private Coord[] piece = new Coord[2];
+	private Coord[] nextPiece = new Coord[2];
+	private float sum = 0f;
+	private int rot = 0;
+	private int nextRot = 0;
+
+	private enum State {
+		MOVE, GRAVITY, RESOLVE, LOST
+	}
+
+	private State state = State.MOVE;
+
+	public GameLogic() {
+		for (int l = 0; l < LINES; l++) {
+			for (int c = 0; c < COLUMNS; c++) {
+				grid[l][c] = 0;
+			}
+		}
+		generate(); // generate current
+		generate(); // generate next
+	}
+
+	private boolean generate() {
+		// Sens de la piece :
+		// [x] [x][ ] [ ] [ ][x]
+		// [ ] [x]
+		piece[0] = nextPiece[0];
+		piece[1] = nextPiece[1];
+		rot = nextRot;
+
+		int coul1 = 1 + (int) (Math.random() * 4);
+		int coul2 = 1 + (int) (Math.random() * 4);
+
+		nextRot = (int) (Math.random() * 4);
+
+		switch (nextRot) {
+		case 0:
+			nextPiece[0] = new Coord(LINES - 2, COLUMNS / 2, coul1);
+			nextPiece[1] = new Coord(LINES - 1, COLUMNS / 2, coul2);
+			break;
+		case 1:
+			nextPiece[0] = new Coord(LINES - 1, COLUMNS / 2, coul1);
+			nextPiece[1] = new Coord(LINES - 1, COLUMNS / 2 + 1, coul2);
+			break;
+		case 2:
+			nextPiece[0] = new Coord(LINES - 1, COLUMNS / 2, coul1);
+			nextPiece[1] = new Coord(LINES - 2, COLUMNS / 2, coul2);
+			break;
+		case 3:
+			nextPiece[0] = new Coord(LINES - 1, COLUMNS / 2 + 1, coul1);
+			nextPiece[1] = new Coord(LINES - 1, COLUMNS / 2, coul2);
+			break;
+		}
+
+		return (piece[0] == null)
+				|| (grid[piece[0].l][piece[0].c] == 0 && grid[piece[1].l][piece[1].c] == 0);
+	}
+
+	public void rotateRight() {
+		if (state != State.LOST) {
+			Coord newPiece[] = new Coord[2];
+			newPiece[0] = new Coord(piece[0].l, piece[0].c, piece[0].coul);
+			newPiece[1] = new Coord(piece[1].l, piece[1].c, piece[1].coul);
+
+			int decL = 0;
+			int decC = 0;
+			switch (rot) {
+			case 0:
+				decL = -1;
+				decC = 1;
+				break;
+			case 1:
+				decL = -1;
+				decC = -1;
+				break;
+			case 2:
+				decL = 1;
+				decC = -1;
+				break;
+			case 3:
+				decL = 1;
+				decC = 1;
+				break;
+			}
+			newPiece[1].c += decC;
+			newPiece[1].l += decL;
+
+			if (newPiece[1].c < 0) {
+				newPiece[1].c++;
+				newPiece[0].c++;
+			}
+
+			if (newPiece[1].c >= COLUMNS) {
+				newPiece[1].c--;
+				newPiece[0].c--;
+			}
+
+			if (newPiece[1].l < 0) {
+				newPiece[1].l++;
+				newPiece[0].l++;
+			}
+
+			if (grid[newPiece[0].l][newPiece[0].c] == 0
+					&& grid[newPiece[1].l][newPiece[1].c] == 0) {
+				piece[0] = newPiece[0];
+				piece[1] = newPiece[1];
+				rot = (rot + 1) % 4;
+			}
+		}
+	}
+
+	public void rotateLeft() {
+		if (state != State.LOST) {
+			Coord newPiece[] = new Coord[2];
+			newPiece[0] = new Coord(piece[0].l, piece[0].c, piece[0].coul);
+			newPiece[1] = new Coord(piece[1].l, piece[1].c, piece[1].coul);
+
+			int decL = 0;
+			int decC = 0;
+			switch (rot) {
+			case 0:
+				decL = -1;
+				decC = -1;
+				break;
+			case 1:
+				decL = 1;
+				decC = -1;
+				break;
+			case 2:
+				decL = 1;
+				decC = 1;
+				break;
+			case 3:
+				decL = -1;
+				decC = 1;
+				break;
+			}
+			newPiece[1].c += decC;
+			newPiece[1].l += decL;
+
+			if (newPiece[1].c < 0) {
+				newPiece[1].c++;
+				newPiece[0].c++;
+			}
+
+			if (newPiece[1].c >= COLUMNS) {
+				newPiece[1].c--;
+				newPiece[0].c--;
+			}
+
+			if (newPiece[1].l < 0) {
+				newPiece[1].l++;
+				newPiece[0].l++;
+			}
+
+			if (grid[newPiece[0].l][newPiece[0].c] == 0
+					&& grid[newPiece[1].l][newPiece[1].c] == 0) {
+				piece[0] = newPiece[0];
+				piece[1] = newPiece[1];
+				rot = (rot + 3) % 4;
+			}
+		}
+	}
+
+	public void moveDown() {
+		if (state != State.LOST) {
+			descendre();
+		}
+	}
+
+	public void moveLeft() {
+		if (state != State.LOST) {
+			boolean ok = true;
+			for (int i = 0; i < 2; i++) {
+				if (piece[i].c <= 0 || grid[piece[i].l][piece[i].c - 1] > 0) {
+					ok = false;
+				}
+			}
+			if (ok) {
+				for (int i = 0; i < 2; i++) {
+					piece[i].c--;
+				}
+			}
+		}
+	}
+
+	public void moveRight() {
+		if (state != State.LOST) {
+			boolean ok = true;
+			for (int i = 0; i < 2; i++) {
+				if (piece[i].c >= COLUMNS - 1
+						|| grid[piece[i].l][piece[i].c + 1] > 0) {
+					ok = false;
+				}
+			}
+			if (ok) {
+				for (int i = 0; i < 2; i++) {
+					piece[i].c++;
+				}
+			}
+		}
+	}
+
+	private boolean descendre() {
+		boolean result = true;
+		for (Coord p : piece) {
+			if (p.l <= 0 || grid[p.l - 1][p.c] > 0) {
+				result = false;
+			}
+		}
+		if (result) {
+			for (Coord p : piece) {
+				p.l--;
+			}
+		}
+		return result;
+	}
+
+	private void gravity() {
+		for (int c = 0; c < COLUMNS; c++) {
+			int curLine = 0;
+			for (int l = 0; l < LINES; l++) {
+				if (grid[l][c] > 0) {
+					if (l > curLine) {
+						grid[curLine][c] = grid[l][c];
+						grid[l][c] = 0;
+					}
+					curLine++;
+				}
+			}
+		}
+	}
+
+	private int floodfill(int l, int c, int coul, ArrayList<Coord> list) {
+		if (l < 0 || c < 0 || l >= LINES || c >= COLUMNS || grid[l][c] != coul
+				|| gridFF[l][c]) {
+			return 0;
+		}
+		gridFF[l][c] = true;
+		list.add(new Coord(l, c, coul));
+		return 1 + floodfill(l + 1, c, coul, list)
+				+ floodfill(l - 1, c, coul, list)
+				+ floodfill(l, c + 1, coul, list)
+				+ floodfill(l, c - 1, coul, list);
+	}
+
+	private boolean resolve() {
+		boolean cont = true;
+		cont = false;
+		gridFF = new boolean[LINES][COLUMNS];
+		for (int l = 0; l < LINES; l++) {
+			for (int c = 0; c < COLUMNS; c++) {
+				if (grid[l][c] > 0) {
+					ArrayList<Coord> list = new ArrayList<Coord>();
+					if (floodfill(l, c, grid[l][c], list) >= 4) {
+						// (Puyo * 10) x (Puyo - 3) x 2^combo
+						System.out
+								.println(list.size() * 10 * (list.size() - 3));
+						for (Coord coord : list) {
+							cont = true;
+							grid[coord.l][coord.c] = 0;
+						}
+					}
+				}
+			}
+		}
+		return cont;
+	}
+
+	private void pose() {
+		for (Coord p : piece) {
+			grid[p.l][p.c] = p.coul;
+			p.coul = 0;
+		}
+	}
+
+	public void update(float delta) {
+		sum += delta;
+		switch (state) {
+		case MOVE:
+			if (sum > 0.5) {
+				if (!descendre()) {
+					pose();
+					state = State.GRAVITY;
+				}
+				sum = 0f;
+			}
+			break;
+		case GRAVITY:
+			gravity();
+			state = State.RESOLVE;
+			break;
+		case RESOLVE:
+			if (resolve()) {
+				state = State.GRAVITY;
+			} else {
+				if (generate()) {
+					state = State.MOVE;
+				} else {
+					state = State.LOST;
+				}
+			}
+			break;
+		}
+	}
+
+	public int[][] getGrid() {
+		return grid;
+	}
+
+	public Coord[] getPiece() {
+		return piece;
+	}
+
+	public Coord[] getNextPiece() {
+		return nextPiece;
+	}
+}
