@@ -11,6 +11,7 @@ public class GridActor extends Actor {
 	private int origX = 124;
 	private int origY = 16;
 	private Texture[] boules = new Texture[4];
+	private Texture[] boules_f = new Texture[4];
 	private PuyoPuyo puyopuyo;
 	private GameLogic logic;
 	
@@ -21,6 +22,11 @@ public class GridActor extends Actor {
 		boules[1] = puyopuyo.manager.get("images/jaune.png", Texture.class);
 		boules[2] = puyopuyo.manager.get("images/rouge.png", Texture.class);
 		boules[3] = puyopuyo.manager.get("images/bleu.png", Texture.class);
+		
+		boules_f[0] = puyopuyo.manager.get("images/vert_f.png", Texture.class);
+		boules_f[1] = puyopuyo.manager.get("images/jaune_f.png", Texture.class);
+		boules_f[2] = puyopuyo.manager.get("images/rouge_f.png", Texture.class);
+		boules_f[3] = puyopuyo.manager.get("images/bleu_f.png", Texture.class);
 	}
 	
 	@Override
@@ -29,7 +35,7 @@ public class GridActor extends Actor {
 		for (int l = 0; l < logic.LINES; l++) {
 			for (int c = 0; c < logic.COLUMNS; c++) {
 				if (grid[l][c] > 0) {
-					batch.draw(boules[grid[l][c] - 1], c * 32 + origX, l * 32 + origY);
+					batch.draw(boules_f[grid[l][c] - 1], c * 32 + origX, l * 32 + origY);
 				}
 			}
 		}
