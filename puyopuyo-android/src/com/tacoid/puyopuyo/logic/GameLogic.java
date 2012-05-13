@@ -18,6 +18,7 @@ public class GameLogic {
 
 	private State state = State.MOVE;
 	private boolean first;
+	private ArrayList<ArrayList<Coord>> removes;
 
 	public GameLogic() {
 		for (int l = 0; l < LINES; l++) {
@@ -254,9 +255,8 @@ public class GameLogic {
 				+ floodfill(l, c - 1, coul, list);
 	}
 
-	private boolean resolve() {
-		boolean cont = true;
-		cont = false;
+	private ArrayList<ArrayList<Coord>> resolve() {
+		ArrayList<ArrayList<Coord>> remove = new ArrayList<ArrayList<Coord>>();
 		gridFF = new boolean[LINES][COLUMNS];
 		for (int l = 0; l < LINES; l++) {
 			for (int c = 0; c < COLUMNS; c++) {
@@ -266,15 +266,15 @@ public class GameLogic {
 						// (Puyo * 10) x (Puyo - 3) x 2^combo
 						System.out
 								.println(list.size() * 10 * (list.size() - 3));
+						remove.add(list);
 						for (Coord coord : list) {
-							cont = true;
 							grid[coord.l][coord.c] = 0;
 						}
 					}
 				}
 			}
 		}
-		return cont;
+		return remove;
 	}
 
 	private void pose() {
@@ -316,18 +316,28 @@ public class GameLogic {
 					grid[f.getEnd().l][f.getEnd().c] = f.getEnd().coul;
 				}
 				fallings = null;
+				first = true;
 				state = State.RESOLVE;
+				sum = 0f;
 			}
 			break;
 		case RESOLVE:
-			if (resolve()) {
-				state = State.GRAVITY;
-			} else {
-				if (generate()) {
-					state = State.MOVE;
+			if (first) {
+				removes = resolve();
+				first = false;
+			}
+			if (sum > 0.5) {
+				if (removes.size() > 0) {
+					state = State.GRAVITY;
+					first = true;
 				} else {
-					state = State.LOST;
+					if (generate()) {
+						state = State.MOVE;
+					} else {
+						state = State.LOST;
+					}
 				}
+				sum = 0f;
 			}
 			break;
 		}
