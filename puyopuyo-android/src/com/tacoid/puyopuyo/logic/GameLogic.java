@@ -13,12 +13,14 @@ public class GameLogic {
 	private float sum = 0f;
 	private int rot = 0;
 	private int nextRot = 0;
+	private int score = 0;
 	private ArrayList<Falling> fallings;
 
 
 	private State state = State.MOVE;
 	private boolean first;
 	private ArrayList<ArrayList<Coord>> removes;
+	private int combo = 1;
 
 	public GameLogic() {
 		for (int l = 0; l < LINES; l++) {
@@ -263,9 +265,6 @@ public class GameLogic {
 				if (grid[l][c] > 0) {
 					ArrayList<Coord> list = new ArrayList<Coord>();
 					if (floodfill(l, c, grid[l][c], list) >= 4) {
-						// (Puyo * 10) x (Puyo - 3) x 2^combo
-						System.out
-								.println(list.size() * 10 * (list.size() - 3));
 						remove.add(list);
 						for (Coord coord : list) {
 							grid[coord.l][coord.c] = 0;
@@ -324,13 +323,19 @@ public class GameLogic {
 		case RESOLVE:
 			if (first) {
 				removes = resolve();
+				for (ArrayList<Coord> r : removes) {
+					score += r.size() * 10 * (r.size() - 3) * combo;
+				}
 				first = false;
+				System.out.println(score);
 			}
 			if (sum > 0.5) {
 				if (removes.size() > 0) {
 					state = State.GRAVITY;
 					first = true;
+					combo *= 2;
 				} else {
+					combo = 1;
 					if (generate()) {
 						state = State.MOVE;
 					} else {
