@@ -13,12 +13,11 @@ public class GameLogic {
 	private float sum = 0f;
 	private int rot = 0;
 	private int nextRot = 0;
+	private ArrayList<Falling> fallings;
 
-	private enum State {
-		MOVE, GRAVITY, RESOLVE, LOST
-	}
 
 	private State state = State.MOVE;
+	private boolean first;
 
 	public GameLogic() {
 		for (int l = 0; l < LINES; l++) {
@@ -67,7 +66,7 @@ public class GameLogic {
 	}
 
 	public void rotateRight() {
-		if (state != State.LOST) {
+		if (state == State.MOVE) {
 			Coord newPiece[] = new Coord[2];
 			newPiece[0] = new Coord(piece[0].l, piece[0].c, piece[0].coul);
 			newPiece[1] = new Coord(piece[1].l, piece[1].c, piece[1].coul);
@@ -120,7 +119,7 @@ public class GameLogic {
 	}
 
 	public void rotateLeft() {
-		if (state != State.LOST) {
+		if (state == State.MOVE) {
 			Coord newPiece[] = new Coord[2];
 			newPiece[0] = new Coord(piece[0].l, piece[0].c, piece[0].coul);
 			newPiece[1] = new Coord(piece[1].l, piece[1].c, piece[1].coul);
@@ -173,13 +172,13 @@ public class GameLogic {
 	}
 
 	public void moveDown() {
-		if (state != State.LOST) {
+		if (state == State.MOVE) {
 			descendre();
 		}
 	}
 
 	public void moveLeft() {
-		if (state != State.LOST) {
+		if (state == State.MOVE) {
 			boolean ok = true;
 			for (int i = 0; i < 2; i++) {
 				if (piece[i].c <= 0 || grid[piece[i].l][piece[i].c - 1] > 0) {
@@ -195,7 +194,7 @@ public class GameLogic {
 	}
 
 	public void moveRight() {
-		if (state != State.LOST) {
+		if (state == State.MOVE) {
 			boolean ok = true;
 			for (int i = 0; i < 2; i++) {
 				if (piece[i].c >= COLUMNS - 1
@@ -226,19 +225,20 @@ public class GameLogic {
 		return result;
 	}
 
-	private void gravity() {
-		for (int c = 0; c < COLUMNS; c++) {
-			int curLine = 0;
-			for (int l = 0; l < LINES; l++) {
-				if (grid[l][c] > 0) {
-					if (l > curLine) {
-						grid[curLine][c] = grid[l][c];
-						grid[l][c] = 0;
-					}
-					curLine++;
+	private ArrayList<Falling> gravity() {
+		ArrayList<Falling> boules = new ArrayList<Falling>();
+		int[] sums = new int[COLUMNS];
+		for (int l = 0; l < LINES; l++) {
+			for (int c = 0; c < COLUMNS; c++) {
+				if (grid[l][c] == 0) {
+					sums[c]++;
+				} else if (sums[c] > 0) {
+					boules.add(new Falling(new Coord(l, c, grid[l][c]), sums[c]));
+					grid[l][c] = 0;
 				}
 			}
 		}
+		return boules;
 	}
 
 	private int floodfill(int l, int c, int coul, ArrayList<Coord> list) {
@@ -290,15 +290,34 @@ public class GameLogic {
 		case MOVE:
 			if (sum > 0.5) {
 				if (!descendre()) {
-					pose();
-					state = State.GRAVITY;
+					state = State.POSE;
 				}
 				sum = 0f;
 			}
 			break;
+		case POSE:
+			if (sum > 0.5) {
+				pose();
+				state = State.GRAVITY;
+				sum = 0f;
+				first = true;
+			}
+			break;
 		case GRAVITY:
-			gravity();
-			state = State.RESOLVE;
+			if (first) {
+				fallings = gravity();
+				first = false;
+			}
+			for (Falling f : fallings) {
+				f.update(delta / 0.5f);
+			}
+			if (sum > 0.5) {
+				for (Falling f : fallings) {
+					grid[f.getEnd().l][f.getEnd().c] = f.getEnd().coul;
+				}
+				fallings = null;
+				state = State.RESOLVE;
+			}
 			break;
 		case RESOLVE:
 			if (resolve()) {
@@ -324,5 +343,13 @@ public class GameLogic {
 
 	public Coord[] getNextPiece() {
 		return nextPiece;
+	}
+
+	public ArrayList<Falling> getFallings() {
+		return fallings;
+	}
+
+	public State getState() {
+		return state;
 	}
 }

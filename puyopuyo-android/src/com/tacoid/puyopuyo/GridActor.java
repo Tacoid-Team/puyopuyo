@@ -4,7 +4,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.puyopuyo.logic.Coord;
+import com.tacoid.puyopuyo.logic.Falling;
 import com.tacoid.puyopuyo.logic.GameLogic;
+import com.tacoid.puyopuyo.logic.State;
 
 public class GridActor extends Actor {
 
@@ -42,6 +44,15 @@ public class GridActor extends Actor {
 		for (Coord c : logic.getPiece()) {
 			if (c.coul > 0) {
 				batch.draw(boules[c.coul - 1], c.c * 32 + origX, c.l * 32 + origY);
+			}
+		}
+		
+		if (logic.getState() == State.GRAVITY) {
+			if (logic.getFallings() != null) {
+				for (Falling f : logic.getFallings()) {
+					Coord end = f.getEnd();
+					batch.draw(boules[end.coul - 1], end.c * 32 + origX, end.l * 32 + f.getRemaining() * 32 + origY);
+				}
 			}
 		}
 	}
