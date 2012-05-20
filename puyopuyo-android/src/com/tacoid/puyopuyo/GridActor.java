@@ -10,14 +10,16 @@ import com.tacoid.puyopuyo.logic.State;
 
 public class GridActor extends Actor {
 
-	private int origX = 124;
-	private int origY = 16;
 	private Texture[] boules = new Texture[4];
 	private Texture[] boules_f = new Texture[4];
 	private PuyoPuyo puyopuyo;
 	private GameLogic logic;
+	private int origX;
+	private int origY;
 	
-	public GridActor(GameLogic logic) {
+	public GridActor(GameLogic logic, int origX, int origY) {
+		this.origX = origX;
+		this.origY = origY;
 		this.logic = logic;
 		puyopuyo = PuyoPuyo.getInstance();
 		boules[0] = puyopuyo.manager.get("images/vert.png", Texture.class);

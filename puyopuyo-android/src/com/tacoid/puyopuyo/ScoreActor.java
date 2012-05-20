@@ -8,10 +8,14 @@ import com.tacoid.puyopuyo.logic.GameLogic;
 public class ScoreActor extends Actor {
 	private GameLogic logic;
 	private BitmapFont font;
+	private int origX;
+	private int origY;
 	
 
-	public ScoreActor(GameLogic logic) {
+	public ScoreActor(GameLogic logic, int origX, int origY) {
 		this.logic = logic;
+		this.origX = origX;
+		this.origY = origY;
 		font = new BitmapFont();
 		font.setScale(1.2f);
 	}
@@ -19,7 +23,7 @@ public class ScoreActor extends Actor {
 	@Override
 	public void draw(SpriteBatch batch, float alpha) {
 		String score = String.valueOf(logic.getScore());
-		font.draw(batch, score, 280 - font.getBounds(String.valueOf(logic.getScore())).width, 430);
+		font.draw(batch, score, origX - font.getBounds(String.valueOf(logic.getScore())).width, origY);
 	}
 
 	@Override

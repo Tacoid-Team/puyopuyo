@@ -16,7 +16,9 @@ public class GameScreen implements Screen {
 	private static GameScreen instance = null;
 	private Stage stage;
 	private GameLogic gameLogic;
+	private GameLogic gameLogicIA;
 	private GridActor gridActor;
+	private GridActor gridActorIA;
 	
 	private class DownButton extends Button {
 		
@@ -25,7 +27,6 @@ public class GameScreen implements Screen {
 			x = 29;
 			y = 5;
 		}
-		
 		
 		@Override
 		public boolean touchDown(float x, float y, int pointer) {
@@ -111,10 +112,15 @@ public class GameScreen implements Screen {
 	private GameScreen() {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
 		gameLogic = new GameLogic();
+		gameLogicIA = new GameLogic();
 
-		gridActor = new GridActor(gameLogic);
-		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic);
-		ScoreActor scoreActor = new ScoreActor(gameLogic);
+		gridActor = new GridActor(gameLogic, 124, 16);
+		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 30, 330);
+		ScoreActor scoreActor = new ScoreActor(gameLogic, 280, 430);
+		
+		gridActorIA = new GridActor(gameLogicIA, 349, 16);
+		NextPieceActor nextPieceActorIA = new NextPieceActor(gameLogicIA, 570, 330);
+		ScoreActor scoreActorIA = new ScoreActor(gameLogicIA, 445, 430);
 		
 		TextureRegion backgroundRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/fond.png", Texture.class), VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
 		Image background = new Image(backgroundRegion);
@@ -123,6 +129,9 @@ public class GameScreen implements Screen {
 		stage.addActor(gridActor);
 		stage.addActor(nextPieceActor);
 		stage.addActor(scoreActor);
+		stage.addActor(gridActorIA);
+		stage.addActor(nextPieceActorIA);
+		stage.addActor(scoreActorIA);
 		
 		TextureRegion leftRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/left.png", Texture.class), 80, 80);
 		TextureRegion leftDownRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/left_down.png", Texture.class), 80, 80);
@@ -176,6 +185,7 @@ public class GameScreen implements Screen {
 
 		// Update model
 		gameLogic.update(delta);
+		gameLogicIA.update(delta);
 
 		// clear previous frame
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT);

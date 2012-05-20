@@ -8,13 +8,15 @@ import com.tacoid.puyopuyo.logic.GameLogic;
 
 public class NextPieceActor extends Actor {
 
-	private int origX = 30;
-	private int origY = 330;
+	private int origX;
+	private int origY;
 	private GameLogic logic;
 	private Texture[] boules = new Texture[4];
 
-	public NextPieceActor(GameLogic logic) {
+	public NextPieceActor(GameLogic logic, int origX, int origY) {
 		this.logic = logic;
+		this.origX = origX;
+		this.origY = origY;
 		PuyoPuyo puyopuyo = PuyoPuyo.getInstance();
 		boules[0] = puyopuyo.manager.get("images/vert.png", Texture.class);
 		boules[1] = puyopuyo.manager.get("images/jaune.png", Texture.class);
