@@ -178,6 +178,7 @@ public class GameScreen implements Screen {
 
 		gridActor = new GridActor(gameLogic);
 		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic);
+		ScoreActor scoreActor = new ScoreActor(gameLogic);
 		
 		TextureRegion backgroundRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/fond.png", Texture.class), VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
 		Image background = new Image(backgroundRegion);
@@ -185,6 +186,7 @@ public class GameScreen implements Screen {
 		stage.addActor(background);
 		stage.addActor(gridActor);
 		stage.addActor(nextPieceActor);
+		stage.addActor(scoreActor);
 		stage.addActor(new LeftButton());
 		stage.addActor(new RightButton());
 		stage.addActor(new RotateLeftButton());

@@ -367,4 +367,8 @@ public class GameLogic {
 	public State getState() {
 		return state;
 	}
+	
+	public int getScore() {
+		return score;
+	}
 }
