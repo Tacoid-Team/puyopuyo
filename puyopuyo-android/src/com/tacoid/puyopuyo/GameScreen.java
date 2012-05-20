@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.tacoid.puyopuyo.logic.GameLogic;
+import com.tacoid.puyopuyo.logic.IA;
 
 public class GameScreen implements Screen {
 	private static final int VIRTUAL_WIDTH = 675;
@@ -19,6 +20,7 @@ public class GameScreen implements Screen {
 	private GameLogic gameLogicIA;
 	private GridActor gridActor;
 	private GridActor gridActorIA;
+	private IA ia;
 	
 	private class DownButton extends Button {
 		
@@ -152,6 +154,8 @@ public class GameScreen implements Screen {
 		TextureRegion downRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/down.png", Texture.class), 80, 80);
 		TextureRegion downDownRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/down_down.png", Texture.class), 80, 80);
 		stage.addActor(new DownButton(downRegion, downDownRegion));
+		
+		ia = new IA(gameLogicIA);
 	}
 	
 	public static GameScreen getInstance() {
@@ -186,6 +190,7 @@ public class GameScreen implements Screen {
 		// Update model
 		gameLogic.update(delta);
 		gameLogicIA.update(delta);
+		ia.update(delta);
 
 		// clear previous frame
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
