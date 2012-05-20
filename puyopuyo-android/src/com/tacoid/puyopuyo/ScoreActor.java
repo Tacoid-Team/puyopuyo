@@ -13,6 +13,7 @@ public class ScoreActor extends Actor {
 	public ScoreActor(GameLogic logic) {
 		this.logic = logic;
 		font = new BitmapFont();
+		font.setScale(1.2f);
 	}
 
 	@Override

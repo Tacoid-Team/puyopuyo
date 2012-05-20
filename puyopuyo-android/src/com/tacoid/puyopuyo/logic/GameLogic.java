@@ -15,8 +15,7 @@ public class GameLogic {
 	private int nextRot = 0;
 	private int score = 0;
 	private ArrayList<Falling> fallings;
-	private float speed = 0.3f;
-
+	private float speed = 0.4f;
 
 	private State state = State.MOVE;
 	private boolean first;
