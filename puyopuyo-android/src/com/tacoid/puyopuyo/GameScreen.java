@@ -44,9 +44,14 @@ public class GameScreen implements Screen {
 		
 		@Override
 		public boolean touchDown(float x, float y, int pointer) {
-			gameLogic.moveDown();
+			gameLogic.down();
 			return true;
-		}	
+		}
+		
+		@Override
+		public void touchUp(float x, float y, int pointer) {
+			gameLogic.up();
+		}
 	}
 	
 	

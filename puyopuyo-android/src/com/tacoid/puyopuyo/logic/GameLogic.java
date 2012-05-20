@@ -15,12 +15,14 @@ public class GameLogic {
 	private int nextRot = 0;
 	private int score = 0;
 	private ArrayList<Falling> fallings;
+	private float speed = 0.3f;
 
 
 	private State state = State.MOVE;
 	private boolean first;
 	private ArrayList<ArrayList<Coord>> removes;
 	private int combo = 1;
+	private boolean isDown = false;
 
 	public GameLogic() {
 		for (int l = 0; l < LINES; l++) {
@@ -287,7 +289,7 @@ public class GameLogic {
 		sum += delta;
 		switch (state) {
 		case MOVE:
-			if (sum > 0.5) {
+			if (sum > speed || (isDown && sum > 0.1f)) {
 				if (!descendre()) {
 					state = State.POSE;
 				}
@@ -295,7 +297,7 @@ public class GameLogic {
 			}
 			break;
 		case POSE:
-			if (sum > 0.5) {
+			if (sum > speed) {
 				pose();
 				state = State.GRAVITY;
 				sum = 0f;
@@ -308,9 +310,9 @@ public class GameLogic {
 				first = false;
 			}
 			for (Falling f : fallings) {
-				f.update(delta / 0.5f);
+				f.update(delta / speed);
 			}
-			if (sum > 0.5) {
+			if (sum > speed) {
 				for (Falling f : fallings) {
 					grid[f.getEnd().l][f.getEnd().c] = f.getEnd().coul;
 				}
@@ -327,9 +329,8 @@ public class GameLogic {
 					score += r.size() * 10 * (r.size() - 3) * combo;
 				}
 				first = false;
-				System.out.println(score);
 			}
-			if (sum > 0.5) {
+			if (sum > speed) {
 				if (removes.size() > 0) {
 					state = State.GRAVITY;
 					first = true;
@@ -370,5 +371,13 @@ public class GameLogic {
 	
 	public int getScore() {
 		return score;
+	}
+
+	public void down() {
+		isDown  = true;
+	}
+	
+	public void up() {
+		isDown = false;
 	}
 }
