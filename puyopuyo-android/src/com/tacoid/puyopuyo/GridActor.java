@@ -12,6 +12,8 @@ public class GridActor extends Actor {
 
 	private Texture[] boules = new Texture[4];
 	private Texture[] boules_f = new Texture[4];
+	private Texture[] boules_h = new Texture[4];
+	private Texture[] boules_v = new Texture[4];
 	private PuyoPuyo puyopuyo;
 	private GameLogic logic;
 	private int origX;
@@ -32,13 +34,38 @@ public class GridActor extends Actor {
 		boules_f[1] = puyopuyo.manager.get("images/jaune_f.png", Texture.class);
 		boules_f[2] = puyopuyo.manager.get("images/rouge_f.png", Texture.class);
 		boules_f[3] = puyopuyo.manager.get("images/bleu_f.png", Texture.class);
+		
+		boules_h[0] = puyopuyo.manager.get("images/vert_horizontal.png", Texture.class);
+		boules_h[1] = puyopuyo.manager.get("images/jaune_horizontal.png", Texture.class);
+		boules_h[2] = puyopuyo.manager.get("images/rouge_horizontal.png", Texture.class);
+		boules_h[3] = puyopuyo.manager.get("images/bleu_horizontal.png", Texture.class);
 
+		boules_v[0] = puyopuyo.manager.get("images/vert_vertical.png", Texture.class);
+		boules_v[1] = puyopuyo.manager.get("images/jaune_vertical.png", Texture.class);
+		boules_v[2] = puyopuyo.manager.get("images/rouge_vertical.png", Texture.class);
+		boules_v[3] = puyopuyo.manager.get("images/bleu_vertical.png", Texture.class);
+		
 		white = puyopuyo.manager.get("images/white.png", Texture.class);
 	}
 
 	@Override
 	public void draw(SpriteBatch batch, float alpha) {
 		int[][] grid = logic.getGrid();
+		
+		for (int l = 0; l < logic.LINES - 1; l++) {
+			for (int c = 0; c < logic.COLUMNS - 1; c++) {
+				if (grid[l][c] > 0) {
+					if (grid[l][c] == grid[l][c+1]) {
+						batch.draw(boules_h[grid[l][c] - 1], c * 32 + origX + 16, l * 32 + origY);
+					}
+					if (grid[l][c] == grid[l+1][c]) {
+						batch.draw(boules_v[grid[l][c] - 1], c * 32 + origX, l * 32 + origY + 16);
+					}
+				}
+				
+			}
+		}
+		
 		for (int l = 0; l < logic.LINES; l++) {
 			for (int c = 0; c < logic.COLUMNS; c++) {
 				if (grid[l][c] > 0) {
