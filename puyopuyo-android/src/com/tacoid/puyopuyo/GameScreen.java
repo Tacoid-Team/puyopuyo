@@ -156,6 +156,9 @@ public class GameScreen implements Screen {
 		stage.addActor(new DownButton(downRegion, downDownRegion));
 		
 		ia = new IA(gameLogicIA);
+		
+		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glClearColor(0.4f, 0.4f, 0.4f, 1.0f);
 	}
 	
 	public static GameScreen getInstance() {
