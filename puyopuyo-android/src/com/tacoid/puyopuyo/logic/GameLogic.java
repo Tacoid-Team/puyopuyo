@@ -6,18 +6,21 @@ public class GameLogic {
 
 	public final int LINES = 12;
 	public final int COLUMNS = 6;
+
+	private State state = State.MOVE;
+
 	private int grid[][] = new int[LINES + 1][COLUMNS];
-	private boolean gridFF[][];
 	private Coord[] piece = new Coord[2];
 	private Coord[] nextPiece = new Coord[2];
-	private float sum = 0f;
 	private int rot = 0;
 	private int nextRot = 0;
+
+	private boolean gridFF[][];
+	private float sum = 0f;
 	private int score = 0;
 	private ArrayList<Falling> fallings;
 	private float speed = 0.4f;
 
-	private State state = State.MOVE;
 	private boolean first;
 	private ArrayList<ArrayList<Coord>> removes;
 	private int combo = 1;
@@ -31,6 +34,30 @@ public class GameLogic {
 		}
 		generate(); // generate current
 		generate(); // generate next
+	}
+
+	public GameLogic(GameLogic logic) {
+		// copy grid.
+		for (int l = 0; l < LINES; l++) {
+			for (int c = 0; c < COLUMNS; c++) {
+				grid[l][c] = logic.grid[l][c];
+			}
+		}
+
+		// piece + next piece :
+		piece[0] = new Coord(logic.piece[0].l, logic.piece[0].c,
+				logic.piece[0].coul);
+		piece[1] = new Coord(logic.piece[1].l, logic.piece[1].c,
+				logic.piece[1].coul);
+		nextPiece[0] = new Coord(logic.nextPiece[0].l, logic.nextPiece[0].c,
+				logic.nextPiece[0].coul);
+		nextPiece[1] = new Coord(logic.nextPiece[1].l, logic.nextPiece[1].c,
+				logic.nextPiece[1].coul);
+		rot = logic.rot;
+		nextRot = logic.nextRot;
+
+		state = logic.state;
+		combo = 1;
 	}
 
 	private boolean generate() {
@@ -284,6 +311,24 @@ public class GameLogic {
 		}
 	}
 
+	public void descendreEtPose() {
+		pose();
+
+		combo = 1;
+		do {
+			fallings = gravity();
+			for (Falling f : fallings) {
+				grid[f.getEnd().l][f.getEnd().c] = f.getEnd().coul;
+			}
+
+			removes = resolve();
+			for (ArrayList<Coord> r : removes) {
+				score += r.size() * 10 * (r.size() - 3) * combo;
+			}
+			combo *= 2;
+		} while (removes.size() > 0);
+	}
+
 	public void update(float delta) {
 		sum += delta;
 		switch (state) {
@@ -367,15 +412,15 @@ public class GameLogic {
 	public State getState() {
 		return state;
 	}
-	
+
 	public int getScore() {
 		return score;
 	}
 
 	public void down() {
-		isDown  = true;
+		isDown = true;
 	}
-	
+
 	public void up() {
 		isDown = false;
 	}
