@@ -15,7 +15,7 @@ public class GameLogic {
 	private int rot = 0;
 	private int nextRot = 0;
 
-	private boolean gridFF[][];
+	public boolean gridFF[][];
 	private float sum = 0f;
 	private int score = 0;
 	private ArrayList<Falling> fallings;
@@ -272,13 +272,15 @@ public class GameLogic {
 		return boules;
 	}
 
-	private int floodfill(int l, int c, int coul, ArrayList<Coord> list) {
+	public int floodfill(int l, int c, int coul, ArrayList<Coord> list) {
 		if (l < 0 || c < 0 || l >= LINES || c >= COLUMNS || grid[l][c] != coul
 				|| gridFF[l][c]) {
 			return 0;
 		}
 		gridFF[l][c] = true;
-		list.add(new Coord(l, c, coul));
+		if (list != null) {
+			list.add(new Coord(l, c, coul));
+		}
 		return 1 + floodfill(l + 1, c, coul, list)
 				+ floodfill(l - 1, c, coul, list)
 				+ floodfill(l, c + 1, coul, list)
@@ -308,6 +310,14 @@ public class GameLogic {
 		for (Coord p : piece) {
 			grid[p.l][p.c] = p.coul;
 			p.coul = 0;
+		}
+	}
+	
+	public void poseEtGravity() {
+		pose();
+		fallings = gravity();
+		for (Falling f : fallings) {
+			grid[f.getEnd().l][f.getEnd().c] = f.getEnd().coul;
 		}
 	}
 
