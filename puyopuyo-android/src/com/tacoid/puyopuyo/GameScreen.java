@@ -115,6 +115,8 @@ public class GameScreen implements Screen {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
 		gameLogic = new GameLogic();
 		gameLogicIA = new GameLogic();
+		gameLogic.setOpponent(gameLogicIA);
+		gameLogicIA.setOpponent(gameLogic);
 
 		gridActor = new GridActor(gameLogic, 124, 16);
 		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 30, 330);

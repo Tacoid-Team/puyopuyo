@@ -10,10 +10,10 @@ import com.tacoid.puyopuyo.logic.State;
 
 public class GridActor extends Actor {
 
-	private Texture[] boules = new Texture[4];
-	private Texture[] boules_f = new Texture[4];
-	private Texture[] boules_h = new Texture[4];
-	private Texture[] boules_v = new Texture[4];
+	private Texture[] boules = new Texture[5];
+	private Texture[] boules_f = new Texture[5];
+	private Texture[] boules_h = new Texture[5];
+	private Texture[] boules_v = new Texture[5];
 	private PuyoPuyo puyopuyo;
 	private GameLogic logic;
 	private int origX;
@@ -29,11 +29,13 @@ public class GridActor extends Actor {
 		boules[1] = puyopuyo.manager.get("images/jaune.png", Texture.class);
 		boules[2] = puyopuyo.manager.get("images/rouge.png", Texture.class);
 		boules[3] = puyopuyo.manager.get("images/bleu.png", Texture.class);
+		boules[4] = puyopuyo.manager.get("images/nuisance.png", Texture.class);
 
 		boules_f[0] = puyopuyo.manager.get("images/vert_f.png", Texture.class);
 		boules_f[1] = puyopuyo.manager.get("images/jaune_f.png", Texture.class);
 		boules_f[2] = puyopuyo.manager.get("images/rouge_f.png", Texture.class);
 		boules_f[3] = puyopuyo.manager.get("images/bleu_f.png", Texture.class);
+		boules_f[4] = puyopuyo.manager.get("images/nuisance.png", Texture.class);
 		
 		boules_h[0] = puyopuyo.manager.get("images/vert_horizontal.png", Texture.class);
 		boules_h[1] = puyopuyo.manager.get("images/jaune_horizontal.png", Texture.class);
@@ -54,7 +56,7 @@ public class GridActor extends Actor {
 		
 		for (int l = 0; l < logic.LINES - 1; l++) {
 			for (int c = 0; c < logic.COLUMNS - 1; c++) {
-				if (grid[l][c] > 0) {
+				if (grid[l][c] > 0 && grid[l][c] != logic.GARBAGE) {
 					if (grid[l][c] == grid[l][c+1]) {
 						batch.draw(boules_h[grid[l][c] - 1], c * 32 + origX + 16, l * 32 + origY);
 					}
@@ -78,13 +80,13 @@ public class GridActor extends Actor {
 		if (logic.getState() != State.LOST) {
 			Coord[] next = logic.getPiece();
 			if (next != null) {
-				if (next[0].coul > 0) {
+				if (next[0].coul > 0 && next[0].l < logic.LINES) {
 					batch.draw(white, next[0].c * 32 + origX, next[0].l * 32
 							+ origY);
 					batch.draw(boules[next[0].coul - 1],
 							next[0].c * 32 + origX, next[0].l * 32 + origY);
 				}
-				if (next[1].coul > 0) {
+				if (next[1].coul > 0 && next[1].l < logic.LINES) {
 					batch.draw(boules[next[1].coul - 1],
 							next[1].c * 32 + origX, next[1].l * 32 + origY);
 				}

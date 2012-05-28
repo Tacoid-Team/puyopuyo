@@ -6,10 +6,11 @@ public class GameLogic {
 
 	public final int LINES = 12;
 	public final int COLUMNS = 6;
+	public final int GARBAGE = 5;
 
 	private State state = State.MOVE;
 
-	private int grid[][] = new int[LINES + 1][COLUMNS];
+	private int grid[][] = new int[LINES * 2][COLUMNS];
 	private Coord[] piece = new Coord[2];
 	private Coord[] nextPiece = new Coord[2];
 	private int rot = 0;
@@ -21,10 +22,48 @@ public class GameLogic {
 	private ArrayList<Falling> fallings;
 	private float speed = 0.4f;
 
-	private boolean first;
-	private ArrayList<ArrayList<Coord>> removes;
+	private boolean first = true;
+	private ArrayList<Explosion> removes;
 	private int combo = 1;
 	private boolean isDown = false;
+	private GameLogic opponent = null;
+	private int points = 0;
+	private int garbage = 0;
+	private float leftoverNuisance = 0f;
+
+	private int[][] DIR = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+
+	private class Explosion {
+		private int nbPuyos;
+
+		public Explosion(GameLogic logic, ArrayList<Coord> removes) {
+			this.nbPuyos = removes.size();
+
+			ArrayList<Coord> removeGarbage = new ArrayList<Coord>();
+			
+			for (Coord coord : removes) {
+				for (int[] dir : DIR) {
+					if (coord.l + dir[0] >= 0 && coord.l + dir[0] < logic.LINES
+							&& coord.c + dir[1] >= 0
+							&& coord.c + dir[1] < logic.COLUMNS) {
+						if (logic.grid[coord.l + dir[0]][coord.c + dir[1]] == GARBAGE) {
+							removeGarbage.add(new Coord(coord.l + dir[0], coord.c + dir[1], GARBAGE));
+						}
+					}
+				}
+			}
+			
+			removes.addAll(removeGarbage);
+			
+			for (Coord coord : removes) {
+				grid[coord.l][coord.c] = 0;
+			}
+		}
+
+		public int getNbPuyos() {
+			return nbPuyos;
+		}
+	}
 
 	public GameLogic() {
 		for (int l = 0; l < LINES; l++) {
@@ -75,20 +114,20 @@ public class GameLogic {
 
 		switch (nextRot) {
 		case 0:
-			nextPiece[0] = new Coord(LINES - 2, COLUMNS / 2, coul1);
-			nextPiece[1] = new Coord(LINES - 1, COLUMNS / 2, coul2);
+			nextPiece[0] = new Coord(LINES - 1, COLUMNS / 2, coul1);
+			nextPiece[1] = new Coord(LINES, COLUMNS / 2, coul2);
 			break;
 		case 1:
-			nextPiece[0] = new Coord(LINES - 1, COLUMNS / 2, coul1);
-			nextPiece[1] = new Coord(LINES - 1, COLUMNS / 2 + 1, coul2);
+			nextPiece[0] = new Coord(LINES, COLUMNS / 2, coul1);
+			nextPiece[1] = new Coord(LINES, COLUMNS / 2 + 1, coul2);
 			break;
 		case 2:
-			nextPiece[0] = new Coord(LINES - 1, COLUMNS / 2, coul1);
-			nextPiece[1] = new Coord(LINES - 2, COLUMNS / 2, coul2);
+			nextPiece[0] = new Coord(LINES, COLUMNS / 2, coul1);
+			nextPiece[1] = new Coord(LINES - 1, COLUMNS / 2, coul2);
 			break;
 		case 3:
-			nextPiece[0] = new Coord(LINES - 1, COLUMNS / 2 + 1, coul1);
-			nextPiece[1] = new Coord(LINES - 1, COLUMNS / 2, coul2);
+			nextPiece[0] = new Coord(LINES, COLUMNS / 2 + 1, coul1);
+			nextPiece[1] = new Coord(LINES, COLUMNS / 2, coul2);
 			break;
 		}
 
@@ -259,7 +298,7 @@ public class GameLogic {
 	private ArrayList<Falling> gravity() {
 		ArrayList<Falling> boules = new ArrayList<Falling>();
 		int[] sums = new int[COLUMNS];
-		for (int l = 0; l < LINES; l++) {
+		for (int l = 0; l < LINES * 2; l++) {
 			for (int c = 0; c < COLUMNS; c++) {
 				if (grid[l][c] == 0) {
 					sums[c]++;
@@ -287,18 +326,15 @@ public class GameLogic {
 				+ floodfill(l, c - 1, coul, list);
 	}
 
-	private ArrayList<ArrayList<Coord>> resolve() {
-		ArrayList<ArrayList<Coord>> remove = new ArrayList<ArrayList<Coord>>();
+	private ArrayList<Explosion> resolve() {
+		ArrayList<Explosion> remove = new ArrayList<Explosion>();
 		gridFF = new boolean[LINES][COLUMNS];
 		for (int l = 0; l < LINES; l++) {
 			for (int c = 0; c < COLUMNS; c++) {
-				if (grid[l][c] > 0) {
+				if (grid[l][c] > 0 && grid[l][c] != GARBAGE) {
 					ArrayList<Coord> list = new ArrayList<Coord>();
 					if (floodfill(l, c, grid[l][c], list) >= 4) {
-						remove.add(list);
-						for (Coord coord : list) {
-							grid[coord.l][coord.c] = 0;
-						}
+						remove.add(new Explosion(this, list));
 					}
 				}
 			}
@@ -312,7 +348,7 @@ public class GameLogic {
 			p.coul = 0;
 		}
 	}
-	
+
 	public void poseEtGravity() {
 		pose();
 		fallings = gravity();
@@ -332,8 +368,8 @@ public class GameLogic {
 			}
 
 			removes = resolve();
-			for (ArrayList<Coord> r : removes) {
-				score += r.size() * 10 * (r.size() - 3) * combo;
+			for (Explosion r : removes) {
+				score += r.getNbPuyos() * 10 * (r.getNbPuyos() - 3) * combo;
 			}
 			combo *= 2;
 		} while (removes.size() > 0);
@@ -342,7 +378,22 @@ public class GameLogic {
 	public void update(float delta) {
 		sum += delta;
 		switch (state) {
+		case GARBAGE:
+			if (garbage > 0) {
+				generateGarbage();
+				state = State.GRAVITY;
+			} else {
+				state = State.MOVE;
+			}
+			first = true;
+			break;
 		case MOVE:
+			if (first) {
+				if (!generate()) {
+					state = State.LOST;
+				}
+				first = false;
+			}
 			if (sum > speed || (isDown && sum > 0.1f)) {
 				if (!descendre()) {
 					state = State.POSE;
@@ -379,8 +430,12 @@ public class GameLogic {
 		case RESOLVE:
 			if (first) {
 				removes = resolve();
-				for (ArrayList<Coord> r : removes) {
-					score += r.size() * 10 * (r.size() - 3) * combo;
+				for (Explosion r : removes) {
+					int p = r.getNbPuyos() * 10 * (r.getNbPuyos() - 3) * combo;
+					float nuisance = p / 70.0f + leftoverNuisance;
+					leftoverNuisance = nuisance - (int) nuisance;
+					opponent.sendGarbage((int) nuisance);
+					points += p;
 				}
 				first = false;
 			}
@@ -390,17 +445,38 @@ public class GameLogic {
 					first = true;
 					combo *= 2;
 				} else {
+					state = State.GARBAGE;
+					score += points;
+					points = 0;
 					combo = 1;
-					if (generate()) {
-						state = State.MOVE;
-					} else {
-						state = State.LOST;
-					}
 				}
 				sum = 0f;
 			}
 			break;
 		}
+	}
+
+	private void generateGarbage() {
+		int l = LINES;
+		while (garbage >= COLUMNS) {
+			for (int c = 0; c < COLUMNS; c++) {
+				grid[l][c] = GARBAGE;
+			}
+			garbage -= COLUMNS;
+			l++;
+		}
+
+		ArrayList<Integer> cols = new ArrayList<Integer>();
+		for (int c = 0; c < COLUMNS; c++) {
+			cols.add(c);
+		}
+		
+		for (int c = 0; c < garbage; c++) {
+			int i = (int)(Math.random() * cols.size());
+			grid[l][cols.get(i)] = GARBAGE;
+			cols.remove(i);
+		}
+		garbage = 0;
 	}
 
 	public int[][] getGrid() {
@@ -433,5 +509,16 @@ public class GameLogic {
 
 	public void up() {
 		isDown = false;
+	}
+
+	public void setOpponent(GameLogic opponent) {
+		this.opponent = opponent;
+	}
+
+	public void sendGarbage(int garbage) {
+		this.garbage += garbage;
+		if (this.garbage > LINES * COLUMNS) {
+			garbage = LINES * COLUMNS;
+		}
 	}
 }
