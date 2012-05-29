@@ -58,7 +58,7 @@ public class IA {
 				}
 			}
 
-			if (n == 5) {
+			if (n == 4) {
 				switch (max) {
 				case 1:
 					logic.rotateLeft();
@@ -86,7 +86,7 @@ public class IA {
 		if (sum > 0.2) {
 			sum = 0;
 
-			choice(5, logic, 0);
+			choice(4, logic, 0);
 		}
 	}
 }
