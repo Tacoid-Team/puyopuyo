@@ -10,7 +10,7 @@ public class GameLogic {
 
 	private State state = State.MOVE;
 
-	private int grid[][] = new int[LINES * 2][COLUMNS];
+	int grid[][] = new int[LINES * 2][COLUMNS];
 	private Coord[] piece = new Coord[2];
 	private Coord[] nextPiece = new Coord[2];
 	private int rot = 0;
@@ -350,10 +350,11 @@ public class GameLogic {
 	}
 
 	public void poseEtGravity() {
-		pose();
-		fallings = gravity();
-		for (Falling f : fallings) {
-			grid[f.getEnd().l][f.getEnd().c] = f.getEnd().coul;
+		for (Coord c : piece) {
+			while (c.l > 0 && grid[c.l - 1][c.c] == 0) {
+				c.l--;
+			}
+			grid[c.l][c.c] = c.coul;
 		}
 	}
 
