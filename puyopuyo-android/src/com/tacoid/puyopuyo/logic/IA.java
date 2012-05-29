@@ -26,7 +26,7 @@ public class IA {
 			int potentiel = 0;
 			for (int l = 0; l < cl.LINES; l++) {
 				for (int c = 0; c < cl.COLUMNS; c++) {
-					if (grid[l][c] > 0) {
+					if (grid[l][c] > 0 && !cl.gridFF[l][c]) {
 						int count = cl.floodfill(l, c, grid[l][c], null);
 						if (count > 1) {
 							potentiel += count * count;
