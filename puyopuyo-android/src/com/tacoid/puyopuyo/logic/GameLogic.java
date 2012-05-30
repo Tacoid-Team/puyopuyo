@@ -418,7 +418,7 @@ public class GameLogic {
 			for (Falling f : fallings) {
 				f.update(delta / speed);
 			}
-			if (sum > speed) {
+			if (sum > 0.5) {
 				for (Falling f : fallings) {
 					grid[f.getEnd().l][f.getEnd().c] = f.getEnd().coul;
 				}
@@ -440,7 +440,7 @@ public class GameLogic {
 				}
 				first = false;
 			}
-			if (sum > speed) {
+			if (sum > 0.5) {
 				if (removes.size() > 0) {
 					state = State.GRAVITY;
 					first = true;
