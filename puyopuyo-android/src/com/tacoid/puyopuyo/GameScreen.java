@@ -1,6 +1,7 @@
 package com.tacoid.puyopuyo;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GLCommon;
@@ -23,6 +24,7 @@ public class GameScreen implements Screen {
 	private GridActor gridActor;
 	private GridActor gridActorIA;
 	private IA ia;
+	private InputProcessor controller;
 
 	private class DownButton extends Button {
 
@@ -119,6 +121,7 @@ public class GameScreen implements Screen {
 		gameLogicIA = new GameLogic();
 		gameLogic.setOpponent(gameLogicIA);
 		gameLogicIA.setOpponent(gameLogic);
+		controller = new Controller(gameLogic, stage);
 
 		gridActor = new GridActor(gameLogic, 124, 16);
 		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 30, 330);
@@ -249,7 +252,7 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void show() {
-		Gdx.input.setInputProcessor(stage);
+		Gdx.input.setInputProcessor(controller );
 	}
 
 }
