@@ -60,6 +60,11 @@ public class IA {
 
 			if (n == 4) {
 				switch (max) {
+				case 0:
+					if (logic.getPiece()[0].l < 10) {
+						logic.dropPiece();
+					}
+					break;
 				case 1:
 					logic.rotateLeft();
 					break;

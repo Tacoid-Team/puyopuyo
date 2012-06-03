@@ -34,6 +34,8 @@ public class Controller implements InputProcessor {
 		case Keys.CONTROL_LEFT:
 			gameLogic.rotateLeft();
 			break;
+		case Keys.SPACE:
+			gameLogic.dropPiece();
 		}
 		return false;
 	}

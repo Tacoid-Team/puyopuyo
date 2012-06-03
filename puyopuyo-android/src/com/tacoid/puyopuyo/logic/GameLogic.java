@@ -279,6 +279,12 @@ public class GameLogic {
 			}
 		}
 	}
+	
+	public void dropPiece() {
+		if (state == State.MOVE) {
+			state = State.POSE;
+		}
+	}
 
 	private boolean descendre() {
 		boolean result = true;

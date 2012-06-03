@@ -1,5 +1,8 @@
 package com.tacoid.puyopuyo;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
@@ -28,6 +31,8 @@ public class GameScreen implements Screen {
 
 	private class DownButton extends Button {
 
+		private long last = 0;
+
 		public DownButton(TextureRegion regionUp, TextureRegion regionDown) {
 			super(regionUp, regionDown);
 			x = 29;
@@ -38,13 +43,19 @@ public class GameScreen implements Screen {
 		public boolean touchDown(float x, float y, int pointer) {
 			super.touchDown(x, y, pointer);
 			gameLogic.down();
+			//gameLogic.dropPiece();
 			return true;
 		}
 
 		@Override
 		public void touchUp(float x, float y, int pointer) {
 			super.touchUp(x, y, pointer);
-			gameLogic.up();
+			gameLogic.up();			
+			if (Calendar.getInstance().getTimeInMillis() - last < 500) {
+				gameLogic.dropPiece();
+			}
+			
+			last  = Calendar.getInstance().getTimeInMillis();
 		}
 	}
 
