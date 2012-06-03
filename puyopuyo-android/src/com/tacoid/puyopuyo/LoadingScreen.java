@@ -43,10 +43,11 @@ public class LoadingScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl10.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		if (puyopuyo.manager.update()) {
 			puyopuyo.setScreen(GameScreen.getInstance());
 		}
+		// Non compatible gwt.
 		NumberFormat nf = new DecimalFormat("0.00"); 
 		String loadMsg = "Loading " + nf.format(puyopuyo.manager.getProgress() * 100) + "%";
 		spriteBatch.begin();

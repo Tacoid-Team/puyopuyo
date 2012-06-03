@@ -16,6 +16,7 @@ public class ScoreActor extends Actor {
 		this.logic = logic;
 		this.origX = origX;
 		this.origY = origY;
+		// A commenter pour le porting gwt
 		font = new BitmapFont();
 		font.setScale(1.2f);
 	}

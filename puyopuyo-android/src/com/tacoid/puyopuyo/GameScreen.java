@@ -3,6 +3,7 @@ package com.tacoid.puyopuyo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GLCommon;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -214,7 +215,7 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
-		GL10 gl = Gdx.graphics.getGL10();
+		GLCommon gl = Gdx.gl;
 
 		if (gameLogic.getState() != State.LOST
 				&& gameLogicIA.getState() != State.LOST) {
