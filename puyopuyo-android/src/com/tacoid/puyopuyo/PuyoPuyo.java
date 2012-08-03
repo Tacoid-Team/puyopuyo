@@ -22,6 +22,7 @@ public class PuyoPuyo extends Game {
 	@Override
 	public void create() {
 		setScreen(LoadingScreen.getInstance());
+	
 		Gdx.input.setCatchBackKey(true);
 		
 		loadAssets();
@@ -59,5 +60,8 @@ public class PuyoPuyo extends Game {
 		manager.load("images/jaune_vertical.png", Texture.class);
 		manager.load("images/vert_vertical.png", Texture.class);
 		manager.load("images/nuisance.png", Texture.class);
+		
+		manager.load("images/menu/play.png", Texture.class);
+		manager.load("images/menu/exit.png", Texture.class);
 	}
 }

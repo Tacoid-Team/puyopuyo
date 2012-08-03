@@ -1,6 +1,5 @@
 package com.tacoid.puyopuyo;
 
-import java.sql.Date;
 import java.util.Calendar;
 
 import com.badlogic.gdx.Gdx;

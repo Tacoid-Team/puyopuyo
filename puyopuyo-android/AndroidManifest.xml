@@ -10,7 +10,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:name="com.tacoid.puyopuyo.PuyoPuyoAndroid"
+            android:name=".PuyoPuyoAndroid"
             android:label="@string/app_name"
             android:screenOrientation="landscape" >
             <intent-filter>
