@@ -130,12 +130,12 @@ public class MainMenuScreen implements Screen {
 
 		@Override
 		public boolean touchDown(float x, float y, int pointer) {
-			PuyoPuyo.getInstance().setScreen(GameScreen.getInstance());
+			PuyoPuyo.getInstance().setScreen(GameTimeAttackScreen.getInstance());
 			System.out.println("POUET");
 			return true;
 		}
 		public void touchUp(float x, float y, int pointer) {
-			PuyoPuyo.getInstance().setScreen(GameScreen.getInstance());
+			PuyoPuyo.getInstance().setScreen(GameTimeAttackScreen.getInstance());
 		}
 	}
 

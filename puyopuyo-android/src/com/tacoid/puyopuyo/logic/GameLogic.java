@@ -439,9 +439,11 @@ public class GameLogic {
 				removes = resolve();
 				for (Explosion r : removes) {
 					int p = r.getNbPuyos() * 10 * (r.getNbPuyos() - 3) * combo;
-					float nuisance = p / 70.0f + leftoverNuisance;
-					leftoverNuisance = nuisance - (int) nuisance;
-					opponent.sendGarbage((int) nuisance);
+					if (opponent != null) {
+						float nuisance = p / 70.0f + leftoverNuisance;
+						leftoverNuisance = nuisance - (int) nuisance;
+						opponent.sendGarbage((int) nuisance);
+					}
 					points += p;
 				}
 				first = false;
