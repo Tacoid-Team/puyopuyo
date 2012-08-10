@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 
@@ -21,6 +20,7 @@ public class MainMenuScreen implements Screen {
 	private SpriteBatch batch;
 	
 	float scrollTimer = 0.0f;
+	float foregroundTimer = 0.0f;
 	
 	Texture SkyTex;
     Sprite SkySprite;
@@ -85,6 +85,11 @@ public class MainMenuScreen implements Screen {
 	     if(scrollTimer>1.0f)
 	         scrollTimer = 0.0f;
 		
+	     foregroundTimer+=Gdx.graphics.getDeltaTime()*0.5;
+	     if(foregroundTimer> 1.0f) {
+	    	 foregroundTimer = 1.0f;
+	     }
+	     
 	     //Gdx.gl.glClearColor(1.0f, 0,0,0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 				
@@ -93,7 +98,7 @@ public class MainMenuScreen implements Screen {
 		batch.begin();
 		SkySprite.draw(batch);
 		batch.draw(HillsTex,0,0);
-		batch.draw(ForegroundTex,0,0);
+		batch.draw(ForegroundTex,0,1000*-(foregroundTimer/2 - 0.5f)*(foregroundTimer/2 - 0.5f));
 		batch.end();
 		stage.act(Gdx.graphics.getDeltaTime());
 		stage.draw();
@@ -130,8 +135,7 @@ public class MainMenuScreen implements Screen {
 
 		@Override
 		public boolean touchDown(float x, float y, int pointer) {
-			PuyoPuyo.getInstance().setScreen(GameTimeAttackScreen.getInstance());
-			System.out.println("POUET");
+			PuyoPuyo.getInstance().setScreen(GameScreen.getInstance());
 			return true;
 		}
 		public void touchUp(float x, float y, int pointer) {
