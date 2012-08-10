@@ -15,7 +15,7 @@
    id="svg5686"
    version="1.1"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="red-happy.svg">
+   sodipodi:docname="red-sleep.svg">
   <defs
      id="defs5688">
     <linearGradient
@@ -272,7 +272,10 @@
        sodipodi:rx="204.86986"
        sodipodi:ry="173.51222"
        d="m -1107.9696,1075.3578 a 204.86986,173.51222 0 1 1 -409.7397,0 204.86986,173.51222 0 1 1 409.7397,0 z"
-       transform="matrix(1,0,0,1.0843374,0,-76.059266)" />
+       transform="matrix(1,0,0,1.0843374,0,-76.059266)"
+       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        transform="matrix(0.99255241,0,0,1.0696815,-11.303278,-62.841906)"
        d="m -1107.9696,1075.3578 a 204.86986,173.51222 0 1 1 -409.7397,0 204.86986,173.51222 0 1 1 409.7397,0 z"
@@ -282,10 +285,16 @@
        sodipodi:cx="-1312.8395"
        id="path6543"
        style="fill:url(#linearGradient6646);fill-opacity:1;fill-rule:evenodd;stroke:none"
-       sodipodi:type="arc" />
+       sodipodi:type="arc"
+       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <g
        transform="translate(58.979551,261.81167)"
-       id="g6556">
+       id="g6556"
+       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          style="fill:#1a1a1a;fill-opacity:1;fill-rule:evenodd;stroke:none"
          d="m -1260.3884,752.65254 c -8.4696,15.3152 -25.158,25.75 -44.375,25.75 -18.9909,0 -35.5333,-10.1985 -44.0938,-25.2187 4.5178,17.847 22.5602,31.1874 44.1563,31.1874 21.8121,0 40.0243,-13.6029 44.3125,-31.7187 z"
@@ -294,7 +303,10 @@
     </g>
     <g
        id="g6670"
-       transform="matrix(0.44837894,0.00356582,0,0.49199399,-577.31061,648.92559)">
+       transform="matrix(0.44837894,0.00356582,0,0.49199399,-577.31061,648.92559)"
+       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
          d="m -1990.494,1116.1424 c -36.725,-5.264 -52.5457,-13.9461 -62.5374,-34.3193 -6.1068,-12.4519 -7.9503,-21.5157 -7.9503,-39.0883 0,-15.1897 3.6654,-31.7171 9.7327,-43.88487 4.1682,-8.3591 20.3158,-26.45937 27.1753,-30.46142 l 4.09,-2.38622 0.3195,32.90512 c 0.4016,41.36069 1.5534,44.98279 16.7542,52.69119 20.1066,10.196 57.0607,10.2579 88.6579,0.1485 22.7118,-7.2666 31.5198,-11.7076 82.7152,-41.7054 41.5201,-24.32855 64.9381,-35.28317 88.4693,-41.38482 24.8136,-6.43414 44.5344,-8.30721 61.1374,-5.80676 24.9921,3.76389 40.3932,11.95161 50.4603,26.82627 6.9306,10.24047 8.7927,18.28871 9.8378,42.52131 l 0.7258,16.8286 -11.8111,-0.7824 c -15.1757,-1.0052 -43.2482,3.0948 -79.9741,11.6804 -27.5789,6.4472 -39.2302,9.4941 -110.2142,28.8219 -88.828,24.1864 -107.2202,28.1309 -134.5022,28.846 -11.5988,0.304 -24.9239,-0.2799 -33.0861,-1.4498 z"
@@ -315,7 +327,10 @@
        sodipodi:rx="107.52979"
        sodipodi:ry="99.617897"
        d="m -1401.124,795.22571 a 107.52979,99.617897 0 1 1 -215.0596,0 107.52979,99.617897 0 1 1 215.0596,0 z"
-       transform="matrix(0.59302011,0,0,0.64372928,-493.54748,518.42989)" />
+       transform="matrix(0.59302011,0,0,0.64372928,-493.54748,518.42989)"
+       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        sodipodi:type="arc"
        style="fill:none;stroke:url(#radialGradient6702);stroke-width:5.5999999;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
@@ -325,7 +340,10 @@
        sodipodi:rx="23.735674"
        sodipodi:ry="11.867837"
        d="m -1431.3331,765.73596 a 23.735674,11.867837 0 1 1 -47.4713,0 23.735674,11.867837 0 1 1 47.4713,0 z"
-       transform="matrix(0.28943093,-0.16310059,0.12076375,0.39089842,-1130.6505,517.15654)" />
+       transform="matrix(0.28943093,-0.16310059,0.12076375,0.39089842,-1130.6505,517.15654)"
+       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        transform="matrix(0.28943093,-0.16310059,0.12076375,0.39089842,-1140.0068,522.9726)"
        d="m -1431.3331,765.73596 a 23.735674,11.867837 0 1 1 -47.4713,0 23.735674,11.867837 0 1 1 47.4713,0 z"
@@ -335,7 +353,10 @@
        sodipodi:cx="-1455.0687"
        id="path6712"
        style="fill:none;stroke:url(#radialGradient6714);stroke-width:5.5999999;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       sodipodi:type="arc" />
+       sodipodi:type="arc"
+       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        sodipodi:type="arc"
        style="fill:none;stroke:url(#radialGradient6718);stroke-width:5.5999999;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
@@ -345,7 +366,10 @@
        sodipodi:rx="23.735674"
        sodipodi:ry="11.867837"
        d="m -1431.3331,765.73596 a 23.735674,11.867837 0 1 1 -47.4713,0 23.735674,11.867837 0 1 1 47.4713,0 z"
-       transform="matrix(0.31809117,-0.09586488,0.03236513,0.40784551,-1041.9934,614.14999)" />
+       transform="matrix(0.31809117,-0.09586488,0.03236513,0.40784551,-1041.9934,614.14999)"
+       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        transform="matrix(0.31809117,-0.09586488,0.03236513,0.40784551,-1053.1198,619.20743)"
        d="m -1431.3331,765.73596 a 23.735674,11.867837 0 1 1 -47.4713,0 23.735674,11.867837 0 1 1 47.4713,0 z"
@@ -355,7 +379,10 @@
        sodipodi:cx="-1455.0687"
        id="path6720"
        style="fill:none;stroke:url(#radialGradient6722);stroke-width:5.5999999;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       sodipodi:type="arc" />
+       sodipodi:type="arc"
+       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        sodipodi:type="arc"
        style="fill:none;stroke:url(#radialGradient6726);stroke-width:5.5999999;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
@@ -365,7 +392,10 @@
        sodipodi:rx="23.735674"
        sodipodi:ry="11.867837"
        d="m -1431.3331,765.73596 a 23.735674,11.867837 0 1 1 -47.4713,0 23.735674,11.867837 0 1 1 47.4713,0 z"
-       transform="matrix(0.33080195,-0.03069424,-0.04938592,0.40613605,-983.40425,718.37865)" />
+       transform="matrix(0.33080195,-0.03069424,-0.04938592,0.40613605,-983.40425,718.37865)"
+       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        transform="matrix(0.33080195,-0.03069424,-0.04938592,0.40613605,-995.54211,720.6545)"
        d="m -1431.3331,765.73596 a 23.735674,11.867837 0 1 1 -47.4713,0 23.735674,11.867837 0 1 1 47.4713,0 z"
@@ -375,10 +405,16 @@
        sodipodi:cx="-1455.0687"
        id="path6728"
        style="fill:none;stroke:url(#radialGradient6730);stroke-width:5.5999999;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       sodipodi:type="arc" />
+       sodipodi:type="arc"
+       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <g
        id="g3167"
-       transform="translate(-82.635993,262.5269)">
+       transform="translate(-82.635993,262.5269)"
+       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          inkscape:connector-curvature="0"
          id="path3169"

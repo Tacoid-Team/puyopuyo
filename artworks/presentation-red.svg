@@ -3262,8 +3262,8 @@
      showgrid="false"
      inkscape:window-width="1680"
      inkscape:window-height="988"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-x="-32000"
+     inkscape:window-y="-32000"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata4135">
@@ -3273,7 +3273,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -3288,14 +3288,14 @@
        height="1833.7953"
        x="-1301.6041"
        y="-358.43259"
-       inkscape:export-filename="F:\Dropbox\Public\red.png"
+       inkscape:export-filename="F:\Dropbox\Public\puyo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <g
        id="layer1-0"
        inkscape:label="Calque 1"
        transform="translate(1067.9872,-638.95055)"
-       inkscape:export-filename="F:\Dropbox\Public\red.png"
+       inkscape:export-filename="F:\Dropbox\Public\puyo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <path
@@ -3424,7 +3424,7 @@
     <g
        id="g5278"
        transform="matrix(0.43329321,0,0,0.41026556,-463.27507,-452.11453)"
-       inkscape:export-filename="F:\Dropbox\Public\red.png"
+       inkscape:export-filename="F:\Dropbox\Public\puyo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <path
@@ -3471,7 +3471,7 @@
     <g
        id="g5314"
        transform="matrix(0.61816432,0,0,0.68313473,-98.05473,-581.35384)"
-       inkscape:export-filename="F:\Dropbox\Public\red.png"
+       inkscape:export-filename="F:\Dropbox\Public\puyo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <path
@@ -3503,7 +3503,7 @@
     <g
        id="g5349"
        transform="matrix(0.61109098,0,0,0.50120141,174.32259,-470.66777)"
-       inkscape:export-filename="F:\Dropbox\Public\red.png"
+       inkscape:export-filename="F:\Dropbox\Public\puyo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <path
@@ -3539,7 +3539,7 @@
        id="layer1-08"
        inkscape:label="Calque 1"
        transform="translate(-1063.8227,-415.1642)"
-       inkscape:export-filename="F:\Dropbox\Public\red.png"
+       inkscape:export-filename="F:\Dropbox\Public\puyo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <g
@@ -3730,7 +3730,7 @@
        id="layer1-1"
        inkscape:label="Calque 1"
        transform="translate(139.8837,-410.07694)"
-       inkscape:export-filename="F:\Dropbox\Public\red.png"
+       inkscape:export-filename="F:\Dropbox\Public\puyo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <g
@@ -3998,7 +3998,10 @@
     <g
        id="layer1-8"
        inkscape:label="Calque 1"
-       transform="translate(-1065.7173,107.36523)">
+       transform="translate(-1065.7173,107.36523)"
+       inkscape:export-filename="F:\Dropbox\Public\puyo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <g
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
@@ -4198,7 +4201,10 @@
     <g
        id="layer1-2"
        inkscape:label="Calque 1"
-       transform="translate(-452.66381,118.20618)">
+       transform="translate(-452.66381,118.20618)"
+       inkscape:export-filename="F:\Dropbox\Public\puyo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          transform="matrix(1,0,0,1.0843374,1517.7093,-310.68656)"
          d="m -1107.9696,1075.3578 c 0,95.8281 -91.7234,173.5122 -204.8699,173.5122 -113.1465,0 -204.8698,-77.6841 -204.8698,-173.5122 0,-95.82817 91.7233,-173.51223 204.8698,-173.51223 113.1465,0 204.8699,77.68406 204.8699,173.51223 z"
@@ -4293,7 +4299,10 @@
     <g
        id="layer1-4"
        inkscape:label="Calque 1"
-       transform="translate(144.47918,107.36523)">
+       transform="translate(144.47918,107.36523)"
+       inkscape:export-filename="F:\Dropbox\Public\puyo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <g
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
