@@ -10,8 +10,6 @@ import com.tacoid.puyopuyo.logic.State;
 
 public class GridActor extends Actor {
 
-	private static int PUYO_WIDTH = 52 + 2;
-	private static int PUYO_HEIGHT = 52 + 2;
 	private Texture[] boules = new Texture[5];
 	private Texture[] boules_f = new Texture[5];
 	private Texture[] boules_h = new Texture[5];
@@ -21,11 +19,13 @@ public class GridActor extends Actor {
 	private int origX;
 	private int origY;
 	private Texture white;
+	private int size;
 
-	public GridActor(GameLogic logic, int origX, int origY) {
+	public GridActor(GameLogic logic, int origX, int origY, int size) {
 		this.origX = origX;
 		this.origY = origY;
 		this.logic = logic;
+		this.size = size + 2;
 		puyopuyo = PuyoPuyo.getInstance();
 		boules[0] = puyopuyo.manager.get("images/vert.png", Texture.class);
 		boules[1] = puyopuyo.manager.get("images/jaune.png", Texture.class);
@@ -60,10 +60,10 @@ public class GridActor extends Actor {
 			for (int c = 0; c < logic.COLUMNS - 1; c++) {
 				if (grid[l][c] > 0 && grid[l][c] != logic.GARBAGE) {
 					if (grid[l][c] == grid[l][c+1]) {
-						batch.draw(boules_h[grid[l][c] - 1], c * PUYO_WIDTH + origX + PUYO_WIDTH / 2, l * PUYO_HEIGHT + origY);
+						batch.draw(boules_h[grid[l][c] - 1], c * size + origX + size / 2, l * size + origY);
 					}
 					if (grid[l][c] == grid[l+1][c]) {
-						batch.draw(boules_v[grid[l][c] - 1], c * PUYO_WIDTH + origX, l * PUYO_HEIGHT + origY + PUYO_HEIGHT / 2);
+						batch.draw(boules_v[grid[l][c] - 1], c * size + origX, l * size + origY + size / 2);
 					}
 				}
 				
@@ -73,7 +73,7 @@ public class GridActor extends Actor {
 		for (int l = 0; l < logic.LINES; l++) {
 			for (int c = 0; c < logic.COLUMNS; c++) {
 				if (grid[l][c] > 0) {
-					batch.draw(boules_f[grid[l][c] - 1], c * PUYO_WIDTH + origX, l * PUYO_HEIGHT
+					batch.draw(boules_f[grid[l][c] - 1], c * size + origX, l * size
 							+ origY);
 				}
 			}
@@ -83,14 +83,14 @@ public class GridActor extends Actor {
 			Coord[] next = logic.getPiece();
 			if (next != null) {
 				if (next[0].coul > 0 && next[0].l < logic.LINES) {
-					batch.draw(white, next[0].c * PUYO_WIDTH + origX, next[0].l * PUYO_HEIGHT
+					batch.draw(white, next[0].c * size + origX, next[0].l * size
 							+ origY);
 					batch.draw(boules[next[0].coul - 1],
-							next[0].c * PUYO_WIDTH + origX, next[0].l * PUYO_HEIGHT + origY);
+							next[0].c * size + origX, next[0].l * size + origY);
 				}
 				if (next[1].coul > 0 && next[1].l < logic.LINES) {
 					batch.draw(boules[next[1].coul - 1],
-							next[1].c * PUYO_WIDTH + origX, next[1].l * PUYO_HEIGHT + origY);
+							next[1].c * size + origX, next[1].l * size + origY);
 				}
 			}
 		}
@@ -99,8 +99,8 @@ public class GridActor extends Actor {
 			if (logic.getFallings() != null) {
 				for (Falling f : logic.getFallings()) {
 					Coord end = f.getEnd();
-					batch.draw(boules[end.coul - 1], end.c * PUYO_WIDTH + origX, end.l
-							* PUYO_HEIGHT + f.getRemaining() * PUYO_HEIGHT + origY);
+					batch.draw(boules[end.coul - 1], end.c * size + origX, end.l
+							* size + f.getRemaining() * size + origY);
 				}
 			}
 		}

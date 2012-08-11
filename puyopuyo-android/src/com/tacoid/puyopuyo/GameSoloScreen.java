@@ -16,8 +16,8 @@ import com.tacoid.puyopuyo.logic.GameLogic;
 import com.tacoid.puyopuyo.logic.State;
 
 public class GameSoloScreen implements Screen {
-	private static final int VIRTUAL_WIDTH = 675;
-	private static final int VIRTUAL_HEIGHT = 450;
+	private static final int VIRTUAL_WIDTH = 768;
+	private static final int VIRTUAL_HEIGHT = 1280;
 	private static GameSoloScreen instance = null;
 	protected Stage stage;
 	protected GameLogic gameLogic;
@@ -133,12 +133,12 @@ public class GameSoloScreen implements Screen {
 		gameLogic = new GameLogic();
 		controller = new Controller(gameLogic, stage);
 
-		gridActor = new GridActor(gameLogic, 124, 16);
-		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 30, 330);
-		ScoreActor scoreActor = new ScoreActor(gameLogic, 280, 430);
+		gridActor = new GridActor(gameLogic, 280, 320, 70);
+		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 80, 920, 68);
+		ScoreActor scoreActor = new ScoreActor(gameLogic, 590, 1230);
 
 		TextureRegion backgroundRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/fond.png",
+				PuyoPuyo.getInstance().manager.get("images/fond_solo.png",
 						Texture.class), VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
 		Image background = new Image(backgroundRegion);
 

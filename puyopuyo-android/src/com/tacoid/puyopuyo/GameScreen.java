@@ -133,12 +133,12 @@ public class GameScreen implements Screen {
 		gameLogicIA.setOpponent(gameLogic);
 		controller = new Controller(gameLogic, stage);
 
-		gridActor = new GridActor(gameLogic, 216, 32);
-		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 55, 480);
+		gridActor = new GridActor(gameLogic, 216, 32, 52);
+		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 55, 480, 52);
 		ScoreActor scoreActor = new ScoreActor(gameLogic, 480, 730);
 
-		gridActorIA = new GridActor(gameLogicIA, 728, 32);
-		NextPieceActor nextPieceActorIA = new NextPieceActor(gameLogicIA, 1100,	480);
+		gridActorIA = new GridActor(gameLogicIA, 728, 32, 52);
+		NextPieceActor nextPieceActorIA = new NextPieceActor(gameLogicIA, 1100,	480, 52);
 		ScoreActor scoreActorIA = new ScoreActor(gameLogicIA, 890, 730);
 
 		TextureRegion backgroundRegion = new TextureRegion(
