@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 
@@ -40,14 +41,42 @@ public class MainMenuScreen implements Screen {
 		ForegroundTex = new Texture(Gdx.files.internal("images/menu/foreground.png"));
 		batch = new SpriteBatch();
 		
+		/* SOLO BUTTON */
 		TextureRegion playRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/menu/play.png",
-						Texture.class), 100, 100);
+				PuyoPuyo.getInstance().manager.get("images/menu/solo.png",
+						Texture.class));
 		TextureRegion playDownRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/menu/play.png",
-						Texture.class), 100, 100);
-		stage.addActor(new PlayButton(playRegion, playDownRegion));
-
+				PuyoPuyo.getInstance().manager.get("images/menu/solo.png",
+						Texture.class));
+		stage.addActor(new SoloButton(playRegion, playDownRegion));
+		
+		/* VERUS BUTTON */
+		TextureRegion versusRegion = new TextureRegion(
+				PuyoPuyo.getInstance().manager.get("images/menu/versusia.png",
+						Texture.class));
+		TextureRegion versusDownRegion = new TextureRegion(
+				PuyoPuyo.getInstance().manager.get("images/menu/versusia.png",
+						Texture.class));
+		stage.addActor(new VersusButton(versusRegion, versusDownRegion));
+		
+		/* CHRONO BUTTON */
+		TextureRegion chronoRegion = new TextureRegion(
+				PuyoPuyo.getInstance().manager.get("images/menu/chrono.png",
+						Texture.class));
+		TextureRegion chronoDownRegion = new TextureRegion(
+				PuyoPuyo.getInstance().manager.get("images/menu/chrono.png",
+						Texture.class));
+		stage.addActor(new ChronoButton(chronoRegion, chronoDownRegion));
+		
+		/* Exit BUTTON */
+		TextureRegion exitRegion = new TextureRegion(
+				PuyoPuyo.getInstance().manager.get("images/menu/exit.png",
+						Texture.class));
+		TextureRegion exitDownRegion = new TextureRegion(
+				PuyoPuyo.getInstance().manager.get("images/menu/exit.png",
+						Texture.class));
+		stage.addActor(new ExitButton(exitRegion, exitDownRegion));
+		
 	}
 	
 	
@@ -125,8 +154,8 @@ public class MainMenuScreen implements Screen {
 	}
 	
 
-	private class PlayButton extends Button{
-		public PlayButton(TextureRegion regionUp, TextureRegion regionDown) {
+	private class SoloButton extends Button{
+		public SoloButton(TextureRegion regionUp, TextureRegion regionDown) {
 			super(regionUp, regionDown);
 			x = 100;
 			y = 100;
@@ -135,11 +164,61 @@ public class MainMenuScreen implements Screen {
 
 		@Override
 		public boolean touchDown(float x, float y, int pointer) {
+			return true;
+		}
+		public void touchUp(float x, float y, int pointer) {
+			PuyoPuyo.getInstance().setScreen(GameSoloScreen.getInstance());
+		}
+	}
+	
+	private class VersusButton extends Button{
+		public VersusButton(TextureRegion regionUp, TextureRegion regionDown) {
+			super(regionUp, regionDown);
+			x = 300;
+			y = 100;
+			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		public boolean touchDown(float x, float y, int pointer) {
+			return true;
+		}
+		public void touchUp(float x, float y, int pointer) {
 			PuyoPuyo.getInstance().setScreen(GameScreen.getInstance());
+		}
+	}
+	
+	private class ChronoButton extends Button{
+		public ChronoButton(TextureRegion regionUp, TextureRegion regionDown) {
+			super(regionUp, regionDown);
+			x = 600;
+			y = 100;
+			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		public boolean touchDown(float x, float y, int pointer) {
 			return true;
 		}
 		public void touchUp(float x, float y, int pointer) {
 			PuyoPuyo.getInstance().setScreen(GameTimeAttackScreen.getInstance());
+		}
+	}
+	
+	private class ExitButton extends Button{
+		public ExitButton(TextureRegion regionUp, TextureRegion regionDown) {
+			super(regionUp, regionDown);
+			x = VIRTUAL_WIDTH-200;
+			y = -50;
+			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		public boolean touchDown(float x, float y, int pointer) {
+			return true;
+		}
+		public void touchUp(float x, float y, int pointer) {
+			Gdx.app.exit();
 		}
 	}
 
