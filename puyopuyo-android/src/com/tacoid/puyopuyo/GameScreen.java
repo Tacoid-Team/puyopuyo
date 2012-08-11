@@ -17,8 +17,8 @@ import com.tacoid.puyopuyo.logic.IA;
 import com.tacoid.puyopuyo.logic.State;
 
 public class GameScreen implements Screen {
-	private static final int VIRTUAL_WIDTH = 675;
-	private static final int VIRTUAL_HEIGHT = 450;
+	private static final int VIRTUAL_WIDTH = 1280;
+	private static final int VIRTUAL_HEIGHT = 768;
 	private static GameScreen instance = null;
 	private Stage stage;
 	private GameLogic gameLogic;
@@ -133,14 +133,13 @@ public class GameScreen implements Screen {
 		gameLogicIA.setOpponent(gameLogic);
 		controller = new Controller(gameLogic, stage);
 
-		gridActor = new GridActor(gameLogic, 124, 16);
-		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 30, 330);
-		ScoreActor scoreActor = new ScoreActor(gameLogic, 280, 430);
+		gridActor = new GridActor(gameLogic, 216, 32);
+		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 55, 480);
+		ScoreActor scoreActor = new ScoreActor(gameLogic, 480, 730);
 
-		gridActorIA = new GridActor(gameLogicIA, 349, 16);
-		NextPieceActor nextPieceActorIA = new NextPieceActor(gameLogicIA, 570,
-				330);
-		ScoreActor scoreActorIA = new ScoreActor(gameLogicIA, 445, 430);
+		gridActorIA = new GridActor(gameLogicIA, 728, 32);
+		NextPieceActor nextPieceActorIA = new NextPieceActor(gameLogicIA, 1100,	480);
+		ScoreActor scoreActorIA = new ScoreActor(gameLogicIA, 890, 730);
 
 		TextureRegion backgroundRegion = new TextureRegion(
 				PuyoPuyo.getInstance().manager.get("images/fond.png",

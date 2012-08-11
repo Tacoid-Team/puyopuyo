@@ -8,6 +8,8 @@ import com.tacoid.puyopuyo.logic.GameLogic;
 
 public class NextPieceActor extends Actor {
 
+	private static int PUYO_WIDTH = 52 + 2;
+	private static int PUYO_HEIGHT = 52 + 2;
 	private int origX;
 	private int origY;
 	private GameLogic logic;
@@ -29,9 +31,9 @@ public class NextPieceActor extends Actor {
 		Coord[] piece = logic.getNextPiece();
 		if (piece != null) {
 			if (piece[0].coul > 0)
-				batch.draw(boules[piece[0].coul-1], origX + (piece[0].c - logic.COLUMNS / 2) * 32, origY + (piece[0].l - logic.LINES + 1) * 32);
+				batch.draw(boules[piece[0].coul-1], origX + (piece[0].c - logic.COLUMNS / 2) * PUYO_WIDTH, origY + (piece[0].l - logic.LINES + 1) * PUYO_HEIGHT);
 			if (piece[1].coul > 0)
-				batch.draw(boules[piece[1].coul-1], origX + (piece[1].c - logic.COLUMNS / 2) * 32, origY + (piece[1].l - logic.LINES + 1) * 32);
+				batch.draw(boules[piece[1].coul-1], origX + (piece[1].c - logic.COLUMNS / 2) * PUYO_WIDTH, origY + (piece[1].l - logic.LINES + 1) * PUYO_HEIGHT);
 		}
 	}
 
