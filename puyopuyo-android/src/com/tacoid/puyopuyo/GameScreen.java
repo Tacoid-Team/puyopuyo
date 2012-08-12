@@ -28,14 +28,18 @@ public class GameScreen implements Screen {
 	private IA ia;
 	private InputProcessor controller;
 
+	private void addButton(Button button, int x, int y) {
+		stage.addActor(button);
+		button.x = x;
+		button.y = y;
+	}
+	
 	private class DownButton extends Button {
 
 		private long last = 0;
 
 		public DownButton(TextureRegion regionUp, TextureRegion regionDown) {
 			super(regionUp, regionDown);
-			x = 29;
-			y = 5;
 		}
 
 		@Override
@@ -62,8 +66,6 @@ public class GameScreen implements Screen {
 
 		public LeftButton(TextureRegion regionUp, TextureRegion regionDown) {
 			super(regionUp, regionDown);
-			x = 29;
-			y = 85;
 		}
 
 		@Override
@@ -78,8 +80,6 @@ public class GameScreen implements Screen {
 
 		public RotateLeftButton(TextureRegion regionUp, TextureRegion regionDown) {
 			super(regionUp, regionDown);
-			x = 29;
-			y = 162;
 		}
 
 		@Override
@@ -95,8 +95,6 @@ public class GameScreen implements Screen {
 		public RotateRightButton(TextureRegion regionUp,
 				TextureRegion regionDown) {
 			super(regionUp, regionDown);
-			x = 570;
-			y = 162;
 		}
 
 		@Override
@@ -111,8 +109,6 @@ public class GameScreen implements Screen {
 
 		public RightButton(TextureRegion regionUp, TextureRegion regionDown) {
 			super(regionUp, regionDown);
-			x = 570;
-			y = 85;
 		}
 
 		@Override
@@ -160,7 +156,7 @@ public class GameScreen implements Screen {
 		TextureRegion leftDownRegion = new TextureRegion(
 				PuyoPuyo.getInstance().manager.get("images/left_down.png",
 						Texture.class), 80, 80);
-		stage.addActor(new LeftButton(leftRegion, leftDownRegion));
+		addButton(new LeftButton(leftRegion, leftDownRegion), 70, 250);
 
 		TextureRegion rightRegion = new TextureRegion(
 				PuyoPuyo.getInstance().manager.get("images/right.png",
@@ -168,7 +164,7 @@ public class GameScreen implements Screen {
 		TextureRegion rightDownRegion = new TextureRegion(
 				PuyoPuyo.getInstance().manager.get("images/right_down.png",
 						Texture.class), 80, 80);
-		stage.addActor(new RightButton(rightRegion, rightDownRegion));
+		addButton(new RightButton(rightRegion, rightDownRegion), 1120, 250);
 
 		TextureRegion rotleftRegion = new TextureRegion(
 				PuyoPuyo.getInstance().manager.get("images/rotleft.png",
@@ -176,7 +172,7 @@ public class GameScreen implements Screen {
 		TextureRegion rotleftDownRegion = new TextureRegion(
 				PuyoPuyo.getInstance().manager.get("images/rotleft_down.png",
 						Texture.class), 80, 80);
-		stage.addActor(new RotateLeftButton(rotleftRegion, rotleftDownRegion));
+		addButton(new RotateLeftButton(rotleftRegion, rotleftDownRegion), 70, 150);
 
 		TextureRegion rotrightRegion = new TextureRegion(
 				PuyoPuyo.getInstance().manager.get("images/rotright.png",
@@ -184,7 +180,7 @@ public class GameScreen implements Screen {
 		TextureRegion rotrightDownRegion = new TextureRegion(
 				PuyoPuyo.getInstance().manager.get("images/rotright_down.png",
 						Texture.class), 80, 80);
-		stage.addActor(new RotateRightButton(rotrightRegion, rotrightDownRegion));
+		addButton(new RotateRightButton(rotrightRegion, rotrightDownRegion), 1120, 150);
 
 		TextureRegion downRegion = new TextureRegion(
 				PuyoPuyo.getInstance().manager.get("images/down.png",
@@ -192,7 +188,8 @@ public class GameScreen implements Screen {
 		TextureRegion downDownRegion = new TextureRegion(
 				PuyoPuyo.getInstance().manager.get("images/down_down.png",
 						Texture.class), 80, 80);
-		stage.addActor(new DownButton(downRegion, downDownRegion));
+		
+		addButton(new DownButton(downRegion, downDownRegion), 70, 50);
 
 		ia = new IA(gameLogicIA);
 

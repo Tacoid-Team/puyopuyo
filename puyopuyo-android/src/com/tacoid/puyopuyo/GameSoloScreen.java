@@ -134,7 +134,7 @@ public class GameSoloScreen implements Screen {
 		controller = new Controller(gameLogic, stage);
 
 		gridActor = new GridActor(gameLogic, 280, 320, 70);
-		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 80, 920, 68);
+		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 80, 920, 70);
 		ScoreActor scoreActor = new ScoreActor(gameLogic, 590, 1230);
 
 		TextureRegion backgroundRegion = new TextureRegion(
