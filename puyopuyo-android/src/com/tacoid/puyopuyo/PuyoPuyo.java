@@ -62,6 +62,9 @@ public class PuyoPuyo extends Game {
 		manager.load("images/vert_vertical.png", Texture.class);
 		manager.load("images/nuisance.png", Texture.class);
 		
+		manager.load("images/perdu-fr.png", Texture.class);
+		manager.load("images/gagne-fr.png", Texture.class);
+		
 		/* Textures du menu */
 		manager.load("images/menu/solo.png", Texture.class);
 		manager.load("images/menu/versusia.png", Texture.class);

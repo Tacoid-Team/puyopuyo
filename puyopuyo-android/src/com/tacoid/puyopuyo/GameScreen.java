@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.tacoid.puyopuyo.GameOverActor.GameOverType;
 import com.tacoid.puyopuyo.logic.GameLogic;
 import com.tacoid.puyopuyo.logic.IA;
 import com.tacoid.puyopuyo.logic.State;
@@ -203,7 +204,11 @@ public class GameScreen implements Screen {
 		}
 		return instance;
 	}
-
+	
+	public static void freeInstance() {
+		instance = null;
+	}
+	
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
@@ -233,7 +238,11 @@ public class GameScreen implements Screen {
 			gameLogicIA.update(delta);
 			ia.update(delta);
 		} else {
-			// TODO
+			if(gameLogic.getState() == State.LOST){
+				stage.addActor(new GameOverActor(GameOverType.LOSE, VIRTUAL_WIDTH/2, VIRTUAL_HEIGHT/2));
+			} else {
+				stage.addActor(new GameOverActor(GameOverType.WIN, VIRTUAL_WIDTH/2, VIRTUAL_HEIGHT/2));
+			}
 		}
 
 		// clear previous frame
