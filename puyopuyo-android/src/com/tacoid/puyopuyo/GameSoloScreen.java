@@ -238,9 +238,9 @@ public class GameSoloScreen implements Screen {
 
 	@Override
 	public void resize(int arg0, int arg1) {
-		stage.setViewport(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, false);
-		stage.getCamera().position
-				.set(VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2, 0);
+		stage.setViewport(VIRTUAL_HEIGHT, VIRTUAL_WIDTH, false);
+		stage.getCamera().position.set(VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2, 0);
+		stage.getCamera().rotate(-90, 0, 0, 1);
 	}
 
 	@Override
