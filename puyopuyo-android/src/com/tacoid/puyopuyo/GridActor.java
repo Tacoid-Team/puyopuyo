@@ -20,13 +20,27 @@ public class GridActor extends Actor {
 	private int origY;
 	private Texture white;
 	private int size;
+	private int sizePuyo;
+	private int offWhite;
 
-	public GridActor(GameLogic logic, int origX, int origY, int size) {
+	/**
+	 * 
+	 * @param logic
+	 * @param origX
+	 * @param origY
+	 * @param size Taille d'une colonne.
+	 * @param sizePuyo Taille d'un puyo
+	 */
+	public GridActor(GameLogic logic, int origX, int origY, int size, int sizePuyo) {
 		this.origX = origX;
 		this.origY = origY;
 		this.logic = logic;
-		this.size = size + 2;
+		this.size = size;
+		this.sizePuyo = sizePuyo;
+		this.offWhite = (size - sizePuyo) / 2;
 		puyopuyo = PuyoPuyo.getInstance();
+		
+		// TODO: changer nom fichiers pour intégrer taille.
 		boules[0] = puyopuyo.manager.get("images/vert.png", Texture.class);
 		boules[1] = puyopuyo.manager.get("images/jaune.png", Texture.class);
 		boules[2] = puyopuyo.manager.get("images/rouge.png", Texture.class);
@@ -73,8 +87,8 @@ public class GridActor extends Actor {
 		for (int l = 0; l < logic.LINES; l++) {
 			for (int c = 0; c < logic.COLUMNS; c++) {
 				if (grid[l][c] > 0) {
-					batch.draw(boules_f[grid[l][c] - 1], c * size + origX, l * size
-							+ origY);
+					batch.draw(boules_f[grid[l][c] - 1], c * (size + 1) + origX,
+							l * size + origY);
 				}
 			}
 		}
@@ -83,14 +97,14 @@ public class GridActor extends Actor {
 			Coord[] next = logic.getPiece();
 			if (next != null) {
 				if (next[0].coul > 0 && next[0].l < logic.LINES) {
-					batch.draw(white, next[0].c * size + origX, next[0].l * size
-							+ origY);
+					batch.draw(white, next[0].c * (size + 1) + origX - offWhite, 
+							next[0].l * size + origY + offWhite);
 					batch.draw(boules[next[0].coul - 1],
-							next[0].c * size + origX, next[0].l * size + origY);
+							next[0].c * (size + 1) + origX, next[0].l * size + origY);
 				}
 				if (next[1].coul > 0 && next[1].l < logic.LINES) {
 					batch.draw(boules[next[1].coul - 1],
-							next[1].c * size + origX, next[1].l * size + origY);
+							next[1].c * (size + 1) + origX, next[1].l * size + origY);
 				}
 			}
 		}
@@ -99,7 +113,7 @@ public class GridActor extends Actor {
 			if (logic.getFallings() != null) {
 				for (Falling f : logic.getFallings()) {
 					Coord end = f.getEnd();
-					batch.draw(boules[end.coul - 1], end.c * size + origX, end.l
+					batch.draw(boules[end.coul - 1], end.c * (size + 1) + origX, end.l
 							* size + f.getRemaining() * size + origY);
 				}
 			}

@@ -133,7 +133,7 @@ public class GameSoloScreen implements Screen {
 		gameLogic = new GameLogic();
 		controller = new Controller(gameLogic, stage);
 
-		gridActor = new GridActor(gameLogic, 280, 320, 70);
+		gridActor = new GridActor(gameLogic, 280, 320, 75, 70);
 		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 80, 920, 70);
 		ScoreActor scoreActor = new ScoreActor(gameLogic, 590, 1230);
 

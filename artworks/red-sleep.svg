@@ -242,10 +242,10 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1366"
-     inkscape:window-height="721"
-     inkscape:window-x="0"
-     inkscape:window-y="25"
+     inkscape:window-width="1678"
+     inkscape:window-height="1029"
+     inkscape:window-x="1366"
+     inkscape:window-y="19"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata5691">
@@ -255,7 +255,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -272,12 +272,12 @@
        sodipodi:rx="204.86986"
        sodipodi:ry="173.51222"
        d="m -1107.9696,1075.3578 a 204.86986,173.51222 0 1 1 -409.7397,0 204.86986,173.51222 0 1 1 409.7397,0 z"
-       transform="matrix(1.0128381,0,0,1.1958812,1543.2809,-448.16622)"
-       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
+       transform="matrix(1.0128381,0,0,1.1958812,1539.1273,-441.13798)"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/red_sleep_48.png"
+       inkscape:export-xdpi="10.409638"
+       inkscape:export-ydpi="10.409638" />
     <path
-       transform="matrix(0.98843237,0,0,1.1670648,1511.2285,-417.79327)"
+       transform="matrix(0.98843237,0,0,1.1670648,1507.0749,-410.76503)"
        d="m -1107.9696,1075.3578 a 204.86986,173.51222 0 1 1 -409.7397,0 204.86986,173.51222 0 1 1 409.7397,0 z"
        sodipodi:ry="173.51222"
        sodipodi:rx="204.86986"
@@ -286,15 +286,15 @@
        id="path6543"
        style="fill:url(#linearGradient6646);fill-opacity:1;fill-rule:evenodd;stroke:none"
        sodipodi:type="arc"
-       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/red_sleep_48.png"
+       inkscape:export-xdpi="10.409638"
+       inkscape:export-ydpi="10.409638" />
     <g
-       transform="matrix(0.99967781,0,0,1.1040181,1586.268,-72.707836)"
+       transform="matrix(0.99967781,0,0,1.1040181,1582.1144,-65.6796)"
        id="g6556"
-       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/red_sleep_48.png"
+       inkscape:export-xdpi="10.409638"
+       inkscape:export-ydpi="10.409638">
       <path
          style="fill:#1a1a1a;fill-opacity:1;fill-rule:evenodd;stroke:none"
          d="m -1260.3884,752.65254 c -8.4696,15.3152 -25.158,25.75 -44.375,25.75 -18.9909,0 -35.5333,-10.1985 -44.0938,-25.2187 4.5178,17.847 22.5602,31.1874 44.1563,31.1874 21.8121,0 40.0243,-13.6029 44.3125,-31.7187 z"
@@ -303,10 +303,10 @@
     </g>
     <g
        id="g6670"
-       transform="matrix(0.44823448,0.00393673,0,0.54317028,950.18279,354.67294)"
-       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
+       transform="matrix(0.44823448,0.00393673,0,0.54317028,946.0292,361.70118)"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/red_sleep_48.png"
+       inkscape:export-xdpi="10.409638"
+       inkscape:export-ydpi="10.409638">
       <path
          style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
          d="m -1990.494,1116.1424 c -36.725,-5.264 -52.5457,-13.9461 -62.5374,-34.3193 -6.1068,-12.4519 -7.9503,-21.5157 -7.9503,-39.0883 0,-15.1897 3.6654,-31.7171 9.7327,-43.88487 4.1682,-8.3591 20.3158,-26.45937 27.1753,-30.46142 l 4.09,-2.38622 0.3195,32.90512 c 0.4016,41.36069 1.5534,44.98279 16.7542,52.69119 20.1066,10.196 57.0607,10.2579 88.6579,0.1485 22.7118,-7.2666 31.5198,-11.7076 82.7152,-41.7054 41.5201,-24.32855 64.9381,-35.28317 88.4693,-41.38482 24.8136,-6.43414 44.5344,-8.30721 61.1374,-5.80676 24.9921,3.76389 40.3932,11.95161 50.4603,26.82627 6.9306,10.24047 8.7927,18.28871 9.8378,42.52131 l 0.7258,16.8286 -11.8111,-0.7824 c -15.1757,-1.0052 -43.2482,3.0948 -79.9741,11.6804 -27.5789,6.4472 -39.2302,9.4941 -110.2142,28.8219 -88.828,24.1864 -107.2202,28.1309 -134.5022,28.846 -11.5988,0.304 -24.9239,-0.2799 -33.0861,-1.4498 z"
@@ -327,10 +327,10 @@
        sodipodi:rx="107.52979"
        sodipodi:ry="99.617897"
        d="m -1401.124,795.22571 a 107.52979,99.617897 0 1 1 -215.0596,0 107.52979,99.617897 0 1 1 215.0596,0 z"
-       transform="matrix(0.59282905,0,0,0.71068878,1033.9189,210.60332)"
-       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
+       transform="matrix(0.59282905,0,0,0.71068878,1029.7653,217.63156)"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/red_sleep_48.png"
+       inkscape:export-xdpi="10.409638"
+       inkscape:export-ydpi="10.409638" />
     <path
        sodipodi:type="arc"
        style="fill:none;stroke:url(#radialGradient6702);stroke-width:5.5999999;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
@@ -340,12 +340,12 @@
        sodipodi:rx="23.735674"
        sodipodi:ry="11.867837"
        d="m -1431.3331,765.73596 a 23.735674,11.867837 0 1 1 -47.4713,0 23.735674,11.867837 0 1 1 47.4713,0 z"
-       transform="matrix(0.28933768,-0.18006601,0.12072484,0.43155894,397.02118,209.19752)"
-       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
+       transform="matrix(0.28933768,-0.18006601,0.12072484,0.43155894,392.86759,216.22576)"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/red_sleep_48.png"
+       inkscape:export-xdpi="10.409638"
+       inkscape:export-ydpi="10.409638" />
     <path
-       transform="matrix(0.28933768,-0.18006601,0.12072484,0.43155894,387.6679,215.61856)"
+       transform="matrix(0.28933768,-0.18006601,0.12072484,0.43155894,383.51431,222.6468)"
        d="m -1431.3331,765.73596 a 23.735674,11.867837 0 1 1 -47.4713,0 23.735674,11.867837 0 1 1 47.4713,0 z"
        sodipodi:ry="11.867837"
        sodipodi:rx="23.735674"
@@ -354,9 +354,9 @@
        id="path6712"
        style="fill:none;stroke:url(#radialGradient6714);stroke-width:5.5999999;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        sodipodi:type="arc"
-       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/red_sleep_48.png"
+       inkscape:export-xdpi="10.409638"
+       inkscape:export-ydpi="10.409638" />
     <path
        sodipodi:type="arc"
        style="fill:none;stroke:url(#radialGradient6718);stroke-width:5.5999999;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
@@ -366,12 +366,12 @@
        sodipodi:rx="23.735674"
        sodipodi:ry="11.867837"
        d="m -1431.3331,765.73596 a 23.735674,11.867837 0 1 1 -47.4713,0 23.735674,11.867837 0 1 1 47.4713,0 z"
-       transform="matrix(0.31798868,-0.10583656,0.0323547,0.45026883,485.64972,316.28005)"
-       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
+       transform="matrix(0.31798868,-0.10583656,0.0323547,0.45026883,481.49613,323.30829)"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/red_sleep_48.png"
+       inkscape:export-xdpi="10.409638"
+       inkscape:export-ydpi="10.409638" />
     <path
-       transform="matrix(0.31798868,-0.10583656,0.0323547,0.45026883,474.5269,321.86355)"
+       transform="matrix(0.31798868,-0.10583656,0.0323547,0.45026883,470.37331,328.89179)"
        d="m -1431.3331,765.73596 a 23.735674,11.867837 0 1 1 -47.4713,0 23.735674,11.867837 0 1 1 47.4713,0 z"
        sodipodi:ry="11.867837"
        sodipodi:rx="23.735674"
@@ -380,9 +380,9 @@
        id="path6720"
        style="fill:none;stroke:url(#radialGradient6722);stroke-width:5.5999999;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        sodipodi:type="arc"
-       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/red_sleep_48.png"
+       inkscape:export-xdpi="10.409638"
+       inkscape:export-ydpi="10.409638" />
     <path
        sodipodi:type="arc"
        style="fill:none;stroke:url(#radialGradient6726);stroke-width:5.5999999;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
@@ -392,12 +392,12 @@
        sodipodi:rx="23.735674"
        sodipodi:ry="11.867837"
        d="m -1431.3331,765.73596 a 23.735674,11.867837 0 1 1 -47.4713,0 23.735674,11.867837 0 1 1 47.4713,0 z"
-       transform="matrix(0.33069537,-0.033887,-0.04937001,0.44838155,544.21999,431.35038)"
-       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
+       transform="matrix(0.33069537,-0.033887,-0.04937001,0.44838155,540.0664,438.37862)"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/red_sleep_48.png"
+       inkscape:export-xdpi="10.409638"
+       inkscape:export-ydpi="10.409638" />
     <path
-       transform="matrix(0.33069537,-0.033887,-0.04937001,0.44838155,532.08604,433.86295)"
+       transform="matrix(0.33069537,-0.033887,-0.04937001,0.44838155,527.93245,440.89119)"
        d="m -1431.3331,765.73596 a 23.735674,11.867837 0 1 1 -47.4713,0 23.735674,11.867837 0 1 1 47.4713,0 z"
        sodipodi:ry="11.867837"
        sodipodi:rx="23.735674"
@@ -406,15 +406,15 @@
        id="path6728"
        style="fill:none;stroke:url(#radialGradient6730);stroke-width:5.5999999;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        sodipodi:type="arc"
-       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/red_sleep_48.png"
+       inkscape:export-xdpi="10.409638"
+       inkscape:export-ydpi="10.409638" />
     <g
        id="g3167"
-       transform="matrix(0.99967781,0,0,1.1040181,1444.698,-71.918209)"
-       inkscape:export-filename="C:\Users\Nicolas\Desktop\sleep.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
+       transform="matrix(0.99967781,0,0,1.1040181,1440.5444,-64.889973)"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/red_sleep_48.png"
+       inkscape:export-xdpi="10.409638"
+       inkscape:export-ydpi="10.409638">
       <path
          inkscape:connector-curvature="0"
          id="path3169"
