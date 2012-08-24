@@ -12,6 +12,7 @@ public class GridActor extends Actor {
 
 	private Texture[] boules = new Texture[5];
 	private Texture[] boules_f = new Texture[5];
+	private Texture[] boules_fall = new Texture[5];
 	private Texture[] boules_h = new Texture[5];
 	private Texture[] boules_v = new Texture[5];
 	private PuyoPuyo puyopuyo;
@@ -52,6 +53,13 @@ public class GridActor extends Actor {
 		boules_f[2] = puyopuyo.manager.get("images/rouge_f.png", Texture.class);
 		boules_f[3] = puyopuyo.manager.get("images/bleu_f.png", Texture.class);
 		boules_f[4] = puyopuyo.manager.get("images/nuisance.png", Texture.class);
+		
+		boules_fall[0] = puyopuyo.manager.get("images/vert.png", Texture.class);
+		boules_fall[1] = puyopuyo.manager.get("images/jaune.png", Texture.class);
+		boules_fall[2] = puyopuyo.manager.get("images/red_fall_48.png", Texture.class);
+		boules_fall[3] = puyopuyo.manager.get("images/bleu.png", Texture.class);
+		boules_fall[4] = puyopuyo.manager.get("images/nuisance.png", Texture.class);
+		
 		
 		boules_h[0] = puyopuyo.manager.get("images/vert_horizontal.png", Texture.class);
 		boules_h[1] = puyopuyo.manager.get("images/jaune_horizontal.png", Texture.class);
@@ -113,7 +121,7 @@ public class GridActor extends Actor {
 			if (logic.getFallings() != null) {
 				for (Falling f : logic.getFallings()) {
 					Coord end = f.getEnd();
-					batch.draw(boules[end.coul - 1], end.c * (size + 1) + origX, end.l
+					batch.draw(boules_fall[end.coul - 1], end.c * (size + 1) + origX, end.l
 							* size + f.getRemaining() * size + origY);
 				}
 			}

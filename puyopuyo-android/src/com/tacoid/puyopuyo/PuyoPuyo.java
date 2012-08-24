@@ -36,6 +36,7 @@ public class PuyoPuyo extends Game {
 		manager.load("images/white.png", Texture.class);
 		manager.load("images/rouge.png", Texture.class);
 		manager.load("images/rouge_f.png", Texture.class);
+		manager.load("images/red_fall_48.png", Texture.class);
 		manager.load("images/bleu.png", Texture.class);
 		manager.load("images/bleu_f.png", Texture.class);
 		manager.load("images/jaune.png", Texture.class);
