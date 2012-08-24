@@ -20,10 +20,10 @@ public class NextPieceActor extends Actor {
 		this.origY = origY;
 		this.size = size + 2;
 		PuyoPuyo puyopuyo = PuyoPuyo.getInstance();
-		boules[0] = puyopuyo.manager.get("images/vert.png", Texture.class);
-		boules[1] = puyopuyo.manager.get("images/jaune.png", Texture.class);
-		boules[2] = puyopuyo.manager.get("images/rouge.png", Texture.class);
-		boules[3] = puyopuyo.manager.get("images/bleu.png", Texture.class);
+		boules[0] = puyopuyo.manager.get("images/puyos/vert.png", Texture.class);
+		boules[1] = puyopuyo.manager.get("images/puyos/jaune.png", Texture.class);
+		boules[2] = puyopuyo.manager.get("images/puyos/rouge.png", Texture.class);
+		boules[3] = puyopuyo.manager.get("images/puyos/bleu.png", Texture.class);
 	}
 	
 	@Override

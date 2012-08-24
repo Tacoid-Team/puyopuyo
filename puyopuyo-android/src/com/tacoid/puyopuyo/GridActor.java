@@ -42,36 +42,36 @@ public class GridActor extends Actor {
 		puyopuyo = PuyoPuyo.getInstance();
 		
 		// TODO: changer nom fichiers pour intégrer taille.
-		boules[0] = puyopuyo.manager.get("images/vert.png", Texture.class);
-		boules[1] = puyopuyo.manager.get("images/jaune.png", Texture.class);
-		boules[2] = puyopuyo.manager.get("images/rouge.png", Texture.class);
-		boules[3] = puyopuyo.manager.get("images/bleu.png", Texture.class);
-		boules[4] = puyopuyo.manager.get("images/nuisance.png", Texture.class);
+		boules[0] = puyopuyo.manager.get("images/puyos/vert.png", Texture.class);
+		boules[1] = puyopuyo.manager.get("images/puyos/jaune.png", Texture.class);
+		boules[2] = puyopuyo.manager.get("images/puyos/rouge.png", Texture.class);
+		boules[3] = puyopuyo.manager.get("images/puyos/bleu.png", Texture.class);
+		boules[4] = puyopuyo.manager.get("images/puyos/nuisance.png", Texture.class);
 
-		boules_f[0] = puyopuyo.manager.get("images/vert_f.png", Texture.class);
-		boules_f[1] = puyopuyo.manager.get("images/jaune_f.png", Texture.class);
-		boules_f[2] = puyopuyo.manager.get("images/rouge_f.png", Texture.class);
-		boules_f[3] = puyopuyo.manager.get("images/bleu_f.png", Texture.class);
-		boules_f[4] = puyopuyo.manager.get("images/nuisance.png", Texture.class);
+		boules_f[0] = puyopuyo.manager.get("images/puyos/vert_f.png", Texture.class);
+		boules_f[1] = puyopuyo.manager.get("images/puyos/jaune_f.png", Texture.class);
+		boules_f[2] = puyopuyo.manager.get("images/puyos/rouge_f.png", Texture.class);
+		boules_f[3] = puyopuyo.manager.get("images/puyos/bleu_f.png", Texture.class);
+		boules_f[4] = puyopuyo.manager.get("images/puyos/nuisance.png", Texture.class);
 		
-		boules_fall[0] = puyopuyo.manager.get("images/vert.png", Texture.class);
-		boules_fall[1] = puyopuyo.manager.get("images/jaune.png", Texture.class);
-		boules_fall[2] = puyopuyo.manager.get("images/red_fall_48.png", Texture.class);
-		boules_fall[3] = puyopuyo.manager.get("images/bleu.png", Texture.class);
-		boules_fall[4] = puyopuyo.manager.get("images/nuisance.png", Texture.class);
+		boules_fall[0] = puyopuyo.manager.get("images/puyos/vert.png", Texture.class);
+		boules_fall[1] = puyopuyo.manager.get("images/puyos/jaune.png", Texture.class);
+		boules_fall[2] = puyopuyo.manager.get("images/puyos/red_fall_48.png", Texture.class);
+		boules_fall[3] = puyopuyo.manager.get("images/puyos/bleu.png", Texture.class);
+		boules_fall[4] = puyopuyo.manager.get("images/puyos/nuisance.png", Texture.class);
 		
 		
-		boules_h[0] = puyopuyo.manager.get("images/vert_horizontal.png", Texture.class);
-		boules_h[1] = puyopuyo.manager.get("images/jaune_horizontal.png", Texture.class);
-		boules_h[2] = puyopuyo.manager.get("images/rouge_horizontal.png", Texture.class);
-		boules_h[3] = puyopuyo.manager.get("images/bleu_horizontal.png", Texture.class);
+		boules_h[0] = puyopuyo.manager.get("images/puyos/vert_horizontal.png", Texture.class);
+		boules_h[1] = puyopuyo.manager.get("images/puyos/jaune_horizontal.png", Texture.class);
+		boules_h[2] = puyopuyo.manager.get("images/puyos/rouge_horizontal.png", Texture.class);
+		boules_h[3] = puyopuyo.manager.get("images/puyos/bleu_horizontal.png", Texture.class);
 
-		boules_v[0] = puyopuyo.manager.get("images/vert_vertical.png", Texture.class);
-		boules_v[1] = puyopuyo.manager.get("images/jaune_vertical.png", Texture.class);
-		boules_v[2] = puyopuyo.manager.get("images/rouge_vertical.png", Texture.class);
-		boules_v[3] = puyopuyo.manager.get("images/bleu_vertical.png", Texture.class);
+		boules_v[0] = puyopuyo.manager.get("images/puyos/vert_vertical.png", Texture.class);
+		boules_v[1] = puyopuyo.manager.get("images/puyos/jaune_vertical.png", Texture.class);
+		boules_v[2] = puyopuyo.manager.get("images/puyos/rouge_vertical.png", Texture.class);
+		boules_v[3] = puyopuyo.manager.get("images/puyos/bleu_vertical.png", Texture.class);
 		
-		white = puyopuyo.manager.get("images/white.png", Texture.class);
+		white = puyopuyo.manager.get("images/puyos/white.png", Texture.class);
 	}
 
 	@Override
