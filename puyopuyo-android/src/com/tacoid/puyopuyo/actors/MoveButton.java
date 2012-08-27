@@ -15,6 +15,8 @@ public class MoveButton extends Button{
 
 	public MoveButton(MoveType dir, GameLogic logic, float x, float y, TextureRegion regionUp, TextureRegion regionDown) {
 		super(regionUp, regionDown);
+		direction = dir;
+		gameLogic = logic;
 		this.x = x;
 		this.y = y;
 	}
