@@ -4,11 +4,13 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class PuyoPuyo extends Game {
 
 	private static PuyoPuyo instance = null;
 	public AssetManager manager;
+	public TextureAtlas atlasPuyo;
 	
 	private PuyoPuyo() {}
 	
@@ -34,17 +36,6 @@ public class PuyoPuyo extends Game {
 		manager.load("images/fond.png", Texture.class);
 		manager.load("images/fond_solo.png", Texture.class);
 		
-		manager.load("images/puyos/white.png", Texture.class);
-		manager.load("images/puyos/rouge.png", Texture.class);
-		manager.load("images/puyos/rouge_f.png", Texture.class);
-		manager.load("images/puyos/red_fall_48.png", Texture.class);
-		manager.load("images/puyos/bleu.png", Texture.class);
-		manager.load("images/puyos/bleu_f.png", Texture.class);
-		manager.load("images/puyos/jaune.png", Texture.class);
-		manager.load("images/puyos/jaune_f.png", Texture.class);
-		manager.load("images/puyos/vert.png", Texture.class);
-		manager.load("images/puyos/vert_f.png", Texture.class);
-		
 		manager.load("images/down.png", Texture.class);
 		manager.load("images/down_down.png", Texture.class);
 		manager.load("images/left.png", Texture.class);
@@ -55,16 +46,6 @@ public class PuyoPuyo extends Game {
 		manager.load("images/rotright.png", Texture.class);
 		manager.load("images/rotleft_down.png", Texture.class);
 		manager.load("images/rotright_down.png", Texture.class);
-		
-		manager.load("images/puyos/rouge_horizontal.png", Texture.class);
-		manager.load("images/puyos/bleu_horizontal.png", Texture.class);
-		manager.load("images/puyos/jaune_horizontal.png", Texture.class);
-		manager.load("images/puyos/vert_horizontal.png", Texture.class);
-		manager.load("images/puyos/rouge_vertical.png", Texture.class);
-		manager.load("images/puyos/bleu_vertical.png", Texture.class);
-		manager.load("images/puyos/jaune_vertical.png", Texture.class);
-		manager.load("images/puyos/vert_vertical.png", Texture.class);
-		manager.load("images/puyos/nuisance.png", Texture.class);
 		
 		manager.load("images/perdu-fr.png", Texture.class);
 		manager.load("images/gagne-fr.png", Texture.class);
@@ -77,5 +58,7 @@ public class PuyoPuyo extends Game {
 		manager.load("images/menu/sky.png", Texture.class);
 		manager.load("images/menu/hills.png", Texture.class);
 		manager.load("images/menu/foreground.png", Texture.class);
+		
+		atlasPuyo = new TextureAtlas(Gdx.files.internal("images/puyos/pages.atlas"));
 	}
 }

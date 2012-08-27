@@ -1,7 +1,7 @@
 package com.tacoid.puyopuyo;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.puyopuyo.logic.Coord;
 import com.tacoid.puyopuyo.logic.GameLogic;
@@ -12,7 +12,7 @@ public class NextPieceActor extends Actor {
 	private int origX;
 	private int origY;
 	private GameLogic logic;
-	private Texture[] boules = new Texture[4];
+	private TextureRegion[] boules = new TextureRegion[4];
 
 	public NextPieceActor(GameLogic logic, int origX, int origY, int size) {
 		this.logic = logic;
@@ -20,10 +20,10 @@ public class NextPieceActor extends Actor {
 		this.origY = origY;
 		this.size = size + 2;
 		PuyoPuyo puyopuyo = PuyoPuyo.getInstance();
-		boules[0] = puyopuyo.manager.get("images/puyos/vert.png", Texture.class);
-		boules[1] = puyopuyo.manager.get("images/puyos/jaune.png", Texture.class);
-		boules[2] = puyopuyo.manager.get("images/puyos/rouge.png", Texture.class);
-		boules[3] = puyopuyo.manager.get("images/puyos/bleu.png", Texture.class);
+		boules[0] = puyopuyo.atlasPuyo.findRegion("vert");
+		boules[1] = puyopuyo.atlasPuyo.findRegion("jaune");
+		boules[2] = puyopuyo.atlasPuyo.findRegion("rouge");
+		boules[3] = puyopuyo.atlasPuyo.findRegion("bleu");
 	}
 	
 	@Override

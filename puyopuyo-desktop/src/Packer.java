@@ -1,0 +1,9 @@
+
+
+import com.badlogic.gdx.tools.imagepacker.TexturePacker2;
+
+public class Packer {
+    public static void main (String[] args) {
+        TexturePacker2.process("images/puyos", "images/puyos", "pages");
+    }
+}

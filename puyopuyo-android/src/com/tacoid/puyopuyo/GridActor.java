@@ -2,6 +2,7 @@ package com.tacoid.puyopuyo;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.puyopuyo.logic.Coord;
 import com.tacoid.puyopuyo.logic.Falling;
@@ -10,16 +11,16 @@ import com.tacoid.puyopuyo.logic.State;
 
 public class GridActor extends Actor {
 
-	private Texture[] boules = new Texture[5];
-	private Texture[] boules_f = new Texture[5];
-	private Texture[] boules_fall = new Texture[5];
-	private Texture[] boules_h = new Texture[5];
-	private Texture[] boules_v = new Texture[5];
+	private TextureRegion[] boules = new TextureRegion[5];
+	private TextureRegion[] boules_f = new TextureRegion[5];
+	private TextureRegion[] boules_fall = new TextureRegion[5];
+	private TextureRegion[] boules_h = new TextureRegion[5];
+	private TextureRegion[] boules_v = new TextureRegion[5];
 	private PuyoPuyo puyopuyo;
 	private GameLogic logic;
 	private int origX;
 	private int origY;
-	private Texture white;
+	private TextureRegion white;
 	private int size;
 	private int sizePuyo;
 	private int offWhite;
@@ -42,36 +43,35 @@ public class GridActor extends Actor {
 		puyopuyo = PuyoPuyo.getInstance();
 		
 		// TODO: changer nom fichiers pour intégrer taille.
-		boules[0] = puyopuyo.manager.get("images/puyos/vert.png", Texture.class);
-		boules[1] = puyopuyo.manager.get("images/puyos/jaune.png", Texture.class);
-		boules[2] = puyopuyo.manager.get("images/puyos/rouge.png", Texture.class);
-		boules[3] = puyopuyo.manager.get("images/puyos/bleu.png", Texture.class);
-		boules[4] = puyopuyo.manager.get("images/puyos/nuisance.png", Texture.class);
+		boules[0] = puyopuyo.atlasPuyo.findRegion("vert");
+		boules[1] = puyopuyo.atlasPuyo.findRegion("jaune");
+		boules[2] = puyopuyo.atlasPuyo.findRegion("rouge");
+		boules[3] = puyopuyo.atlasPuyo.findRegion("bleu");
+		boules[4] = puyopuyo.atlasPuyo.findRegion("nuisance");
+		
+		boules_f[0] = puyopuyo.atlasPuyo.findRegion("vert_f");
+		boules_f[1] = puyopuyo.atlasPuyo.findRegion("jaune_f");
+		boules_f[2] = puyopuyo.atlasPuyo.findRegion("rouge_f");
+		boules_f[3] = puyopuyo.atlasPuyo.findRegion("bleu_f");
+		boules_f[4] = puyopuyo.atlasPuyo.findRegion("nuisance");
+		
+		boules_fall[0] = puyopuyo.atlasPuyo.findRegion("vert");
+		boules_fall[1] = puyopuyo.atlasPuyo.findRegion("jaune");
+		boules_fall[2] = puyopuyo.atlasPuyo.findRegion("red_fall-48");
+		boules_fall[3] = puyopuyo.atlasPuyo.findRegion("bleu");
+		boules_fall[4] = puyopuyo.atlasPuyo.findRegion("nuisance");
+		
+		boules_h[0] = puyopuyo.atlasPuyo.findRegion("vert_horizontal");
+		boules_h[1] = puyopuyo.atlasPuyo.findRegion("jaune_horizontal");
+		boules_h[2] = puyopuyo.atlasPuyo.findRegion("rouge_horizontal");
+		boules_h[3] = puyopuyo.atlasPuyo.findRegion("bleu_horizontal");
 
-		boules_f[0] = puyopuyo.manager.get("images/puyos/vert_f.png", Texture.class);
-		boules_f[1] = puyopuyo.manager.get("images/puyos/jaune_f.png", Texture.class);
-		boules_f[2] = puyopuyo.manager.get("images/puyos/rouge_f.png", Texture.class);
-		boules_f[3] = puyopuyo.manager.get("images/puyos/bleu_f.png", Texture.class);
-		boules_f[4] = puyopuyo.manager.get("images/puyos/nuisance.png", Texture.class);
+		boules_v[0] = puyopuyo.atlasPuyo.findRegion("vert_vertical");
+		boules_v[1] = puyopuyo.atlasPuyo.findRegion("jaune_vertical");
+		boules_v[2] = puyopuyo.atlasPuyo.findRegion("rouge_vertical");
+		boules_v[3] = puyopuyo.atlasPuyo.findRegion("bleu_vertical");
 		
-		boules_fall[0] = puyopuyo.manager.get("images/puyos/vert.png", Texture.class);
-		boules_fall[1] = puyopuyo.manager.get("images/puyos/jaune.png", Texture.class);
-		boules_fall[2] = puyopuyo.manager.get("images/puyos/red_fall_48.png", Texture.class);
-		boules_fall[3] = puyopuyo.manager.get("images/puyos/bleu.png", Texture.class);
-		boules_fall[4] = puyopuyo.manager.get("images/puyos/nuisance.png", Texture.class);
-		
-		
-		boules_h[0] = puyopuyo.manager.get("images/puyos/vert_horizontal.png", Texture.class);
-		boules_h[1] = puyopuyo.manager.get("images/puyos/jaune_horizontal.png", Texture.class);
-		boules_h[2] = puyopuyo.manager.get("images/puyos/rouge_horizontal.png", Texture.class);
-		boules_h[3] = puyopuyo.manager.get("images/puyos/bleu_horizontal.png", Texture.class);
-
-		boules_v[0] = puyopuyo.manager.get("images/puyos/vert_vertical.png", Texture.class);
-		boules_v[1] = puyopuyo.manager.get("images/puyos/jaune_vertical.png", Texture.class);
-		boules_v[2] = puyopuyo.manager.get("images/puyos/rouge_vertical.png", Texture.class);
-		boules_v[3] = puyopuyo.manager.get("images/puyos/bleu_vertical.png", Texture.class);
-		
-		white = puyopuyo.manager.get("images/puyos/white.png", Texture.class);
+		white = puyopuyo.atlasPuyo.findRegion("white");
 	}
 
 	@Override

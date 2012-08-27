@@ -1,0 +1,152 @@
+
+pages.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+rouge
+  rotate: false
+  xy: 1, 183
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+bleu
+  rotate: false
+  xy: 1, 117
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+vert
+  rotate: false
+  xy: 67, 183
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+nuisance
+  rotate: false
+  xy: 1, 51
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+jaune
+  rotate: false
+  xy: 67, 117
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+bleu_f
+  rotate: false
+  xy: 133, 183
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+vert_horizontal
+  rotate: false
+  xy: 67, 51
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+vert_f
+  rotate: false
+  xy: 133, 117
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+rouge_f
+  rotate: false
+  xy: 199, 183
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+white
+  rotate: false
+  xy: 133, 51
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+jaune_f
+  rotate: false
+  xy: 199, 117
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+red_fall-48
+  rotate: false
+  xy: 265, 183
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+red_happy
+  rotate: false
+  xy: 1, 1
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: 48
+red_sleep
+  rotate: false
+  xy: 199, 67
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: 48
+rouge_horizontal
+  rotate: false
+  xy: 265, 149
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+bleu_vertical
+  rotate: false
+  xy: 331, 215
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+bleu_horizontal
+  rotate: false
+  xy: 51, 17
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+vert_vertical
+  rotate: false
+  xy: 365, 215
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+jaune_vertical
+  rotate: false
+  xy: 85, 17
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+rouge_vertical
+  rotate: false
+  xy: 399, 215
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+jaune_horizontal
+  rotate: false
+  xy: 119, 17
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
