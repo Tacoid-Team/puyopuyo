@@ -13,9 +13,11 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.tacoid.puyopuyo.GameOverActor.GameOverType;
+import com.tacoid.puyopuyo.actors.MoveButton;
 import com.tacoid.puyopuyo.logic.GameLogic;
 import com.tacoid.puyopuyo.logic.IA;
 import com.tacoid.puyopuyo.logic.State;
+import com.tacoid.puyopuyo.logic.GameLogic.MoveType;
 
 public class GameScreen implements Screen {
 	private static final int VIRTUAL_WIDTH = 1280;
@@ -34,92 +36,7 @@ public class GameScreen implements Screen {
 		button.x = x;
 		button.y = y;
 	}
-	
-	private class DownButton extends Button {
 
-		private long last = 0;
-
-		public DownButton(TextureRegion regionUp, TextureRegion regionDown) {
-			super(regionUp, regionDown);
-		}
-
-		@Override
-		public boolean touchDown(float x, float y, int pointer) {
-			super.touchDown(x, y, pointer);
-			gameLogic.down();
-			//gameLogic.dropPiece();
-			return true;
-		}
-
-		@Override
-		public void touchUp(float x, float y, int pointer) {
-			super.touchUp(x, y, pointer);
-			gameLogic.up();			
-			if (Calendar.getInstance().getTimeInMillis() - last < 500) {
-				gameLogic.dropPiece();
-			}
-			
-			last  = Calendar.getInstance().getTimeInMillis();
-		}
-	}
-
-	private class LeftButton extends Button {
-
-		public LeftButton(TextureRegion regionUp, TextureRegion regionDown) {
-			super(regionUp, regionDown);
-		}
-
-		@Override
-		public boolean touchDown(float x, float y, int pointer) {
-			super.touchDown(x, y, pointer);
-			gameLogic.moveLeft();
-			return true;
-		}
-	}
-
-	private class RotateLeftButton extends Button {
-
-		public RotateLeftButton(TextureRegion regionUp, TextureRegion regionDown) {
-			super(regionUp, regionDown);
-		}
-
-		@Override
-		public boolean touchDown(float x, float y, int pointer) {
-			super.touchDown(x, y, pointer);
-			gameLogic.rotateLeft();
-			return true;
-		}
-	}
-
-	private class RotateRightButton extends Button {
-
-		public RotateRightButton(TextureRegion regionUp,
-				TextureRegion regionDown) {
-			super(regionUp, regionDown);
-		}
-
-		@Override
-		public boolean touchDown(float x, float y, int pointer) {
-			super.touchDown(x, y, pointer);
-			gameLogic.rotateRight();
-			return true;
-		}
-	}
-
-	private class RightButton extends Button {
-
-		public RightButton(TextureRegion regionUp, TextureRegion regionDown) {
-			super(regionUp, regionDown);
-		}
-
-		@Override
-		public boolean touchDown(float x, float y, int pointer) {
-			super.touchDown(x, y, pointer);
-			gameLogic.moveRight();
-			return true;
-		}
-
-	}
 
 	private GameScreen() {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
@@ -138,9 +55,18 @@ public class GameScreen implements Screen {
 		NextPieceActor nextPieceActorIA = new NextPieceActor(gameLogicIA, 1100,	480, 48);
 		ScoreActor scoreActorIA = new ScoreActor(gameLogicIA, 890, 730);
 
-		TextureRegion backgroundRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/fond.png",
-						Texture.class), VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
+		TextureRegion backgroundRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/fond.png",Texture.class), VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
+		TextureRegion leftRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/left.png",Texture.class), 80, 80);
+		TextureRegion leftDownRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/left_down.png",Texture.class), 80, 80);
+		TextureRegion rightRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/right.png",Texture.class), 80, 80);
+		TextureRegion rightDownRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/right_down.png",Texture.class), 80, 80);
+		TextureRegion rotleftRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/rotleft.png",Texture.class), 80, 80);
+		TextureRegion rotleftDownRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/rotleft_down.png",Texture.class), 80, 80);
+		TextureRegion rotrightRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/rotright.png",Texture.class), 80, 80);
+		TextureRegion rotrightDownRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/rotright_down.png",Texture.class), 80, 80);
+		TextureRegion downRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/down.png",Texture.class), 80, 80);
+		TextureRegion downDownRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/down_down.png",Texture.class), 80, 80);
+
 		Image background = new Image(backgroundRegion);
 
 		stage.addActor(background);
@@ -151,46 +77,11 @@ public class GameScreen implements Screen {
 		stage.addActor(nextPieceActorIA);
 		stage.addActor(scoreActorIA);
 
-		TextureRegion leftRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/left.png",
-						Texture.class), 80, 80);
-		TextureRegion leftDownRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/left_down.png",
-						Texture.class), 80, 80);
-		addButton(new LeftButton(leftRegion, leftDownRegion), 70, 250);
-
-		TextureRegion rightRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/right.png",
-						Texture.class), 80, 80);
-		TextureRegion rightDownRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/right_down.png",
-						Texture.class), 80, 80);
-		addButton(new RightButton(rightRegion, rightDownRegion), 1120, 250);
-
-		TextureRegion rotleftRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/rotleft.png",
-						Texture.class), 80, 80);
-		TextureRegion rotleftDownRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/rotleft_down.png",
-						Texture.class), 80, 80);
-		addButton(new RotateLeftButton(rotleftRegion, rotleftDownRegion), 70, 150);
-
-		TextureRegion rotrightRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/rotright.png",
-						Texture.class), 80, 80);
-		TextureRegion rotrightDownRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/rotright_down.png",
-						Texture.class), 80, 80);
-		addButton(new RotateRightButton(rotrightRegion, rotrightDownRegion), 1120, 150);
-
-		TextureRegion downRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/down.png",
-						Texture.class), 80, 80);
-		TextureRegion downDownRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/down_down.png",
-						Texture.class), 80, 80);
-		
-		addButton(new DownButton(downRegion, downDownRegion), 70, 50);
+		stage.addActor(new MoveButton(MoveType.LEFT, gameLogic, 70, 250, leftRegion, leftDownRegion));
+		stage.addActor(new MoveButton(MoveType.RIGHT, gameLogic, 1120, 250, rightRegion, rightDownRegion));
+		stage.addActor(new MoveButton(MoveType.ROT_LEFT, gameLogic, 70, 150, rotleftRegion, rotleftDownRegion));
+		stage.addActor(new MoveButton(MoveType.ROT_RIGHT, gameLogic, 1120, 150, rotrightRegion, rotrightDownRegion));
+		stage.addActor(new MoveButton(MoveType.DOWN, gameLogic, 70, 50, downRegion, downDownRegion));
 
 		ia = new IA(gameLogicIA);
 

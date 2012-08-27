@@ -3,6 +3,15 @@ package com.tacoid.puyopuyo.logic;
 import java.util.ArrayList;
 
 public class GameLogic {
+	
+	public enum MoveType {
+		LEFT,
+		RIGHT,
+		UP,
+		DOWN,
+		ROT_RIGHT,
+		ROT_LEFT
+	}
 
 	public final int LINES = 12;
 	public final int COLUMNS = 6;
