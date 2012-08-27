@@ -16,6 +16,7 @@ import com.tacoid.puyopuyo.actors.GameOverActor;
 import com.tacoid.puyopuyo.actors.GridActor;
 import com.tacoid.puyopuyo.actors.MoveButton;
 import com.tacoid.puyopuyo.actors.NextPieceActor;
+import com.tacoid.puyopuyo.actors.PauseMenu;
 import com.tacoid.puyopuyo.actors.ScoreActor;
 import com.tacoid.puyopuyo.actors.GameOverActor.GameOverType;
 import com.tacoid.puyopuyo.logic.GameLogic;
@@ -34,11 +35,25 @@ public class GameScreen implements Screen {
 	private GridActor gridActorIA;
 	private IA ia;
 	private InputProcessor controller;
+	private PauseMenu pauseMenu;
 
 	private void addButton(Button button, int x, int y) {
 		stage.addActor(button);
 		button.x = x;
 		button.y = y;
+	}
+	
+	private class PauseButton extends Button {
+
+		public PauseButton(TextureRegion region) {
+			super(region);
+		}
+		
+		public boolean touchDown(float x, float y, int pointer) {
+			pauseMenu.show();
+			return true;
+		}
+
 	}
 
 
@@ -70,6 +85,7 @@ public class GameScreen implements Screen {
 		TextureRegion rotrightDownRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/rotright_down.png",Texture.class), 80, 80);
 		TextureRegion downRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/down.png",Texture.class), 80, 80);
 		TextureRegion downDownRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/down_down.png",Texture.class), 80, 80);
+		TextureRegion pauseRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/pause_button.png",Texture.class), 32, 32);
 
 		Image background = new Image(backgroundRegion);
 
@@ -86,6 +102,11 @@ public class GameScreen implements Screen {
 		stage.addActor(new MoveButton(MoveType.ROT_LEFT, gameLogic, 70, 150, rotleftRegion, rotleftDownRegion));
 		stage.addActor(new MoveButton(MoveType.ROT_RIGHT, gameLogic, 1120, 150, rotrightRegion, rotrightDownRegion));
 		stage.addActor(new MoveButton(MoveType.DOWN, gameLogic, 70, 50, downRegion, downDownRegion));
+		
+		addButton(new PauseButton(pauseRegion),10,VIRTUAL_HEIGHT-10-pauseRegion.getRegionHeight());
+		
+		pauseMenu = new PauseMenu(gameLogic, gameLogicIA);
+		stage.addActor(pauseMenu);
 
 		ia = new IA(gameLogicIA);
 

@@ -39,6 +39,8 @@ public class GameLogic {
 	private int points = 0;
 	private int garbage = 0;
 	private float leftoverNuisance = 0f;
+	
+	private boolean paused = false;
 
 	private int[][] DIR = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
 
@@ -392,85 +394,87 @@ public class GameLogic {
 	}
 
 	public void update(float delta) {
-		sum += delta;
-		switch (state) {
-		case GARBAGE:
-			if (garbage > 0) {
-				generateGarbage();
-				state = State.GRAVITY;
-			} else {
-				state = State.MOVE;
-			}
-			first = true;
-			break;
-		case MOVE:
-			if (first) {
-				if (!generate()) {
-					state = State.LOST;
-				}
-				first = false;
-			}
-			if (sum > speed || (isDown && sum > 0.1f)) {
-				if (!descendre()) {
-					state = State.POSE;
-				}
-				sum = 0f;
-			}
-			break;
-		case POSE:
-			if (sum > speed) {
-				pose();
-				state = State.GRAVITY;
-				sum = 0f;
-				first = true;
-			}
-			break;
-		case GRAVITY:
-			if (first) {
-				fallings = gravity();
-				first = false;
-			}
-			for (Falling f : fallings) {
-				f.update(delta / speed);
-			}
-			if (sum > 0.5) {
-				for (Falling f : fallings) {
-					grid[f.getEnd().l][f.getEnd().c] = f.getEnd().coul;
-				}
-				fallings = null;
-				first = true;
-				state = State.RESOLVE;
-				sum = 0f;
-			}
-			break;
-		case RESOLVE:
-			if (first) {
-				removes = resolve();
-				for (Explosion r : removes) {
-					int p = r.getNbPuyos() * 10 * (r.getNbPuyos() - 3) * combo;
-					if (opponent != null) {
-						float nuisance = p / 70.0f + leftoverNuisance;
-						leftoverNuisance = nuisance - (int) nuisance;
-						opponent.sendGarbage((int) nuisance);
-					}
-					points += p;
-				}
-				first = false;
-			}
-			if (sum > 0.5) {
-				if (removes.size() > 0) {
+		if(!paused) {
+			sum += delta;
+			switch (state) {
+			case GARBAGE:
+				if (garbage > 0) {
+					generateGarbage();
 					state = State.GRAVITY;
-					first = true;
-					combo *= 2;
 				} else {
-					state = State.GARBAGE;
-					score += points;
-					points = 0;
-					combo = 1;
+					state = State.MOVE;
 				}
-				sum = 0f;
+				first = true;
+				break;
+			case MOVE:
+				if (first) {
+					if (!generate()) {
+						state = State.LOST;
+					}
+					first = false;
+				}
+				if (sum > speed || (isDown && sum > 0.1f)) {
+					if (!descendre()) {
+						state = State.POSE;
+					}
+					sum = 0f;
+				}
+				break;
+			case POSE:
+				if (sum > speed) {
+					pose();
+					state = State.GRAVITY;
+					sum = 0f;
+					first = true;
+				}
+				break;
+			case GRAVITY:
+				if (first) {
+					fallings = gravity();
+					first = false;
+				}
+				for (Falling f : fallings) {
+					f.update(delta / speed);
+				}
+				if (sum > 0.5) {
+					for (Falling f : fallings) {
+						grid[f.getEnd().l][f.getEnd().c] = f.getEnd().coul;
+					}
+					fallings = null;
+					first = true;
+					state = State.RESOLVE;
+					sum = 0f;
+				}
+				break;
+			case RESOLVE:
+				if (first) {
+					removes = resolve();
+					for (Explosion r : removes) {
+						int p = r.getNbPuyos() * 10 * (r.getNbPuyos() - 3) * combo;
+						if (opponent != null) {
+							float nuisance = p / 70.0f + leftoverNuisance;
+							leftoverNuisance = nuisance - (int) nuisance;
+							opponent.sendGarbage((int) nuisance);
+						}
+						points += p;
+					}
+					first = false;
+				}
+				if (sum > 0.5) {
+					if (removes.size() > 0) {
+						state = State.GRAVITY;
+						first = true;
+						combo *= 2;
+					} else {
+						state = State.GARBAGE;
+						score += points;
+						points = 0;
+						combo = 1;
+					}
+					sum = 0f;
+				}
+				break;
 			}
-			break;
 		}
 	}
 
@@ -538,5 +542,17 @@ public class GameLogic {
 		if (this.garbage > LINES * COLUMNS) {
 			garbage = LINES * COLUMNS;
 		}
+	}
+	
+	public void pause() {
+		paused = true;
+	}
+	
+	public void resume() {
+		paused = false;
+	}
+	
+	public boolean isPaused() {
+		return paused;
 	}
 }
