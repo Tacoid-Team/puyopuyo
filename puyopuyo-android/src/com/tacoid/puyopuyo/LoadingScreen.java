@@ -10,8 +10,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class LoadingScreen implements Screen {
-	private static final int VIRTUAL_WIDTH = 675;
-	private static final int VIRTUAL_HEIGHT = 450;
 	private static LoadingScreen instance = null;
 	private PuyoPuyo puyopuyo;
 	private BitmapFont font;
@@ -51,7 +49,7 @@ public class LoadingScreen implements Screen {
 		NumberFormat nf = new DecimalFormat("0.00"); 
 		String loadMsg = "Loading " + nf.format(puyopuyo.manager.getProgress() * 100) + "%";
 		spriteBatch.begin();
-		font.draw(spriteBatch, loadMsg, VIRTUAL_WIDTH / 2 - font.getBounds(loadMsg).width / 2, VIRTUAL_HEIGHT / 2);
+		font.draw(spriteBatch, loadMsg, PuyoPuyo.VIRTUAL_WIDTH / 2 - font.getBounds(loadMsg).width / 2, PuyoPuyo.VIRTUAL_HEIGHT / 2);
 		spriteBatch.end();
 	}
 

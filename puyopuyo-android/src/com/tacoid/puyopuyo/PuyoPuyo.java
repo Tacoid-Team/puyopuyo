@@ -11,6 +11,8 @@ public class PuyoPuyo extends Game {
 	private static PuyoPuyo instance = null;
 	public AssetManager manager;
 	public TextureAtlas atlasPuyo;
+	public static final int VIRTUAL_WIDTH = 1280;
+	public static final int VIRTUAL_HEIGHT = 768;
 	
 	private PuyoPuyo() {}
 	
@@ -49,6 +51,10 @@ public class PuyoPuyo extends Game {
 		
 		manager.load("images/perdu-fr.png", Texture.class);
 		manager.load("images/gagne-fr.png", Texture.class);
+		manager.load("images/continuer-fr.png", Texture.class);
+		manager.load("images/quitter-fr.png", Texture.class);
+		
+		manager.load("images/pause_button.png", Texture.class);
 		
 		/* Textures du menu */
 		manager.load("images/menu/solo.png", Texture.class);

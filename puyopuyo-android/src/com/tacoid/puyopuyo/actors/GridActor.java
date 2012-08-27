@@ -1,9 +1,10 @@
-package com.tacoid.puyopuyo;
+package com.tacoid.puyopuyo.actors;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.logic.Coord;
 import com.tacoid.puyopuyo.logic.Falling;
 import com.tacoid.puyopuyo.logic.GameLogic;
