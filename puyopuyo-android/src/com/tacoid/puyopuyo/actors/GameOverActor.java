@@ -1,9 +1,12 @@
-package com.tacoid.puyopuyo;
+package com.tacoid.puyopuyo.actors;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.tacoid.puyopuyo.GameScreen;
+import com.tacoid.puyopuyo.MainMenuScreen;
+import com.tacoid.puyopuyo.PuyoPuyo;
 
 public class GameOverActor extends Actor {
 	
