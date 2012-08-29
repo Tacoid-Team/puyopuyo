@@ -36,6 +36,9 @@ public class PuyoPuyo extends Game {
 		manager = new AssetManager();
 
 		manager.load("images/fond.png", Texture.class);
+		manager.load("images/top-panel.png", Texture.class);
+		manager.load("images/left-panel.png", Texture.class);
+		manager.load("images/main-panel.png", Texture.class);
 		manager.load("images/fond_solo.png", Texture.class);
 		
 		manager.load("images/down.png", Texture.class);
