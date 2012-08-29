@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.tacoid.puyopuyo.actors.BackgroundActor;
 
 
 public class MainMenuScreen implements Screen {
@@ -18,8 +19,6 @@ public class MainMenuScreen implements Screen {
 	private static MainMenuScreen instance = null;
 	private Stage stage;
 	private SpriteBatch batch;
-	
-	float scrollTimer = 0.0f;
 	float foregroundTimer = 0.0f;
 	
 	Texture SkyTex;
@@ -31,14 +30,10 @@ public class MainMenuScreen implements Screen {
 	public MainMenuScreen() {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
-		
-		SkyTex = new Texture(Gdx.files.internal("images/menu/sky.png"));
-		SkyTex.setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
-		SkySprite = new Sprite(SkyTex, 0,256,VIRTUAL_WIDTH, VIRTUAL_HEIGHT+256);
-		SkySprite.setSize(VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
-		HillsTex = new Texture(Gdx.files.internal("images/menu/hills.png"));
 		ForegroundTex = new Texture(Gdx.files.internal("images/menu/foreground.png"));
 		batch = new SpriteBatch();
+		
+		stage.addActor(new BackgroundActor());
 		
 		/* SOLO BUTTON */
 		TextureRegion playRegion = new TextureRegion(
@@ -109,10 +104,6 @@ public class MainMenuScreen implements Screen {
 	@Override
 	public void render(float arg0) {
 		
-		scrollTimer+=Gdx.graphics.getDeltaTime()*0.01;
-	     if(scrollTimer>1.0f)
-	         scrollTimer = 0.0f;
-		
 	     foregroundTimer+=Gdx.graphics.getDeltaTime()*0.5;
 	     if(foregroundTimer> 1.0f) {
 	    	 foregroundTimer = 1.0f;
@@ -120,16 +111,12 @@ public class MainMenuScreen implements Screen {
 	     
 	     //Gdx.gl.glClearColor(1.0f, 0,0,0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-				
-		SkySprite.setU(scrollTimer);
-		SkySprite.setU2(scrollTimer+1);
+		stage.draw();
 		batch.begin();
-		SkySprite.draw(batch);
-		batch.draw(HillsTex,0,0);
-		batch.draw(ForegroundTex,0,1000*-(foregroundTimer/2 - 0.5f)*(foregroundTimer/2 - 0.5f));
+		//batch.draw(ForegroundTex,0,1000*-(foregroundTimer/2 - 0.5f)*(foregroundTimer/2 - 0.5f));
 		batch.end();
 		stage.act(Gdx.graphics.getDeltaTime());
-		stage.draw();
+		
 	}
 
 	@Override

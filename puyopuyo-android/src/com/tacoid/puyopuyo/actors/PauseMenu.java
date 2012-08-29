@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -44,9 +45,11 @@ public class PauseMenu extends Group{
 	
 	private class ForegroundActor extends Actor {
 		private Texture ForegroundTex;
+		private Interpolation interp;
 		
 		public ForegroundActor() {
 			ForegroundTex = new Texture(Gdx.files.internal("images/menu/foreground.png"));
+			interp = new Interpolation.Pow(2);
 		}
 		
 		@Override
@@ -55,7 +58,7 @@ public class PauseMenu extends Group{
 		     if(time> 1.0f) {
 		    	 time = 1.0f;
 		     }
-			batch.draw(ForegroundTex,0,ForegroundTex.getHeight()*-(time/4 - 0.25f)*(time/4 - 0.25f));
+			batch.draw(ForegroundTex,0,interp.apply(-ForegroundTex.getHeight(),0.0f,time));
 		}
 
 		@Override
@@ -79,7 +82,7 @@ public class PauseMenu extends Group{
 	}
 	
 	public void show() {
-		time = 0.0f;
+		time = 0.5f;
 		playerLogic.pause();
 		
 		if(iaLogic != null) {

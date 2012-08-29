@@ -8,12 +8,17 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GLCommon;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.TextureData;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.tacoid.puyopuyo.actors.BackgroundActor;
 import com.tacoid.puyopuyo.actors.GameOverActor;
 import com.tacoid.puyopuyo.actors.GridActor;
+import com.tacoid.puyopuyo.actors.LandscapePanelActor;
 import com.tacoid.puyopuyo.actors.MoveButton;
 import com.tacoid.puyopuyo.actors.NextPieceActor;
 import com.tacoid.puyopuyo.actors.PauseMenu;
@@ -33,6 +38,7 @@ public class GameScreen implements Screen {
 	private GameLogic gameLogicIA;
 	private GridActor gridActor;
 	private GridActor gridActorIA;
+
 	private IA ia;
 	private InputProcessor controller;
 	private PauseMenu pauseMenu;
@@ -73,8 +79,7 @@ public class GameScreen implements Screen {
 		gridActorIA = new GridActor(gameLogicIA, 728, 26, 54, 48);
 		NextPieceActor nextPieceActorIA = new NextPieceActor(gameLogicIA, 1100,	480, 48);
 		ScoreActor scoreActorIA = new ScoreActor(gameLogicIA, 890, 730);
-
-		TextureRegion backgroundRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/fond.png",Texture.class), VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
+		
 		TextureRegion leftRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/left.png",Texture.class), 80, 80);
 		TextureRegion leftDownRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/left_down.png",Texture.class), 80, 80);
 		TextureRegion rightRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/right.png",Texture.class), 80, 80);
@@ -87,9 +92,10 @@ public class GameScreen implements Screen {
 		TextureRegion downDownRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/down_down.png",Texture.class), 80, 80);
 		TextureRegion pauseRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/pause_button.png",Texture.class), 32, 32);
 
-		Image background = new Image(backgroundRegion);
-
-		stage.addActor(background);
+		stage.addActor(new BackgroundActor());
+		
+		stage.addActor(new LandscapePanelActor());
+		
 		stage.addActor(gridActor);
 		stage.addActor(nextPieceActor);
 		stage.addActor(scoreActor);
@@ -166,6 +172,7 @@ public class GameScreen implements Screen {
 
 		stage.act(delta);
 		stage.draw();
+
 	}
 
 	@Override
