@@ -15,6 +15,11 @@ public class PuyoPuyo extends Game {
 	public static final int VIRTUAL_WIDTH = 1280;
 	public static final int VIRTUAL_HEIGHT = 768;
 	
+	public enum ScreenOrientation {
+		LANDSCAPE,
+		PORTRAIT
+	};
+	
 	private PuyoPuyo() {}
 	
 	public static PuyoPuyo getInstance() {

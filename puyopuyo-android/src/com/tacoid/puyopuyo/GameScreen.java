@@ -15,7 +15,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.actors.BackgroundActor;
+import com.tacoid.puyopuyo.actors.ControlerActor;
 import com.tacoid.puyopuyo.actors.GameOverActor;
 import com.tacoid.puyopuyo.actors.GridActor;
 import com.tacoid.puyopuyo.actors.LandscapePanelActor;
@@ -23,6 +25,7 @@ import com.tacoid.puyopuyo.actors.MoveButton;
 import com.tacoid.puyopuyo.actors.NextPieceActor;
 import com.tacoid.puyopuyo.actors.PauseMenu;
 import com.tacoid.puyopuyo.actors.ScoreActor;
+import com.tacoid.puyopuyo.actors.ControlerActor.ControlerLayout;
 import com.tacoid.puyopuyo.actors.GameOverActor.GameOverType;
 import com.tacoid.puyopuyo.logic.GameLogic;
 import com.tacoid.puyopuyo.logic.IA;
@@ -80,20 +83,10 @@ public class GameScreen implements Screen {
 		NextPieceActor nextPieceActorIA = new NextPieceActor(gameLogicIA, 1100,	480, 48);
 		ScoreActor scoreActorIA = new ScoreActor(gameLogicIA, 890, 730);
 		
-		TextureRegion leftRegion = PuyoPuyo.getInstance().atlasControls.findRegion("left");
-		TextureRegion leftDownRegion =  PuyoPuyo.getInstance().atlasControls.findRegion("left_down");
-		TextureRegion rightRegion =  PuyoPuyo.getInstance().atlasControls.findRegion("right");
-		TextureRegion rightDownRegion =  PuyoPuyo.getInstance().atlasControls.findRegion("right_down");
-		TextureRegion rotleftRegion =  PuyoPuyo.getInstance().atlasControls.findRegion("rotleft");
-		TextureRegion rotleftDownRegion = PuyoPuyo.getInstance().atlasControls.findRegion("rotleft_down");
-		TextureRegion rotrightRegion = PuyoPuyo.getInstance().atlasControls.findRegion("rotright");
-		TextureRegion rotrightDownRegion = PuyoPuyo.getInstance().atlasControls.findRegion("rotright_down");
-		TextureRegion downRegion = PuyoPuyo.getInstance().atlasControls.findRegion("down");
-		TextureRegion downDownRegion = PuyoPuyo.getInstance().atlasControls.findRegion("down_down");
+
 		TextureRegion pauseRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/pause_button.png",Texture.class), 32, 32);
 
 		stage.addActor(new BackgroundActor());
-		
 		stage.addActor(new LandscapePanelActor());
 		
 		stage.addActor(gridActor);
@@ -103,11 +96,7 @@ public class GameScreen implements Screen {
 		stage.addActor(nextPieceActorIA);
 		stage.addActor(scoreActorIA);
 
-		stage.addActor(new MoveButton(MoveType.LEFT, gameLogic, 20, 290, leftRegion, leftDownRegion));
-		stage.addActor(new MoveButton(MoveType.RIGHT, gameLogic, 1120, 290, rightRegion, rightDownRegion));
-		stage.addActor(new MoveButton(MoveType.ROT_LEFT, gameLogic, 20, 150, rotleftRegion, rotleftDownRegion));
-		stage.addActor(new MoveButton(MoveType.ROT_RIGHT, gameLogic, 1120, 150, rotrightRegion, rotrightDownRegion));
-		stage.addActor(new MoveButton(MoveType.DOWN, gameLogic, 20, 10, downRegion, downDownRegion));
+		stage.addActor(new ControlerActor(ControlerLayout.CLASSIC, ScreenOrientation.LANDSCAPE, gameLogic));
 		
 		addButton(new PauseButton(pauseRegion),10,VIRTUAL_HEIGHT-10-pauseRegion.getRegionHeight());
 		
