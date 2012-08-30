@@ -77,6 +77,10 @@ public class GameLogic {
 	}
 
 	public GameLogic() {
+		init();
+	}
+	
+	public void init() {
 		for (int l = 0; l < LINES; l++) {
 			for (int c = 0; c < COLUMNS; c++) {
 				grid[l][c] = 0;

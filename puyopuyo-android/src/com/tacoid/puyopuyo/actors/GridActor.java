@@ -1,6 +1,7 @@
 package com.tacoid.puyopuyo.actors;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -17,6 +18,7 @@ public class GridActor extends Actor {
 	private TextureRegion[] boules_fall = new TextureRegion[5];
 	private TextureRegion[] boules_h = new TextureRegion[5];
 	private TextureRegion[] boules_v = new TextureRegion[5];
+	private Sprite panel;
 	private PuyoPuyo puyopuyo;
 	private GameLogic logic;
 	private int origX;

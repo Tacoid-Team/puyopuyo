@@ -38,6 +38,11 @@ public class PauseMenu extends Group{
 		}
 
 		public boolean touchDown(float x, float y, int pointer) {
+			playerLogic.init();
+			if(iaLogic != null) {
+				iaLogic.init();
+			}
+			hide();
 			PuyoPuyo.getInstance().setScreen(MainMenuScreen.getInstance());
 			return true;
 		}
