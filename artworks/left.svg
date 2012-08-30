@@ -117,8 +117,8 @@
        gradientUnits="userSpaceOnUse"
        x1="143.93958"
        y1="316.64789"
-       x2="348.7793"
-       y2="471.92899" />
+       x2="444.11758"
+       y2="307.42371" />
     <linearGradient
        id="linearGradient4125">
       <stop
@@ -216,11 +216,11 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
      inkscape:cx="220.10229"
-     inkscape:cy="259.38834"
+     inkscape:cy="516.5312"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="681"
+     inkscape:window-width="1364"
      inkscape:window-height="747"
      inkscape:window-x="0"
      inkscape:window-y="19"
@@ -253,7 +253,7 @@
        sodipodi:cy="316.64789"
        sodipodi:cx="294.28571"
        id="path4226"
-       style="fill:url(#linearGradient4228);fill-opacity:1;stroke:#2b2b2b;stroke-width:3.5494194;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:url(#linearGradient4228);fill-opacity:1;stroke:#2b2b2b;stroke-width:3.54941940000000011;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        sodipodi:type="arc"
        transform="matrix(0.76419607,0,0,0.76419607,-55.630065,275.39212)" />
     <path

@@ -11,6 +11,7 @@ public class PuyoPuyo extends Game {
 	private static PuyoPuyo instance = null;
 	public AssetManager manager;
 	public TextureAtlas atlasPuyo;
+	public TextureAtlas atlasControls;
 	public static final int VIRTUAL_WIDTH = 1280;
 	public static final int VIRTUAL_HEIGHT = 768;
 	
@@ -41,17 +42,6 @@ public class PuyoPuyo extends Game {
 		manager.load("images/main-panel.png", Texture.class);
 		manager.load("images/fond_solo.png", Texture.class);
 		
-		manager.load("images/down.png", Texture.class);
-		manager.load("images/down_down.png", Texture.class);
-		manager.load("images/left.png", Texture.class);
-		manager.load("images/left_down.png", Texture.class);
-		manager.load("images/right.png", Texture.class);
-		manager.load("images/right_down.png", Texture.class);
-		manager.load("images/rotleft.png", Texture.class);
-		manager.load("images/rotright.png", Texture.class);
-		manager.load("images/rotleft_down.png", Texture.class);
-		manager.load("images/rotright_down.png", Texture.class);
-		
 		manager.load("images/perdu-fr.png", Texture.class);
 		manager.load("images/gagne-fr.png", Texture.class);
 		manager.load("images/continuer-fr.png", Texture.class);
@@ -69,5 +59,6 @@ public class PuyoPuyo extends Game {
 		manager.load("images/menu/foreground.png", Texture.class);
 		
 		atlasPuyo = new TextureAtlas(Gdx.files.internal("images/puyos/pages.atlas"));
+		atlasControls = new TextureAtlas(Gdx.files.internal("images/controls/pages.atlas"));
 	}
 }

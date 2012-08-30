@@ -15,7 +15,7 @@
    id="svg3421"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="Nouveau document 3">
+   sodipodi:docname="rotateright.svg">
   <defs
      id="defs3423">
     <filter
@@ -141,8 +141,8 @@
        gradientUnits="userSpaceOnUse"
        x1="143.93958"
        y1="316.64789"
-       x2="348.7793"
-       y2="471.92899" />
+       x2="445.05228"
+       y2="313.03183" />
     <linearGradient
        id="linearGradient3370">
       <stop
@@ -166,9 +166,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="375"
-     inkscape:cy="520"
+     inkscape:zoom="0.24748737"
+     inkscape:cx="465.43048"
+     inkscape:cy="730.46301"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -198,20 +198,29 @@
        id="path4294"
        d="m 163.98961,360.02888 c -89.654485,0 -162.3437548,72.68927 -162.3437548,162.34375 0,89.65448 72.6892698,162.34375 162.3437548,162.34375 89.65448,0 162.3125,-72.68927 162.3125,-162.34375 0,-89.65448 -72.65802,-162.34375 -162.3125,-162.34375 z m 3.5625,45.53125 c 62.70514,0 113.53125,50.82611 113.53125,113.53125 0,62.70514 -50.82611,113.53125 -113.53125,113.53125 -62.70514,0 -113.531255,-50.82611 -113.531255,-113.53125 0,-62.70514 50.826115,-113.53125 113.531255,-113.53125 z"
        style="fill:#ffffff;fill-opacity:1;stroke:#2b2b2b;stroke-width:3.29171038;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter3789)"
-       transform="matrix(-1,0,0,1,327.94797,2.7428818e-5)" />
+       transform="matrix(-1,0,0,1,327.94797,2.7428818e-5)"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/controls/rotright.png"
+       inkscape:export-xdpi="37"
+       inkscape:export-ydpi="37" />
     <path
        transform="matrix(-0.76419607,0,0,0.76419607,383.57803,275.39215)"
        sodipodi:type="arc"
-       style="fill:url(#linearGradient4312);fill-opacity:1;stroke:#2b2b2b;stroke-width:3.5494194;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:url(#linearGradient4312);fill-opacity:1;stroke:#2b2b2b;stroke-width:3.54941940000000011;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="path4296"
        sodipodi:cx="294.28571"
        sodipodi:cy="316.64789"
        sodipodi:rx="148.57143"
        sodipodi:ry="148.57143"
-       d="m 442.85713,316.64789 a 148.57143,148.57143 0 1 1 -297.14285,0 148.57143,148.57143 0 1 1 297.14285,0 z" />
+       d="m 442.85713,316.64789 a 148.57143,148.57143 0 1 1 -297.14285,0 148.57143,148.57143 0 1 1 297.14285,0 z"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/controls/rotright.png"
+       inkscape:export-xdpi="37"
+       inkscape:export-ydpi="37" />
     <g
        transform="matrix(-1,0,0,1,477.11461,331.15391)"
-       id="g4298">
+       id="g4298"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/controls/rotright.png"
+       inkscape:export-xdpi="37"
+       inkscape:export-ydpi="37">
       <path
          transform="matrix(0.7451923,0,0,0.7451923,95.98626,-61.458539)"
          sodipodi:type="arc"
@@ -234,7 +243,10 @@
        style="fill:#ffffff;fill-opacity:1;stroke:#2b2b2b;stroke-width:3.29171038;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter3789)"
        d="m 163.98961,726.02888 c -89.654485,0 -162.3437548,72.68927 -162.3437548,162.34375 0,89.65448 72.6892698,162.34367 162.3437548,162.34367 89.65448,0 162.3125,-72.68919 162.3125,-162.34367 0,-89.65448 -72.65802,-162.34375 -162.3125,-162.34375 z m 3.5625,45.53125 c 62.70514,0 113.53125,50.82611 113.53125,113.53125 0,62.70514 -50.82611,113.53125 -113.53125,113.53125 -62.70514,0 -113.531255,-50.82611 -113.531255,-113.53125 0,-62.70514 50.826115,-113.53125 113.531255,-113.53125 z"
        id="path4304"
-       transform="matrix(-1,0,0,1,327.94797,2.7428818e-5)" />
+       transform="matrix(-1,0,0,1,327.94797,2.7428818e-5)"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/controls/rotright_down.png"
+       inkscape:export-xdpi="37"
+       inkscape:export-ydpi="37" />
     <path
        d="m 442.85713,316.64789 a 148.57143,148.57143 0 1 1 -297.14285,0 148.57143,148.57143 0 1 1 297.14285,0 z"
        sodipodi:ry="148.57143"
@@ -244,7 +256,10 @@
        id="path4306"
        style="fill:url(#linearGradient4314);fill-opacity:1;stroke:#2b2b2b;stroke-width:3.5494194;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        sodipodi:type="arc"
-       transform="matrix(-0.76419607,0,0,0.76419607,383.57803,641.39215)" />
+       transform="matrix(-0.76419607,0,0,0.76419607,383.57803,641.39215)"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/controls/rotright_down.png"
+       inkscape:export-xdpi="37"
+       inkscape:export-ydpi="37" />
     <path
        transform="matrix(-0.7451923,0,0,0.7451923,379.12835,647.69537)"
        sodipodi:type="arc"
@@ -254,12 +269,18 @@
        sodipodi:cy="316.64789"
        sodipodi:rx="148.57143"
        sodipodi:ry="148.57143"
-       d="m 442.85713,316.64789 a 148.57143,148.57143 0 1 1 -297.14285,0 148.57143,148.57143 0 1 1 297.14285,0 z" />
+       d="m 442.85713,316.64789 a 148.57143,148.57143 0 1 1 -297.14285,0 148.57143,148.57143 0 1 1 297.14285,0 z"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/controls/rotright_down.png"
+       inkscape:export-xdpi="37"
+       inkscape:export-ydpi="37" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#909090;stroke-width:2.64499998;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        d="m 153.78027,809.50744 c 17.94215,0 36.13614,3.9103 47.97294,15.63499 12.79913,12.67791 16.90197,22.8537 18.55605,18.29792 0.79603,-2.19247 -1.8848,-11.12025 -1.48313,-20.25299 3.23689,-2.68595 12.25359,-2.19924 16.08905,-0.91143 4.16961,24.83914 0.77719,42.22884 -5.05905,56.43686 -27.06651,4.3746 -52.14358,-7.6272 -56.12763,-11.37021 -0.57619,-0.58004 2.70567,-14.80802 5.956,-14.29097 5.90403,0.93921 19.95703,8.74598 21.71056,6.37583 2.72392,-3.68176 -12.53094,-15.72737 -13.86116,-16.65762 -9.44641,-6.60612 -20.94403,-10.48114 -33.34742,-10.48114 -32.16167,0 -58.218775,26.05708 -58.218775,58.21875 0,10.23049 2.65029,19.83028 7.281275,28.1875 l -5.887495,10.91249 -15.30003,-0.0687 c -6.19447,-11.48676 -9.71871,-24.62987 -9.71871,-38.59379 0,-44.97176 36.465765,-81.43749 81.437525,-81.43749 z"
        id="path4310"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="sssccccssssscccss" />
+       sodipodi:nodetypes="sssccccssssscccss"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/controls/rotright_down.png"
+       inkscape:export-xdpi="37"
+       inkscape:export-ydpi="37" />
   </g>
 </svg>

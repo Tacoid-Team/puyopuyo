@@ -40,17 +40,18 @@ public class GameSoloScreen implements Screen {
 		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 80, 920, 70);
 		ScoreActor scoreActor = new ScoreActor(gameLogic, 590, 1230);
 
+		TextureRegion leftRegion = PuyoPuyo.getInstance().atlasControls.findRegion("left");
+		TextureRegion leftDownRegion =  PuyoPuyo.getInstance().atlasControls.findRegion("left_down");
+		TextureRegion rightRegion =  PuyoPuyo.getInstance().atlasControls.findRegion("right");
+		TextureRegion rightDownRegion =  PuyoPuyo.getInstance().atlasControls.findRegion("right_down");
+		TextureRegion rotleftRegion =  PuyoPuyo.getInstance().atlasControls.findRegion("rotleft");
+		TextureRegion rotleftDownRegion = PuyoPuyo.getInstance().atlasControls.findRegion("rotleft_down");
+		TextureRegion rotrightRegion = PuyoPuyo.getInstance().atlasControls.findRegion("rotright");
+		TextureRegion rotrightDownRegion = PuyoPuyo.getInstance().atlasControls.findRegion("rotright_down");
+		TextureRegion downRegion = PuyoPuyo.getInstance().atlasControls.findRegion("down");
+		TextureRegion downDownRegion = PuyoPuyo.getInstance().atlasControls.findRegion("down_down");
+
 		TextureRegion backgroundRegion 	= new TextureRegion(PuyoPuyo.getInstance().manager.get("images/fond_solo.png",Texture.class), VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
-		TextureRegion leftRegion		= new TextureRegion(PuyoPuyo.getInstance().manager.get("images/left.png",Texture.class), 80, 80);
-		TextureRegion leftDownRegion 	= new TextureRegion(PuyoPuyo.getInstance().manager.get("images/left_down.png",Texture.class), 80, 80);
-		TextureRegion rightRegion 		= new TextureRegion(PuyoPuyo.getInstance().manager.get("images/right.png",Texture.class), 80, 80);
-		TextureRegion rightDownRegion 	= new TextureRegion(PuyoPuyo.getInstance().manager.get("images/right_down.png",Texture.class), 80, 80);
-		TextureRegion rotleftRegion 	= new TextureRegion(PuyoPuyo.getInstance().manager.get("images/rotleft.png",Texture.class), 80, 80);
-		TextureRegion rotleftDownRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/rotleft_down.png",Texture.class), 80, 80);
-		TextureRegion rotrightRegion 	= new TextureRegion(PuyoPuyo.getInstance().manager.get("images/rotright.png",Texture.class), 80, 80);
-		TextureRegion rotrightDownRegion= new TextureRegion(PuyoPuyo.getInstance().manager.get("images/rotright_down.png",Texture.class), 80, 80);
-		TextureRegion downRegion 		= new TextureRegion(PuyoPuyo.getInstance().manager.get("images/down.png",Texture.class), 80, 80);
-		TextureRegion downDownRegion 	= new TextureRegion(PuyoPuyo.getInstance().manager.get("images/down_down.png",Texture.class), 80, 80);
 		Image background = new Image(backgroundRegion);
 
 		stage.addActor(background);
@@ -58,11 +59,11 @@ public class GameSoloScreen implements Screen {
 		stage.addActor(nextPieceActor);
 		stage.addActor(scoreActor);
 
-		stage.addActor(new MoveButton(MoveType.LEFT, gameLogic, 29, 85, leftRegion, leftDownRegion));
-		stage.addActor(new MoveButton(MoveType.RIGHT, gameLogic, 570, 85, rightRegion, rightDownRegion));
+		stage.addActor(new MoveButton(MoveType.LEFT, gameLogic, 29, 10, leftRegion, leftDownRegion));
+		stage.addActor(new MoveButton(MoveType.RIGHT, gameLogic, 570, 10, rightRegion, rightDownRegion));
 		stage.addActor(new MoveButton(MoveType.ROT_LEFT, gameLogic, 29, 162, rotleftRegion, rotleftDownRegion));
 		stage.addActor(new MoveButton(MoveType.ROT_RIGHT, gameLogic, 570, 162, rotrightRegion, rotrightDownRegion));
-		stage.addActor(new MoveButton(MoveType.DOWN, gameLogic, 29, 5, downRegion, downDownRegion));
+		stage.addActor(new MoveButton(MoveType.DOWN, gameLogic, 200, 5, downRegion, downDownRegion));
 		
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		Gdx.gl.glClearColor(0.4f, 0.4f, 0.4f, 1.0f);

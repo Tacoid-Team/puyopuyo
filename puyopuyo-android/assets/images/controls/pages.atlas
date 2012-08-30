@@ -1,0 +1,75 @@
+
+pages.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+right
+  rotate: false
+  xy: 1, 275
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+down_down
+  rotate: false
+  xy: 1, 138
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+rotleft
+  rotate: false
+  xy: 138, 275
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+rotright_down
+  rotate: false
+  xy: 1, 1
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+down
+  rotate: false
+  xy: 138, 138
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+left_down
+  rotate: false
+  xy: 275, 275
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+right_down
+  rotate: false
+  xy: 138, 1
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+rotright
+  rotate: false
+  xy: 275, 138
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+rotleft_down
+  rotate: false
+  xy: 412, 275
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+left
+  rotate: false
+  xy: 275, 1
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
