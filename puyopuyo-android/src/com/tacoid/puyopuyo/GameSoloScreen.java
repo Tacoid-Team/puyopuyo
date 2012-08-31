@@ -1,7 +1,5 @@
 package com.tacoid.puyopuyo;
 
-import java.util.Calendar;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
@@ -10,17 +8,14 @@ import com.badlogic.gdx.graphics.GLCommon;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.actors.ControlerActor;
 import com.tacoid.puyopuyo.actors.GridActor;
-import com.tacoid.puyopuyo.actors.MoveButton;
 import com.tacoid.puyopuyo.actors.NextPieceActor;
 import com.tacoid.puyopuyo.actors.ScoreActor;
 import com.tacoid.puyopuyo.actors.ControlerActor.ControlerLayout;
 import com.tacoid.puyopuyo.logic.GameLogic;
-import com.tacoid.puyopuyo.logic.GameLogic.MoveType;
 import com.tacoid.puyopuyo.logic.State;
 
 public class GameSoloScreen implements Screen {
