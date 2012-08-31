@@ -109,7 +109,7 @@ public class GridActor extends Actor {
 			if (next != null) {
 				if (next[0].coul > 0 && next[0].l < logic.LINES) {
 					batch.draw(white, next[0].c * (size + 1) + origX - offWhite, 
-							next[0].l * size + origY + offWhite);
+							next[0].l * size + origY - offWhite);
 					batch.draw(boules[next[0].coul - 1],
 							next[0].c * (size + 1) + origX, next[0].l * size + origY);
 				}
