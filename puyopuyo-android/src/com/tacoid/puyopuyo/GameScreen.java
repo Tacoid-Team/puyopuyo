@@ -45,6 +45,8 @@ public class GameScreen implements Screen {
 	private IA ia;
 	private InputProcessor controller;
 	private PauseMenu pauseMenu;
+	
+	private GameOverActor gameOver;
 
 	private void addButton(Button button, int x, int y) {
 		stage.addActor(button);
@@ -74,6 +76,7 @@ public class GameScreen implements Screen {
 		gameLogic.setOpponent(gameLogicIA);
 		gameLogicIA.setOpponent(gameLogic);
 		controller = new Controller(gameLogic, stage);
+		gameOver = null;
 
 		gridActor = new GridActor(gameLogic, 214, 26, 54, 48);
 		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 55, 480, 48);
@@ -149,10 +152,15 @@ public class GameScreen implements Screen {
 			gameLogicIA.update(delta);
 			ia.update(delta);
 		} else {
-			if(gameLogic.getState() == State.LOST){
-				stage.addActor(new GameOverActor(GameOverType.LOSE, VIRTUAL_WIDTH/2, VIRTUAL_HEIGHT/2));
-			} else {
-				stage.addActor(new GameOverActor(GameOverType.WIN, VIRTUAL_WIDTH/2, VIRTUAL_HEIGHT/2));
+			if(gameOver == null) {
+				if(gameLogic.getState() == State.LOST){
+					gameOver = new GameOverActor(GameOverType.LOSE, VIRTUAL_WIDTH/2, 2*VIRTUAL_HEIGHT/3);
+				} else {
+					gameOver = new GameOverActor(GameOverType.WIN, VIRTUAL_WIDTH/2, 2*VIRTUAL_HEIGHT/3);
+					
+				}
+				
+				stage.addActor(gameOver);
 			}
 		}
 

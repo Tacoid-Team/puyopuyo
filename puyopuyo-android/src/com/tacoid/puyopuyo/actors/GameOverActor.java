@@ -3,26 +3,64 @@ package com.tacoid.puyopuyo.actors;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.tacoid.puyopuyo.GameScreen;
 import com.tacoid.puyopuyo.MainMenuScreen;
 import com.tacoid.puyopuyo.PuyoPuyo;
+import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 
-public class GameOverActor extends Actor {
+public class GameOverActor extends Group {
 	
 	static public enum GameOverType {
 		WIN,
 		LOSE,
 		GAMEOVER
 	};
+	
+	private class QuitButton extends Button {
 
-	private SpriteBatch batch;
+		public QuitButton(TextureRegion regionUp, TextureRegion regionDown) {
+			super(regionUp, regionDown);
+			// TODO Auto-generated constructor stub
+		}
+		
+		public void touchUp(float x, float y, int pointer) {
+			PuyoPuyo.getInstance().setScreen(MainMenuScreen.getInstance());
+			GameScreen.freeInstance();
+		}
+		
+	}
+	
+	private class ReplayButton extends Button {
+
+		public ReplayButton(TextureRegion regionUp, TextureRegion regionDown) {
+			super(regionUp, regionDown);
+			// TODO Auto-generated constructor stub
+		}
+		
+		public void touchUp(float x, float y, int pointer) {
+		}
+		
+	}
+	
 	private Sprite sprite;
 	private GameOverType type;
 	
 	public GameOverActor(GameOverType type, float x, float y) {
 		this.type = type;
-		batch = new SpriteBatch();
+		
+		SwingMenu menu = new SwingMenu(ScreenOrientation.LANDSCAPE);
+		TextureRegion quitterRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter-fr");
+		TextureRegion rejouerRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("rejouer-fr");
+		menu.initBegin();
+		menu.addButton(new ReplayButton(rejouerRegion, rejouerRegion));
+		menu.addButton(new QuitButton(quitterRegion, quitterRegion));
+		menu.initEnd();
+		menu.show();
+		this.addActor(menu);
 		
 		switch(type) {
 		case WIN:
@@ -34,35 +72,16 @@ public class GameOverActor extends Actor {
 		default:
 			sprite = new Sprite(PuyoPuyo.getInstance().manager.get("images/perdu-fr.png", Texture.class));
 		}
-		
-		this.x = x;
-		this.y = y;
 		sprite.setPosition(x-sprite.getWidth()/2, y-sprite.getHeight()/2);
-	}
-	
-	@Override
-	public void draw(SpriteBatch arg0, float arg1) {
-		batch.begin();
-		sprite.draw(batch);
-		batch.end();
-	}
 
-	@Override
-	public Actor hit(float arg0, float arg1) {
-		// TODO Auto-generated method stub
-		return this;
 	}
 	
-	public boolean touchDown(float x, float y, int pointer) {
-		PuyoPuyo.getInstance().setScreen(MainMenuScreen.getInstance());
-		GameScreen.freeInstance();
-		return true;
+	public void draw(SpriteBatch batch, float arg1) {
+		super.draw(batch,arg1);
+		sprite.draw(batch);
 	}
 	
-	public void touchUp(float x, float y, int pointer) {
-		PuyoPuyo.getInstance().setScreen(MainMenuScreen.getInstance());
-		GameScreen.freeInstance();
-	}
+
 	
 	
 }
