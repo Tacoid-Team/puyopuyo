@@ -10,7 +10,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.actors.BackgroundActor;
+import com.tacoid.puyopuyo.actors.SwingMenu;
 
 
 public class MainMenuScreen implements Screen {
@@ -30,46 +32,36 @@ public class MainMenuScreen implements Screen {
 	public MainMenuScreen() {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
-		ForegroundTex = new Texture(Gdx.files.internal("images/menu/foreground.png"));
-		batch = new SpriteBatch();
 		
 		stage.addActor(new BackgroundActor());
 		
+		SwingMenu menu = new SwingMenu(ScreenOrientation.LANDSCAPE);
+		
+		menu.initBegin();
+		
 		/* SOLO BUTTON */
-		TextureRegion playRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/menu/solo.png",
-						Texture.class));
-		TextureRegion playDownRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/menu/solo.png",
-						Texture.class));
-		stage.addActor(new SoloButton(playRegion, playDownRegion));
+		TextureRegion playRegion =  PuyoPuyo.getInstance().atlasPlank.findRegion("solo-fr");
+		menu.addButton(new SoloButton(playRegion, playRegion));
 		
 		/* VERUS BUTTON */
-		TextureRegion versusRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/menu/versusia.png",
-						Texture.class));
-		TextureRegion versusDownRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/menu/versusia.png",
-						Texture.class));
-		stage.addActor(new VersusButton(versusRegion, versusDownRegion));
+		TextureRegion versusRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("versus-fr");
+		menu.addButton(new VersusButton(versusRegion, versusRegion));
 		
 		/* CHRONO BUTTON */
-		TextureRegion chronoRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/menu/chrono.png",
-						Texture.class));
-		TextureRegion chronoDownRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/menu/chrono.png",
-						Texture.class));
-		stage.addActor(new ChronoButton(chronoRegion, chronoDownRegion));
+		TextureRegion chronoRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("chrono-fr");
+		menu.addButton(new ChronoButton(chronoRegion, chronoRegion));
 		
 		/* Exit BUTTON */
-		TextureRegion exitRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/menu/exit.png",
-						Texture.class));
-		TextureRegion exitDownRegion = new TextureRegion(
-				PuyoPuyo.getInstance().manager.get("images/menu/exit.png",
-						Texture.class));
-		stage.addActor(new ExitButton(exitRegion, exitDownRegion));
+		TextureRegion exitRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter-fr");
+		menu.addButton(new ExitButton(exitRegion, exitRegion));
+		
+		menu.initEnd();
+		
+		stage.addActor(menu);
+		
+		
+		
+		menu.show();
 		
 	}
 	
@@ -102,19 +94,10 @@ public class MainMenuScreen implements Screen {
 	}
 
 	@Override
-	public void render(float arg0) {
-		
-	     foregroundTimer+=Gdx.graphics.getDeltaTime()*0.5;
-	     if(foregroundTimer> 1.0f) {
-	    	 foregroundTimer = 1.0f;
-	     }
-	     
+	public void render(float arg0) {    
 	     //Gdx.gl.glClearColor(1.0f, 0,0,0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.draw();
-		batch.begin();
-		//batch.draw(ForegroundTex,0,1000*-(foregroundTimer/2 - 0.5f)*(foregroundTimer/2 - 0.5f));
-		batch.end();
 		stage.act(Gdx.graphics.getDeltaTime());
 		
 	}
@@ -143,8 +126,6 @@ public class MainMenuScreen implements Screen {
 	private class SoloButton extends Button{
 		public SoloButton(TextureRegion regionUp, TextureRegion regionDown) {
 			super(regionUp, regionDown);
-			x = 100;
-			y = 100;
 			// TODO Auto-generated constructor stub
 		}
 
@@ -160,8 +141,6 @@ public class MainMenuScreen implements Screen {
 	private class VersusButton extends Button{
 		public VersusButton(TextureRegion regionUp, TextureRegion regionDown) {
 			super(regionUp, regionDown);
-			x = 300;
-			y = 100;
 			// TODO Auto-generated constructor stub
 		}
 
@@ -177,8 +156,6 @@ public class MainMenuScreen implements Screen {
 	private class ChronoButton extends Button{
 		public ChronoButton(TextureRegion regionUp, TextureRegion regionDown) {
 			super(regionUp, regionDown);
-			x = 600;
-			y = 100;
 			// TODO Auto-generated constructor stub
 		}
 
@@ -194,8 +171,6 @@ public class MainMenuScreen implements Screen {
 	private class ExitButton extends Button{
 		public ExitButton(TextureRegion regionUp, TextureRegion regionDown) {
 			super(regionUp, regionDown);
-			x = VIRTUAL_WIDTH-200;
-			y = -50;
 			// TODO Auto-generated constructor stub
 		}
 
