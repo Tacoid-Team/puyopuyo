@@ -3,149 +3,135 @@ pages.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-rouge
-  rotate: false
-  xy: 1, 183
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-bleu
-  rotate: false
-  xy: 1, 117
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-vert
-  rotate: false
-  xy: 67, 183
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-nuisance
-  rotate: false
-  xy: 1, 51
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-jaune
-  rotate: false
-  xy: 67, 117
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-bleu_f
-  rotate: false
-  xy: 133, 183
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
 vert_horizontal
   rotate: false
-  xy: 67, 51
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-vert_f
-  rotate: false
-  xy: 133, 117
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-rouge_f
-  rotate: false
-  xy: 199, 183
+  xy: 1, 57
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 white
   rotate: false
-  xy: 133, 51
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-jaune_f
-  rotate: false
-  xy: 199, 117
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-red_fall-48
-  rotate: false
-  xy: 265, 183
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-red_happy
-  rotate: false
   xy: 1, 1
-  size: 48, 48
-  orig: 48, 48
+  size: 54, 54
+  orig: 54, 54
   offset: 0, 0
-  index: 48
-red_sleep
+  index: -1
+green_happy-48
   rotate: false
-  xy: 199, 67
+  xy: 67, 73
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
-  index: 48
+  index: -1
+yellow_happy-48
+  rotate: false
+  xy: 117, 73
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+nuisance
+  rotate: false
+  xy: 167, 73
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+red_sleep-48
+  rotate: false
+  xy: 217, 73
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+yellow_sleep-48
+  rotate: false
+  xy: 267, 73
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+green_sleep-48
+  rotate: false
+  xy: 317, 73
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+blue_happy-48
+  rotate: false
+  xy: 367, 73
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+blue_sleep-48
+  rotate: false
+  xy: 417, 73
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
 rouge_horizontal
   rotate: false
-  xy: 265, 149
+  xy: 467, 89
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
+red_happy-48
+  rotate: false
+  xy: 67, 23
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+red_fall-48
+  rotate: false
+  xy: 117, 23
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
 bleu_vertical
   rotate: false
-  xy: 331, 215
+  xy: 167, 39
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 bleu_horizontal
   rotate: false
-  xy: 51, 17
+  xy: 201, 39
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 vert_vertical
   rotate: false
-  xy: 365, 215
+  xy: 235, 39
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 jaune_vertical
   rotate: false
-  xy: 85, 17
+  xy: 269, 39
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 rouge_vertical
   rotate: false
-  xy: 399, 215
+  xy: 303, 39
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 jaune_horizontal
   rotate: false
-  xy: 119, 17
+  xy: 337, 39
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
