@@ -81,13 +81,13 @@ public class GridActor extends Actor {
 	public void draw(SpriteBatch batch, float alpha) {
 		int[][] grid = logic.getGrid();
 		
-		for (int l = 0; l < logic.LINES - 1; l++) {
-			for (int c = 0; c < logic.COLUMNS - 1; c++) {
+		for (int l = 0; l < logic.LINES; l++) {
+			for (int c = 0; c < logic.COLUMNS; c++) {
 				if (grid[l][c] > 0 && grid[l][c] != logic.GARBAGE) {
-					if (grid[l][c] == grid[l][c+1]) {
+					if (c < logic.COLUMNS - 1 && grid[l][c] == grid[l][c+1]) {
 						batch.draw(boules_h[grid[l][c] - 1], c * size + origX + size / 2, l * size + origY);
 					}
-					if (grid[l][c] == grid[l+1][c]) {
+					if (l < logic.LINES - 1 && grid[l][c] == grid[l+1][c]) {
 						batch.draw(boules_v[grid[l][c] - 1], c * size + origX, l * size + origY + size / 2);
 					}
 				}
