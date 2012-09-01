@@ -18,7 +18,7 @@ public class ScoreActor extends Actor {
 		this.origY = origY;
 		// A commenter pour le porting gwt
 		font = new BitmapFont();
-		font.setScale(1.2f);
+		font.setScale(1.3f);
 	}
 
 	@Override
