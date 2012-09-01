@@ -52,14 +52,14 @@ yellow_sleep-64
   orig: 64, 64
   offset: 0, 0
   index: -1
-blue_sleep-64
+blue_fall-64
   rotate: false
   xy: 337, 189
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-blue_happy-64
+blue_sleep-64
   rotate: false
   xy: 403, 189
   size: 64, 64
@@ -73,105 +73,119 @@ yellow_horizontal
   orig: 48, 48
   offset: 0, 0
   index: -1
-yellow_happy-64
+blue_happy-64
   rotate: false
   xy: 67, 117
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
+yellow_happy-64
+  rotate: false
+  xy: 67, 51
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
 white-48
   rotate: false
-  xy: 67, 61
+  xy: 133, 133
   size: 54, 54
   orig: 54, 54
   offset: 0, 0
   index: -1
 green_happy-48
   rotate: false
-  xy: 133, 139
+  xy: 51, 1
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 red_horizontal
   rotate: false
-  xy: 183, 139
+  xy: 133, 83
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 yellow_happy-48
   rotate: false
-  xy: 233, 139
+  xy: 189, 139
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 yellow_vertical
   rotate: false
-  xy: 283, 139
+  xy: 239, 139
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 nuisance
   rotate: false
-  xy: 333, 139
+  xy: 289, 139
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 red_sleep-48
   rotate: false
-  xy: 383, 139
+  xy: 339, 139
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 yellow_sleep-48
   rotate: false
-  xy: 433, 139
+  xy: 389, 139
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 green_horizontal
   rotate: false
-  xy: 133, 89
+  xy: 101, 1
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 green_sleep-48
   rotate: false
-  xy: 183, 89
+  xy: 439, 139
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 blue_happy-48
   rotate: false
-  xy: 233, 89
+  xy: 183, 83
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 blue_horizontal
   rotate: false
-  xy: 283, 89
+  xy: 233, 89
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 blue_vertical
   rotate: false
-  xy: 333, 89
+  xy: 283, 89
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 blue_sleep-48
+  rotate: false
+  xy: 333, 89
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+blue_fall-48
   rotate: false
   xy: 383, 89
   size: 48, 48
@@ -187,21 +201,21 @@ red_vertical
   index: -1
 red_happy-48
   rotate: false
-  xy: 123, 39
+  xy: 151, 33
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 green_vertical
   rotate: false
-  xy: 173, 39
+  xy: 201, 33
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 red_fall-48
   rotate: false
-  xy: 223, 39
+  xy: 251, 39
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
