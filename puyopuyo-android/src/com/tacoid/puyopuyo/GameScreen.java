@@ -25,8 +25,8 @@ import com.tacoid.puyopuyo.logic.IA;
 import com.tacoid.puyopuyo.logic.State;
 
 public class GameScreen implements Screen {
-	private static final int VIRTUAL_WIDTH = 800;
-	private static final int VIRTUAL_HEIGHT = 1280;
+	private static final int VIRTUAL_WIDTH = 1280;
+	private static final int VIRTUAL_HEIGHT = 768;
 	private static GameScreen instance = null;
 	private Stage stage;
 	private GameLogic gameLogic;
@@ -172,9 +172,7 @@ public class GameScreen implements Screen {
 	@Override
 	public void resize(int arg0, int arg1) {
 		stage.setViewport(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, false);
-		stage.getCamera().position
-				.set(VIRTUAL_HEIGHT / 2, VIRTUAL_WIDTH / 2, 0);
-		stage.getCamera().rotate(-90, 0, 0, 1);
+		stage.getCamera().position.set(VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2, 0);
 	}
 
 	@Override

@@ -14,8 +14,8 @@ import com.tacoid.puyopuyo.actors.SwingMenu;
 
 
 public class MainMenuScreen implements Screen {
-	private static final int VIRTUAL_WIDTH = 768;
-	private static final int VIRTUAL_HEIGHT = 1280;
+	private static final int VIRTUAL_WIDTH = 1280;
+	private static final int VIRTUAL_HEIGHT = 768;
 	private static MainMenuScreen instance = null;
 	private Stage stage;
 	float foregroundTimer = 0.0f;
@@ -102,11 +102,9 @@ public class MainMenuScreen implements Screen {
 	@Override
 	public void resize(int arg0, int arg1) {
 		stage.setViewport(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, false);
-		stage.getCamera().position
-				.set(VIRTUAL_HEIGHT / 2, VIRTUAL_WIDTH / 2, 0);
-		stage.getCamera().rotate(-90, 0, 0, 1);
+		stage.getCamera().position.set(VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2, 0);
 	}
-
+	
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
