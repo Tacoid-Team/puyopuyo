@@ -67,7 +67,8 @@ public class SwingMenu extends Group{
 	
 	public void initEnd() {
 		for(int i=0; i<buttons.size(); i++) {
-			buttons.get(i).x = VIRTUAL_WIDTH*(i+1)/(buttons.size()+1)-128;
+			/*buttons.get(i).x = VIRTUAL_WIDTH*(i+1)/(buttons.size()+1)-128;*/
+			buttons.get(i).x = (i+1)*(VIRTUAL_WIDTH-buttons.size()*256)/(buttons.size()+1)+i*256;
 			buttons.get(i).y = 0;
 			addActor(buttons.get(i));
 		}
