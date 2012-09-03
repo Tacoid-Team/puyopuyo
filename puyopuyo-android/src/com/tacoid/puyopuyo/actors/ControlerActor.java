@@ -1,7 +1,6 @@
 package com.tacoid.puyopuyo.actors;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;

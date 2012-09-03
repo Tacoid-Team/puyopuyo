@@ -22,7 +22,6 @@ public class GridActor extends Actor {
 	private int origY;
 	private TextureRegion white;
 	private int size;
-	private int sizePuyo;
 	private int offWhite;
 
 	/**
@@ -38,7 +37,6 @@ public class GridActor extends Actor {
 		this.origY = origY;
 		this.logic = logic;
 		this.size = size;
-		this.sizePuyo = sizePuyo;
 		this.offWhite = (size - sizePuyo) / 2;
 		puyopuyo = PuyoPuyo.getInstance();
 		

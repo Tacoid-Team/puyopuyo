@@ -4,10 +4,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.tacoid.puyopuyo.GameScreen;
+import com.tacoid.puyopuyo.GameVersusScreen;
 import com.tacoid.puyopuyo.MainMenuScreen;
 import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
@@ -29,7 +29,7 @@ public class GameOverActor extends Group {
 		
 		public void touchUp(float x, float y, int pointer) {
 			PuyoPuyo.getInstance().setScreen(MainMenuScreen.getInstance());
-			GameScreen.freeInstance();
+			GameVersusScreen.freeInstance();
 		}
 		
 	}
@@ -47,10 +47,8 @@ public class GameOverActor extends Group {
 	}
 	
 	private Sprite sprite;
-	private GameOverType type;
 	
 	public GameOverActor(GameOverType type, float x, float y) {
-		this.type = type;
 		
 		SwingMenu menu = new SwingMenu(ScreenOrientation.LANDSCAPE);
 		TextureRegion quitterRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter-fr");

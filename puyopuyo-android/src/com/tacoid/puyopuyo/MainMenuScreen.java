@@ -144,7 +144,7 @@ public class MainMenuScreen implements Screen {
 			return true;
 		}
 		public void touchUp(float x, float y, int pointer) {
-			PuyoPuyo.getInstance().setScreen(GameScreen.getInstance());
+			PuyoPuyo.getInstance().setScreen(GameVersusScreen.getInstance());
 		}
 	}
 	

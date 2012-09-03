@@ -19,8 +19,7 @@ public class SwingMenu extends Group{
 	
 	private List<Actor> buttons;
 	private ScreenOrientation orientation;
-	
-	
+
 	private Interpolation interpBush;
 	private Interpolation interpButton;
 	private float timeBush;

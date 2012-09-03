@@ -24,10 +24,10 @@ import com.tacoid.puyopuyo.logic.GameLogic;
 import com.tacoid.puyopuyo.logic.IA;
 import com.tacoid.puyopuyo.logic.State;
 
-public class GameScreen implements Screen {
+public class GameVersusScreen implements Screen {
 	private static final int VIRTUAL_WIDTH = 1280;
 	private static final int VIRTUAL_HEIGHT = 768;
-	private static GameScreen instance = null;
+	private static GameVersusScreen instance = null;
 	private Stage stage;
 	private GameLogic gameLogic;
 	private GameLogic gameLogicIA;
@@ -63,7 +63,7 @@ public class GameScreen implements Screen {
 	}
 
 
-	private GameScreen() {
+	private GameVersusScreen() {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
 		gameLogic = new GameLogic();
@@ -108,9 +108,9 @@ public class GameScreen implements Screen {
 		Gdx.gl.glClearColor(0.4f, 0.4f, 0.4f, 1.0f);
 	}
 
-	public static GameScreen getInstance() {
+	public static GameVersusScreen getInstance() {
 		if (instance == null) {
-			instance = new GameScreen();
+			instance = new GameVersusScreen();
 		}
 		return instance;
 	}

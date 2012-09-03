@@ -10,7 +10,6 @@ import com.tacoid.puyopuyo.logic.GameLogic;
 
 public class PauseMenu extends Group{
 	
-	private float time;
 	private GameLogic playerLogic;
 	private GameLogic iaLogic;
 	
@@ -64,7 +63,6 @@ public class PauseMenu extends Group{
 	}
 	
 	public void show() {
-		time = 0.5f;
 		playerLogic.pause();
 		
 		if(iaLogic != null) {
