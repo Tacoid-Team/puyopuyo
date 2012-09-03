@@ -1,27 +1,20 @@
 package com.tacoid.puyopuyo;
 
-import java.util.Calendar;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GLCommon;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.TextureData;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.actors.BackgroundActor;
 import com.tacoid.puyopuyo.actors.ControlerActor;
 import com.tacoid.puyopuyo.actors.GameOverActor;
 import com.tacoid.puyopuyo.actors.GridActor;
 import com.tacoid.puyopuyo.actors.LandscapePanelActor;
-import com.tacoid.puyopuyo.actors.MoveButton;
 import com.tacoid.puyopuyo.actors.NextPieceActor;
 import com.tacoid.puyopuyo.actors.PauseMenu;
 import com.tacoid.puyopuyo.actors.ScoreActor;
@@ -30,7 +23,6 @@ import com.tacoid.puyopuyo.actors.GameOverActor.GameOverType;
 import com.tacoid.puyopuyo.logic.GameLogic;
 import com.tacoid.puyopuyo.logic.IA;
 import com.tacoid.puyopuyo.logic.State;
-import com.tacoid.puyopuyo.logic.GameLogic.MoveType;
 
 public class GameScreen implements Screen {
 	private static final int VIRTUAL_WIDTH = 1280;
@@ -47,6 +39,9 @@ public class GameScreen implements Screen {
 	private PauseMenu pauseMenu;
 	
 	private GameOverActor gameOver;
+	
+	private float elapsedTime;
+	
 
 	private void addButton(Button button, int x, int y) {
 		stage.addActor(button);
@@ -77,6 +72,7 @@ public class GameScreen implements Screen {
 		gameLogicIA.setOpponent(gameLogic);
 		controller = new Controller(gameLogic, stage);
 		gameOver = null;
+		elapsedTime = 0;
 
 		gridActor = new GridActor(gameLogic, 214, 26, 54, 48);
 		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 55, 480, 48);
@@ -143,6 +139,7 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
+		this.elapsedTime += delta;
 		GLCommon gl = Gdx.gl;
 
 		if (gameLogic.getState() != State.LOST

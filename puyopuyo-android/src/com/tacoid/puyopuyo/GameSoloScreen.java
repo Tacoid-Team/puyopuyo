@@ -27,15 +27,17 @@ public class GameSoloScreen implements Screen {
 	private GridActor gridActor;
 	private InputProcessor controller;
 	protected boolean end = false;
+	protected float elapsedTime;
 
 	protected GameSoloScreen() {
+		elapsedTime = 0;
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
 		gameLogic = new GameLogic();
 		controller = new Controller(gameLogic, stage);
 
 		gridActor = new GridActor(gameLogic, 275, 330, 70, 64);
-		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 80, 920, 64);
+		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 75, 920, 64);
 		ScoreActor scoreActor = new ScoreActor(gameLogic, 590, 1230);
 
 		TextureRegion backgroundRegion 	= new TextureRegion(PuyoPuyo.getInstance().manager.get("images/fond_solo.png",Texture.class), VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
@@ -77,11 +79,16 @@ public class GameSoloScreen implements Screen {
 
 	}
 
+	protected boolean gameEnded() {
+		return gameLogic.getState() == State.LOST;
+	}
+	
 	@Override
 	public void render(float delta) {
+		this.elapsedTime += delta;
 		GLCommon gl = Gdx.gl;
 
-		if (gameLogic.getState() != State.LOST) {
+		if (!gameEnded()) {
 			// Update model
 			gameLogic.update(delta);
 		} else {

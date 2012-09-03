@@ -21,10 +21,10 @@ public class NextPieceActor extends Actor {
 		this.origY = origY;
 		this.size = size + 2;
 		PuyoPuyo puyopuyo = PuyoPuyo.getInstance();
-		boules[0] = puyopuyo.atlasPuyo.findRegion("green_happy-48");
-		boules[1] = puyopuyo.atlasPuyo.findRegion("yellow_happy-48");
-		boules[2] = puyopuyo.atlasPuyo.findRegion("red_happy-48");
-		boules[3] = puyopuyo.atlasPuyo.findRegion("blue_happy-48");
+		boules[0] = puyopuyo.atlasPuyo.findRegion("green_happy-" + size);
+		boules[1] = puyopuyo.atlasPuyo.findRegion("yellow_happy-" + size);
+		boules[2] = puyopuyo.atlasPuyo.findRegion("red_happy-" + size);
+		boules[3] = puyopuyo.atlasPuyo.findRegion("blue_happy-" + size);
 	}
 	
 	@Override

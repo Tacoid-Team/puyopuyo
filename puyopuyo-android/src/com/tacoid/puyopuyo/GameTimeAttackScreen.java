@@ -1,13 +1,9 @@
 package com.tacoid.puyopuyo;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.GLCommon;
 import com.tacoid.puyopuyo.logic.State;
 
 public class GameTimeAttackScreen extends GameSoloScreen {
 	
-	private static float time_left = 120;
 	private static GameTimeAttackScreen instance = null;
 	
 	private GameTimeAttackScreen() {
@@ -21,25 +17,8 @@ public class GameTimeAttackScreen extends GameSoloScreen {
 		return instance;
 	}
 
-	@Override
-	public void render(float delta) {
-		GLCommon gl = Gdx.gl;
-
-		if (gameLogic.getState() != State.LOST && time_left > 0) {
-			// Update model
-			gameLogic.update(delta);
-			time_left -= delta;
-		} else {
-			Gdx.input.setInputProcessor(null);
-			end = true;
-			// TODO
-		}
-
-		// clear previous frame
-		gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		stage.act(delta);
-		stage.draw();
+	protected boolean gameEnded() {
+		return gameLogic.getState() == State.LOST || elapsedTime >= 120;
 	}
-
+	
 }
