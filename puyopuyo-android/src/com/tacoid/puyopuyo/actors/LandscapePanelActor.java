@@ -28,12 +28,12 @@ public class LandscapePanelActor extends Actor {
 		leftPanel = new Sprite(leftPanelRegion);
 		leftPanelIA = new Sprite(leftPanelRegion);
 		
-		mainPanel.setPosition(214, -340);
-		mainPanelIA.setPosition(728, -340);
-		topPanel.setPosition(330, 640);
-		topPanelIA.setPosition(730, 640);
-		leftPanel.setPosition(20, 170);
-		leftPanelIA.setPosition(1080, 170);
+		mainPanel.setPosition(294, -340);
+		mainPanelIA.setPosition(648, -340);
+		topPanel.setPosition(410, 640);
+		topPanelIA.setPosition(690, 640);
+		leftPanel.setPosition(70, 170);
+		leftPanelIA.setPosition(1040, 170);
 	}
 	
 	@Override

@@ -37,11 +37,11 @@ public class ControlerActor extends Group {
 		
 		switch(orientation) {
 		case LANDSCAPE:
-			addActor(new MoveButton(MoveType.LEFT, logic, 20, 290, leftRegion, leftDownRegion));
-			addActor(new MoveButton(MoveType.RIGHT, logic, 1120, 290, rightRegion, rightDownRegion));
-			addActor(new MoveButton(MoveType.ROT_LEFT, logic, 20, 150, rotleftRegion, rotleftDownRegion));
-			addActor(new MoveButton(MoveType.ROT_RIGHT, logic, 1120, 150, rotrightRegion, rotrightDownRegion));
-			addActor(new MoveButton(MoveType.DOWN, logic, 20, 10, downRegion, downDownRegion));
+			addActor(new MoveButton(MoveType.LEFT, logic, 20, 260, leftRegion, leftDownRegion));
+			addActor(new MoveButton(MoveType.RIGHT, logic, 145, 200, rightRegion, rightDownRegion));
+			addActor(new MoveButton(MoveType.ROT_LEFT, logic, 1000, 200, rotleftRegion, rotleftDownRegion));
+			addActor(new MoveButton(MoveType.ROT_RIGHT, logic, 1125, 260, rotrightRegion, rotrightDownRegion));
+			addActor(new MoveButton(MoveType.DOWN, logic, 80, 80, downRegion, downDownRegion));
 			break;
 		case PORTRAIT:
 			addActor(new MoveButton(MoveType.LEFT, logic, 29, 10, leftRegion, leftDownRegion));

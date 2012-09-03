@@ -74,13 +74,13 @@ public class GameVersusScreen implements Screen {
 		gameOver = null;
 		elapsedTime = 0;
 
-		gridActor = new GridActor(gameLogic, 214, 26, 54, 48);
-		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 45, 500, 48);
-		ScoreActor scoreActor = new ScoreActor(gameLogic, 480, 730);
+		gridActor = new GridActor(gameLogic, 296, 26, 54, 48);
+		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 95, 500, 48);
+		ScoreActor scoreActor = new ScoreActor(gameLogic, 550, 730);
 
-		gridActorIA = new GridActor(gameLogicIA, 728, 26, 54, 48);
-		NextPieceActor nextPieceActorIA = new NextPieceActor(gameLogicIA, 1100,	500, 48);
-		ScoreActor scoreActorIA = new ScoreActor(gameLogicIA, 890, 730);
+		gridActorIA = new GridActor(gameLogicIA, 648, 26, 54, 48);
+		NextPieceActor nextPieceActorIA = new NextPieceActor(gameLogicIA, 1066,	500, 48);
+		ScoreActor scoreActorIA = new ScoreActor(gameLogicIA, 840, 730);
 		
 
 		TextureRegion pauseRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/pause_button.png",Texture.class), 32, 32);
