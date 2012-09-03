@@ -15,7 +15,7 @@
    id="svg5304"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="blue_happy.svg">
+   sodipodi:docname="blue_sleep.svg">
   <defs
      id="defs5306">
     <linearGradient
@@ -166,48 +166,72 @@
        id="path6211"
        style="fill:url(#linearGradient6219);fill-opacity:1;stroke:#0024ff;stroke-width:4.67389441;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        sodipodi:type="arc"
-       transform="matrix(0.92556647,0,0,0.92556647,28.607761,614.31882)" />
+       transform="matrix(0.92556647,0,0,0.92556647,28.607761,614.31882)"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/puyos/blue_sleep-48.png"
+       inkscape:export-xdpi="17.129999"
+       inkscape:export-ydpi="17.129999" />
     <path
        style="fill:url(#linearGradient6229);fill-opacity:1.0;stroke:#0000c6;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 141.05138,869.7394 44.2857,-3.57144 c 0,0 11.06493,46.83056 7.14287,60 -3.92206,13.16944 -17.21947,12.72676 -32.85715,-2.85715 C 143.98512,907.7269 141.05138,869.7394 141.05138,869.7394 z"
        id="path6221"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cczzc" />
+       sodipodi:nodetypes="cczzc"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/puyos/blue_sleep-48.png"
+       inkscape:export-xdpi="17.129999"
+       inkscape:export-ydpi="17.129999" />
     <path
        sodipodi:nodetypes="cczzc"
        inkscape:connector-curvature="0"
        id="path6231"
        d="m 103.32119,869.7394 -44.285703,-3.57144 c 0,0 -11.06493,46.83056 -7.14287,60 3.92206,13.16944 17.21947,12.72676 32.85715,-2.85715 C 100.38745,907.7269 103.32119,869.7394 103.32119,869.7394 z"
-       style="fill:url(#linearGradient6233);fill-opacity:1.0;stroke:#0000d2;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+       style="fill:url(#linearGradient6233);fill-opacity:1.0;stroke:#0000d2;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/puyos/blue_sleep-48.png"
+       inkscape:export-xdpi="17.129999"
+       inkscape:export-ydpi="17.129999" />
     <path
        style="fill:#ffffff;fill-opacity:1;stroke:#d0d3d3;stroke-width:1.03091228px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 134.83006,1001.0609 8.58642,13.4077 15.56676,-7.0711 -5.12763,-8.92597 z"
        id="path6263"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccc" />
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/puyos/blue_sleep-48.png"
+       inkscape:export-xdpi="17.129999"
+       inkscape:export-ydpi="17.129999" />
     <path
        style="fill:#ffffff;fill-opacity:1;stroke:#d6d8da;stroke-width:0.86959255px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 120.05138,1000.5251 0.17857,12.2882 -17.5,-1.4854 1e-5,-12.84084 c 5.86291,0.271 11.2242,3.18434 17.32142,2.03804 z"
        id="path6265"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccc" />
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/puyos/blue_sleep-48.png"
+       inkscape:export-xdpi="17.129999"
+       inkscape:export-ydpi="17.129999" />
     <path
        style="fill:url(#linearGradient6275);fill-opacity:1;stroke:none"
        d="m 143.39767,841.57602 -3.53553,11.61675 41.41625,2.52538 z"
        id="path6267"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccc" />
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/puyos/blue_sleep-48.png"
+       inkscape:export-xdpi="17.129999"
+       inkscape:export-ydpi="17.129999" />
     <path
        sodipodi:nodetypes="cccc"
        inkscape:connector-curvature="0"
        id="path6283"
        d="m 101.74286,841.57602 3.53553,11.61675 -41.416253,2.52538 z"
-       style="fill:url(#linearGradient6285);fill-opacity:1;stroke:none" />
+       style="fill:url(#linearGradient6285);fill-opacity:1;stroke:none"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/puyos/blue_sleep-48.png"
+       inkscape:export-xdpi="17.129999"
+       inkscape:export-ydpi="17.129999" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 75.256364,988.2175 c 35.989826,15.697 59.503866,13.3366 85.943466,7.79586 0,0 33.66495,-9.57821 21.63778,-3.25018 -12.02717,6.32803 -66.21337,18.28322 -108.32617,-2.58666 -0.625973,-0.31021 0.744924,-1.95902 0.744924,-1.95902 z"
        id="path6424"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cczsc" />
+       sodipodi:nodetypes="cczsc"
+       inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/puyos/blue_sleep-48.png"
+       inkscape:export-xdpi="17.129999"
+       inkscape:export-ydpi="17.129999" />
   </g>
 </svg>

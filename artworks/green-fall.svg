@@ -15,10 +15,21 @@
    height="297mm"
    id="svg5686"
    version="1.1"
-   inkscape:version="0.48.2 r9819"
-   sodipodi:docname="yellow-fall.svg">
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="green-fall.svg">
   <defs
      id="defs5688">
+    <linearGradient
+       id="linearGradient5400">
+      <stop
+         style="stop-color:#12db00;stop-opacity:1;"
+         offset="0"
+         id="stop5402" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="1"
+         id="stop5404" />
+    </linearGradient>
     <linearGradient
        inkscape:collect="always"
        id="linearGradient10123">
@@ -343,7 +354,7 @@
        x2="397.46991"
        y2="518.37677"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1923337,-0.26691989,0.14479359,0.64679436,-1690.2891,680.49584)" />
+       gradientTransform="matrix(1.1923337,-0.34101181,0.14479359,0.82633225,-1711.9497,614.03046)" />
     <filter
        id="filter10088"
        inkscape:label="Drop shadow"
@@ -377,17 +388,6 @@
            in="SourceGraphic" />
       </feMerge>
     </filter>
-    <radialGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient6654-3"
-       id="radialGradient10102"
-       cx="-1377.533"
-       cy="931.76196"
-       fx="-1377.533"
-       fy="931.76196"
-       r="204.86986"
-       gradientTransform="matrix(2.2139027,0.04946918,-0.02197376,0.84669328,1692.6653,232.96973)"
-       gradientUnits="userSpaceOnUse" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient10123"
@@ -397,14 +397,6 @@
        x2="-1102.1848"
        y2="1255.8994"
        gradientUnits="userSpaceOnUse" />
-    <filter
-       inkscape:collect="always"
-       id="filter10233">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="1.9697408"
-         id="feGaussianBlur10235" />
-    </filter>
     <filter
        id="filter10281"
        inkscape:label="Inner Shadow"
@@ -743,6 +735,15 @@
          result="result2"
          operator="in" />
     </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5400"
+       id="linearGradient5406"
+       x1="-1319.0299"
+       y1="1247.0444"
+       x2="-1313.0927"
+       y2="898.27106"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -752,15 +753,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.0156701"
-     inkscape:cx="-34.718725"
+     inkscape:cx="152.62737"
      inkscape:cy="148.88906"
      inkscape:document-units="px"
      inkscape:current-layer="g5938"
      showgrid="false"
-     inkscape:window-width="1680"
-     inkscape:window-height="988"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-width="1364"
+     inkscape:window-height="747"
+     inkscape:window-x="0"
+     inkscape:window-y="19"
      inkscape:window-maximized="1"
      inkscape:snap-page="true"
      showguides="false">
@@ -791,37 +792,36 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <path
-         transform="matrix(1,0,0,1.0843374,0,-76.059266)"
+         transform="matrix(0.91678201,0,0,1.0786066,-131.58588,-68.92176)"
          d="m -1107.9696,1075.3578 c 0,95.8281 -91.7234,173.5122 -204.8699,173.5122 -113.1465,0 -204.8698,-77.6841 -204.8698,-173.5122 0,-95.82817 91.7233,-173.51223 204.8698,-173.51223 113.1465,0 204.8699,77.68406 204.8699,173.51223 z"
          sodipodi:ry="173.51222"
          sodipodi:rx="204.86986"
          sodipodi:cy="1075.3578"
          sodipodi:cx="-1312.8395"
          id="path6475-6"
-         style="fill:#e7db00;fill-opacity:1;fill-rule:evenodd;stroke:none"
-         sodipodi:type="arc" />
-      <path
+         style="fill:url(#linearGradient5406);fill-opacity:1;fill-rule:evenodd;stroke:#009600;stroke-width:5.02811759999999985;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          sodipodi:type="arc"
-         style="fill:url(#radialGradient10102);fill-opacity:1;fill-rule:evenodd;stroke:none"
-         id="path6543-9"
-         sodipodi:cx="-1312.8395"
-         sodipodi:cy="1075.3578"
-         sodipodi:rx="204.86986"
-         sodipodi:ry="173.51222"
-         d="m -1107.9696,1075.3578 c 0,95.8281 -91.7234,173.5122 -204.8699,173.5122 -113.1465,0 -204.8698,-77.6841 -204.8698,-173.5122 0,-95.82817 91.7233,-173.51223 204.8698,-173.51223 113.1465,0 204.8699,77.68406 204.8699,173.51223 z"
-         transform="matrix(0.99255241,0,0,1.0696815,-11.303278,-62.841906)" />
+         inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/puyos/green_fall-48.png"
+         inkscape:export-xdpi="11.36"
+         inkscape:export-ydpi="11.36" />
       <path
          style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
-         d="m -1405.2956,930.31169 c -13.4742,0 -26.0295,16.30665 -36.6162,44.35693 10.3005,-9.97357 21.1927,-15.35432 32.4829,-15.35432 16.541,0 32.2464,11.56927 46.4388,32.24407 -11.6411,-38.30719 -26.3219,-61.24668 -42.3055,-61.24668 z"
+         d="m -1426.9562,952.95692 c -13.4742,0 -26.0295,16.30665 -36.6162,44.35693 10.3005,-9.97357 21.1927,-15.35432 32.4829,-15.35432 16.541,0 32.2464,11.56927 46.4388,32.24407 -11.6411,-38.30719 -26.3219,-61.24668 -42.3055,-61.24668 z"
          id="path10370"
-         inkscape:connector-curvature="0" />
+         inkscape:connector-curvature="0"
+         inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/puyos/green_fall-48.png"
+         inkscape:export-xdpi="11.36"
+         inkscape:export-ydpi="11.36" />
       <g
          style="filter:url(#filter6586-4)"
          transform="translate(-362.00914,-251.34087)"
          id="g6570-8" />
       <g
-         transform="matrix(1,0,0,-1,-8.6713529,2049.2224)"
-         id="g7138">
+         transform="matrix(1,0,0,-1,-30.332005,2071.8676)"
+         id="g7138"
+         inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/puyos/green_fall-48.png"
+         inkscape:export-xdpi="11.36"
+         inkscape:export-ydpi="11.36">
         <path
            transform="translate(-95.510129,260.38121)"
            sodipodi:type="arc"
@@ -846,17 +846,26 @@
       <path
          inkscape:connector-curvature="0"
          id="path10377"
-         d="m -1219.119,933.81127 c -11.6233,0 -22.454,13.28101 -31.5865,36.12661 8.8856,-8.123 18.2816,-12.50536 28.021,-12.50536 14.2689,0 27.8169,9.42263 40.0598,26.26127 -10.042,-31.19939 -22.7062,-49.88252 -36.4943,-49.88252 z"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+         d="m -1240.7796,956.4565 c -11.6233,0 -22.454,13.28101 -31.5865,36.12661 8.8856,-8.123 18.2816,-12.50536 28.021,-12.50536 14.2689,0 27.8169,9.42263 40.0598,26.26125 -10.042,-31.19937 -22.7062,-49.8825 -36.4943,-49.8825 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/puyos/green_fall-48.png"
+         inkscape:export-xdpi="11.36"
+         inkscape:export-ydpi="11.36" />
       <path
-         style="fill:url(#linearGradient8509);fill-opacity:1;stroke:#000000;stroke-width:4.13999987;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-         d="m -1498.3171,978.7289 c -0.7239,-3.23398 69.5865,-22.55457 120.6813,-20.22402 11.1994,-5.90319 11.1994,-5.90319 23.8467,-5.33841 32.8742,-20.94354 117.0614,-36.39391 117.7854,-33.15993 4.3438,19.40385 -15.159,44.14609 -50.929,52.15368 -29.8083,6.67298 -61.0646,6.87802 -66.1324,-15.75976 -7.5188,-0.74717 -14.917,-2.20478 -23.8467,5.3384 5.0678,22.63779 -17.3309,34.44414 -41.1777,39.78254 -47.6933,10.6768 -76.6077,-6.62258 -80.2276,-22.7925 z"
+         style="fill:url(#linearGradient8509);fill-opacity:1;stroke:#000000;stroke-width:4.67944717;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         d="m -1519.9777,995.04736 c -0.7239,-4.13167 69.5865,-28.81529 120.6813,-25.83782 11.1994,-7.54181 11.1994,-7.54181 23.8467,-6.82025 32.8742,-26.75707 117.0614,-46.49617 117.7854,-42.3645 4.3438,24.78999 -15.159,56.40021 -50.929,66.63055 -29.8083,8.52527 -61.0646,8.78723 -66.1324,-20.13437 -7.5188,-0.95457 -14.917,-2.81678 -23.8467,6.82024 5.0678,28.92159 -17.3309,44.00509 -41.1777,50.82539 -47.6933,13.6405 -76.6077,-8.4609 -80.2276,-29.11924 z"
          id="path8501"
          inkscape:connector-curvature="0"
-         sodipodi:nodetypes="ccccccccc" />
+         sodipodi:nodetypes="ccccccccc"
+         inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/puyos/green_fall-48.png"
+         inkscape:export-xdpi="11.36"
+         inkscape:export-ydpi="11.36" />
       <g
          id="g12252"
-         transform="matrix(-1,0,0,-1,-2613.687,2049.2224)">
+         transform="matrix(-1,0,0,-1,-2635.3476,2071.8676)"
+         inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/puyos/green_fall-48.png"
+         inkscape:export-xdpi="11.36"
+         inkscape:export-ydpi="11.36">
         <path
            d="m -1250.1281,756.61383 c 0,22.04983 -20.2658,39.92476 -45.265,39.92476 -24.9991,0 -45.265,-17.87493 -45.265,-39.92476 0,-22.04983 20.2659,-39.92475 45.265,-39.92475 24.9992,0 45.265,17.87492 45.265,39.92475 z"
            sodipodi:ry="39.924755"
@@ -880,8 +889,11 @@
       </g>
       <g
          id="g13297"
-         transform="matrix(1.0007777,0,0,1.019081,589.29313,145.22596)"
-         style="filter:url(#filter13327)">
+         transform="matrix(1.0007777,0,0,1.019081,567.6325,167.87119)"
+         style="filter:url(#filter13327)"
+         inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/puyos/green_fall-48.png"
+         inkscape:export-xdpi="11.36"
+         inkscape:export-ydpi="11.36">
         <path
            transform="translate(-1522.9945,223.78635)"
            id="path12285"
