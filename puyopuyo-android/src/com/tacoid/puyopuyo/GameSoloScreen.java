@@ -19,8 +19,8 @@ import com.tacoid.puyopuyo.logic.GameLogic;
 import com.tacoid.puyopuyo.logic.State;
 
 public class GameSoloScreen implements Screen {
-	private static final int VIRTUAL_WIDTH = 768;
-	private static final int VIRTUAL_HEIGHT = 1280;
+	private static final int VIRTUAL_WIDTH = 1280;
+	private static final int VIRTUAL_HEIGHT = 768;
 	private static GameSoloScreen instance = null;
 	protected Stage stage;
 	protected GameLogic gameLogic;
@@ -107,7 +107,6 @@ public class GameSoloScreen implements Screen {
 	public void resize(int arg0, int arg1) {
 		stage.setViewport(VIRTUAL_HEIGHT, VIRTUAL_WIDTH, false);
 		stage.getCamera().position.set(VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2, 0);
-		stage.getCamera().rotate(-90, 0, 0, 1);
 	}
 
 	@Override
