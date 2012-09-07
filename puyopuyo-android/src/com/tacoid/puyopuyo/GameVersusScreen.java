@@ -10,11 +10,13 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
+import com.tacoid.puyopuyo.SoundPlayer.SoundType;
 import com.tacoid.puyopuyo.actors.BackgroundActor;
 import com.tacoid.puyopuyo.actors.ControlerActor;
 import com.tacoid.puyopuyo.actors.GameOverActor;
 import com.tacoid.puyopuyo.actors.GridActor;
 import com.tacoid.puyopuyo.actors.LandscapePanelActor;
+import com.tacoid.puyopuyo.actors.MusicButtonActor;
 import com.tacoid.puyopuyo.actors.NextPieceActor;
 import com.tacoid.puyopuyo.actors.PauseMenu;
 import com.tacoid.puyopuyo.actors.ScoreActor;
@@ -52,6 +54,7 @@ public class GameVersusScreen implements Screen {
 		}
 		
 		public boolean touchDown(float x, float y, int pointer) {
+			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
 			pauseMenu.show();
 			return true;
 		}
@@ -93,6 +96,7 @@ public class GameVersusScreen implements Screen {
 		stage.addActor(new ControlerActor(ScreenOrientation.LANDSCAPE, gameLogic));
 		
 		addButton(new PauseButton(pauseRegion),10,VIRTUAL_HEIGHT-10-pauseRegion.getRegionHeight());
+		addButton(MusicButtonActor.createMusicButton(),VIRTUAL_WIDTH-42, VIRTUAL_HEIGHT-42);
 		
 		pauseMenu = new PauseMenu(gameLogic, gameLogicIA, ScreenOrientation.LANDSCAPE);
 		stage.addActor(pauseMenu);

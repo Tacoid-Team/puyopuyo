@@ -2,6 +2,9 @@ package com.tacoid.puyopuyo.logic;
 
 import java.util.ArrayList;
 
+import com.tacoid.puyopuyo.SoundPlayer;
+import com.tacoid.puyopuyo.SoundPlayer.SoundType;
+
 public class GameLogic {
 	
 	public enum MoveType {
@@ -43,6 +46,8 @@ public class GameLogic {
 	private boolean paused = false;
 
 	private int[][] DIR = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+	
+	private boolean isIA;
 
 	private class Explosion {
 		private int nbPuyos;
@@ -90,13 +95,15 @@ public class GameLogic {
 		generate(); // generate next
 	}
 
-	public GameLogic(GameLogic logic) {
+	public GameLogic(GameLogic logic, boolean isIA) {
 		// copy grid.
 		for (int l = 0; l < LINES; l++) {
 			for (int c = 0; c < COLUMNS; c++) {
 				grid[l][c] = logic.grid[l][c];
 			}
 		}
+		
+		this.isIA = isIA;
 
 		// piece + next piece :
 		piece[0] = new Coord(logic.piece[0].l, logic.piece[0].c,
@@ -152,6 +159,9 @@ public class GameLogic {
 
 	public void rotateRight() {
 		if (state == State.MOVE) {
+			if(!isIA) {
+				SoundPlayer.getInstance().playSound(SoundType.ROTATE, 0.8f, true);
+			}
 			Coord newPiece[] = new Coord[2];
 			newPiece[0] = new Coord(piece[0].l, piece[0].c, piece[0].coul);
 			newPiece[1] = new Coord(piece[1].l, piece[1].c, piece[1].coul);
@@ -205,6 +215,9 @@ public class GameLogic {
 
 	public void rotateLeft() {
 		if (state == State.MOVE) {
+			if(!isIA) {
+				SoundPlayer.getInstance().playSound(SoundType.ROTATE, 0.8f, true);
+			}
 			Coord newPiece[] = new Coord[2];
 			newPiece[0] = new Coord(piece[0].l, piece[0].c, piece[0].coul);
 			newPiece[1] = new Coord(piece[1].l, piece[1].c, piece[1].coul);
@@ -259,6 +272,9 @@ public class GameLogic {
 	public void moveDown() {
 		if (state == State.MOVE) {
 			descendre();
+			if(!isIA) {
+				SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.5f, true);
+			}
 		}
 	}
 
@@ -271,6 +287,9 @@ public class GameLogic {
 				}
 			}
 			if (ok) {
+				if(!isIA) {
+					SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.5f, true);
+				}
 				for (int i = 0; i < 2; i++) {
 					piece[i].c--;
 				}
@@ -288,6 +307,9 @@ public class GameLogic {
 				}
 			}
 			if (ok) {
+				if(!isIA) {
+					SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.5f, true);
+				}
 				for (int i = 0; i < 2; i++) {
 					piece[i].c++;
 				}
@@ -360,6 +382,9 @@ public class GameLogic {
 				}
 			}
 		}
+		if(!isIA && !remove.isEmpty()) {
+			SoundPlayer.getInstance().playSound(SoundType.EXPLODE, 1.0f, true);
+		}
 		return remove;
 	}
 
@@ -391,6 +416,7 @@ public class GameLogic {
 
 			removes = resolve();
 			for (Explosion r : removes) {
+
 				score += r.getNbPuyos() * 10 * (r.getNbPuyos() - 3) * combo;
 			}
 			combo *= 2;

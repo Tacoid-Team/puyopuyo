@@ -37,14 +37,14 @@ public class IA {
 		} else {
 			GameLogic[] logics = new GameLogic[5];
 
-			logics[0] = new GameLogic(cl);
-			logics[1] = new GameLogic(cl);
+			logics[0] = new GameLogic(cl,true);
+			logics[1] = new GameLogic(cl,true);
 			logics[1].rotateLeft();
-			logics[2] = new GameLogic(cl);
+			logics[2] = new GameLogic(cl,true);
 			logics[2].rotateRight();
-			logics[3] = new GameLogic(cl);
+			logics[3] = new GameLogic(cl,true);
 			logics[3].moveLeft();
-			logics[4] = new GameLogic(cl);
+			logics[4] = new GameLogic(cl,true);
 			logics[4].moveRight();
 
 			Solution scoreMax = choice(0, logics[0], m);

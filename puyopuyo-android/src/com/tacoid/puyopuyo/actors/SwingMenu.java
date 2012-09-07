@@ -51,10 +51,8 @@ public class SwingMenu extends Group{
 	public SwingMenu(ScreenOrientation orientation) {
 		
 		if(orientation == ScreenOrientation.LANDSCAPE) {
-			System.out.println("LANDSCAPE");
 			VIRTUAL_WIDTH = 1280;
 		} else {
-			System.out.println("PORTRAIT");
 			VIRTUAL_WIDTH = 768;
 		}
 		
@@ -81,7 +79,6 @@ public class SwingMenu extends Group{
 		addActor(new BushActor());
 	}
 	public void show() {
-		System.out.println(VIRTUAL_WIDTH);
 		timeBush = 0.5f;
 		timeButton = 0.0f;
 		this.touchable =true;

@@ -10,7 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.tacoid.puyopuyo.GameVersusScreen;
 import com.tacoid.puyopuyo.MainMenuScreen;
 import com.tacoid.puyopuyo.PuyoPuyo;
+import com.tacoid.puyopuyo.SoundPlayer;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
+import com.tacoid.puyopuyo.SoundPlayer.SoundType;
 
 public class GameOverActor extends Group {
 	
@@ -27,6 +29,11 @@ public class GameOverActor extends Group {
 			// TODO Auto-generated constructor stub
 		}
 		
+		public boolean touchDown(float x, float y, int pointer) {
+			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 1.0f, true);
+			return true;
+		}
+		
 		public void touchUp(float x, float y, int pointer) {
 			PuyoPuyo.getInstance().setScreen(MainMenuScreen.getInstance());
 			GameVersusScreen.freeInstance();
@@ -39,6 +46,11 @@ public class GameOverActor extends Group {
 		public ReplayButton(TextureRegion regionUp, TextureRegion regionDown) {
 			super(regionUp, regionDown);
 			// TODO Auto-generated constructor stub
+		}
+		
+		public boolean touchDown(float x, float y, int pointer) {
+			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 1.0f, true);
+			return true;
 		}
 		
 		public void touchUp(float x, float y, int pointer) {

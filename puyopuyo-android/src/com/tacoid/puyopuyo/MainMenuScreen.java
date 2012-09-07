@@ -2,14 +2,18 @@ package com.tacoid.puyopuyo;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.tacoid.puyopuyo.MusicPlayer.MusicType;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
+import com.tacoid.puyopuyo.SoundPlayer.SoundType;
 import com.tacoid.puyopuyo.actors.BackgroundActor;
+import com.tacoid.puyopuyo.actors.MusicButtonActor;
 import com.tacoid.puyopuyo.actors.SwingMenu;
 
 
@@ -25,6 +29,14 @@ public class MainMenuScreen implements Screen {
     
 	Texture HillsTex;
 	Texture ForegroundTex;
+	
+	Music music;
+	
+	private void addButton(Button button, int x, int y) {
+		stage.addActor(button);
+		button.x = x;
+		button.y = y;
+	}
 	
 	public MainMenuScreen() {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
@@ -55,8 +67,12 @@ public class MainMenuScreen implements Screen {
 		menu.initEnd();
 		
 		stage.addActor(menu);
+		addButton(MusicButtonActor.createMusicButton(),VIRTUAL_WIDTH-42, VIRTUAL_HEIGHT-42);
 
 		menu.show();
+		
+		MusicPlayer.getInstance().setVolume(0.8f);
+		MusicPlayer.getInstance().playMusic(MusicType.MAIN, true);
 		
 	}
 	
@@ -124,6 +140,7 @@ public class MainMenuScreen implements Screen {
 
 		@Override
 		public boolean touchDown(float x, float y, int pointer) {
+			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
 			return true;
 		}
 		public void touchUp(float x, float y, int pointer) {
@@ -139,6 +156,7 @@ public class MainMenuScreen implements Screen {
 
 		@Override
 		public boolean touchDown(float x, float y, int pointer) {
+			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
 			return true;
 		}
 		public void touchUp(float x, float y, int pointer) {
@@ -154,6 +172,7 @@ public class MainMenuScreen implements Screen {
 
 		@Override
 		public boolean touchDown(float x, float y, int pointer) {
+			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
 			return true;
 		}
 		public void touchUp(float x, float y, int pointer) {
@@ -169,6 +188,7 @@ public class MainMenuScreen implements Screen {
 
 		@Override
 		public boolean touchDown(float x, float y, int pointer) {
+			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
 			return true;
 		}
 		public void touchUp(float x, float y, int pointer) {
