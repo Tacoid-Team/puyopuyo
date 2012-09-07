@@ -14,7 +14,6 @@ public class PauseMenu extends Group{
 	private GameLogic iaLogic;
 	
 	private SwingMenu menu;
-	private final ScreenOrientation orientation;
 	
 	private class ContinueButton extends Button{
 		public ContinueButton(TextureRegion region) {
@@ -46,8 +45,6 @@ public class PauseMenu extends Group{
 	public PauseMenu(GameLogic player, GameLogic ia, ScreenOrientation orientation) {
 		TextureRegion continueRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("continuer-fr");
 		TextureRegion quitRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter-fr");
-		
-		this.orientation = orientation; 
 		
 		menu = new SwingMenu(orientation);
 		

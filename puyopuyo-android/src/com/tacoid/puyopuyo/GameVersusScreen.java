@@ -18,7 +18,6 @@ import com.tacoid.puyopuyo.actors.LandscapePanelActor;
 import com.tacoid.puyopuyo.actors.NextPieceActor;
 import com.tacoid.puyopuyo.actors.PauseMenu;
 import com.tacoid.puyopuyo.actors.ScoreActor;
-import com.tacoid.puyopuyo.actors.ControlerActor.ControlerLayout;
 import com.tacoid.puyopuyo.actors.GameOverActor.GameOverType;
 import com.tacoid.puyopuyo.logic.GameLogic;
 import com.tacoid.puyopuyo.logic.IA;
@@ -39,9 +38,6 @@ public class GameVersusScreen implements Screen {
 	private PauseMenu pauseMenu;
 	
 	private GameOverActor gameOver;
-	
-	private float elapsedTime;
-	
 
 	private void addButton(Button button, int x, int y) {
 		stage.addActor(button);
@@ -72,7 +68,6 @@ public class GameVersusScreen implements Screen {
 		gameLogicIA.setOpponent(gameLogic);
 		controller = new Controller(gameLogic, stage);
 		gameOver = null;
-		elapsedTime = 0;
 
 		gridActor = new GridActor(gameLogic, 296, 26, 54, 48);
 		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 95, 500, 48);
@@ -95,7 +90,7 @@ public class GameVersusScreen implements Screen {
 		stage.addActor(nextPieceActorIA);
 		stage.addActor(scoreActorIA);
 
-		stage.addActor(new ControlerActor(ControlerLayout.CLASSIC, ScreenOrientation.LANDSCAPE, gameLogic));
+		stage.addActor(new ControlerActor(ScreenOrientation.LANDSCAPE, gameLogic));
 		
 		addButton(new PauseButton(pauseRegion),10,VIRTUAL_HEIGHT-10-pauseRegion.getRegionHeight());
 		
@@ -139,7 +134,6 @@ public class GameVersusScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
-		this.elapsedTime += delta;
 		GLCommon gl = Gdx.gl;
 
 		if (gameLogic.getState() != State.LOST

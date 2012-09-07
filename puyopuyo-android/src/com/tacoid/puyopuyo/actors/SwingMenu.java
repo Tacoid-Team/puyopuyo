@@ -17,7 +17,6 @@ public class SwingMenu extends Group{
 	private static final float BUTTON_HEIGHT = 250;
 	
 	private List<Actor> buttons;
-	private ScreenOrientation orientation;
 
 	private Interpolation interpBush;
 	private Interpolation interpButton;
@@ -50,7 +49,6 @@ public class SwingMenu extends Group{
 	}
 	
 	public SwingMenu(ScreenOrientation orientation) {
-		this.orientation = orientation;
 		
 		if(orientation == ScreenOrientation.LANDSCAPE) {
 			System.out.println("LANDSCAPE");

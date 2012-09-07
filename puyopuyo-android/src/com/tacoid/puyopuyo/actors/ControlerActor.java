@@ -9,19 +9,7 @@ import com.tacoid.puyopuyo.logic.GameLogic.MoveType;
 
 public class ControlerActor extends Group {
 	
-	public enum ControlerLayout {
-		CLASSIC,
-		OLD_SCHOOL
-	};
-	
-	private ControlerLayout layout;
-	private ScreenOrientation orientation;
-	private GameLogic logic;
-	
-	public ControlerActor(ControlerLayout layout, ScreenOrientation orientation, GameLogic logic){
-		this.layout = layout;
-		this.orientation = orientation;
-		this.logic = logic;
+	public ControlerActor(ScreenOrientation orientation, GameLogic logic){
 		
 		/* Chargement textures des boutons */
 		TextureRegion leftRegion = PuyoPuyo.getInstance().atlasControls.findRegion("left");

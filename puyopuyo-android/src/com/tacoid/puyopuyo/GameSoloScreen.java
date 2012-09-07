@@ -10,29 +10,30 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.tacoid.puyopuyo.GameVersusScreen.PauseButton;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.actors.ControlerActor;
 import com.tacoid.puyopuyo.actors.GridActor;
 import com.tacoid.puyopuyo.actors.NextPieceActor;
 import com.tacoid.puyopuyo.actors.PauseMenu;
 import com.tacoid.puyopuyo.actors.ScoreActor;
-import com.tacoid.puyopuyo.actors.ControlerActor.ControlerLayout;
 import com.tacoid.puyopuyo.logic.GameLogic;
 import com.tacoid.puyopuyo.logic.State;
 
 public class GameSoloScreen implements Screen {
+	
 	private static final int VIRTUAL_WIDTH = 768;
 	private static final int VIRTUAL_HEIGHT = 1280;
 	private static GameSoloScreen instance = null;
-	protected Stage stage;
-	protected GameLogic gameLogic;
-	private GridActor gridActor;
-	private InputProcessor controller;
+
 	protected boolean end = false;
 	protected float elapsedTime;
 	protected PauseMenu pauseMenu;
+	protected Stage stage;
+	protected GameLogic gameLogic;
 	
+	private GridActor gridActor;
+	private InputProcessor controller;
+
 	protected class PauseButton extends Button {
 
 		public PauseButton(TextureRegion region) {
@@ -73,7 +74,7 @@ public class GameSoloScreen implements Screen {
 		stage.addActor(nextPieceActor);
 		stage.addActor(scoreActor);
 
-		stage.addActor(new ControlerActor(ControlerLayout.CLASSIC, ScreenOrientation.PORTRAIT, gameLogic));
+		stage.addActor(new ControlerActor(ScreenOrientation.PORTRAIT, gameLogic));
 		
 		addButton(new PauseButton(pauseRegion),10,VIRTUAL_HEIGHT-10-pauseRegion.getRegionHeight());
 		
