@@ -35,29 +35,27 @@ public class MainMenuScreen implements Screen {
 		SwingMenu menu = new SwingMenu(ScreenOrientation.LANDSCAPE);
 		
 		menu.initBegin();
-		
-		/* SOLO BUTTON */
-		TextureRegion playRegion =  PuyoPuyo.getInstance().atlasPlank.findRegion("solo-fr");
-		menu.addButton(new SoloButton(playRegion, playRegion));
-		
-		/* VERUS BUTTON */
-		TextureRegion versusRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("versus-fr");
-		menu.addButton(new VersusButton(versusRegion, versusRegion));
-		
-		/* CHRONO BUTTON */
-		TextureRegion chronoRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("chrono-fr");
-		menu.addButton(new ChronoButton(chronoRegion, chronoRegion));
-		
-		/* Exit BUTTON */
-		TextureRegion exitRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter-fr");
-		menu.addButton(new ExitButton(exitRegion, exitRegion));
-		
+		{
+			/* SOLO BUTTON */
+			TextureRegion playRegion =  PuyoPuyo.getInstance().atlasPlank.findRegion("solo-fr");
+			menu.addButton(new SoloButton(playRegion, playRegion));
+			
+			/* VERUS BUTTON */
+			TextureRegion versusRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("versus-fr");
+			menu.addButton(new VersusButton(versusRegion, versusRegion));
+			
+			/* CHRONO BUTTON */
+			TextureRegion chronoRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("chrono-fr");
+			menu.addButton(new ChronoButton(chronoRegion, chronoRegion));
+			
+			/* Exit BUTTON */
+			TextureRegion exitRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter-fr");
+			menu.addButton(new ExitButton(exitRegion, exitRegion));
+		}	
 		menu.initEnd();
 		
 		stage.addActor(menu);
-		
-		
-		
+
 		menu.show();
 		
 	}

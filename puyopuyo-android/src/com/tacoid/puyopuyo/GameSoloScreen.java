@@ -8,11 +8,14 @@ import com.badlogic.gdx.graphics.GLCommon;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.tacoid.puyopuyo.GameVersusScreen.PauseButton;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.actors.ControlerActor;
 import com.tacoid.puyopuyo.actors.GridActor;
 import com.tacoid.puyopuyo.actors.NextPieceActor;
+import com.tacoid.puyopuyo.actors.PauseMenu;
 import com.tacoid.puyopuyo.actors.ScoreActor;
 import com.tacoid.puyopuyo.actors.ControlerActor.ControlerLayout;
 import com.tacoid.puyopuyo.logic.GameLogic;
@@ -28,6 +31,26 @@ public class GameSoloScreen implements Screen {
 	private InputProcessor controller;
 	protected boolean end = false;
 	protected float elapsedTime;
+	protected PauseMenu pauseMenu;
+	
+	protected class PauseButton extends Button {
+
+		public PauseButton(TextureRegion region) {
+			super(region);
+		}
+		
+		public boolean touchDown(float x, float y, int pointer) {
+			pauseMenu.show();
+			return true;
+		}
+
+	}
+
+	private void addButton(Button button, int x, int y) {
+		stage.addActor(button);
+		button.x = x;
+		button.y = y;
+	}
 
 	protected GameSoloScreen() {
 		elapsedTime = 0;
@@ -39,6 +62,8 @@ public class GameSoloScreen implements Screen {
 		gridActor = new GridActor(gameLogic, 275, 330, 70, 64);
 		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 75, 920, 64);
 		ScoreActor scoreActor = new ScoreActor(gameLogic, 590, 1230);
+		
+		TextureRegion pauseRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/pause_button.png",Texture.class), 32, 32);
 
 		TextureRegion backgroundRegion 	= new TextureRegion(PuyoPuyo.getInstance().manager.get("images/fond_solo.png",Texture.class), VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
 		Image background = new Image(backgroundRegion);
@@ -49,6 +74,11 @@ public class GameSoloScreen implements Screen {
 		stage.addActor(scoreActor);
 
 		stage.addActor(new ControlerActor(ControlerLayout.CLASSIC, ScreenOrientation.PORTRAIT, gameLogic));
+		
+		addButton(new PauseButton(pauseRegion),10,VIRTUAL_HEIGHT-10-pauseRegion.getRegionHeight());
+		
+		pauseMenu = new PauseMenu(gameLogic, null, ScreenOrientation.PORTRAIT);
+		stage.addActor(pauseMenu);
 		
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		Gdx.gl.glClearColor(0.4f, 0.4f, 0.4f, 1.0f);
@@ -106,7 +136,7 @@ public class GameSoloScreen implements Screen {
 	@Override
 	public void resize(int arg0, int arg1) {
 		stage.setViewport(VIRTUAL_HEIGHT, VIRTUAL_WIDTH, false);
-		stage.getCamera().position.set(VIRTUAL_HEIGHT / 2, VIRTUAL_WIDTH / 2, 0);
+		stage.getCamera().position.set(VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2, 0);
 		stage.getCamera().rotate(-90, 0, 0, 1);
 	}
 

@@ -49,7 +49,7 @@ public class GameVersusScreen implements Screen {
 		button.y = y;
 	}
 	
-	private class PauseButton extends Button {
+	public class PauseButton extends Button {
 
 		public PauseButton(TextureRegion region) {
 			super(region);
@@ -99,7 +99,7 @@ public class GameVersusScreen implements Screen {
 		
 		addButton(new PauseButton(pauseRegion),10,VIRTUAL_HEIGHT-10-pauseRegion.getRegionHeight());
 		
-		pauseMenu = new PauseMenu(gameLogic, gameLogicIA);
+		pauseMenu = new PauseMenu(gameLogic, gameLogicIA, ScreenOrientation.LANDSCAPE);
 		stage.addActor(pauseMenu);
 
 		ia = new IA(gameLogicIA);

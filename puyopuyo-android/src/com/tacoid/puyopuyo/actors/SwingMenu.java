@@ -12,8 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 
 public class SwingMenu extends Group{
-	private static final int VIRTUAL_WIDTH = 1280;
-	private static final int VIRTUAL_HEIGHT = 768;
+	private int VIRTUAL_WIDTH;
 	
 	private static final float BUTTON_HEIGHT = 250;
 	
@@ -52,6 +51,15 @@ public class SwingMenu extends Group{
 	
 	public SwingMenu(ScreenOrientation orientation) {
 		this.orientation = orientation;
+		
+		if(orientation == ScreenOrientation.LANDSCAPE) {
+			System.out.println("LANDSCAPE");
+			VIRTUAL_WIDTH = 1280;
+		} else {
+			System.out.println("PORTRAIT");
+			VIRTUAL_WIDTH = 768;
+		}
+		
 		interpBush = new Interpolation.Pow(2);
 		interpButton = new Interpolation.SwingOut(1.5f);
 		addActor(new BushActor());
@@ -75,6 +83,7 @@ public class SwingMenu extends Group{
 		addActor(new BushActor());
 	}
 	public void show() {
+		System.out.println(VIRTUAL_WIDTH);
 		timeBush = 0.5f;
 		timeButton = 0.0f;
 		this.touchable =true;
