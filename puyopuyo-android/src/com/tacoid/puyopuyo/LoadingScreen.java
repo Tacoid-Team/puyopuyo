@@ -18,6 +18,7 @@ public class LoadingScreen implements Screen {
 	public LoadingScreen() {
 		this.puyopuyo = PuyoPuyo.getInstance();
 		this.font = new BitmapFont();
+		font.setScale(4f);
 		this.spriteBatch = new SpriteBatch();
 	}
 	
