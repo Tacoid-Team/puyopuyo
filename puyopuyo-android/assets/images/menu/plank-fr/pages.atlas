@@ -1,0 +1,47 @@
+
+pages.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+rejouer-fr
+  rotate: false
+  xy: 1, 325
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+versus-fr
+  rotate: false
+  xy: 1, 163
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+solo-fr
+  rotate: false
+  xy: 256, 325
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+chrono-fr
+  rotate: false
+  xy: 1, 1
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+quitter-fr
+  rotate: false
+  xy: 256, 163
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+continuer-fr
+  rotate: false
+  xy: 256, 1
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
