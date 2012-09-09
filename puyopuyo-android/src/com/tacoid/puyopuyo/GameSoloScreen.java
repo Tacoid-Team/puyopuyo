@@ -121,7 +121,6 @@ public class GameSoloScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		this.elapsedTime += delta;
-		GLCommon gl = Gdx.gl;
 
 		if (!gameEnded()) {
 			// Update model
@@ -131,7 +130,13 @@ public class GameSoloScreen implements Screen {
 			end = true;
 			// TODO
 		}
-
+		
+		draw(delta);
+	}
+	
+	private void draw(float delta) {
+		GLCommon gl = Gdx.gl;
+		
 		gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		stage.act(delta);
@@ -156,4 +161,8 @@ public class GameSoloScreen implements Screen {
 		Gdx.input.setInputProcessor(controller );
 	}
 
+	public float getElapsedTime() {
+		return elapsedTime;
+	}
+	
 }

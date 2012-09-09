@@ -3,28 +3,27 @@ package com.tacoid.puyopuyo.actors;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.tacoid.puyopuyo.logic.GameLogic;
+import com.tacoid.puyopuyo.GameTimeAttackScreen;
 
-public class ScoreActor extends Actor {
-	private GameLogic logic;
+public class TimeActor extends Actor {
+
 	private BitmapFont font;
-	private int origX;
-	private int origY;
-	
+	private int origX, origY;
+	private GameTimeAttackScreen screen;
 
-	public ScoreActor(GameLogic logic, int origX, int origY) {
-		this.logic = logic;
+	public TimeActor(GameTimeAttackScreen screen, int origX, int origY) {
+		this.screen = screen;
 		this.origX = origX;
 		this.origY = origY;
 		// A commenter pour le porting gwt
 		font = new BitmapFont();
-		font.setScale(2f);
+		font.setScale(1.6f);
 	}
 
 	@Override
 	public void draw(SpriteBatch batch, float alpha) {
-		String score = String.valueOf(logic.getScore());
-		font.draw(batch, score, origX - font.getBounds(score).width, origY);
+		String time = "Temps restant : " + String.valueOf((int)screen.getTimeLeft());
+		font.draw(batch, time, origX, origY);
 	}
 
 	@Override
@@ -32,6 +31,5 @@ public class ScoreActor extends Actor {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
+
 }
