@@ -106,7 +106,6 @@ public class MainMenuScreen implements Screen {
 
 	@Override
 	public void render(float arg0) {    
-	     //Gdx.gl.glClearColor(1.0f, 0,0,0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.draw();
 		stage.act(Gdx.graphics.getDeltaTime());

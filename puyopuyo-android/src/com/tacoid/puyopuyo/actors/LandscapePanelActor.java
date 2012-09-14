@@ -1,6 +1,5 @@
 package com.tacoid.puyopuyo.actors;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -9,7 +8,6 @@ import com.tacoid.puyopuyo.PuyoPuyo;
 
 public class LandscapePanelActor extends Actor {
 	private static final int VIRTUAL_HEIGHT= 768;
-	private static final int VIRTUAL_WIDTH = 1280;
 	private Sprite mainPanel;
 	private Sprite topPanel;
 	private Sprite leftPanel;
@@ -52,5 +50,4 @@ public class LandscapePanelActor extends Actor {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

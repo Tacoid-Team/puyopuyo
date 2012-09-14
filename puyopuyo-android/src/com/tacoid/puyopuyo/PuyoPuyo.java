@@ -68,7 +68,7 @@ public class PuyoPuyo extends Game {
 		atlasControls = new TextureAtlas(Gdx.files.internal("images/controls/pages.atlas"));
 		atlasPlank = new TextureAtlas(Gdx.files.internal("images/menu/plank-fr/pages.atlas"));
 		atlasPanelsLandscape = new TextureAtlas(Gdx.files.internal("images/panels/landscape/pages.atlas"));
-		//atlasPanelsPortrait = new TextureAtlas(Gdx.files.internal("images/panels/portrait/pages.atlas"));
+		atlasPanelsPortrait = new TextureAtlas(Gdx.files.internal("images/panels/portrait/pages.atlas"));
 		
 		/*** Son ***/
 		manager.load("sounds/bleep.wav",Sound.class);

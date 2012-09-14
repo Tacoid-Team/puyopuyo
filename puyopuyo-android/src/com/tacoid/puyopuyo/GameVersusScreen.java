@@ -104,7 +104,6 @@ public class GameVersusScreen implements Screen {
 		ia = new IA(gameLogicIA);
 
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		Gdx.gl.glClearColor(0.4f, 0.4f, 0.4f, 1.0f);
 	}
 
 	public static GameVersusScreen getInstance() {
