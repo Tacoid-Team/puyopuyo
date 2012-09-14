@@ -8,7 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.puyopuyo.PuyoPuyo;
 
 public class LandscapePanelActor extends Actor {
-
+	private static final int VIRTUAL_HEIGHT= 768;
+	private static final int VIRTUAL_WIDTH = 1280;
 	private Sprite mainPanel;
 	private Sprite topPanel;
 	private Sprite leftPanel;
@@ -17,9 +18,9 @@ public class LandscapePanelActor extends Actor {
 	private Sprite leftPanelIA;
 	
 	public LandscapePanelActor() {
-		TextureRegion mainPanelRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/main-panel.png",Texture.class));
-		TextureRegion leftPanelRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/left-panel.png",Texture.class));
-		TextureRegion topPanelRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/top-panel.png",Texture.class));
+		TextureRegion mainPanelRegion = PuyoPuyo.getInstance().atlasPanelsLandscape.findRegion("main-panel");
+		TextureRegion leftPanelRegion = PuyoPuyo.getInstance().atlasPanelsLandscape.findRegion("left-panel");
+		TextureRegion topPanelRegion =  PuyoPuyo.getInstance().atlasPanelsLandscape.findRegion("top-panel");
 
 		mainPanel = new Sprite(mainPanelRegion);
 		mainPanelIA = new Sprite(mainPanelRegion);
@@ -28,12 +29,12 @@ public class LandscapePanelActor extends Actor {
 		leftPanel = new Sprite(leftPanelRegion);
 		leftPanelIA = new Sprite(leftPanelRegion);
 		
-		mainPanel.setPosition(294, -340);
-		mainPanelIA.setPosition(648, -340);
-		topPanel.setPosition(410, 640);
-		topPanelIA.setPosition(690, 640);
-		leftPanel.setPosition(70, 170);
-		leftPanelIA.setPosition(1040, 170);
+		mainPanel.setPosition(294, 0);
+		mainPanelIA.setPosition(648, 0);
+		topPanel.setPosition(410, VIRTUAL_HEIGHT-topPanelRegion.getRegionHeight());
+		topPanelIA.setPosition(690, VIRTUAL_HEIGHT-topPanelRegion.getRegionHeight());
+		leftPanel.setPosition(70, 400);
+		leftPanelIA.setPosition(1040, 400);
 	}
 	
 	@Override
