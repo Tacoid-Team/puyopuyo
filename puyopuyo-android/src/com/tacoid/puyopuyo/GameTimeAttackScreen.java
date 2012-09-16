@@ -9,7 +9,7 @@ public class GameTimeAttackScreen extends GameSoloScreen {
 	
 	private GameTimeAttackScreen() {
 		super();
-		TimeActor timeActor = new TimeActor(this, 50, 800);
+		TimeActor timeActor = new TimeActor(this, 30,830);
 		stage.addActor(timeActor);
 	}
 
