@@ -61,6 +61,7 @@ public class PuyoPuyo extends Game {
 		
 		/* Textures du menu */
 		manager.load("images/menu/sky.png", Texture.class);
+		manager.load("images/menu/sky-portrait.png", Texture.class);
 		manager.load("images/menu/hills.png", Texture.class);
 		manager.load("images/menu/foreground.png", Texture.class);
 		
