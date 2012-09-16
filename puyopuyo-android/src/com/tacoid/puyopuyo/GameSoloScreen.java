@@ -82,6 +82,8 @@ public class GameSoloScreen implements Screen {
 		
 		pauseMenu = new PauseMenu(gameLogic, null, ScreenOrientation.PORTRAIT);
 		stage.addActor(pauseMenu);
+		
+		stage.getCamera().rotate(-90, 0, 0, 1);
 	}
 
 	public static GameSoloScreen getInstance() {
@@ -142,7 +144,6 @@ public class GameSoloScreen implements Screen {
 	public void resize(int arg0, int arg1) {
 		stage.setViewport(VIRTUAL_HEIGHT, VIRTUAL_WIDTH, false);
 		stage.getCamera().position.set(VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2, 0);
-		stage.getCamera().rotate(-90, 0, 0, 1);
 	}
 
 	@Override
