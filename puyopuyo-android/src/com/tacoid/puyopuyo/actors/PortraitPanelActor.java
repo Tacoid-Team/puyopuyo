@@ -7,13 +7,10 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.puyopuyo.PuyoPuyo;
 
 public class PortraitPanelActor extends Actor {
-	private static final int VIRTUAL_HEIGHT= 768;
 	private Sprite mainPanel;
 	private Sprite topPanel;
 	private Sprite leftPanel;
-	private Sprite mainPanelIA;
-	private Sprite topPanelIA;
-	private Sprite leftPanelIA;
+	private Sprite leftPanel2;
 	
 	public PortraitPanelActor() {
 		TextureRegion mainPanelRegion = PuyoPuyo.getInstance().atlasPanelsPortrait.findRegion("main-panel");
@@ -23,10 +20,12 @@ public class PortraitPanelActor extends Actor {
 		mainPanel = new Sprite(mainPanelRegion);
 		topPanel = new Sprite(topPanelRegion);
 		leftPanel = new Sprite(leftPanelRegion);
+		leftPanel2 = new Sprite(topPanelRegion);
 		
 		mainPanel.setPosition(280, 300);
 		topPanel.setPosition(440,1190);
 		leftPanel.setPosition(40,860);
+		leftPanel2.setPosition(20,780);
 	}
 	
 	@Override
@@ -34,6 +33,7 @@ public class PortraitPanelActor extends Actor {
 		mainPanel.draw(batch);
 		topPanel.draw(batch);
 		leftPanel.draw(batch);
+		leftPanel2.draw(batch);
 	}
 
 	@Override
