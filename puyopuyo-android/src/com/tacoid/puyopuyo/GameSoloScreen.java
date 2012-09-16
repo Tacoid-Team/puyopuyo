@@ -69,7 +69,7 @@ public class GameSoloScreen implements Screen {
 		ScoreActor scoreActor = new ScoreActor(gameLogic, 590, 1230);
 		
 		TextureRegion pauseRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/pause_button.png",Texture.class), 32, 32);
-		stage.addActor(new BackgroundActor());
+		stage.addActor(new BackgroundActor(ScreenOrientation.PORTRAIT));
 		stage.addActor(new PortraitPanelActor());
 		stage.addActor(gridActor);
 		stage.addActor(nextPieceActor);

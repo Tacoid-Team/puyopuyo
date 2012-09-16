@@ -83,7 +83,7 @@ public class GameVersusScreen implements Screen {
 
 		TextureRegion pauseRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/pause_button.png",Texture.class), 32, 32);
 
-		stage.addActor(new BackgroundActor());
+		stage.addActor(new BackgroundActor(ScreenOrientation.LANDSCAPE));
 		stage.addActor(new LandscapePanelActor());
 		
 		stage.addActor(gridActor);

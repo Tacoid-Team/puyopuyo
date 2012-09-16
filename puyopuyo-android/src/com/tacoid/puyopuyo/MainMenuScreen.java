@@ -42,7 +42,7 @@ public class MainMenuScreen implements Screen {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
 		
-		stage.addActor(new BackgroundActor());
+		stage.addActor(new BackgroundActor(ScreenOrientation.LANDSCAPE));
 		
 		SwingMenu menu = new SwingMenu(ScreenOrientation.LANDSCAPE);
 		
@@ -71,7 +71,7 @@ public class MainMenuScreen implements Screen {
 
 		menu.show();
 		
-		MusicPlayer.getInstance().setVolume(0.8f);
+		MusicPlayer.getInstance().setVolume(0.0f);
 		MusicPlayer.getInstance().playMusic(MusicType.MAIN, true);
 		
 	}

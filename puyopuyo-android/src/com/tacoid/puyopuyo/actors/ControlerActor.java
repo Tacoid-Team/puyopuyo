@@ -30,7 +30,6 @@ public class ControlerActor extends Group {
 			addActor(new MoveButton(MoveType.DOWN, logic, 80, 40, downRegion, downDownRegion));
 			addActor(new MoveButton(MoveType.ROT_LEFT, logic, 1000, 200, rotleftRegion, rotleftDownRegion));
 			addActor(new MoveButton(MoveType.ROT_RIGHT, logic, 1125, 260, rotrightRegion, rotrightDownRegion));
-			
 			break;
 		case PORTRAIT:
 			addActor(new MoveButton(MoveType.LEFT, logic, 20, 200, leftRegion, leftDownRegion));
@@ -38,7 +37,6 @@ public class ControlerActor extends Group {
 			addActor(new MoveButton(MoveType.DOWN, logic, 80, 20, downRegion, downDownRegion));
 			addActor(new MoveButton(MoveType.ROT_LEFT, logic, 488, 100, rotleftRegion, rotleftDownRegion));
 			addActor(new MoveButton(MoveType.ROT_RIGHT, logic, 613, 160, rotrightRegion, rotrightDownRegion));
-			
 			break;
 		default:
 			break;
