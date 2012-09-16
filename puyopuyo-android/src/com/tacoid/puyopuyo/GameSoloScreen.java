@@ -82,8 +82,6 @@ public class GameSoloScreen implements Screen {
 		
 		pauseMenu = new PauseMenu(gameLogic, null, ScreenOrientation.PORTRAIT);
 		stage.addActor(pauseMenu);
-		
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	}
 
 	public static GameSoloScreen getInstance() {

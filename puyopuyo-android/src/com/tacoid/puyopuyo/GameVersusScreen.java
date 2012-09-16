@@ -102,8 +102,6 @@ public class GameVersusScreen implements Screen {
 		stage.addActor(pauseMenu);
 
 		ia = new IA(gameLogicIA);
-
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	}
 
 	public static GameVersusScreen getInstance() {

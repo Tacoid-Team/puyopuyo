@@ -74,10 +74,11 @@ public class MainMenuScreen implements Screen {
 		MusicPlayer.getInstance().setVolume(0.0f);
 		MusicPlayer.getInstance().playMusic(MusicType.MAIN, true);
 		
+		GameSoloScreen.getInstance();
+		GameVersusScreen.getInstance();
+		GameTimeAttackScreen.getInstance();
 	}
 	
-	
-
 	static public MainMenuScreen getInstance()
 	{
 			if (instance == null) {

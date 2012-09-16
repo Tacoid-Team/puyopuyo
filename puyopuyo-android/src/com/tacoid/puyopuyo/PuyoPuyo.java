@@ -43,7 +43,6 @@ public class PuyoPuyo extends Game {
 	}
 
 	private void loadAssets() {
-		
 		/*** Textures ***/
 		
 		manager = new AssetManager();
