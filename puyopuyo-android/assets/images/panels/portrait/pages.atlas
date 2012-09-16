@@ -6,13 +6,13 @@ repeat: none
 main-panel
   rotate: false
   xy: 1, 99
-  size: 430, 860
-  orig: 430, 860
+  size: 437, 860
+  orig: 437, 860
   offset: 0, 0
   index: -1
 left-panel
   rotate: false
-  xy: 433, 629
+  xy: 440, 629
   size: 200, 330
   orig: 200, 330
   offset: 0, 0
