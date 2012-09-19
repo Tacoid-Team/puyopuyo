@@ -22,7 +22,7 @@ import com.tacoid.puyopuyo.actors.ScoreActor;
 import com.tacoid.puyopuyo.logic.GameLogic;
 import com.tacoid.puyopuyo.logic.State;
 
-public class GameSoloScreen implements Screen {
+public class GameSoloScreen implements GameScreen {
 	
 	private static final int VIRTUAL_WIDTH = 768;
 	private static final int VIRTUAL_HEIGHT = 1280;
@@ -80,7 +80,7 @@ public class GameSoloScreen implements Screen {
 		addButton(new PauseButton(pauseRegion),10,VIRTUAL_HEIGHT-10-pauseRegion.getRegionHeight());
 		addButton(MusicButtonActor.createMusicButton(),VIRTUAL_WIDTH-42, VIRTUAL_HEIGHT-42);
 		
-		pauseMenu = new PauseMenu(gameLogic, null, ScreenOrientation.PORTRAIT);
+		pauseMenu = new PauseMenu(this, ScreenOrientation.PORTRAIT);
 		stage.addActor(pauseMenu);
 		
 		stage.getCamera().rotate(-90, 0, 0, 1);
@@ -159,6 +159,22 @@ public class GameSoloScreen implements Screen {
 
 	public float getElapsedTime() {
 		return elapsedTime;
+	}
+
+	@Override
+	public void init() {
+		gameLogic.init();
+	}
+
+	@Override
+	public void gamePause() {
+		gameLogic.pause();
+		
+	}
+
+	@Override
+	public void gameResume() {
+		gameLogic.resume();
 	}
 	
 }

@@ -144,6 +144,7 @@ public class MainMenuScreen implements Screen {
 			return true;
 		}
 		public void touchUp(float x, float y, int pointer) {
+			GameSoloScreen.getInstance().init();
 			PuyoPuyo.getInstance().setScreen(GameSoloScreen.getInstance());
 		}
 	}
@@ -160,6 +161,7 @@ public class MainMenuScreen implements Screen {
 			return true;
 		}
 		public void touchUp(float x, float y, int pointer) {
+			GameVersusScreen.getInstance().init();
 			PuyoPuyo.getInstance().setScreen(GameVersusScreen.getInstance());
 		}
 	}
@@ -176,6 +178,7 @@ public class MainMenuScreen implements Screen {
 			return true;
 		}
 		public void touchUp(float x, float y, int pointer) {
+			GameTimeAttackScreen.getInstance().init();
 			PuyoPuyo.getInstance().setScreen(GameTimeAttackScreen.getInstance());
 		}
 	}

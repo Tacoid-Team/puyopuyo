@@ -25,7 +25,7 @@ import com.tacoid.puyopuyo.logic.GameLogic;
 import com.tacoid.puyopuyo.logic.IA;
 import com.tacoid.puyopuyo.logic.State;
 
-public class GameVersusScreen implements Screen {
+public class GameVersusScreen implements GameScreen {
 	private static final int VIRTUAL_WIDTH = 1280;
 	private static final int VIRTUAL_HEIGHT = 768;
 	private static GameVersusScreen instance = null;
@@ -98,7 +98,7 @@ public class GameVersusScreen implements Screen {
 		addButton(new PauseButton(pauseRegion),10,VIRTUAL_HEIGHT-10-pauseRegion.getRegionHeight());
 		addButton(MusicButtonActor.createMusicButton(),VIRTUAL_WIDTH-42, VIRTUAL_HEIGHT-42);
 		
-		pauseMenu = new PauseMenu(gameLogic, gameLogicIA, ScreenOrientation.LANDSCAPE);
+		pauseMenu = new PauseMenu(this, ScreenOrientation.LANDSCAPE);
 		stage.addActor(pauseMenu);
 
 		ia = new IA(gameLogicIA);
@@ -179,6 +179,24 @@ public class GameVersusScreen implements Screen {
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(controller );
+	}
+
+	@Override
+	public void init() {
+		gameLogic.init();
+		gameLogicIA.init();
+	}
+
+	@Override
+	public void gamePause() {
+		gameLogic.pause();
+		gameLogicIA.pause();
+	}
+
+	@Override
+	public void gameResume() {
+		gameLogic.resume();
+		gameLogicIA.resume();
 	}
 
 }

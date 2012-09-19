@@ -3,6 +3,7 @@ package com.tacoid.puyopuyo.actors;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.tacoid.puyopuyo.GameScreen;
 import com.tacoid.puyopuyo.MainMenuScreen;
 import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.SoundPlayer;
@@ -12,8 +13,7 @@ import com.tacoid.puyopuyo.logic.GameLogic;
 
 public class PauseMenu extends Group{
 	
-	private GameLogic playerLogic;
-	private GameLogic iaLogic;
+	private GameScreen gameScreen;
 	
 	private SwingMenu menu;
 	
@@ -45,16 +45,12 @@ public class PauseMenu extends Group{
 		}
 		
 		public void touchUp(float x, float y, int pointer) {
-			playerLogic.init();
-			if(iaLogic != null) {
-				iaLogic.init();
-			}
 			hide();
 			PuyoPuyo.getInstance().setScreen(MainMenuScreen.getInstance());
 		}
 	}
 	
-	public PauseMenu(GameLogic player, GameLogic ia, ScreenOrientation orientation) {
+	public PauseMenu(GameScreen gameScreen, ScreenOrientation orientation) {
 		TextureRegion continueRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("continuer-fr");
 		TextureRegion quitRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter-fr");
 		
@@ -68,27 +64,18 @@ public class PauseMenu extends Group{
 		
 		this.addActor(menu);
 		
-		playerLogic = player;
-		iaLogic = ia;
+		this.gameScreen = gameScreen;
 		visible = false;
 	}
 	
 	public void show() {
-		playerLogic.pause();
-		
-		if(iaLogic != null) {
-			iaLogic.pause();
-		}
+		gameScreen.gamePause();
 		this.visible = true;
 		menu.show();
 	}
 	
 	public void hide() {
-		playerLogic.resume();
-		
-		if(iaLogic != null) {
-			iaLogic.resume();
-		}
+		gameScreen.gameResume();
 		this.visible = false;
 		menu.hide();
 	}
