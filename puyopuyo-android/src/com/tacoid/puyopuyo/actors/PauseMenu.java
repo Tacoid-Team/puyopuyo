@@ -9,8 +9,6 @@ import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.SoundPlayer;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.SoundPlayer.SoundType;
-import com.tacoid.puyopuyo.logic.GameLogic;
-
 public class PauseMenu extends Group{
 	
 	private GameScreen gameScreen;

@@ -2,7 +2,6 @@ package com.tacoid.puyopuyo;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GLCommon;
 import com.badlogic.gdx.graphics.Texture;
@@ -37,9 +36,13 @@ public class GameVersusScreen implements GameScreen {
 
 	private IA ia;
 	private InputProcessor controller;
+	private ControlerActor controllerActor;
 	private PauseMenu pauseMenu;
+	private PauseButton pauseButton;
 	
 	private GameOverActor gameOver;
+	
+	
 
 	private void addButton(Button button, int x, int y) {
 		stage.addActor(button);
@@ -93,9 +96,11 @@ public class GameVersusScreen implements GameScreen {
 		stage.addActor(nextPieceActorIA);
 		stage.addActor(scoreActorIA);
 
-		stage.addActor(new ControlerActor(ScreenOrientation.LANDSCAPE, gameLogic));
+		controllerActor = new ControlerActor(ScreenOrientation.LANDSCAPE, gameLogic);
+		stage.addActor(controllerActor);
 		
-		addButton(new PauseButton(pauseRegion),10,VIRTUAL_HEIGHT-10-pauseRegion.getRegionHeight());
+		pauseButton = new PauseButton(pauseRegion);
+		addButton(pauseButton,10,VIRTUAL_HEIGHT-10-pauseRegion.getRegionHeight());
 		addButton(MusicButtonActor.createMusicButton(),VIRTUAL_WIDTH-42, VIRTUAL_HEIGHT-42);
 		
 		pauseMenu = new PauseMenu(this, ScreenOrientation.LANDSCAPE);
@@ -191,12 +196,16 @@ public class GameVersusScreen implements GameScreen {
 	public void gamePause() {
 		gameLogic.pause();
 		gameLogicIA.pause();
+		controllerActor.touchable = false;
+		pauseButton.touchable = false;
 	}
 
 	@Override
 	public void gameResume() {
 		gameLogic.resume();
 		gameLogicIA.resume();
+		controllerActor.touchable = true;
+		pauseButton.touchable = true;
 	}
 
 }
