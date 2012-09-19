@@ -37,6 +37,7 @@ public class GameSoloScreen implements GameScreen {
 	private GridActor gridActor;
 	private InputProcessor controller;
 	private ControlerActor controllerActor;
+	private boolean gamePaused;
 
 	protected class PauseButton extends Button {
 
@@ -120,9 +121,10 @@ public class GameSoloScreen implements GameScreen {
 	
 	@Override
 	public void render(float delta) {
-		this.elapsedTime += delta;
-
 		if (!gameEnded()) {
+			if (!gamePaused) {
+				this.elapsedTime += delta;
+			}
 			// Update model
 			gameLogic.update(delta);
 		} else {
@@ -171,14 +173,15 @@ public class GameSoloScreen implements GameScreen {
 
 	@Override
 	public void gamePause() {
+		gamePaused = true;
 		gameLogic.pause();
 		controllerActor.touchable = false;
 		pauseButton.touchable = false;
-		
 	}
 
 	@Override
 	public void gameResume() {
+		gamePaused = false;
 		gameLogic.resume();
 		controllerActor.touchable = true;
 		pauseButton.touchable = true;
