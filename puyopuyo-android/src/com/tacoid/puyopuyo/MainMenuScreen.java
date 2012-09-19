@@ -2,10 +2,7 @@ package com.tacoid.puyopuyo;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -22,15 +19,6 @@ public class MainMenuScreen implements Screen {
 	private static final int VIRTUAL_HEIGHT = 768;
 	private static MainMenuScreen instance = null;
 	private Stage stage;
-	float foregroundTimer = 0.0f;
-	
-	Texture SkyTex;
-    Sprite SkySprite;
-    
-	Texture HillsTex;
-	Texture ForegroundTex;
-	
-	Music music;
 	
 	private void addButton(Button button, int x, int y) {
 		stage.addActor(button);
