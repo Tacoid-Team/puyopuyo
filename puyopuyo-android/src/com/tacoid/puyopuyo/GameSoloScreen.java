@@ -18,7 +18,8 @@ public class GameSoloScreen extends GameScreenPortrait {
 	@Override
 	public void render(float delta) {
 		super.render(delta);
-		if (timeLevel > 30) {
+		System.out.println(timeLevel);
+		if (gameLogic.getScore() > level * 500 || timeLevel > 120) {
 			if (level < 5) {
 				level++;
 			}
