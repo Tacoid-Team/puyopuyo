@@ -3,13 +3,13 @@ package com.tacoid.puyopuyo;
 import com.tacoid.puyopuyo.actors.TimeActor;
 import com.tacoid.puyopuyo.logic.State;
 
-public class GameTimeAttackScreen extends GameSoloScreen {
+public class GameTimeAttackScreen extends GameScreenPortrait {
 	
 	private static GameTimeAttackScreen instance = null;
 	
 	private GameTimeAttackScreen() {
 		super();
-		TimeActor timeActor = new TimeActor(this, 30,830);
+		TimeActor timeActor = new TimeActor(this, 30, 830);
 		stage.addActor(timeActor);
 	}
 
