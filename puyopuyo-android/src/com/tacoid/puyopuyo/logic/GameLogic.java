@@ -585,4 +585,8 @@ public class GameLogic {
 	public boolean isPaused() {
 		return paused;
 	}
+	
+	public void setSpeed(float speed) {
+		this.speed = speed;
+	}
 }
