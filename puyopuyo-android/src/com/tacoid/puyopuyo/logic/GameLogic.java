@@ -43,7 +43,7 @@ public class GameLogic {
 	private int garbage = 0;
 	private float leftoverNuisance = 0f;
 	
-	private boolean paused = false;
+	protected boolean paused = false;
 
 	private int[][] DIR = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
 	

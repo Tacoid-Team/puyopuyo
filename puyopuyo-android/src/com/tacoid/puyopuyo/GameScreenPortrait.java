@@ -36,7 +36,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 	private GridActor gridActor;
 	private InputProcessor controller;
 	private ControlerActor controllerActor;
-	private boolean gamePaused;
+	protected boolean gamePaused;
 	
 	protected class PauseButton extends Button {
 
