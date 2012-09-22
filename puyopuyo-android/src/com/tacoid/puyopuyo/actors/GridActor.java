@@ -44,19 +44,19 @@ public class GridActor extends Actor {
 		boules[1] = puyopuyo.atlasPuyo.findRegion("yellow_happy-" + sizePuyo);
 		boules[2] = puyopuyo.atlasPuyo.findRegion("red_happy-" + sizePuyo);
 		boules[3] = puyopuyo.atlasPuyo.findRegion("blue_happy-" + sizePuyo);
-		boules[4] = puyopuyo.atlasPuyo.findRegion("nuisance");
+		boules[4] = puyopuyo.atlasPuyo.findRegion("nuisance-" + sizePuyo);
 		
 		boules_f[0] = puyopuyo.atlasPuyo.findRegion("green_sleep-" + sizePuyo);
 		boules_f[1] = puyopuyo.atlasPuyo.findRegion("yellow_sleep-" + sizePuyo);
 		boules_f[2] = puyopuyo.atlasPuyo.findRegion("red_sleep-" + sizePuyo);
 		boules_f[3] = puyopuyo.atlasPuyo.findRegion("blue_sleep-" + sizePuyo);
-		boules_f[4] = puyopuyo.atlasPuyo.findRegion("nuisance");
+		boules_f[4] = puyopuyo.atlasPuyo.findRegion("nuisance-" + sizePuyo);
 		
 		boules_fall[0] = puyopuyo.atlasPuyo.findRegion("green_fall-" + sizePuyo);
 		boules_fall[1] = puyopuyo.atlasPuyo.findRegion("yellow_happy-" + sizePuyo);
 		boules_fall[2] = puyopuyo.atlasPuyo.findRegion("red_fall-" + sizePuyo);
 		boules_fall[3] = puyopuyo.atlasPuyo.findRegion("blue_fall-" + sizePuyo);
-		boules_fall[4] = puyopuyo.atlasPuyo.findRegion("nuisance");
+		boules_fall[4] = puyopuyo.atlasPuyo.findRegion("nuisance-" + sizePuyo);
 		
 		boules_h[0] = puyopuyo.atlasPuyo.findRegion("green_horizontal");
 		boules_h[1] = puyopuyo.atlasPuyo.findRegion("yellow_horizontal");
