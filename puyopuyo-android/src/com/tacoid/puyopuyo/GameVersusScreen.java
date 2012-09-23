@@ -77,7 +77,7 @@ public class GameVersusScreen implements GameScreen {
 		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 95, 500, 48);
 		ScoreActor scoreActor = new ScoreActor(gameLogic, 550, 738);
 
-		gridActorIA = new GridActor(gameLogicIA, 648, 26, 54, 48);
+		gridActorIA = new GridActor(gameLogicIA, 650, 26, 54, 48);
 		NextPieceActor nextPieceActorIA = new NextPieceActor(gameLogicIA, 1066,	500, 48);
 		ScoreActor scoreActorIA = new ScoreActor(gameLogicIA, 830, 738);
 		
