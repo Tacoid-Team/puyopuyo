@@ -20,7 +20,7 @@ public class GameSoloScreen extends GameScreenPortrait {
 	public void render(float delta) {
 		super.render(delta);
 		if (!gameLogic.isPaused() && !gameEnded()) {
-			if (level >= 5 && timeGarbage > 10.0f / level) {
+			if (level >= 5 && timeGarbage > 25.0f / level) {
 				gameLogic.sendGarbage(1);
 				timeGarbage = 0;
 			} else {
