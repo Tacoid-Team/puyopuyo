@@ -5,13 +5,14 @@ import com.tacoid.puyopuyo.actors.LevelActor;
 public class GameSoloScreen extends GameScreenPortrait {
 
 	private static GameSoloScreen instance;
+	public static boolean initialized = false;
 	private int level;
 	private float timeLevel;
 	private float speed;
 	private float timeGarbage;
 
-	private GameSoloScreen() {
-		super();
+	protected void initGraphics() {
+		super.initGraphics();
 		LevelActor levelActor = new LevelActor(this, 80, 830);
 		stage.addActor(levelActor);
 	}
@@ -70,6 +71,10 @@ public class GameSoloScreen extends GameScreenPortrait {
 	public static GameSoloScreen getInstance() {
 		if (instance == null) {
 			instance = new GameSoloScreen();
+		}
+		if (!initialized) {
+			instance.initGraphics();
+			initialized = true;
 		}
 		return instance;
 	}

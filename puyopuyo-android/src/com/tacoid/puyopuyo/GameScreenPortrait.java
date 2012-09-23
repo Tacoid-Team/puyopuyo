@@ -58,7 +58,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		button.y = y;
 	}
 
-	protected GameScreenPortrait() {
+	protected void initGraphics() {
 		elapsedTime = 0;
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);

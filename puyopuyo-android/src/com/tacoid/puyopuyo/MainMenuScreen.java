@@ -15,6 +15,8 @@ import com.tacoid.puyopuyo.actors.SwingMenu;
 
 
 public class MainMenuScreen implements Screen {
+	public static boolean initialized = false;
+	
 	private static final int VIRTUAL_WIDTH = 1280;
 	private static final int VIRTUAL_HEIGHT = 768;
 	private static MainMenuScreen instance = null;
@@ -26,11 +28,7 @@ public class MainMenuScreen implements Screen {
 		button.y = y;
 	}
 	
-	public MainMenuScreen() {
-		initStage();
-	}
-	
-	private void initStage() {
+	private void init() {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
 		
@@ -69,12 +67,17 @@ public class MainMenuScreen implements Screen {
 		GameSoloScreen.getInstance();
 		GameVersusScreen.getInstance();
 		GameTimeAttackScreen.getInstance();
+		
+		initialized = true;
 	}
 	
 	static public MainMenuScreen getInstance()
 	{
 			if (instance == null) {
 				instance = new MainMenuScreen();
+			}
+			if (!initialized) {
+				instance.init();
 			}
 			return instance;
 	}
@@ -113,7 +116,7 @@ public class MainMenuScreen implements Screen {
 	
 	@Override
 	public void resume() {
-		initStage();
+		init();
 	}
 
 	@Override

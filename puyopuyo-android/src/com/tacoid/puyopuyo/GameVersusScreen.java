@@ -28,6 +28,7 @@ public class GameVersusScreen implements GameScreen {
 	private static final int VIRTUAL_WIDTH = 1280;
 	private static final int VIRTUAL_HEIGHT = 768;
 	private static GameVersusScreen instance = null;
+	public static boolean initialized = false;
 	private Stage stage;
 	private GameLogic gameLogic;
 	private GameLogic gameLogicIA;
@@ -42,8 +43,6 @@ public class GameVersusScreen implements GameScreen {
 	
 	private GameOverActor gameOver;
 	
-	
-
 	private void addButton(Button button, int x, int y) {
 		stage.addActor(button);
 		button.x = x;
@@ -64,8 +63,7 @@ public class GameVersusScreen implements GameScreen {
 
 	}
 
-
-	private GameVersusScreen() {
+	protected void initGraphics() {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
 		gameLogic = new GameLogic();
@@ -107,11 +105,16 @@ public class GameVersusScreen implements GameScreen {
 		stage.addActor(pauseMenu);
 
 		ia = new IA(gameLogicIA);
+		
+		initialized = false;
 	}
 
 	public static GameVersusScreen getInstance() {
 		if (instance == null) {
 			instance = new GameVersusScreen();
+		}
+		if (!initialized) {
+			instance.initGraphics();
 		}
 		return instance;
 	}

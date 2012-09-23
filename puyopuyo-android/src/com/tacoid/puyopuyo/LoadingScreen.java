@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class LoadingScreen implements Screen {
 	private static LoadingScreen instance = null;
+	public static boolean initialized;
 	private PuyoPuyo puyopuyo;
 	private BitmapFont font;
 	private SpriteBatch spriteBatch;
@@ -20,6 +21,8 @@ public class LoadingScreen implements Screen {
 		this.font = new BitmapFont();
 		font.setScale(4f);
 		this.spriteBatch = new SpriteBatch();
+		
+		initialized = true;
 	}
 	
 	@Override
@@ -72,6 +75,9 @@ public class LoadingScreen implements Screen {
 	public static LoadingScreen getInstance() {
 		if (instance == null) {
 			instance = new LoadingScreen();
+		}
+		if (!initialized) {
+			instance.init();
 		}
 		return instance;
 	}

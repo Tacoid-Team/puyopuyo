@@ -6,9 +6,10 @@ import com.tacoid.puyopuyo.logic.State;
 public class GameTimeAttackScreen extends GameScreenPortrait {
 	
 	private static GameTimeAttackScreen instance = null;
+	private static boolean initialized = false;
 	
-	private GameTimeAttackScreen() {
-		super();
+	protected void initGraphics() {
+		super.initGraphics();
 		TimeActor timeActor = new TimeActor(this, 30, 830);
 		stage.addActor(timeActor);
 	}
@@ -16,6 +17,10 @@ public class GameTimeAttackScreen extends GameScreenPortrait {
 	public static GameTimeAttackScreen getInstance() {
 		if (instance == null) {
 			instance = new GameTimeAttackScreen();
+		}
+		if (!initialized) {
+			instance.initGraphics();
+			initialized = true;
 		}
 		return instance;
 	}
