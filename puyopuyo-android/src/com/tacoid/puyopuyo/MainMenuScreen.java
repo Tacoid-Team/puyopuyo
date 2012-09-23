@@ -27,6 +27,10 @@ public class MainMenuScreen implements Screen {
 	}
 	
 	public MainMenuScreen() {
+		initStage();
+	}
+	
+	private void initStage() {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
 		
@@ -109,8 +113,7 @@ public class MainMenuScreen implements Screen {
 	
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-		
+		initStage();
 	}
 
 	@Override
