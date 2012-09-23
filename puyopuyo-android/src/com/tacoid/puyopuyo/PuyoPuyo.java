@@ -35,6 +35,8 @@ public class PuyoPuyo extends Game {
 	
 	@Override
 	public void create() {
+		//justCreated = true;
+		LoadingScreen.getInstance().init();
 		setScreen(LoadingScreen.getInstance());
 	
 		Gdx.input.setCatchBackKey(true);

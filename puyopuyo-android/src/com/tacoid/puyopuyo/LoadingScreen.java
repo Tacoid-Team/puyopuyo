@@ -15,7 +15,7 @@ public class LoadingScreen implements Screen {
 	private BitmapFont font;
 	private SpriteBatch spriteBatch;
 	
-	public LoadingScreen() {
+	public void init() {
 		this.puyopuyo = PuyoPuyo.getInstance();
 		this.font = new BitmapFont();
 		font.setScale(4f);
@@ -60,8 +60,7 @@ public class LoadingScreen implements Screen {
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-		
+		this.spriteBatch = new SpriteBatch();
 	}
 
 	@Override
