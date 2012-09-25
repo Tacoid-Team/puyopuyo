@@ -6,9 +6,11 @@ import java.util.List;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 
 public class SwingMenu extends Group{
@@ -24,11 +26,11 @@ public class SwingMenu extends Group{
 	private float timeButton;
 	
 	private class BushActor extends Actor {
-		private Texture ForegroundTex;
+		private TextureRegion ForegroundTex;
 		
 		
 		public BushActor() {
-			ForegroundTex = new Texture(Gdx.files.internal("images/menu/foreground.png"));
+			ForegroundTex = new TextureRegion(PuyoPuyo.getInstance().atlasPlank.findRegion("foreground"));
 		}
 		
 		@Override
@@ -38,7 +40,7 @@ public class SwingMenu extends Group{
 		     for(int i=0; i<buttons.size(); i++) {
 		    	 buttons.get(i).y = interpButton.apply(0, BUTTON_HEIGHT, Math.min(timeButton,1.0f));
 		     }
-			batch.draw(ForegroundTex,0,interpBush.apply(-ForegroundTex.getHeight(),0.0f,Math.min(timeBush,1.0f)));
+			batch.draw(ForegroundTex,0,interpBush.apply(-ForegroundTex.getRegionHeight(),0.0f,Math.min(timeBush,1.0f)));
 		}
 
 		@Override

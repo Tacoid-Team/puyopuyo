@@ -9,7 +9,6 @@ public class Packer {
         TexturePacker2.process("images/menu/plank-fr", "images/menu/plank-fr", "pages");
         TexturePacker2.process("images/panels/landscape", "images/panels/landscape", "pages");
         TexturePacker2.process("images/panels/portrait", "images/panels/portrait", "pages");
-        TexturePacker2.process("images/messages/fr", "images/messages/fr", "pages");
         TexturePacker2.process("images/bouttons", "images/bouttons", "pages");
     }
 }

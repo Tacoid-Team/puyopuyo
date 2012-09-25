@@ -8,6 +8,6 @@ public class PuyoPuyoAndroid extends AndroidApplication
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initialize(PuyoPuyo.getInstance(), false);
+        initialize(PuyoPuyo.getInstance(), true);
     }
 }

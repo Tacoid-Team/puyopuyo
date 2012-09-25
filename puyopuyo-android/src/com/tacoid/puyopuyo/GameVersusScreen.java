@@ -108,7 +108,7 @@ public class GameVersusScreen implements GameScreen {
 
 		ia = new IA(gameLogicIA);
 		
-		initialized = false;
+
 	}
 
 	public static GameVersusScreen getInstance() {
@@ -117,6 +117,7 @@ public class GameVersusScreen implements GameScreen {
 		}
 		if (!initialized) {
 			instance.initGraphics();
+			initialized = true;
 		}
 		return instance;
 	}
@@ -155,6 +156,8 @@ public class GameVersusScreen implements GameScreen {
 			ia.update(delta);
 			if (gameLogic.getState() == State.LOST
 					|| gameLogicIA.getState() == State.LOST) {
+				gridActor.visible = false;
+				gridActorIA.visible = false;
 				if(gameLogic.getState() == State.LOST){
 					gameOver.show(GameOverType.LOSE);
 				} else {
