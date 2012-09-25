@@ -86,10 +86,18 @@ public class GameLogic {
 	}
 	
 	public void init() {
-		
+		fallings = null;
+		score = 0;
+		sum = 0;
+		rot = 0;
+		nextRot = 0;
+		speed = 0.4f;
 		state = State.MOVE;
-		
-		for (int l = 0; l < LINES; l++) {
+		points = 0;
+		garbage = 0;
+		leftoverNuisance = 0f;
+	
+		for (int l = 0; l < LINES * 2; l++) {
 			for (int c = 0; c < COLUMNS; c++) {
 				grid[l][c] = 0;
 			}
