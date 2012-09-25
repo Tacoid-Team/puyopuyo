@@ -180,4 +180,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		pauseButton.touchable = true;
 	}
 	
+	public ScreenOrientation getOrientation() {
+		return ScreenOrientation.PORTRAIT;
+	}	
 }

@@ -7,11 +7,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.tacoid.puyopuyo.GameVersusScreen;
+import com.tacoid.puyopuyo.GameScreen;
 import com.tacoid.puyopuyo.MainMenuScreen;
 import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.SoundPlayer;
-import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.SoundPlayer.SoundType;
 
 public class GameOverActor extends Group {
@@ -36,7 +35,6 @@ public class GameOverActor extends Group {
 		
 		public void touchUp(float x, float y, int pointer) {
 			PuyoPuyo.getInstance().setScreen(MainMenuScreen.getInstance());
-			GameVersusScreen.freeInstance();
 		}
 		
 	}
@@ -54,44 +52,67 @@ public class GameOverActor extends Group {
 		}
 		
 		public void touchUp(float x, float y, int pointer) {
+			gameScreen.init();
+			hide();
 		}
 		
 	}
 	
-	private Sprite sprite;
+	private Sprite winSprite;
+	private Sprite loseSprite;
+	private GameScreen gameScreen;
+	private SwingMenu menu;
+	private GameOverType type;
 	
-	public GameOverActor(GameOverType type, float x, float y) {
+	public GameOverActor(GameScreen gs, float x, float y) {
 		
-		SwingMenu menu = new SwingMenu(ScreenOrientation.LANDSCAPE);
+		
 		TextureRegion quitterRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter-fr");
 		TextureRegion rejouerRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("rejouer-fr");
+		winSprite = new Sprite(PuyoPuyo.getInstance().manager.get("images/gagne-fr.png", Texture.class));
+		loseSprite = new Sprite(PuyoPuyo.getInstance().manager.get("images/perdu-fr.png", Texture.class));
+		
+		menu = new SwingMenu(gs.getOrientation());
 		menu.initBegin();
 		menu.addButton(new ReplayButton(rejouerRegion, rejouerRegion));
 		menu.addButton(new QuitButton(quitterRegion, quitterRegion));
 		menu.initEnd();
-		menu.show();
+		
 		this.addActor(menu);
 		
-		switch(type) {
-		case WIN:
-			sprite = new Sprite(PuyoPuyo.getInstance().manager.get("images/gagne-fr.png", Texture.class));
-			break;
-		case LOSE:
-			sprite = new Sprite(PuyoPuyo.getInstance().manager.get("images/perdu-fr.png", Texture.class));
-			break;
-		default:
-			sprite = new Sprite(PuyoPuyo.getInstance().manager.get("images/perdu-fr.png", Texture.class));
-		}
-		sprite.setPosition(x-sprite.getWidth()/2, y-sprite.getHeight()/2);
+		winSprite.setPosition(x-winSprite.getWidth()/2, y-winSprite.getHeight()/2);
+		loseSprite.setPosition(x-loseSprite.getWidth()/2, y-loseSprite.getHeight()/2);
+		
+		gameScreen = gs;
+		this.type = GameOverType.GAMEOVER;
+		
+		this.hide();
 
+	}
+	
+	public void show(GameOverType type) {
+		menu.show();
+		this.type = type;
+		this.visible = true;
+	}
+	
+	public void hide() {
+		menu.hide();
+		this.visible = false;
 	}
 	
 	public void draw(SpriteBatch batch, float arg1) {
 		super.draw(batch,arg1);
-		sprite.draw(batch);
+		switch(type) {
+		case GAMEOVER:
+			winSprite.draw(batch);
+			break;
+		case LOSE:
+			loseSprite.draw(batch);
+			break;
+		case WIN:
+			winSprite.draw(batch);
+			break;
+		}
 	}
-	
-
-	
-	
 }

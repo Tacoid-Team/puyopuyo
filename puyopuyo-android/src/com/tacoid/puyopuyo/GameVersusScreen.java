@@ -103,6 +103,9 @@ public class GameVersusScreen implements GameScreen {
 		
 		pauseMenu = new PauseMenu(this, ScreenOrientation.LANDSCAPE);
 		stage.addActor(pauseMenu);
+		
+		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, 2*VIRTUAL_HEIGHT/3);
+		stage.addActor(gameOver);
 
 		ia = new IA(gameLogicIA);
 		
@@ -151,16 +154,13 @@ public class GameVersusScreen implements GameScreen {
 			gameLogic.update(delta);
 			gameLogicIA.update(delta);
 			ia.update(delta);
-		} else {
-			if(gameOver == null) {
+			if (gameLogic.getState() == State.LOST
+					|| gameLogicIA.getState() == State.LOST) {
 				if(gameLogic.getState() == State.LOST){
-					gameOver = new GameOverActor(GameOverType.LOSE, VIRTUAL_WIDTH/2, 2*VIRTUAL_HEIGHT/3);
+					gameOver.show(GameOverType.LOSE);
 				} else {
-					gameOver = new GameOverActor(GameOverType.WIN, VIRTUAL_WIDTH/2, 2*VIRTUAL_HEIGHT/3);
-					
+					gameOver.show(GameOverType.WIN);
 				}
-				
-				stage.addActor(gameOver);
 			}
 		}
 
@@ -209,6 +209,11 @@ public class GameVersusScreen implements GameScreen {
 		gameLogicIA.resume();
 		controllerActor.touchable = true;
 		pauseButton.touchable = true;
+	}
+
+	@Override
+	public ScreenOrientation getOrientation() {
+		return ScreenOrientation.LANDSCAPE;
 	}
 
 }

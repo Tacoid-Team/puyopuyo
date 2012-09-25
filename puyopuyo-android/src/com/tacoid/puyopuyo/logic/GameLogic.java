@@ -86,6 +86,9 @@ public class GameLogic {
 	}
 	
 	public void init() {
+		
+		state = State.MOVE;
+		
 		for (int l = 0; l < LINES; l++) {
 			for (int c = 0; c < COLUMNS; c++) {
 				grid[l][c] = 0;
@@ -153,8 +156,7 @@ public class GameLogic {
 			break;
 		}
 
-		return (piece[0] == null)
-				|| (grid[piece[0].l][piece[0].c] == 0 && grid[piece[1].l][piece[1].c] == 0);
+		return (piece[0] == null) || (grid[piece[0].l][piece[0].c] == 0 && grid[piece[1].l][piece[1].c] == 0);
 	}
 
 	public void rotateRight() {
