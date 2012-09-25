@@ -1,6 +1,6 @@
 package com.tacoid.puyopuyo;
 
-import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
+
 import com.tacoid.puyopuyo.actors.LevelActor;
 
 public class GameSoloScreen extends GameScreenPortrait {
