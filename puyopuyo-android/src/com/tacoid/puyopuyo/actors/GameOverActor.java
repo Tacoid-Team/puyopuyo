@@ -69,8 +69,8 @@ public class GameOverActor extends Group {
 		
 		TextureRegion quitterRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter-fr");
 		TextureRegion rejouerRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("rejouer-fr");
-		winSprite = new Sprite(PuyoPuyo.getInstance().manager.get("images/gagne-fr.png", Texture.class));
-		loseSprite = new Sprite(PuyoPuyo.getInstance().manager.get("images/perdu-fr.png", Texture.class));
+		winSprite = new Sprite(PuyoPuyo.getInstance().atlasMessages.findRegion("gagne-fr"));
+		loseSprite = new Sprite(PuyoPuyo.getInstance().atlasMessages.findRegion("perdu-fr"));
 		
 		menu = new SwingMenu(gs.getOrientation());
 		menu.initBegin();
