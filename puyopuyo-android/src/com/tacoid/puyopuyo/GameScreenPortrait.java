@@ -12,6 +12,8 @@ import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.SoundPlayer.SoundType;
 import com.tacoid.puyopuyo.actors.BackgroundActor;
 import com.tacoid.puyopuyo.actors.ControlerActor;
+import com.tacoid.puyopuyo.actors.GameOverActor;
+import com.tacoid.puyopuyo.actors.GameOverActor.GameOverType;
 import com.tacoid.puyopuyo.actors.GridActor;
 import com.tacoid.puyopuyo.actors.MusicButtonActor;
 import com.tacoid.puyopuyo.actors.NextPieceActor;
@@ -37,6 +39,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 	private InputProcessor controller;
 	private ControlerActor controllerActor;
 	protected boolean gamePaused;
+	private GameOverActor gameOver;
 	
 	protected class PauseButton extends Button {
 
@@ -86,6 +89,9 @@ public abstract class GameScreenPortrait implements GameScreen {
 		pauseMenu = new PauseMenu(this, ScreenOrientation.PORTRAIT);
 		stage.addActor(pauseMenu);
 		
+		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, VIRTUAL_HEIGHT/2);
+		stage.addActor(gameOver);
+		
 		stage.getCamera().rotate(-90, 0, 0, 1);
 	}
 
@@ -119,9 +125,13 @@ public abstract class GameScreenPortrait implements GameScreen {
 			}
 			// Update model
 			gameLogic.update(delta);
+			if(gameEnded()) {
+				gameOver.show(GameOverType.GAMEOVER);
+			}
 		} else {
-			Gdx.input.setInputProcessor(null);
+			//Gdx.input.setInputProcessor(null);
 			end = true;
+			
 			// TODO
 		}
 		

@@ -1,5 +1,8 @@
 package com.tacoid.puyopuyo;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.GLCommon;
 import com.tacoid.puyopuyo.actors.TimeActor;
 import com.tacoid.puyopuyo.logic.State;
 
