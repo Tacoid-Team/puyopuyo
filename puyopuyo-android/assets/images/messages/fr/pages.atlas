@@ -3,6 +3,13 @@ pages.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+gameover
+  rotate: false
+  xy: 1, 517
+  size: 655, 200
+  orig: 655, 200
+  offset: 0, 0
+  index: -1
 gagne-fr
   rotate: false
   xy: 1, 259

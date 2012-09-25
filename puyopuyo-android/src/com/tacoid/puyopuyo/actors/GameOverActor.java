@@ -59,6 +59,7 @@ public class GameOverActor extends Group {
 	
 	private Sprite winSprite;
 	private Sprite loseSprite;
+	private Sprite gameOverSprite;
 	private GameScreen gameScreen;
 	private SwingMenu menu;
 	private GameOverType type;
@@ -70,6 +71,7 @@ public class GameOverActor extends Group {
 		TextureRegion rejouerRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("rejouer-fr");
 		winSprite = new Sprite(PuyoPuyo.getInstance().atlasMessages.findRegion("gagne-fr"));
 		loseSprite = new Sprite(PuyoPuyo.getInstance().atlasMessages.findRegion("perdu-fr"));
+		gameOverSprite = new Sprite(PuyoPuyo.getInstance().atlasMessages.findRegion("gameover"));
 		
 		menu = new SwingMenu(gs.getOrientation());
 		menu.initBegin();
@@ -81,6 +83,7 @@ public class GameOverActor extends Group {
 		
 		winSprite.setPosition(x-winSprite.getWidth()/2, y-winSprite.getHeight()/2);
 		loseSprite.setPosition(x-loseSprite.getWidth()/2, y-loseSprite.getHeight()/2);
+		gameOverSprite.setPosition(x-loseSprite.getWidth()/2 - 64, y-loseSprite.getHeight()/2);
 		
 		gameScreen = gs;
 		this.type = GameOverType.GAMEOVER;
@@ -104,7 +107,7 @@ public class GameOverActor extends Group {
 		super.draw(batch,arg1);
 		switch(type) {
 		case GAMEOVER:
-			winSprite.draw(batch);
+			gameOverSprite.draw(batch);
 			break;
 		case LOSE:
 			loseSprite.draw(batch);
