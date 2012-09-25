@@ -18,8 +18,8 @@ public class MusicButtonActor extends Button implements ClickListener{
 	}
 	
 	static public MusicButtonActor createMusicButton() {
-		TextureRegion musicOnRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/music-on.png",Texture.class), 32, 32);
-		TextureRegion musicOffRegion = new TextureRegion(PuyoPuyo.getInstance().manager.get("images/music-off.png",Texture.class), 32, 32);
+		TextureRegion musicOnRegion = new TextureRegion(PuyoPuyo.getInstance().atlasBouttons.findRegion("music-on"));
+		TextureRegion musicOffRegion = new TextureRegion(PuyoPuyo.getInstance().atlasBouttons.findRegion("music-off"));
 		
 		return new MusicButtonActor(musicOnRegion, musicOnRegion, musicOffRegion);
 	}

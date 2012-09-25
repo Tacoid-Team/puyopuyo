@@ -17,6 +17,7 @@ public class PuyoPuyo extends Game {
 	public TextureAtlas atlasPanelsLandscape;
 	public TextureAtlas atlasPanelsPortrait;
 	public TextureAtlas atlasMessages;
+	public TextureAtlas atlasBouttons;
 	public static final int VIRTUAL_WIDTH = 1280;
 	public static final int VIRTUAL_HEIGHT = 768;
 	
@@ -54,10 +55,6 @@ public class PuyoPuyo extends Game {
 		
 		manager = new AssetManager();
 		
-		manager.load("images/pause_button.png", Texture.class);
-		manager.load("images/music-on.png", Texture.class);
-		manager.load("images/music-off.png", Texture.class);
-		
 		/* Textures du menu */
 		manager.load("images/menu/sky.png", Texture.class);
 		manager.load("images/menu/sky-portrait.png", Texture.class);
@@ -70,6 +67,7 @@ public class PuyoPuyo extends Game {
 		atlasPanelsLandscape = new TextureAtlas(Gdx.files.internal("images/panels/landscape/pages.atlas"));
 		atlasPanelsPortrait = new TextureAtlas(Gdx.files.internal("images/panels/portrait/pages.atlas"));
 		atlasMessages = new TextureAtlas(Gdx.files.internal("images/messages/fr/pages.atlas"));
+		atlasBouttons = new TextureAtlas(Gdx.files.internal("images/bouttons/pages.atlas"));
 		
 		/*** Son ***/
 		manager.load("sounds/bleep.wav",Sound.class);
