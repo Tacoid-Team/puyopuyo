@@ -86,7 +86,12 @@ public class GameLogic {
 	}
 	
 	public void init() {
-		
+		fallings = null;
+		score = 0;
+		sum = 0;
+		rot = 0;
+		nextRot = 0;
+		speed = 0.4f;
 		state = State.MOVE;
 		
 		for (int l = 0; l < LINES; l++) {
