@@ -18,6 +18,7 @@ import com.tacoid.puyopuyo.actors.MusicButtonActor;
 import com.tacoid.puyopuyo.actors.NextPieceActor;
 import com.tacoid.puyopuyo.actors.PauseMenu;
 import com.tacoid.puyopuyo.actors.ScoreActor;
+import com.tacoid.puyopuyo.actors.StartActor;
 import com.tacoid.puyopuyo.actors.GameOverActor.GameOverType;
 import com.tacoid.puyopuyo.logic.GameLogic;
 import com.tacoid.puyopuyo.logic.IA;
@@ -39,6 +40,7 @@ public class GameVersusScreen implements GameScreen {
 	private ControlerActor controllerActor;
 	private PauseMenu pauseMenu;
 	private PauseButton pauseButton;
+	private StartActor startActor;
 	
 	private GameOverActor gameOver;
 	
@@ -105,6 +107,10 @@ public class GameVersusScreen implements GameScreen {
 		
 		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, 2*VIRTUAL_HEIGHT/3);
 		stage.addActor(gameOver);
+		
+		startActor = new StartActor(this);
+		startActor.show();
+		stage.addActor(startActor);
 
 		ia = new IA(gameLogicIA);
 		
@@ -195,6 +201,8 @@ public class GameVersusScreen implements GameScreen {
 	public void init() {
 		gameLogic.init();
 		gameLogicIA.init();
+		gameOver.hide();
+		startActor.show();
 	}
 
 	@Override
@@ -216,6 +224,16 @@ public class GameVersusScreen implements GameScreen {
 	@Override
 	public ScreenOrientation getOrientation() {
 		return ScreenOrientation.LANDSCAPE;
+	}
+
+	@Override
+	public float getHeight() {
+		return VIRTUAL_HEIGHT;
+	}
+
+	@Override
+	public float getWidth() {
+		return VIRTUAL_WIDTH;
 	}
 
 }

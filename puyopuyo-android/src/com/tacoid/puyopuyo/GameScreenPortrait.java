@@ -19,6 +19,7 @@ import com.tacoid.puyopuyo.actors.NextPieceActor;
 import com.tacoid.puyopuyo.actors.PauseMenu;
 import com.tacoid.puyopuyo.actors.PortraitPanelActor;
 import com.tacoid.puyopuyo.actors.ScoreActor;
+import com.tacoid.puyopuyo.actors.StartActor;
 import com.tacoid.puyopuyo.logic.GameLogic;
 import com.tacoid.puyopuyo.logic.State;
 
@@ -39,6 +40,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 	private ControlerActor controllerActor;
 	protected boolean gamePaused;
 	private GameOverActor gameOver;
+	private StartActor startActor;
 	
 	protected class PauseButton extends Button {
 
@@ -91,7 +93,12 @@ public abstract class GameScreenPortrait implements GameScreen {
 		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, VIRTUAL_HEIGHT/2);
 		stage.addActor(gameOver);
 		
+		startActor = new StartActor(this);
+		startActor.show();
+		stage.addActor(startActor);
+		
 		stage.getCamera().rotate(-90, 0, 0, 1);
+		
 	}
 
 	@Override
@@ -170,6 +177,8 @@ public abstract class GameScreenPortrait implements GameScreen {
 	@Override
 	public void init() {
 		gameLogic.init();
+		gameOver.hide();
+		startActor.show();
 		elapsedTime = 0;
 	}
 
@@ -192,4 +201,14 @@ public abstract class GameScreenPortrait implements GameScreen {
 	public ScreenOrientation getOrientation() {
 		return ScreenOrientation.PORTRAIT;
 	}	
+	
+	@Override
+	public float getHeight() {
+		return VIRTUAL_HEIGHT;
+	}
+
+	@Override
+	public float getWidth() {
+		return VIRTUAL_WIDTH;
+	}
 }
