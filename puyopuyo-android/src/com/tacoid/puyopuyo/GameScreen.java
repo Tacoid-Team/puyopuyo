@@ -12,5 +12,9 @@ public interface GameScreen extends Screen {
 	public void gameResume();
 	
 	public ScreenOrientation getOrientation();
+	
+	public float getHeight();
+	
+	public float getWidth();
 
 }

@@ -19,6 +19,7 @@ import com.tacoid.puyopuyo.actors.NextPieceActor;
 import com.tacoid.puyopuyo.actors.PauseMenu;
 import com.tacoid.puyopuyo.actors.PortraitPanelActor;
 import com.tacoid.puyopuyo.actors.ScoreActor;
+import com.tacoid.puyopuyo.actors.StartActor;
 import com.tacoid.puyopuyo.logic.GameLogic;
 import com.tacoid.puyopuyo.logic.State;
 
@@ -39,6 +40,8 @@ public abstract class GameScreenPortrait implements GameScreen {
 	private ControlerActor controllerActor;
 	protected boolean gamePaused;
 	private GameOverActor gameOver;
+	private StartActor startActor;
+	private NextPieceActor nextPieceActor;
 	
 	protected class PauseButton extends Button {
 
@@ -68,7 +71,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		controller = new Controller(gameLogic, stage);
 
 		gridActor = new GridActor(gameLogic, 280, 325, 70, 64);
-		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 75, 920, 64);
+		nextPieceActor = new NextPieceActor(gameLogic, 75, 920, 64);
 		ScoreActor scoreActor = new ScoreActor(gameLogic, 590, 1235);
 		
 		TextureRegion pauseRegion = new TextureRegion(PuyoPuyo.getInstance().atlasBouttons.findRegion("pause_button"));
@@ -91,7 +94,12 @@ public abstract class GameScreenPortrait implements GameScreen {
 		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, VIRTUAL_HEIGHT/2);
 		stage.addActor(gameOver);
 		
+		startActor = new StartActor(this);
+		startActor.show();
+		stage.addActor(startActor);
+		
 		stage.getCamera().rotate(-90, 0, 0, 1);
+		
 	}
 
 	@Override
@@ -170,6 +178,8 @@ public abstract class GameScreenPortrait implements GameScreen {
 	@Override
 	public void init() {
 		gameLogic.init();
+		gameOver.hide();
+		startActor.show();
 		elapsedTime = 0;
 	}
 
@@ -177,6 +187,8 @@ public abstract class GameScreenPortrait implements GameScreen {
 	public void gamePause() {
 		gamePaused = true;
 		gameLogic.pause();
+		gridActor.visible = false;
+		nextPieceActor.visible = false;
 		controllerActor.touchable = false;
 		pauseButton.touchable = false;
 	}
@@ -185,6 +197,9 @@ public abstract class GameScreenPortrait implements GameScreen {
 	public void gameResume() {
 		gamePaused = false;
 		gameLogic.resume();
+		gridActor.visible = true;
+		nextPieceActor.visible = true;
+		controllerActor.touchable = true;
 		controllerActor.touchable = true;
 		pauseButton.touchable = true;
 	}
@@ -192,4 +207,14 @@ public abstract class GameScreenPortrait implements GameScreen {
 	public ScreenOrientation getOrientation() {
 		return ScreenOrientation.PORTRAIT;
 	}	
+	
+	@Override
+	public float getHeight() {
+		return VIRTUAL_HEIGHT;
+	}
+
+	@Override
+	public float getWidth() {
+		return VIRTUAL_WIDTH;
+	}
 }
