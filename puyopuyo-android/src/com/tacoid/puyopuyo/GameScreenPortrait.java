@@ -41,6 +41,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 	protected boolean gamePaused;
 	private GameOverActor gameOver;
 	private StartActor startActor;
+	private NextPieceActor nextPieceActor;
 	
 	protected class PauseButton extends Button {
 
@@ -70,7 +71,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		controller = new Controller(gameLogic, stage);
 
 		gridActor = new GridActor(gameLogic, 280, 325, 70, 64);
-		NextPieceActor nextPieceActor = new NextPieceActor(gameLogic, 75, 920, 64);
+		nextPieceActor = new NextPieceActor(gameLogic, 75, 920, 64);
 		ScoreActor scoreActor = new ScoreActor(gameLogic, 590, 1235);
 		
 		TextureRegion pauseRegion = new TextureRegion(PuyoPuyo.getInstance().atlasBouttons.findRegion("pause_button"));
@@ -186,6 +187,8 @@ public abstract class GameScreenPortrait implements GameScreen {
 	public void gamePause() {
 		gamePaused = true;
 		gameLogic.pause();
+		gridActor.visible = false;
+		nextPieceActor.visible = false;
 		controllerActor.touchable = false;
 		pauseButton.touchable = false;
 	}
@@ -194,6 +197,9 @@ public abstract class GameScreenPortrait implements GameScreen {
 	public void gameResume() {
 		gamePaused = false;
 		gameLogic.resume();
+		gridActor.visible = true;
+		nextPieceActor.visible = true;
+		controllerActor.touchable = true;
 		controllerActor.touchable = true;
 		pauseButton.touchable = true;
 	}
