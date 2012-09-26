@@ -190,8 +190,9 @@ public class GameVersusScreen implements GameScreen {
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-
+		PuyoPuyo.getInstance().resume();
+		initGraphics();
+		resize(0, 0);
 	}
 
 	@Override

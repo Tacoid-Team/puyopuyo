@@ -63,11 +63,15 @@ public abstract class GameScreenPortrait implements GameScreen {
 		button.y = y;
 	}
 
-	protected void initGraphics() {
+	public GameScreenPortrait() {
 		elapsedTime = 0;
+		gameLogic = new GameLogic();
+	}
+	
+	protected void initGraphics() {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
-		gameLogic = new GameLogic();
+		
 		controller = new Controller(gameLogic, stage);
 
 		gridActor = new GridActor(gameLogic, 280, 325, 70, 64);
@@ -162,13 +166,14 @@ public abstract class GameScreenPortrait implements GameScreen {
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-
+		PuyoPuyo.getInstance().resume();
+		initGraphics();
+		resize(0, 0);
 	}
 
 	@Override
 	public void show() {
-		Gdx.input.setInputProcessor(controller );
+		Gdx.input.setInputProcessor(controller);
 	}
 
 	public float getElapsedTime() {

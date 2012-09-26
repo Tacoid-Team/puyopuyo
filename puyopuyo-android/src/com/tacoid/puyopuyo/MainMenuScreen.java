@@ -116,15 +116,14 @@ public class MainMenuScreen implements Screen {
 	
 	@Override
 	public void resume() {
+		PuyoPuyo.getInstance().resume();
 		init();
 	}
 
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(stage);
-		
 	}
-	
 
 	private class SoloButton extends Button{
 		public SoloButton(TextureRegion regionUp, TextureRegion regionDown) {

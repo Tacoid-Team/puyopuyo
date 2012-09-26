@@ -15,6 +15,7 @@ public class GameSoloScreen extends GameScreenPortrait {
 		super.initGraphics();
 		LevelActor levelActor = new LevelActor(this, 80, 830);
 		stage.addActor(levelActor);
+		initialized = true;
 	}
 
 	@Override
@@ -74,7 +75,6 @@ public class GameSoloScreen extends GameScreenPortrait {
 		}
 		if (!initialized) {
 			instance.initGraphics();
-			initialized = true;
 		}
 		return instance;
 	}

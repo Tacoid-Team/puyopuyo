@@ -12,6 +12,7 @@ public class GameTimeAttackScreen extends GameScreenPortrait {
 		super.initGraphics();
 		TimeActor timeActor = new TimeActor(this, 30, 830);
 		stage.addActor(timeActor);
+		initialized = true;
 	}
 
 	public static GameTimeAttackScreen getInstance() {
@@ -20,7 +21,6 @@ public class GameTimeAttackScreen extends GameScreenPortrait {
 		}
 		if (!initialized) {
 			instance.initGraphics();
-			initialized = true;
 		}
 		return instance;
 	}
