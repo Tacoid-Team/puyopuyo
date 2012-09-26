@@ -58,6 +58,7 @@ public class PuyoPuyo extends Game {
 		manager.load("images/menu/sky.png", Texture.class);
 		manager.load("images/menu/sky-portrait.png", Texture.class);
 		manager.load("images/menu/hills.png", Texture.class);
+		manager.load("images/menu/logo.png", Texture.class);
 		
 		atlasPuyo = new TextureAtlas(Gdx.files.internal("images/puyos/pages.atlas"));
 		atlasControls = new TextureAtlas(Gdx.files.internal("images/controls/pages.atlas"));
