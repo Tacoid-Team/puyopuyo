@@ -54,7 +54,6 @@ public class StartActor extends Actor {
 	}
 	
 	public void touchUp(float x, float y, int pointer) {
-		System.out.println("bonjour");
 		this.hide();
 	}
 }
