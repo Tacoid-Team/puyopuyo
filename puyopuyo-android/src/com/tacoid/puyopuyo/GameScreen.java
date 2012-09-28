@@ -2,6 +2,7 @@ package com.tacoid.puyopuyo;
 
 import com.badlogic.gdx.Screen;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
+import com.tacoid.puyopuyo.ScoreManager.GameType;
 
 public interface GameScreen extends Screen {
 	
@@ -16,5 +17,9 @@ public interface GameScreen extends Screen {
 	public float getHeight();
 	
 	public float getWidth();
+	
+	public GameType getGameType();
+	
+	public int getScore();
 
 }

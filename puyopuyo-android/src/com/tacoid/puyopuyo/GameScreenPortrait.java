@@ -222,4 +222,9 @@ public abstract class GameScreenPortrait implements GameScreen {
 	public float getWidth() {
 		return VIRTUAL_WIDTH;
 	}
+	
+	@Override
+	public int getScore() {
+		return gameLogic.getScore();
+	}
 }

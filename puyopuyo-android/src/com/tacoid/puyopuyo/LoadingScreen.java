@@ -13,6 +13,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
+import com.tacoid.puyopuyo.actors.BackgroundActor;
 
 public class LoadingScreen implements Screen {
 	private static final int VIRTUAL_WIDTH = 1280;

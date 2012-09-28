@@ -1,5 +1,6 @@
 package com.tacoid.puyopuyo;
 
+import com.tacoid.puyopuyo.ScoreManager.GameType;
 import com.tacoid.puyopuyo.actors.LevelActor;
 
 public class GameSoloScreen extends GameScreenPortrait {
@@ -82,4 +83,10 @@ public class GameSoloScreen extends GameScreenPortrait {
 	public int getLevel() {
 		return level;
 	}
+	
+	@Override
+	public GameType getGameType() {
+		return GameType.SOLO;
+	}
+
 }

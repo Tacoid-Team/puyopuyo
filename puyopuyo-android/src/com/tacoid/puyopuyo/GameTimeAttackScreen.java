@@ -1,5 +1,6 @@
 package com.tacoid.puyopuyo;
 
+import com.tacoid.puyopuyo.ScoreManager.GameType;
 import com.tacoid.puyopuyo.actors.TimeActor;
 import com.tacoid.puyopuyo.logic.State;
 
@@ -31,5 +32,10 @@ public class GameTimeAttackScreen extends GameScreenPortrait {
 	
 	public float getTimeLeft() {
 		return 120 - elapsedTime;
+	}
+	
+	@Override
+	public GameType getGameType() {
+		return GameType.CHRONO;
 	}
 }

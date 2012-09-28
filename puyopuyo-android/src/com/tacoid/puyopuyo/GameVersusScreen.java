@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
+import com.tacoid.puyopuyo.ScoreManager.GameType;
 import com.tacoid.puyopuyo.SoundPlayer.SoundType;
 import com.tacoid.puyopuyo.actors.BackgroundActor;
 import com.tacoid.puyopuyo.actors.ControlerActor;
@@ -245,6 +246,16 @@ public class GameVersusScreen implements GameScreen {
 	@Override
 	public float getWidth() {
 		return VIRTUAL_WIDTH;
+	}
+	
+	@Override
+	public GameType getGameType() {
+		return GameType.VERSUS_IA;
+	}
+
+	@Override
+	public int getScore() {
+		return gameLogic.getScore();
 	}
 
 }

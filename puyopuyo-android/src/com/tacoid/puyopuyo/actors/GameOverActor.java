@@ -1,5 +1,6 @@
 package com.tacoid.puyopuyo.actors;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -9,7 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.tacoid.puyopuyo.GameScreen;
 import com.tacoid.puyopuyo.MainMenuScreen;
 import com.tacoid.puyopuyo.PuyoPuyo;
+import com.tacoid.puyopuyo.ScoreManager;
 import com.tacoid.puyopuyo.SoundPlayer;
+import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.SoundPlayer.SoundType;
 
 public class GameOverActor extends Group {
@@ -64,8 +67,14 @@ public class GameOverActor extends Group {
 	private SwingMenu menu;
 	private GameOverType type;
 	
+	private int HighScore = 0;
+	private boolean newHighScore = false;
+	
+	private BitmapFont font;
+	
+	
+	
 	public GameOverActor(GameScreen gs, float x, float y) {
-		
 		
 		TextureRegion quitterRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter-fr");
 		TextureRegion rejouerRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("rejouer-fr");
@@ -88,6 +97,9 @@ public class GameOverActor extends Group {
 		gameScreen = gs;
 		this.type = GameOverType.GAMEOVER;
 		
+		font = new BitmapFont();
+		font.setScale(2f);
+		
 		this.hide();
 
 	}
@@ -96,6 +108,12 @@ public class GameOverActor extends Group {
 		menu.show();
 		this.type = type;
 		this.visible = true;
+		this.HighScore = ScoreManager.getInstance().getScore(gameScreen.getGameType());
+		this.newHighScore = false;
+		if(HighScore < gameScreen.getScore()) {
+			ScoreManager.getInstance().setScore(gameScreen.getGameType(), gameScreen.getScore());
+			this.newHighScore = true;
+		}
 	}
 	
 	public void hide() {
@@ -104,7 +122,24 @@ public class GameOverActor extends Group {
 	}
 	
 	public void draw(SpriteBatch batch, float arg1) {
+		float x=0,y=0;
 		super.draw(batch,arg1);
+		if(gameScreen.getOrientation() == ScreenOrientation.LANDSCAPE) {
+			x = 500;
+			y = 600;
+		} else {
+			x=270;
+			y=500;
+		}
+		
+		font.draw(batch, "Score : " + String.valueOf(gameScreen.getScore()), x+font.getBounds("Score : " + String.valueOf(gameScreen.getScore())).width/2,y);
+		if(newHighScore) {
+			font.draw(batch, "Nouveau record!", x,y-30f);
+		}
+		else {
+			font.draw(batch, "Meilleur score : " + String.valueOf(HighScore), x,y-30f);
+		}
+		
 		switch(type) {
 		case GAMEOVER:
 			gameOverSprite.draw(batch);
