@@ -14,6 +14,7 @@ import com.tacoid.puyopuyo.actors.ControlerActor;
 import com.tacoid.puyopuyo.actors.GameOverActor;
 import com.tacoid.puyopuyo.actors.GameOverActor.GameOverType;
 import com.tacoid.puyopuyo.actors.GridActor;
+import com.tacoid.puyopuyo.actors.HighScoreActor;
 import com.tacoid.puyopuyo.actors.MusicButtonActor;
 import com.tacoid.puyopuyo.actors.NextPieceActor;
 import com.tacoid.puyopuyo.actors.PauseMenu;
@@ -77,6 +78,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		gridActor = new GridActor(gameLogic, 280, 325, 70, 64);
 		nextPieceActor = new NextPieceActor(gameLogic, 75, 920, 64);
 		ScoreActor scoreActor = new ScoreActor(gameLogic, 590, 1235);
+		HighScoreActor highScoreActor = new HighScoreActor(this, 300, 1235);
 		
 		TextureRegion pauseRegion = new TextureRegion(PuyoPuyo.getInstance().atlasBouttons.findRegion("pause_button"));
 		stage.addActor(new BackgroundActor(ScreenOrientation.PORTRAIT));
@@ -84,6 +86,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		stage.addActor(gridActor);
 		stage.addActor(nextPieceActor);
 		stage.addActor(scoreActor);
+		stage.addActor(highScoreActor);
 
 		controllerActor = new ControlerActor(ScreenOrientation.PORTRAIT, gameLogic);
 		stage.addActor(controllerActor);
