@@ -67,7 +67,7 @@ public class GameOverActor extends Group {
 	private SwingMenu menu;
 	private GameOverType type;
 	
-	private int highScore = 0;
+	private int HighScore = 0;
 	private boolean newHighScore = false;
 	
 	private BitmapFont font;
@@ -108,9 +108,9 @@ public class GameOverActor extends Group {
 		menu.show();
 		this.type = type;
 		this.visible = true;
-		this.highScore = ScoreManager.getInstance().getScore(gameScreen.getGameType());
+		this.HighScore = ScoreManager.getInstance().getScore(gameScreen.getGameType());
 		this.newHighScore = false;
-		if(highScore < gameScreen.getScore()) {
+		if(HighScore < gameScreen.getScore()) {
 			ScoreManager.getInstance().setScore(gameScreen.getGameType(), gameScreen.getScore());
 			this.newHighScore = true;
 		}
@@ -122,22 +122,22 @@ public class GameOverActor extends Group {
 	}
 	
 	public void draw(SpriteBatch batch, float arg1) {
-		float x = 0, y = 0;
-		super.draw(batch, arg1);
+		float x=0,y=0;
+		super.draw(batch,arg1);
 		if(gameScreen.getOrientation() == ScreenOrientation.LANDSCAPE) {
 			x = 500;
-			y = 600;
+			y = 400;
 		} else {
 			x = 270;
 			y = 500;
 		}
 		
-		font.draw(batch, "Score : " + String.valueOf(gameScreen.getScore()), x + font.getBounds("Score : " + String.valueOf(gameScreen.getScore())).width/2,y);
+		font.draw(batch, "Score : " + String.valueOf(gameScreen.getScore()), x+font.getBounds("Score : " + String.valueOf(gameScreen.getScore())).width/2,y);
 		if(newHighScore) {
-			font.draw(batch, "Nouveau record !", x, y-30f);
+			font.draw(batch, "Nouveau record!", x,y-30f);
 		}
 		else {
-			font.draw(batch, "Meilleur score : " + String.valueOf(highScore), x, y-30f);
+			font.draw(batch, "Meilleur score : " + String.valueOf(HighScore), x,y-30f);
 		}
 		
 		switch(type) {

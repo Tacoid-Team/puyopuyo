@@ -61,7 +61,7 @@ public class MainMenuScreen implements Screen {
 
 		menu.show();
 		
-		MusicPlayer.getInstance().setVolume(0.0f);
+		MusicPlayer.getInstance().setVolume(0.8f);
 		MusicPlayer.getInstance().playMusic(MusicType.MAIN, true);
 		
 		GameSoloScreen.getInstance();
