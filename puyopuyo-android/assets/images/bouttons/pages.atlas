@@ -6,21 +6,21 @@ repeat: none
 music-off
   rotate: false
   xy: 1, 1
-  size: 32, 32
-  orig: 32, 32
+  size: 40, 40
+  orig: 40, 40
   offset: 0, 0
   index: -1
 music-on
   rotate: false
-  xy: 35, 1
-  size: 32, 32
-  orig: 32, 32
+  xy: 43, 1
+  size: 40, 40
+  orig: 40, 40
   offset: 0, 0
   index: -1
 pause_button
   rotate: false
-  xy: 69, 1
-  size: 32, 32
-  orig: 32, 32
+  xy: 85, 1
+  size: 40, 40
+  orig: 40, 40
   offset: 0, 0
   index: -1
