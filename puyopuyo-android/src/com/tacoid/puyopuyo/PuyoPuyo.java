@@ -17,6 +17,7 @@ public class PuyoPuyo extends Game {
 	public TextureAtlas atlasPanelsLandscape;
 	public TextureAtlas atlasPanelsPortrait;
 	public TextureAtlas atlasBouttons;
+	private boolean desktopMode;
 	public static final int VIRTUAL_WIDTH = 1280;
 	public static final int VIRTUAL_HEIGHT = 768;
 	
@@ -72,5 +73,13 @@ public class PuyoPuyo extends Game {
 		
 		/*** Son ***/
 		manager.load("sounds/bleep.wav",Sound.class);
+	}
+
+	public void setDesktopMode(boolean b) {
+		this.desktopMode = b;
+	}
+	
+	public boolean getDesktopMode() {
+		return this.desktopMode;
 	}
 }
