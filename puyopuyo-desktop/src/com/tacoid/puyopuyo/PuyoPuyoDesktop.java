@@ -1,10 +1,9 @@
 package com.tacoid.puyopuyo;
 
-import com.badlogic.gdx.backends.jogl.JoglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 
 public class PuyoPuyoDesktop {
 	public static void main(String[] argv) {
-		//new JoglApplication(new SuperFlu(), "SuperFlu", 800, 480, false);
-		new JoglApplication(PuyoPuyo.getInstance(), "Puyo Puyo",  1280, 768, false);
+		new LwjglApplication(PuyoPuyo.getInstance(), "Puyo Puyo",  1280, 768, false);
 	}
 }
