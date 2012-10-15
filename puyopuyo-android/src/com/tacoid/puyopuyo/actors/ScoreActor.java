@@ -1,5 +1,6 @@
 package com.tacoid.puyopuyo.actors;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -17,8 +18,7 @@ public class ScoreActor extends Actor {
 		this.origX = origX;
 		this.origY = origY;
 		// A commenter pour le porting gwt
-		font = new BitmapFont();
-		font.setScale(2f);
+		font = new BitmapFont(Gdx.files.internal("images/font_score.fnt"), false);
 	}
 
 	@Override

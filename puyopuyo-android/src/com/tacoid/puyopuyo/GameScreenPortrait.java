@@ -78,8 +78,8 @@ public abstract class GameScreenPortrait implements GameScreen {
 
 		gridActor = new GridActor(gameLogic, 280, 325, 70, 64);
 		nextPieceActor = new NextPieceActor(gameLogic, 75, 920, 64);
-		ScoreActor scoreActor = new ScoreActor(gameLogic, 510, 1235);
-		HighScoreActor highScoreActor = new HighScoreActor(this, 300, 1235);
+		ScoreActor scoreActor = new ScoreActor(gameLogic, 520, 1245);
+		HighScoreActor highScoreActor = new HighScoreActor(this, 325, 1240);
 		
 		TextureRegion pauseRegion = new TextureRegion(PuyoPuyo.getInstance().atlasBouttons.findRegion("pause_button"));
 		stage.addActor(new BackgroundActor(ScreenOrientation.PORTRAIT));
