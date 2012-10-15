@@ -7,7 +7,7 @@
         rotation: false,
         minWidth: 16,
         minHeight: 16,
-        maxWidth: 128,
+        maxWidth: 256,
         maxHeight: 128,
         stripWhitespaceX: false,
         stripWhitespaceY: false,
