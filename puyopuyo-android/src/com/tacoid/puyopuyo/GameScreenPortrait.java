@@ -93,7 +93,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		
 		pauseButton = new PauseButton(pauseRegion);
 		addButton(pauseButton,10,VIRTUAL_HEIGHT-10-pauseRegion.getRegionHeight());
-		addButton(MusicButtonActor.createMusicButton(),VIRTUAL_WIDTH-42, VIRTUAL_HEIGHT-42);
+		addButton(MusicButtonActor.createMusicButton(),VIRTUAL_WIDTH-64, VIRTUAL_HEIGHT-64);
 		
 		pauseMenu = new PauseMenu(this, ScreenOrientation.PORTRAIT);
 		stage.addActor(pauseMenu);

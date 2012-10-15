@@ -57,7 +57,7 @@ public class MainMenuScreen implements Screen {
 		menu.initEnd();
 		
 		stage.addActor(menu);
-		addButton(MusicButtonActor.createMusicButton(),VIRTUAL_WIDTH-42, VIRTUAL_HEIGHT-42);
+		addButton(MusicButtonActor.createMusicButton(),VIRTUAL_WIDTH-64, VIRTUAL_HEIGHT-64);
 
 		menu.show();
 		
