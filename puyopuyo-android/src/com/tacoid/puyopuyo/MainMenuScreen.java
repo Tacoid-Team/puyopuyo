@@ -11,6 +11,7 @@ import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.SoundPlayer.SoundType;
 import com.tacoid.puyopuyo.actors.BackgroundActor;
 import com.tacoid.puyopuyo.actors.MusicButtonActor;
+import com.tacoid.puyopuyo.actors.SoundButtonActor;
 import com.tacoid.puyopuyo.actors.SwingMenu;
 
 
@@ -58,6 +59,7 @@ public class MainMenuScreen implements Screen {
 		
 		stage.addActor(menu);
 		addButton(MusicButtonActor.createMusicButton(),VIRTUAL_WIDTH-64, VIRTUAL_HEIGHT-64);
+		addButton(SoundButtonActor.createSoundButton(),VIRTUAL_WIDTH-2*64-10, VIRTUAL_HEIGHT-64);
 
 		menu.show();
 		

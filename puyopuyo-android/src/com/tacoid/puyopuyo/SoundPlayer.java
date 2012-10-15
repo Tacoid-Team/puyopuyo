@@ -20,6 +20,7 @@ public class SoundPlayer {
 		LOSE
 	}
 	
+	private boolean muted = false;
 	private Map<SoundType, Sound> sounds;
 	
 	private SoundPlayer() {
@@ -48,9 +49,21 @@ public class SoundPlayer {
 		Sound s = sounds.get(sound);
 		long id;
 		
-		id = s.play(volume);
+		id = s.play(muted?0:volume);
 		if(randomize)
 			s.setPitch(id, (float) (1.0f+(Math.random()*0.1 - 0.05)));
 		
+	}
+	
+	public void mute() {
+		muted = true;
+	}
+	
+	public void unmute() {
+		muted = false;
+	}
+	
+	public boolean isMuted() {
+		return muted;
 	}
 }
