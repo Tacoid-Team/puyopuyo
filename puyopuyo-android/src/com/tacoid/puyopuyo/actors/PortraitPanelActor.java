@@ -23,7 +23,7 @@ public class PortraitPanelActor extends Actor {
 		leftPanel2 = new Sprite(topPanelRegion);
 		
 		mainPanel.setPosition(280, 300);
-		topPanel.setPosition(440,1190);
+		topPanel.setPosition(360,1190);
 		leftPanel.setPosition(40,860);
 		leftPanel2.setPosition(20,780);
 	}
