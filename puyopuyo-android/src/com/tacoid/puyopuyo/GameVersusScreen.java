@@ -38,6 +38,7 @@ public class GameVersusScreen implements GameScreen {
 	private GridActor gridActorIA;
 	private NextPieceActor nextPieceActor;
 	private NextPieceActor nextPieceActorIA;
+	protected float elapsedTime;
 
 	private IA ia;
 	private InputProcessor controller;
@@ -47,6 +48,7 @@ public class GameVersusScreen implements GameScreen {
 	private StartActor startActor;
 	
 	private GameOverActor gameOver;
+	private boolean gamePaused;
 	
 	private void addButton(Button button, int x, int y) {
 		stage.addActor(button);
@@ -161,6 +163,10 @@ public class GameVersusScreen implements GameScreen {
 
 		if (gameLogic.getState() != State.LOST
 				&& gameLogicIA.getState() != State.LOST) {
+			if (!gamePaused) {
+				this.elapsedTime += delta;
+			}
+			
 			// Update model
 			gameLogic.update(delta);
 			gameLogicIA.update(delta);
@@ -200,11 +206,12 @@ public class GameVersusScreen implements GameScreen {
 
 	@Override
 	public void show() {
-		Gdx.input.setInputProcessor(controller );
+		Gdx.input.setInputProcessor(controller);
 	}
 
 	@Override
 	public void init() {
+		elapsedTime = 0;
 		gameLogic.init();
 		gameLogicIA.init();
 		gameOver.hide();
@@ -213,6 +220,7 @@ public class GameVersusScreen implements GameScreen {
 
 	@Override
 	public void gamePause() {
+		gamePaused = true;
 		gameLogic.pause();
 		gameLogicIA.pause();
 		gridActor.visible = false;
@@ -225,6 +233,7 @@ public class GameVersusScreen implements GameScreen {
 
 	@Override
 	public void gameResume() {
+		gamePaused = false;
 		gameLogic.resume();
 		gameLogicIA.resume();
 		gridActor.visible = true;
@@ -257,7 +266,13 @@ public class GameVersusScreen implements GameScreen {
 
 	@Override
 	public int getScore() {
-		return gameLogic.getScore();
+		if (gameLogic.getState() == State.LOST) {
+			return 0;
+		} else {
+			int timeBonus = Math.max(-10000, 20000 - (int)(elapsedTime * 50));
+		
+			return Math.max(0, gameLogic.getScore() + timeBonus);
+		}
 	}
 
 }

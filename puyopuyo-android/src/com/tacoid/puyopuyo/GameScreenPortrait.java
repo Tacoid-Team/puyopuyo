@@ -105,7 +105,9 @@ public abstract class GameScreenPortrait implements GameScreen {
 		startActor.show();
 		stage.addActor(startActor);
 		
-		stage.getCamera().rotate(-90, 0, 0, 1);
+		if (!PuyoPuyo.getInstance().getDesktopMode()) {
+			stage.getCamera().rotate(-90, 0, 0, 1);
+		}
 		
 	}
 
@@ -163,7 +165,11 @@ public abstract class GameScreenPortrait implements GameScreen {
 
 	@Override
 	public void resize(int arg0, int arg1) {
-		stage.setViewport(VIRTUAL_HEIGHT, VIRTUAL_WIDTH, false);
+		if (PuyoPuyo.getInstance().getDesktopMode()) {
+			stage.setViewport(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, false);
+		} else {
+			stage.setViewport(VIRTUAL_HEIGHT, VIRTUAL_WIDTH, false);
+		}
 		stage.getCamera().position.set(VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2, 0);
 	}
 
