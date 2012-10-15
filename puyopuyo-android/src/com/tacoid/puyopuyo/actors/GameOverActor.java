@@ -1,5 +1,6 @@
 package com.tacoid.puyopuyo.actors;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -97,8 +98,8 @@ public class GameOverActor extends Group {
 		gameScreen = gs;
 		this.type = GameOverType.GAMEOVER;
 		
-		font = new BitmapFont();
-		font.setScale(2f);
+		font = new BitmapFont(Gdx.files.internal("images/font_score.fnt"), false);
+		font.setScale(0.8f);
 		
 		this.hide();
 
