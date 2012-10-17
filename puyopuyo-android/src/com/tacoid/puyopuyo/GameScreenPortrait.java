@@ -127,7 +127,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
+		pauseMenu.show();
 
 	}
 
