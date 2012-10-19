@@ -196,9 +196,8 @@ public class GameVersusScreen implements GameScreen {
 
 	@Override
 	public void resume() {
-		//PuyoPuyo.getInstance().resume();
-		//initGraphics();
 		resize(0, 0);
+		show();
 	}
 
 	@Override

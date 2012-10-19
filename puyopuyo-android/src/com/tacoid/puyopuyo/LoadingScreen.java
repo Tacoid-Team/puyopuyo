@@ -78,12 +78,7 @@ public class LoadingScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		/*if (puyopuyo.manager.update()) {
-			puyopuyo.setScreen(MainMenuScreen.getInstance());
-		}*/
-		// Non compatible gwt.
-				Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		stage.draw();
 		

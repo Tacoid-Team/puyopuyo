@@ -111,8 +111,7 @@ public class MainMenuScreen implements Screen {
 	
 	@Override
 	public void resume() {
-		/*PuyoPuyo.getInstance().resume();
-		init();*/
+		show();
 	}
 
 	@Override
