@@ -55,12 +55,11 @@ public class LoadingScreen implements Screen {
 		this.logoSprite = new Sprite(new Texture(Gdx.files.internal("images/menu/logo.png")));
 		this.logoSprite.setPosition(VIRTUAL_WIDTH/2 - logoSprite.getWidth()/2, VIRTUAL_HEIGHT/2 - logoSprite.getHeight()/2);
 		stage.addActor(new loadingActor());
-		initialized = true;
 	}
 	
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
+		Gdx.app.log("Loading", "paused");
 		
 	}
 
@@ -79,9 +78,9 @@ public class LoadingScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		if (puyopuyo.manager.update()) {
+		/*if (puyopuyo.manager.update()) {
 			puyopuyo.setScreen(MainMenuScreen.getInstance());
-		}
+		}*/
 		// Non compatible gwt.
 				Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 

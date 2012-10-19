@@ -20,6 +20,7 @@ public class PuyoPuyo extends Game {
 	private boolean desktopMode;
 	public static final int VIRTUAL_WIDTH = 1280;
 	public static final int VIRTUAL_HEIGHT = 768;
+	private LoadingScreen loadingScreen;
 	
 	public enum ScreenOrientation {
 		LANDSCAPE,
@@ -35,22 +36,28 @@ public class PuyoPuyo extends Game {
 		return instance;
 	}
 	
-	public void resume() {
-		MainMenuScreen.initialized = false;
-		LoadingScreen.initialized = false;
-		GameSoloScreen.initialized = false;
-		GameVersusScreen.initialized = false;
-		MusicPlayer.initialized = false;
+	public void render() {
+		/* Si update renvoi true, c'est que tout est chargé, on a plus qu'à afficher le screen qu'on veut. Sinon, on affiche le screen de chargement */
+		if(manager.update()) {
+			if(getScreen() == null) {
+				setScreen(MainMenuScreen.getInstance());
+			}
+			super.render();
+		} else {
+			if (loadingScreen != null) loadingScreen.render(Gdx.graphics.getDeltaTime());
+		}
 	}
 	
 	@Override
 	public void create() {
-		resume();
-		setScreen(LoadingScreen.getInstance());
+		//resume();
+		
+		loadingScreen = loadingScreen.getInstance();
 	
 		Gdx.input.setCatchBackKey(true);
 		
 		loadAssets();
+	
 	}
 
 	private void loadAssets() {

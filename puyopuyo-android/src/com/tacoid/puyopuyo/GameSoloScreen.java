@@ -11,12 +11,11 @@ public class GameSoloScreen extends GameScreenPortrait {
 	private float timeLevel;
 	private float speed;
 	private float timeGarbage;
-
+	
 	protected void initGraphics() {
 		super.initGraphics();
 		LevelActor levelActor = new LevelActor(this, 80, 830);
 		stage.addActor(levelActor);
-		initialized = true;
 	}
 
 	@Override
@@ -73,8 +72,6 @@ public class GameSoloScreen extends GameScreenPortrait {
 	public static GameSoloScreen getInstance() {
 		if (instance == null) {
 			instance = new GameSoloScreen();
-		}
-		if (!initialized) {
 			instance.initGraphics();
 		}
 		return instance;

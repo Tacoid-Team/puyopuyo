@@ -16,12 +16,14 @@ import com.tacoid.puyopuyo.actors.SwingMenu;
 
 
 public class MainMenuScreen implements Screen {
-	public static boolean initialized = false;
-	
 	private static final int VIRTUAL_WIDTH = 1280;
 	private static final int VIRTUAL_HEIGHT = 768;
 	private static MainMenuScreen instance = null;
 	private Stage stage;
+	
+	private MainMenuScreen() {
+		init();
+	}
 	
 	private void addButton(Button button, int x, int y) {
 		stage.addActor(button);
@@ -66,11 +68,6 @@ public class MainMenuScreen implements Screen {
 		MusicPlayer.getInstance().setVolume(0.8f);
 		MusicPlayer.getInstance().playMusic(MusicType.MAIN, true);
 		
-		GameSoloScreen.getInstance();
-		GameVersusScreen.getInstance();
-		GameTimeAttackScreen.getInstance();
-		
-		initialized = true;
 	}
 	
 	static public MainMenuScreen getInstance()
@@ -78,16 +75,12 @@ public class MainMenuScreen implements Screen {
 			if (instance == null) {
 				instance = new MainMenuScreen();
 			}
-			if (!initialized) {
-				instance.init();
-			}
 			return instance;
 	}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-		
+		Gdx.app.log("MainScreen", "paused");
 	}
 
 	@Override
@@ -118,8 +111,8 @@ public class MainMenuScreen implements Screen {
 	
 	@Override
 	public void resume() {
-		PuyoPuyo.getInstance().resume();
-		init();
+		/*PuyoPuyo.getInstance().resume();
+		init();*/
 	}
 
 	@Override

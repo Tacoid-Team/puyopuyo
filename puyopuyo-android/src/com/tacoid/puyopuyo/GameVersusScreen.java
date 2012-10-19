@@ -31,7 +31,6 @@ public class GameVersusScreen implements GameScreen {
 	private static final int VIRTUAL_WIDTH = 1280;
 	private static final int VIRTUAL_HEIGHT = 768;
 	private static GameVersusScreen instance = null;
-	public static boolean initialized = false;
 	private Stage stage;
 	private GameLogic gameLogic;
 	private GameLogic gameLogicIA;
@@ -129,10 +128,7 @@ public class GameVersusScreen implements GameScreen {
 	public static GameVersusScreen getInstance() {
 		if (instance == null) {
 			instance = new GameVersusScreen();
-		}
-		if (!initialized) {
 			instance.initGraphics();
-			initialized = true;
 		}
 		return instance;
 	}
@@ -143,7 +139,7 @@ public class GameVersusScreen implements GameScreen {
 	
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
+		Gdx.app.log("Versus", "paused");
 
 	}
 
@@ -200,8 +196,8 @@ public class GameVersusScreen implements GameScreen {
 
 	@Override
 	public void resume() {
-		PuyoPuyo.getInstance().resume();
-		initGraphics();
+		//PuyoPuyo.getInstance().resume();
+		//initGraphics();
 		resize(0, 0);
 	}
 

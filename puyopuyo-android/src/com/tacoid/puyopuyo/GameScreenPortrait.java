@@ -115,8 +115,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-
+		Gdx.app.log("Portrait", "paused");
 	}
 
 	@Override
@@ -177,8 +176,8 @@ public abstract class GameScreenPortrait implements GameScreen {
 
 	@Override
 	public void resume() {
-		PuyoPuyo.getInstance().resume();
-		initGraphics();
+		//PuyoPuyo.getInstance().resume();
+		//initGraphics();
 		resize(0, 0);
 	}
 
