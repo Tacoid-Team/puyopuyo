@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.logic.GameLogic;
 
 public class ScoreActor extends Actor {
@@ -18,7 +19,7 @@ public class ScoreActor extends Actor {
 		this.origX = origX;
 		this.origY = origY;
 		// A commenter pour le porting gwt
-		font = new BitmapFont(Gdx.files.internal("images/font_score.fnt"), false);
+		font = PuyoPuyo.getInstance().manager.get("images/font_score.fnt", BitmapFont.class);
 	}
 
 	@Override

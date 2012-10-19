@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.puyopuyo.GameScreen;
+import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.ScoreManager;
 
 public class HighScoreActor extends Actor {
@@ -19,7 +20,7 @@ public class HighScoreActor extends Actor {
 		this.origX = origX;
 		this.origY = origY;
 		// A commenter pour le porting gwt
-		font = new BitmapFont(Gdx.files.internal("images/font_score.fnt"), false);
+		font = PuyoPuyo.getInstance().manager.get("images/font_score.fnt", BitmapFont.class);
 		font.setColor(0, 0, 0, 1.0f);
 	}
 

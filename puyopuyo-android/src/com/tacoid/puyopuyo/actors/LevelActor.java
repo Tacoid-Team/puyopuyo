@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.puyopuyo.GameSoloScreen;
+import com.tacoid.puyopuyo.PuyoPuyo;
 
 public class LevelActor extends Actor {
 	private GameSoloScreen screen;
@@ -18,7 +19,7 @@ public class LevelActor extends Actor {
 		this.origX = origX;
 		this.origY = origY;
 		// A commenter pour le porting gwt
-		font = new BitmapFont(Gdx.files.internal("images/font_level.fnt"), false);
+		font = PuyoPuyo.getInstance().manager.get("images/font_level.fnt", BitmapFont.class);
 	}
 
 	@Override

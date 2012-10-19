@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class PuyoPuyo extends Game {
@@ -37,7 +38,7 @@ public class PuyoPuyo extends Game {
 	}
 	
 	public void render() {
-		/* Si update renvoi true, c'est que tout est chargé, on a plus qu'à afficher le screen qu'on veut. Sinon, on affiche le screen de chargement */
+		/* Si update renvoi true, c'est que tout est chargï¿½, on a plus qu'ï¿½ afficher le screen qu'on veut. Sinon, on affiche le screen de chargement */
 		if(manager.update()) {
 			if(getScreen() == null) {
 				setScreen(MainMenuScreen.getInstance());
@@ -64,6 +65,10 @@ public class PuyoPuyo extends Game {
 		/*** Textures ***/
 		
 		manager = new AssetManager();
+		
+		/* fonts */
+		manager.load("images/font_score.fnt", BitmapFont.class);
+		manager.load("images/font_level.fnt", BitmapFont.class);
 		
 		/* Textures du menu */
 		manager.load("images/menu/sky.png", Texture.class);
