@@ -3,7 +3,6 @@ package com.tacoid.puyopuyo;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 
 public class MusicPlayer {
@@ -23,7 +22,7 @@ public class MusicPlayer {
 		musics = new HashMap<MusicType, Music>();
 		playing = null;
 		
-		musics.put(MusicType.MAIN, Gdx.audio.newMusic(Gdx.files.internal("sounds/AnoyingMusic.mp3")));
+		musics.put(MusicType.MAIN, PuyoPuyo.getInstance().manager.get("sounds/AnoyingMusic.mp3", Music.class));
 	}
 	
 	public static MusicPlayer getInstance() {

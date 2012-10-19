@@ -20,6 +20,7 @@ public class ScoreActor extends Actor {
 		this.origY = origY;
 		// A commenter pour le porting gwt
 		font = PuyoPuyo.getInstance().manager.get("images/font_score.fnt", BitmapFont.class);
+		font.setColor(1f, 1f, 1f, 1f);
 	}
 
 	@Override

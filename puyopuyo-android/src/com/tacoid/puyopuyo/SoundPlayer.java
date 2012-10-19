@@ -3,7 +3,6 @@ package com.tacoid.puyopuyo;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 
 public class SoundPlayer {
@@ -26,14 +25,14 @@ public class SoundPlayer {
 	private SoundPlayer() {
 		sounds = new HashMap<SoundType, Sound>();
 		
-		sounds.put(SoundType.ROTATE, Gdx.audio.newSound(Gdx.files.internal("sounds/bleep2.wav")));
-		sounds.put(SoundType.MOVE, Gdx.audio.newSound(Gdx.files.internal("sounds/bleep.wav")));
-		sounds.put(SoundType.FALL, Gdx.audio.newSound(Gdx.files.internal("sounds/bleep.wav")));
-		sounds.put(SoundType.EXPLODE, Gdx.audio.newSound(Gdx.files.internal("sounds/explode.wav")));
-		sounds.put(SoundType.TOUCH_MENU, Gdx.audio.newSound(Gdx.files.internal("sounds/click.wav")));
-		sounds.put(SoundType.GARBAGE, Gdx.audio.newSound(Gdx.files.internal("sounds/bleep.wav")));
-		sounds.put(SoundType.WIN, Gdx.audio.newSound(Gdx.files.internal("sounds/bleep.wav")));
-		sounds.put(SoundType.LOSE, Gdx.audio.newSound(Gdx.files.internal("sounds/bleep.wav")));
+		sounds.put(SoundType.ROTATE, PuyoPuyo.getInstance().manager.get("sounds/bleep2.wav", Sound.class));
+		sounds.put(SoundType.MOVE, PuyoPuyo.getInstance().manager.get("sounds/bleep.wav", Sound.class));
+		sounds.put(SoundType.FALL, PuyoPuyo.getInstance().manager.get("sounds/bleep.wav", Sound.class));
+		sounds.put(SoundType.EXPLODE, PuyoPuyo.getInstance().manager.get("sounds/explode.wav", Sound.class));
+		sounds.put(SoundType.TOUCH_MENU, PuyoPuyo.getInstance().manager.get("sounds/click.wav", Sound.class));
+		sounds.put(SoundType.GARBAGE, PuyoPuyo.getInstance().manager.get("sounds/bleep.wav", Sound.class));
+		sounds.put(SoundType.WIN, PuyoPuyo.getInstance().manager.get("sounds/bleep.wav", Sound.class));
+		sounds.put(SoundType.LOSE, PuyoPuyo.getInstance().manager.get("sounds/bleep.wav", Sound.class));
 		
 	}
 	

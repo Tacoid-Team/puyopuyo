@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.puyopuyo.GameTimeAttackScreen;
+import com.tacoid.puyopuyo.PuyoPuyo;
 
 public class TimeActor extends Actor {
 
@@ -17,8 +18,11 @@ public class TimeActor extends Actor {
 		this.origX = origX;
 		this.origY = origY;
 		// A commenter pour le porting gwt
-		font = new BitmapFont(Gdx.files.internal("images/font_score.fnt"), false);
+		
+		
+		font = PuyoPuyo.getInstance().manager.get("images/font_score.fnt", BitmapFont.class);
 		font.setScale(0.65f);
+		font.setColor(1f, 1f, 1f, 1f);
 	}
 
 	@Override
