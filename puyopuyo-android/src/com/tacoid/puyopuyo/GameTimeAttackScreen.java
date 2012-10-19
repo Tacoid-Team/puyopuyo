@@ -7,7 +7,6 @@ import com.tacoid.puyopuyo.logic.State;
 public class GameTimeAttackScreen extends GameScreenPortrait {
 	
 	private static GameTimeAttackScreen instance = null;
-	private static boolean initialized = false;
 
 	protected void initGraphics() {
 		super.initGraphics();

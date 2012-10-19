@@ -39,7 +39,7 @@ public class PuyoPuyo extends Game {
 	}
 	
 	public void render() {
-		/* Si update renvoi true, c'est que tout est charg�, on a plus qu'� afficher le screen qu'on veut. Sinon, on affiche le screen de chargement */
+		/* Si update renvoi true, c'est que tout est chargé, on a plus qu'� afficher le screen qu'on veut. Sinon, on affiche le screen de chargement */
 		if(manager.update()) {
 			if(getScreen() == null) {
 				setScreen(MainMenuScreen.getInstance());
@@ -51,15 +51,12 @@ public class PuyoPuyo extends Game {
 	}
 	
 	@Override
-	public void create() {
-		//resume();
-		
-		loadingScreen = loadingScreen.getInstance();
+	public void create() {		
+		loadingScreen = LoadingScreen.getInstance();
 	
 		Gdx.input.setCatchBackKey(true);
 		
 		loadAssets();
-	
 	}
 
 	private void loadAssets() {
