@@ -8,7 +8,7 @@ public class GameTimeAttackScreen extends GameScreenPortrait {
 	
 	private static GameTimeAttackScreen instance = null;
 	private static boolean initialized = false;
-	
+
 	protected void initGraphics() {
 		super.initGraphics();
 		TimeActor timeActor = new TimeActor(this, 30, 830);

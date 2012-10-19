@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 
 public class BackgroundActor extends Actor{
@@ -23,21 +24,20 @@ public class BackgroundActor extends Actor{
 	public BackgroundActor(ScreenOrientation orientation) {
 		switch(orientation) {
 		case LANDSCAPE:
-			SkyTex = new Texture(Gdx.files.internal("images/menu/sky.png"));
+			SkyTex = PuyoPuyo.getInstance().manager.get("images/menu/sky.png", Texture.class);
 			SkyTex.setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
 			SkySprite = new Sprite(SkyTex, 0,256,VIRTUAL_WIDTH, VIRTUAL_HEIGHT+256);
 			SkySprite.setSize(VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
 			break;
 		case PORTRAIT:
-			SkyTex = new Texture(Gdx.files.internal("images/menu/sky-portrait.png"));			
+			SkyTex = PuyoPuyo.getInstance().manager.get("images/menu/sky-portrait.png", Texture.class);
 			SkyTex.setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
 			SkySprite = new Sprite(SkyTex, 0,0,VIRTUAL_HEIGHT, VIRTUAL_WIDTH);
 			SkySprite.setSize(VIRTUAL_HEIGHT, VIRTUAL_WIDTH);
 		default:
 			break;
 		}
-		HillsTex = new Texture(Gdx.files.internal("images/menu/hills.png"));
-		
+		HillsTex = PuyoPuyo.getInstance().manager.get("images/menu/hills.png", Texture.class);
 	}
 	
 	@Override
