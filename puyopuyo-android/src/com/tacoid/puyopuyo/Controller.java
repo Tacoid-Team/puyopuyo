@@ -64,7 +64,6 @@ public class Controller implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int x, int y, int pointer, int button) {
-		System.out.println("puyo touchDown");
 		return stage.touchDown(x, y, pointer, button);
 	}
 

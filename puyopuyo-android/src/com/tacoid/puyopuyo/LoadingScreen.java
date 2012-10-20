@@ -1,8 +1,5 @@
 package com.tacoid.puyopuyo;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
@@ -29,17 +26,14 @@ public class LoadingScreen implements Screen {
 	NinePatch patch;
 	
 	private class loadingActor extends Actor {
-		private float time = 0.0f;
+
 		@Override
 		public void draw(SpriteBatch batch, float delta) {
-			time+=delta;
-			//logoSprite.setColor(Math.min(time/20.0f, 1.0f), Math.min(time/20.0f, 1.0f), Math.min(time/20.0f, 1.0f), Math.min(time/20.0f, 1.0f));
 			logoSprite.draw(batch);
 			patch.draw(batch, 0,
 							  0,
 							  Math.max(puyopuyo.manager.getProgress() * VIRTUAL_WIDTH,10), 
 							  32);
-			System.out.println(puyopuyo.manager.getProgress() * 100);
 		}
 
 		@Override

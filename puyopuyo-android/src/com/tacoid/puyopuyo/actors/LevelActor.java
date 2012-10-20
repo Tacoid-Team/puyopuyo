@@ -24,6 +24,8 @@ public class LevelActor extends Actor {
 	@Override
 	public void draw(SpriteBatch batch, float alpha) {
 		String level = "Level " + String.valueOf(screen.getLevel());
+		font.setColor(1f, 1f, 1f, 1f);
+		font.setScale(1.0f);
 		font.draw(batch, level, origX, origY);
 	}
 

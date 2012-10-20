@@ -132,6 +132,8 @@ public class GameOverActor extends Group {
 			y = 500;
 		}
 		
+		font.setScale(0.8f);
+		font.setColor(1f, 1f, 1f, 1f);
 		font.draw(batch, "Score : " + String.valueOf(gameScreen.getScore()), x+font.getBounds("Score : " + String.valueOf(gameScreen.getScore())).width/2,y);
 		if(newHighScore) {
 			font.draw(batch, "Nouveau record!", x,y-30f);

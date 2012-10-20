@@ -27,6 +27,8 @@ public class TimeActor extends Actor {
 	@Override
 	public void draw(SpriteBatch batch, float alpha) {
 		String time = "Temps restant : " + String.valueOf((int)screen.getTimeLeft());
+		font.setScale(0.65f);
+		font.setColor(1f, 1f, 1f, 1f);
 		font.draw(batch, time, origX, origY);
 	}
 
