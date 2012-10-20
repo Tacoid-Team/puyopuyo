@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -25,17 +26,20 @@ public class LoadingScreen implements Screen {
 	private Stage stage;
 	
 	private Sprite logoSprite;
+	NinePatch patch;
 	
 	private class loadingActor extends Actor {
 		private float time = 0.0f;
 		@Override
 		public void draw(SpriteBatch batch, float delta) {
-			NumberFormat nf = new DecimalFormat("0.00"); 
-			String loadMsg = "Loading " + nf.format(puyopuyo.manager.getProgress() * 100) + "%";
-			font.draw(batch, loadMsg, PuyoPuyo.VIRTUAL_WIDTH / 2 - font.getBounds(loadMsg).width / 2, 20);
 			time+=delta;
-			logoSprite.setColor(Math.min(time/20.0f, 1.0f), Math.min(time/20.0f, 1.0f), Math.min(time/20.0f, 1.0f), Math.min(time/20.0f, 1.0f));
+			//logoSprite.setColor(Math.min(time/20.0f, 1.0f), Math.min(time/20.0f, 1.0f), Math.min(time/20.0f, 1.0f), Math.min(time/20.0f, 1.0f));
 			logoSprite.draw(batch);
+			patch.draw(batch, 0,
+							  0,
+							  Math.max(puyopuyo.manager.getProgress() * VIRTUAL_WIDTH,10), 
+							  32);
+			System.out.println(puyopuyo.manager.getProgress() * 100);
 		}
 
 		@Override
@@ -50,6 +54,7 @@ public class LoadingScreen implements Screen {
 		this.puyopuyo = PuyoPuyo.getInstance();
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
+		patch = new NinePatch(new Texture(Gdx.files.internal("images/menu/progress-patch.png")), 12, 12, 12, 12);
 		this.font = new BitmapFont();
 		font.setScale(1.0f);
 		this.logoSprite = new Sprite(new Texture(Gdx.files.internal("images/menu/logo.png")));
