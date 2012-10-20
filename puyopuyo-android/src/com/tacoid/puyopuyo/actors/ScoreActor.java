@@ -25,6 +25,7 @@ public class ScoreActor extends Actor {
 	@Override
 	public void draw(SpriteBatch batch, float alpha) {
 		String score = String.valueOf(logic.getScore());
+		font.setColor(1f, 1f, 1f, 1f);
 		font.draw(batch, score, origX - font.getBounds(score).width, origY);
 	}
 
