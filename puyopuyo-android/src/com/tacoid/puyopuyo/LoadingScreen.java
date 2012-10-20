@@ -30,9 +30,9 @@ public class LoadingScreen implements Screen {
 		@Override
 		public void draw(SpriteBatch batch, float delta) {
 			logoSprite.draw(batch);
-			patch.draw(batch, 0,
-							  0,
-							  Math.max(puyopuyo.manager.getProgress() * VIRTUAL_WIDTH,10), 
+			patch.draw(batch, 32,
+							  32,
+							  Math.max(puyopuyo.manager.getProgress() * (VIRTUAL_WIDTH-64),10), 
 							  32);
 		}
 
