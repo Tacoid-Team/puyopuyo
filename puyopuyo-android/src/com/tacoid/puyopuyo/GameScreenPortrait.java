@@ -126,7 +126,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 
 	@Override
 	public void pause() {
-		if (!gamePaused) {
+		if (!gamePaused && !gameEnded()) {
 			pauseMenu.show();
 		}
 	}
