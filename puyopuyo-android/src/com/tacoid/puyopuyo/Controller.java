@@ -36,6 +36,9 @@ public class Controller implements InputProcessor {
 			break;
 		case Keys.SPACE:
 			gameLogic.dropPiece();
+			break;
+		case Keys.BACK:
+			PuyoPuyo.getInstance().setScreen(MainMenuScreen.getInstance());
 		}
 		return false;
 	}
