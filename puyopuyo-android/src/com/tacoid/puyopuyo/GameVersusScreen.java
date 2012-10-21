@@ -154,7 +154,9 @@ public class GameVersusScreen implements GameScreen {
 
 	@Override
 	public void pause() {
-		pauseMenu.show();
+		if (!gamePaused && gameLogic.getState() != State.LOST) {
+			pauseMenu.show();
+		}
 	}
 
 	@Override
