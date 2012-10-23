@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.puyopuyo.GameScreen;
+import com.tacoid.puyopuyo.I18nManager;
 import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.ScoreManager;
 
@@ -25,7 +26,7 @@ public class HighScoreActor extends Actor {
 
 	@Override
 	public void draw(SpriteBatch batch, float alpha) {
-		String highScore = "Highscore: " + String.valueOf(ScoreManager.getInstance().getScore(screen.getGameType()));
+		String highScore = I18nManager.getInstance().getString("record") + String.valueOf(ScoreManager.getInstance().getScore(screen.getGameType()));
 		font.setColor(0, 0, 0, 1.0f);
 		font.setScale(1.0f);
 		font.draw(batch, highScore, origX - font.getBounds(highScore).width, origY);

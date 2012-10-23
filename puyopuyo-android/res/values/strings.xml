@@ -2,5 +2,6 @@
 <resources>
 
     <string name="app_name">PuyoPuyo</string>
+    <string name="bonjour">bonjour</string>
 
 </resources>

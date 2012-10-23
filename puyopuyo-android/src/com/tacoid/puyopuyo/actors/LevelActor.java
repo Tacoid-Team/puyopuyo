@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.puyopuyo.GameSoloScreen;
+import com.tacoid.puyopuyo.I18nManager;
 import com.tacoid.puyopuyo.PuyoPuyo;
 
 public class LevelActor extends Actor {
@@ -23,7 +24,7 @@ public class LevelActor extends Actor {
 
 	@Override
 	public void draw(SpriteBatch batch, float alpha) {
-		String level = "Level " + String.valueOf(screen.getLevel());
+		String level = I18nManager.getInstance().getString("niveau")  + String.valueOf(screen.getLevel());
 		font.setColor(1f, 1f, 1f, 1f);
 		font.setScale(1.0f);
 		font.draw(batch, level, origX, origY);

@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.puyopuyo.GameTimeAttackScreen;
+import com.tacoid.puyopuyo.I18nManager;
 import com.tacoid.puyopuyo.PuyoPuyo;
 
 public class TimeActor extends Actor {
@@ -26,7 +27,7 @@ public class TimeActor extends Actor {
 
 	@Override
 	public void draw(SpriteBatch batch, float alpha) {
-		String time = "Temps restant : " + String.valueOf((int)screen.getTimeLeft());
+		String time = I18nManager.getInstance().getString("temps_restant") + String.valueOf((int)screen.getTimeLeft());
 		font.setScale(0.65f);
 		font.setColor(1f, 1f, 1f, 1f);
 		font.draw(batch, time, origX, origY);

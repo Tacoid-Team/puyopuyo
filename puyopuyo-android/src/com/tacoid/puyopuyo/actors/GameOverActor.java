@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.tacoid.puyopuyo.GameScreen;
+import com.tacoid.puyopuyo.I18nManager;
 import com.tacoid.puyopuyo.MainMenuScreen;
 import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.ScoreManager;
@@ -72,9 +73,13 @@ public class GameOverActor extends Group {
 	
 	private BitmapFont font;
 	
+	private I18nManager i18n;
+	
 	
 	
 	public GameOverActor(GameScreen gs, float x, float y) {
+		
+		i18n = I18nManager.getInstance();
 		
 		TextureRegion quitterRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter-fr");
 		TextureRegion rejouerRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("rejouer-fr");
@@ -135,12 +140,12 @@ public class GameOverActor extends Group {
 		if (gameScreen.getScore() > 0) {
 			font.setScale(0.8f);
 			font.setColor(1f, 1f, 1f, 1f);
-			font.draw(batch, "Score : " + String.valueOf(gameScreen.getScore()), x+font.getBounds("Score : " + String.valueOf(gameScreen.getScore())).width/2,y);
+			font.draw(batch, i18n.getString("score") + String.valueOf(gameScreen.getScore()), x+font.getBounds("Score : " + String.valueOf(gameScreen.getScore())).width/2,y);
 			if(newHighScore) {
-				font.draw(batch, "Nouveau record!", x,y-30f);
+				font.draw(batch, i18n.getString("nouveau_record"), x,y-30f);
 			}
 			else {
-				font.draw(batch, "Meilleur score : " + String.valueOf(HighScore), x,y-30f);
+				font.draw(batch, i18n.getString("meilleur_score") + String.valueOf(HighScore), x,y-30f);
 			}
 		}
 

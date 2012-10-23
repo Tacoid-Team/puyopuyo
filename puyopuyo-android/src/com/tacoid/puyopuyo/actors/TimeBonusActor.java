@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.puyopuyo.GameVersusScreen;
+import com.tacoid.puyopuyo.I18nManager;
 import com.tacoid.puyopuyo.PuyoPuyo;
 
 public class TimeBonusActor extends Actor {
@@ -24,7 +25,7 @@ public class TimeBonusActor extends Actor {
 
 	@Override
 	public void draw(SpriteBatch batch, float alpha) {
-		String score = "Bonus: +" + String.valueOf(screen.getTimeBonus());
+		String score = I18nManager.getInstance().getString("bonus") + String.valueOf(screen.getTimeBonus());
 		font.setColor(0f, 0f, 0f, 1f);
 		font.setScale(0.7f);
 		font.draw(batch, score, origX, origY);

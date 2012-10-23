@@ -43,7 +43,7 @@ public class PuyoPuyo extends Game {
 		/* Si update renvoi true, c'est que tout est chargé, on a plus qu'à afficher le screen qu'on veut. Sinon, on affiche le screen de chargement */
 		if (manager.update()) {
 			if (getScreen() == null) {
-				setScreen(MainMenuScreen.getInstance());
+				setScreen(LanguageScreen.getInstance());
 			} else if (!loaded){
 				getScreen().show();
 			}
@@ -58,22 +58,22 @@ public class PuyoPuyo extends Game {
 	@Override
 	public void create() {		
 		loadingScreen = LoadingScreen.getInstance();
+		manager = new AssetManager();
 	
 		Gdx.input.setCatchBackKey(true);
 		
 		loadAssets();
 	}
-
+	
 	private void loadAssets() {
-		/*** Textures ***/
-		
-		manager = new AssetManager();
-		
+
 		/* fonts */
 		manager.load("images/font_score.fnt", BitmapFont.class);
 		manager.load("images/font_level.fnt", BitmapFont.class);
 		
 		/* Textures du menu */
+		manager.load("images/menu/flag-fr.png", Texture.class);
+		manager.load("images/menu/flag-en.png", Texture.class);
 		manager.load("images/menu/sky.png", Texture.class);
 		manager.load("images/menu/sky-portrait.png", Texture.class);
 		manager.load("images/menu/hills.png", Texture.class);
@@ -81,7 +81,6 @@ public class PuyoPuyo extends Game {
 		
 		atlasPuyo = new TextureAtlas(Gdx.files.internal("images/puyos/pages.atlas"));
 		atlasControls = new TextureAtlas(Gdx.files.internal("images/controls/pages.atlas"));
-		atlasPlank = new TextureAtlas(Gdx.files.internal("images/menu/plank-fr/pages.atlas"));
 		atlasPanelsLandscape = new TextureAtlas(Gdx.files.internal("images/panels/landscape/pages.atlas"));
 		atlasPanelsPortrait = new TextureAtlas(Gdx.files.internal("images/panels/portrait/pages.atlas"));
 		atlasBouttons = new TextureAtlas(Gdx.files.internal("images/bouttons/pages.atlas"));
@@ -93,6 +92,11 @@ public class PuyoPuyo extends Game {
 		manager.load("sounds/click.wav", Sound.class);
 		
 		manager.load("sounds/AnoyingMusic.mp3", Music.class);
+		
+	}
+
+	public void loadLocalizedAssets() {
+		atlasPlank = new TextureAtlas(Gdx.files.internal("images/menu/plank-fr/pages.atlas"));
 	}
 
 	public void setDesktopMode(boolean b) {
