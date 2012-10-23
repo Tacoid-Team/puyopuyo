@@ -14,7 +14,7 @@ public class BackgroundActor extends Actor{
 	private static final int VIRTUAL_WIDTH = 1280;
 	private static final int VIRTUAL_HEIGHT = 768;
 	
-	float scrollTimer = 0.0f;
+	static float scrollTimer = 0.0f;
 	
 	Texture SkyTex;
     Sprite SkySprite;
