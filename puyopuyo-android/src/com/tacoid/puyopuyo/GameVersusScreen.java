@@ -23,6 +23,7 @@ import com.tacoid.puyopuyo.actors.ScoreActor;
 import com.tacoid.puyopuyo.actors.SoundButtonActor;
 import com.tacoid.puyopuyo.actors.StartActor;
 import com.tacoid.puyopuyo.actors.GameOverActor.GameOverType;
+import com.tacoid.puyopuyo.actors.TimeBonusActor;
 import com.tacoid.puyopuyo.logic.GameLogic;
 import com.tacoid.puyopuyo.logic.IA;
 import com.tacoid.puyopuyo.logic.State;
@@ -83,10 +84,11 @@ public class GameVersusScreen implements GameScreen {
 		gridActor = new GridActor(gameLogic, 296, 26, 54, 48);
 		nextPieceActor = new NextPieceActor(gameLogic, 95, 500, 48);
 		ScoreActor scoreActor = new ScoreActor(gameLogic, 550, 743);
+		TimeBonusActor timeBonusActor = new TimeBonusActor(this, 450, 700);
 		HighScoreActor highScoreActor = new HighScoreActor(this, 370, 732);
 
 		gridActorIA = new GridActor(gameLogicIA, 650, 26, 54, 48);
-		nextPieceActorIA = new NextPieceActor(gameLogicIA, 1066,	500, 48);
+		nextPieceActorIA = new NextPieceActor(gameLogicIA, 1066, 500, 48);
 		ScoreActor scoreActorIA = new ScoreActor(gameLogicIA, 830, 743);
 		
 		TextureRegion pauseRegion = new TextureRegion(PuyoPuyo.getInstance().atlasBouttons.findRegion("pause_button"));
@@ -97,6 +99,7 @@ public class GameVersusScreen implements GameScreen {
 		stage.addActor(gridActor);
 		stage.addActor(nextPieceActor);
 		stage.addActor(scoreActor);
+		stage.addActor(timeBonusActor);
 		stage.addActor(gridActorIA);
 		stage.addActor(nextPieceActorIA);
 		stage.addActor(scoreActorIA);
@@ -151,7 +154,9 @@ public class GameVersusScreen implements GameScreen {
 
 	@Override
 	public void pause() {
-		pauseMenu.show();
+		if (!gamePaused && gameLogic.getState() != State.LOST) {
+			pauseMenu.show();
+		}
 	}
 
 	@Override
@@ -265,10 +270,12 @@ public class GameVersusScreen implements GameScreen {
 		if (gameLogic.getState() == State.LOST) {
 			return 0;
 		} else {
-			int timeBonus = Math.max(-10000, 20000 - (int)(elapsedTime * 50));
-		
-			return Math.max(0, gameLogic.getScore() + timeBonus);
+			return gameLogic.getScore() + getTimeBonus();
 		}
+	}
+	
+	public int getTimeBonus() {
+		return Math.max(0, 25000 - (int)(elapsedTime * 50));
 	}
 
 }
