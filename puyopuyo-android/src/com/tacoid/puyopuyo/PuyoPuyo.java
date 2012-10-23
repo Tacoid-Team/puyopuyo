@@ -24,6 +24,7 @@ public class PuyoPuyo extends Game {
 	public static final int VIRTUAL_HEIGHT = 768;
 	private LoadingScreen loadingScreen;
 	private boolean loaded = false;
+	private boolean justLaunched = true;
 	
 	public enum ScreenOrientation {
 		LANDSCAPE,
@@ -42,8 +43,9 @@ public class PuyoPuyo extends Game {
 	public void render() {
 		/* Si update renvoi true, c'est que tout est chargé, on a plus qu'à afficher le screen qu'on veut. Sinon, on affiche le screen de chargement */
 		if (manager.update()) {
-			if (getScreen() == null) {
+			if (getScreen() == null || justLaunched) {
 				setScreen(LanguageScreen.getInstance());
+				justLaunched = false;
 			} else if (!loaded){
 				getScreen().show();
 			}
@@ -63,6 +65,8 @@ public class PuyoPuyo extends Game {
 		Gdx.input.setCatchBackKey(true);
 		
 		loadAssets();
+		
+        justLaunched = true;
 	}
 	
 	private void loadAssets() {
