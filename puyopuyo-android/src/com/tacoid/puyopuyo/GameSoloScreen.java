@@ -44,14 +44,14 @@ public class GameSoloScreen extends GameScreenPortrait {
 				case 4:
 					n_colors = 5;
 					break;
-				case 5:
+				case 6:
 					speed = 0.3f;
 					break;
-				case 7:
-					speed = 0.2f;
+				case 8:
+					speed = 0.25f;
 					break;
 				case 10:
-					speed = 0.15f;
+					speed = 0.2f;
 				}
 
 				gameLogic.setNColors(n_colors);

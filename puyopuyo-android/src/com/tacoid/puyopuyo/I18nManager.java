@@ -1,9 +1,7 @@
 package com.tacoid.puyopuyo;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 import com.badlogic.gdx.Gdx;
@@ -26,7 +24,7 @@ public class I18nManager {
 	/* ************** */
 	
 	public enum Language {
-		/* Lister ici l'ensemble des langages supportés */
+		/* Lister ici l'ensemble des langages supportï¿½s */
 		FRENCH("fr"),
 		ENGLISH("en");
 		

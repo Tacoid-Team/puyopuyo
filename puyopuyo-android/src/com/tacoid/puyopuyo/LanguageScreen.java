@@ -5,9 +5,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.NinePatch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -64,7 +61,7 @@ public class LanguageScreen implements Screen {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
 		
-		/* Positionnement des bouttons aux premier tier et deuxieme tier de l'écran */
+		/* Positionnement des bouttons aux premier tier et deuxieme tier de l'ï¿½cran */
 		enButton.x = 2*VIRTUAL_WIDTH/3 - enRegion.getRegionWidth()/2;
 		enButton.y = VIRTUAL_HEIGHT/3 - enRegion.getRegionHeight()/2;
 		frButton.x = VIRTUAL_WIDTH/3 - frRegion.getRegionWidth()/2;
