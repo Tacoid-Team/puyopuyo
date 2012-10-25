@@ -18,7 +18,7 @@ public class GameLogic {
 
 	public final int LINES = 12;
 	public final int COLUMNS = 6;
-	public final int GARBAGE = 5;
+	public final int GARBAGE = 6;
 
 	private State state = State.MOVE;
 
@@ -48,6 +48,7 @@ public class GameLogic {
 	private int[][] DIR = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
 	
 	private boolean isIA;
+	private int n_colors = 4;
 
 	private class Explosion {
 		private int nbPuyos;
@@ -140,9 +141,8 @@ public class GameLogic {
 		piece[1] = nextPiece[1];
 		rot = nextRot;
 
-		int coul1 = 1 + (int) (Math.random() * 4);
-		int coul2 = 1 + (int) (Math.random() * 4);
-
+		int coul1 = 1 + (int) (Math.random() * n_colors);
+		int coul2 = 1 + (int) (Math.random() * n_colors);
 		nextRot = (int) (Math.random() * 4);
 
 		switch (nextRot) {
@@ -598,5 +598,9 @@ public class GameLogic {
 	
 	public void setSpeed(float speed) {
 		this.speed = speed;
+	}
+	
+	public void setNColors(int n) {
+		this.n_colors = n;
 	}
 }

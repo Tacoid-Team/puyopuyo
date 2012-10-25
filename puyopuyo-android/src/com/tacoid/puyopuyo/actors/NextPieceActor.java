@@ -13,7 +13,7 @@ public class NextPieceActor extends Actor {
 	private int origX;
 	private int origY;
 	private GameLogic logic;
-	private TextureRegion[] boules = new TextureRegion[4];
+	private TextureRegion[] boules = new TextureRegion[5];
 
 	public NextPieceActor(GameLogic logic, int origX, int origY, int size) {
 		this.logic = logic;
@@ -25,6 +25,7 @@ public class NextPieceActor extends Actor {
 		boules[1] = puyopuyo.atlasPuyo.findRegion("yellow_happy-" + size);
 		boules[2] = puyopuyo.atlasPuyo.findRegion("red_happy-" + size);
 		boules[3] = puyopuyo.atlasPuyo.findRegion("blue_happy-" + size);
+		boules[4] = puyopuyo.atlasPuyo.findRegion("ninja_happy-" + size);
 	}
 	
 	@Override

@@ -10,6 +10,7 @@ public class GameSoloScreen extends GameScreenPortrait {
 	private int level;
 	private float timeLevel;
 	private float speed;
+	private int n_colors;
 	private float timeGarbage;
 	
 	protected void initGraphics() {
@@ -28,28 +29,32 @@ public class GameSoloScreen extends GameScreenPortrait {
 			} else {
 				timeGarbage += delta;
 			}
-			if (gameLogic.getScore() > level * 500 || timeLevel > 120) {
+			if (gameLogic.getScore() >= level * 1000 || timeLevel > 120) {
 				if (level < 10) {
 					level++;
 				}
 
 				switch (level) {
-				case 1:
-					speed = 0.5f;
-					break;
 				case 2:
-					speed = 0.4f;
+					n_colors = 4;
 					break;
 				case 3:
-					speed = 0.3f;
+					speed = 0.4f;
 					break;
 				case 4:
+					n_colors = 5;
+					break;
+				case 5:
+					speed = 0.3f;
+					break;
+				case 7:
 					speed = 0.2f;
 					break;
-				case 6:
-					speed = 0.1f;
+				case 10:
+					speed = 0.15f;
 				}
 
+				gameLogic.setNColors(n_colors);
 				gameLogic.setSpeed(speed);
 
 				timeLevel = 0;
@@ -66,7 +71,9 @@ public class GameSoloScreen extends GameScreenPortrait {
 		timeLevel = 0;
 		timeGarbage = 0;
 		speed = 0.5f;
+		n_colors = 3;
 		gameLogic.setSpeed(speed);
+		gameLogic.setNColors(n_colors);
 	}
 
 	public static GameSoloScreen getInstance() {
