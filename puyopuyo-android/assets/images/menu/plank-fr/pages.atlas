@@ -5,82 +5,77 @@ filter: Nearest,Nearest
 repeat: none
 foreground
   rotate: false
-  xy: 0, 0
-  size: 2048, 1024
-  orig: 2048, 1024
+  xy: 0, 702
+  size: 1280, 312
+  orig: 1280, 312
   offset: 0, 0
   index: -1
-
-pages2.png
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
 touchtostart
   rotate: false
-  xy: 0, 226
+  xy: 0, 416
   size: 931, 286
   orig: 931, 286
   offset: 0, 0
   index: -1
 gameover
   rotate: false
-  xy: 0, 26
+  xy: 1280, 814
   size: 655, 200
   orig: 655, 200
   offset: 0, 0
   index: -1
 gagne-fr
   rotate: false
-  xy: 931, 256
+  xy: 0, 160
   size: 512, 256
   orig: 512, 256
   offset: 0, 0
   index: -1
 perdu-fr
   rotate: false
-  xy: 931, 0
+  xy: 512, 160
   size: 512, 256
   orig: 512, 256
   offset: 0, 0
   index: -1
-rejouer-fr
-  rotate: false
-  xy: 1443, 352
-  size: 253, 160
-  orig: 253, 160
-  offset: 0, 0
-  index: -1
-versus-fr
-  rotate: false
-  xy: 655, 66
-  size: 253, 160
-  orig: 253, 160
-  offset: 0, 0
-  index: -1
-solo-fr
-  rotate: false
-  xy: 1443, 192
-  size: 253, 160
-  orig: 253, 160
-  offset: 0, 0
-  index: -1
 chrono-fr
   rotate: false
-  xy: 1696, 352
-  size: 253, 160
-  orig: 253, 160
-  offset: 0, 0
-  index: -1
-quitter-fr
-  rotate: false
-  xy: 1443, 32
+  xy: 0, 0
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 continuer-fr
   rotate: false
-  xy: 1696, 192
+  xy: 931, 542
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+quitter-fr
+  rotate: false
+  xy: 253, 0
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+rejouer-fr
+  rotate: false
+  xy: 506, 0
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+solo-fr
+  rotate: false
+  xy: 759, 0
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+versus-fr
+  rotate: false
+  xy: 1280, 654
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
