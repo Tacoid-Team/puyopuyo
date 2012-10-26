@@ -7,14 +7,14 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.tacoid.puyopuyo.GameScreen;
 import com.tacoid.puyopuyo.I18nManager;
-import com.tacoid.puyopuyo.MainMenuScreen;
 import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.ScoreManager;
 import com.tacoid.puyopuyo.SoundPlayer;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.SoundPlayer.SoundType;
+import com.tacoid.puyopuyo.screens.GameScreen;
+import com.tacoid.puyopuyo.screens.MainMenuScreen;
 
 public class GameOverActor extends Group {
 	
@@ -81,10 +81,10 @@ public class GameOverActor extends Group {
 		
 		i18n = I18nManager.getInstance();
 		
-		TextureRegion quitterRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter-fr");
-		TextureRegion rejouerRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("rejouer-fr");
-		winSprite = new Sprite(PuyoPuyo.getInstance().atlasPlank.findRegion("gagne-fr"));
-		loseSprite = new Sprite(PuyoPuyo.getInstance().atlasPlank.findRegion("perdu-fr"));
+		TextureRegion quitterRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter");
+		TextureRegion rejouerRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("rejouer");
+		winSprite = new Sprite(PuyoPuyo.getInstance().atlasPlank.findRegion("gagne"));
+		loseSprite = new Sprite(PuyoPuyo.getInstance().atlasPlank.findRegion("perdu"));
 		gameOverSprite = new Sprite(PuyoPuyo.getInstance().atlasPlank.findRegion("gameover"));
 		
 		menu = new SwingMenu(gs.getOrientation());

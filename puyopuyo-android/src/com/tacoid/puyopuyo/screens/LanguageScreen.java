@@ -1,4 +1,4 @@
-package com.tacoid.puyopuyo;
+package com.tacoid.puyopuyo.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -10,6 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
+import com.tacoid.puyopuyo.I18nManager;
+import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.I18nManager.Language;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.actors.BackgroundActor;

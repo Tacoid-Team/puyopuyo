@@ -1,4 +1,4 @@
-package com.tacoid.puyopuyo;
+package com.tacoid.puyopuyo.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.tacoid.puyopuyo.PuyoPuyo;
 
 public class LoadingScreen implements Screen {
 	private static final int VIRTUAL_WIDTH = 1280;

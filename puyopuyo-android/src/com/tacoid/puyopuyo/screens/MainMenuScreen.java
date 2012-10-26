@@ -1,4 +1,4 @@
-package com.tacoid.puyopuyo;
+package com.tacoid.puyopuyo.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
@@ -8,6 +8,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.tacoid.puyopuyo.MusicPlayer;
+import com.tacoid.puyopuyo.PuyoPuyo;
+import com.tacoid.puyopuyo.SoundPlayer;
 import com.tacoid.puyopuyo.MusicPlayer.MusicType;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.SoundPlayer.SoundType;
@@ -45,19 +48,19 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		menu.initBegin("main");
 		{
 			/* SOLO BUTTON */
-			TextureRegion playRegion =  PuyoPuyo.getInstance().atlasPlank.findRegion("solo-fr");
+			TextureRegion playRegion =  PuyoPuyo.getInstance().atlasPlank.findRegion("solo");
 			menu.addButton(new SoloButton(playRegion, playRegion));
 			
 			/* VERUS BUTTON */
-			TextureRegion versusRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("versus-fr");
+			TextureRegion versusRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("versus");
 			menu.addButton(new VersusButton(versusRegion, versusRegion));
 			
 			/* CHRONO BUTTON */
-			TextureRegion chronoRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("chrono-fr");
+			TextureRegion chronoRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("chrono");
 			menu.addButton(new ChronoButton(chronoRegion, chronoRegion));
 			
 			/* Exit BUTTON */
-			TextureRegion exitRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter-fr");
+			TextureRegion exitRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter");
 			menu.addButton(new ExitButton(exitRegion, exitRegion));
 		}	
 		menu.initEnd();

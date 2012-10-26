@@ -4,6 +4,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.tacoid.puyopuyo.logic.GameLogic;
+import com.tacoid.puyopuyo.screens.MainMenuScreen;
 
 public class Controller implements InputProcessor {
 

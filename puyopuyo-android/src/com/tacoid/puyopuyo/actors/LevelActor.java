@@ -3,9 +3,9 @@ package com.tacoid.puyopuyo.actors;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.tacoid.puyopuyo.GameSoloScreen;
 import com.tacoid.puyopuyo.I18nManager;
 import com.tacoid.puyopuyo.PuyoPuyo;
+import com.tacoid.puyopuyo.screens.GameSoloScreen;
 
 public class LevelActor extends Actor {
 	private GameSoloScreen screen;

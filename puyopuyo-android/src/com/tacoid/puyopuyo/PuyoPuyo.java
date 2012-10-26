@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.tacoid.puyopuyo.PreferenceManager.Preference;
+import com.tacoid.puyopuyo.screens.LanguageScreen;
+import com.tacoid.puyopuyo.screens.LoadingScreen;
 
 public class PuyoPuyo extends Game {
 

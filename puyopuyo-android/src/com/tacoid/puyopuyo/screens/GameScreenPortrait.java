@@ -1,4 +1,4 @@
-package com.tacoid.puyopuyo;
+package com.tacoid.puyopuyo.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
@@ -7,6 +7,9 @@ import com.badlogic.gdx.graphics.GLCommon;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.tacoid.puyopuyo.Controller;
+import com.tacoid.puyopuyo.PuyoPuyo;
+import com.tacoid.puyopuyo.SoundPlayer;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.SoundPlayer.SoundType;
 import com.tacoid.puyopuyo.actors.BackgroundActor;

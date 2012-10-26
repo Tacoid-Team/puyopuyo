@@ -3,8 +3,8 @@ package com.tacoid.puyopuyo.actors;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.tacoid.puyopuyo.GameScreen;
 import com.tacoid.puyopuyo.PuyoPuyo;
+import com.tacoid.puyopuyo.screens.GameScreen;
 
 public class StartActor extends Actor {
 	

@@ -3,12 +3,12 @@ package com.tacoid.puyopuyo.actors;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.tacoid.puyopuyo.GameScreen;
-import com.tacoid.puyopuyo.MainMenuScreen;
 import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.SoundPlayer;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.SoundPlayer.SoundType;
+import com.tacoid.puyopuyo.screens.GameScreen;
+import com.tacoid.puyopuyo.screens.MainMenuScreen;
 public class PauseMenu extends Group{
 	
 	private GameScreen gameScreen;
@@ -49,8 +49,8 @@ public class PauseMenu extends Group{
 	}
 	
 	public PauseMenu(GameScreen gameScreen, ScreenOrientation orientation) {
-		TextureRegion continueRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("continuer-fr");
-		TextureRegion quitRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter-fr");
+		TextureRegion continueRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("continuer");
+		TextureRegion quitRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter");
 		
 		menu = new SwingMenu(orientation);
 		
