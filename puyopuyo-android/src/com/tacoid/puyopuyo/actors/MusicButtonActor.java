@@ -1,11 +1,13 @@
 package com.tacoid.puyopuyo.actors;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
 import com.tacoid.puyopuyo.MusicPlayer;
 import com.tacoid.puyopuyo.PuyoPuyo;
+import com.tacoid.puyopuyo.SoundPlayer;
 
 public class MusicButtonActor extends Button implements ClickListener{
 
@@ -30,6 +32,15 @@ public class MusicButtonActor extends Button implements ClickListener{
 		} else {
 			MusicPlayer.getInstance().unmute();
 		}
+	}
+	public void draw (SpriteBatch batch, float parentAlpha) {
+		if(MusicPlayer.getInstance().isMuted()) {
+			this.setChecked(true);
+		} else {
+			this.setChecked(false);
+		}
+		super.draw(batch, parentAlpha);
+		
 	}
 	
 

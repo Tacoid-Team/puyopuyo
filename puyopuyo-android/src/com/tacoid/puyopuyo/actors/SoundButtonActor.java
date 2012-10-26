@@ -1,5 +1,6 @@
 package com.tacoid.puyopuyo.actors;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -13,8 +14,10 @@ public class SoundButtonActor extends Button implements ClickListener{
 			TextureRegion regionChecked) {
 		super(regionUp, regionDown, regionChecked);
 		setChecked(SoundPlayer.getInstance().isMuted());
+		this.
 		setClickListener(this);
 	}
+	
 	
 	static public SoundButtonActor createSoundButton() {
 		TextureRegion musicOnRegion = new TextureRegion(PuyoPuyo.getInstance().atlasBouttons.findRegion("sound-on"));
@@ -30,6 +33,15 @@ public class SoundButtonActor extends Button implements ClickListener{
 		} else {
 			SoundPlayer.getInstance().unmute();
 		}
+	}
+	public void draw (SpriteBatch batch, float parentAlpha) {
+		if(SoundPlayer.getInstance().isMuted()) {
+			this.setChecked(true);
+		} else {
+			this.setChecked(false);
+		}
+		super.draw(batch, parentAlpha);
+		
 	}
 	
 

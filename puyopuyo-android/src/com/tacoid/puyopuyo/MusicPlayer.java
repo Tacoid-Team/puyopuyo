@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.audio.Music;
+import com.tacoid.puyopuyo.PreferenceManager.Preference;
 
 public class MusicPlayer {
 	public static MusicPlayer instance = null;
@@ -18,20 +19,24 @@ public class MusicPlayer {
 	private Music playing = null;
 	private boolean muted = false;
 	
-	private void init() {
+	private MusicPlayer() {
 		musics = new HashMap<MusicType, Music>();
 		playing = null;
 		
 		musics.put(MusicType.MAIN, PuyoPuyo.getInstance().manager.get("sounds/AnoyingMusic.mp3", Music.class));
+		
+		if(!PreferenceManager.getInstance().isPreferenceDefined(Preference.MUSIC_STATE)) {
+			PreferenceManager.getInstance().setPreference(Preference.MUSIC_STATE, "on");
+		} else {
+			if(PreferenceManager.getInstance().getPreference(Preference.MUSIC_STATE).equals("off")) {
+				muted = true;
+			}
+		}
 	}
 	
 	public static MusicPlayer getInstance() {
 		if (instance == null) {
 			instance = new MusicPlayer();
-		}
-		if (!initialized ) {
-			instance.init();
-			initialized = true;
 		}
 		return instance;
 	}
@@ -73,6 +78,7 @@ public class MusicPlayer {
 		if(playing != null && playing.isPlaying()) {
 			playing.setVolume(0.0f);
 		}
+		PreferenceManager.getInstance().setPreference(Preference.MUSIC_STATE, "off");
 	}
 	
 	public void unmute() {
@@ -80,6 +86,7 @@ public class MusicPlayer {
 		if(playing != null && playing.isPlaying()) {
 			playing.setVolume(volume);
 		}
+		PreferenceManager.getInstance().setPreference(Preference.MUSIC_STATE, "on");
 	}
 	
 	public boolean isMuted() {

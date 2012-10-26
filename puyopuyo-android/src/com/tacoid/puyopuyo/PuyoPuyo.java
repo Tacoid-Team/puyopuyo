@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.tacoid.puyopuyo.PreferenceManager.Preference;
 
 public class PuyoPuyo extends Game {
 
@@ -65,6 +66,7 @@ public class PuyoPuyo extends Game {
 		Gdx.input.setCatchBackKey(true);
 		
 		loadAssets();
+		System.out.println(PreferenceManager.getInstance().getPreference(Preference.LANGUAGE));
 		
         justLaunched = true;
 	}

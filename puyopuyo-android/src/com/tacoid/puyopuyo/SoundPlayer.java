@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.audio.Sound;
+import com.tacoid.puyopuyo.PreferenceManager.Preference;
 
 public class SoundPlayer {
 	static public SoundPlayer instance = null;
@@ -34,6 +35,15 @@ public class SoundPlayer {
 		sounds.put(SoundType.WIN, PuyoPuyo.getInstance().manager.get("sounds/bleep.wav", Sound.class));
 		sounds.put(SoundType.LOSE, PuyoPuyo.getInstance().manager.get("sounds/bleep.wav", Sound.class));
 		
+		if(!PreferenceManager.getInstance().isPreferenceDefined(Preference.SOUND_STATE)) {
+			PreferenceManager.getInstance().setPreference(Preference.SOUND_STATE, "on");
+		} else {
+			if(PreferenceManager.getInstance().getPreference(Preference.SOUND_STATE).equals("off")) {
+				muted = true;
+			}
+		}
+		
+		
 	}
 	
 	public static SoundPlayer getInstance() {
@@ -56,10 +66,12 @@ public class SoundPlayer {
 	
 	public void mute() {
 		muted = true;
+		PreferenceManager.getInstance().setPreference(Preference.SOUND_STATE, "off");
 	}
 	
 	public void unmute() {
 		muted = false;
+		PreferenceManager.getInstance().setPreference(Preference.SOUND_STATE, "on");
 	}
 	
 	public boolean isMuted() {
