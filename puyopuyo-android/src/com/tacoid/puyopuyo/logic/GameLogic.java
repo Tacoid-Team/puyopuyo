@@ -471,7 +471,7 @@ public class GameLogic {
 					first = false;
 				}
 				for (Falling f : fallings) {
-					f.update(delta / speed);
+					f.update(delta);
 				}
 				if (sum > 0.5) {
 					for (Falling f : fallings) {

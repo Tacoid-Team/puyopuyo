@@ -14,10 +14,10 @@ public class Falling {
 	}
 	
 	public void update(float delta) {
-		
+		// La chute doit prendre moins de 0.5s. Sachant qu'on a 12 lignes, ça nous donne 24.
 		if (chute) {
 			if (this.remaining > -0.5) {
-				this.remaining -= 10 * delta;
+				this.remaining -= 24 * delta;
 				if (this.remaining < -0.5) {
 					this.remaining = -0.5f;
 				}
@@ -26,7 +26,7 @@ public class Falling {
 			}
 		} else {
 			if (this.remaining < 0) {
-				this.remaining += 10 * delta;
+				this.remaining += 24 * delta;
 			} else if (this.remaining > 0) {
 				this.remaining = 0;
 			}
