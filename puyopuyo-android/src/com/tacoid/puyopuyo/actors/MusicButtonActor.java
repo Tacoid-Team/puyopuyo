@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
 import com.tacoid.puyopuyo.MusicPlayer;
 import com.tacoid.puyopuyo.PuyoPuyo;
-import com.tacoid.puyopuyo.SoundPlayer;
 
 public class MusicButtonActor extends Button implements ClickListener{
 

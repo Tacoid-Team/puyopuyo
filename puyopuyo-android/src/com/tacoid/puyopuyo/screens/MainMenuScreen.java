@@ -69,19 +69,19 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		{
 			/* EASY BUTTON */
 			TextureRegion easyRegion =  PuyoPuyo.getInstance().atlasPlank.findRegion("easy");
-			menu.addButton(new LevelButton(easyRegion, easyRegion));
+			menu.addButton(new LevelButton(0, easyRegion, easyRegion));
 			
 			/* MEDIUM BUTTON */
 			TextureRegion mediumRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("medium");
-			menu.addButton(new LevelButton(mediumRegion, mediumRegion));
+			menu.addButton(new LevelButton(1, mediumRegion, mediumRegion));
 			
 			/* HARD BUTTON */
 			TextureRegion hardRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("hard");
-			menu.addButton(new LevelButton(hardRegion, hardRegion));
+			menu.addButton(new LevelButton(2, hardRegion, hardRegion));
 			
 			/* VERY HARD BUTTON */
 			TextureRegion vhardRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("veryhard");
-			menu.addButton(new LevelButton(vhardRegion, vhardRegion));
+			menu.addButton(new LevelButton(3, vhardRegion, vhardRegion));
 		}	
 		menu.initEnd();
 		
@@ -214,9 +214,11 @@ public class MainMenuScreen implements Screen, InputProcessor {
 	}
 	
 	private class LevelButton extends Button{
-		public LevelButton(TextureRegion regionUp, TextureRegion regionDown) {
+		private int level;
+		
+		public LevelButton(int level, TextureRegion regionUp, TextureRegion regionDown) {
 			super(regionUp, regionDown);
-			// TODO Auto-generated constructor stub
+			this.level = level;
 		}
 
 		@Override
@@ -226,6 +228,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		}
 		public void touchUp(float x, float y, int pointer) {
 			GameVersusScreen.getInstance().init();
+			GameVersusScreen.getInstance().setLevel(level);
 			PuyoPuyo.getInstance().setScreen(GameVersusScreen.getInstance());
 			menu.switchMenu("main");
 		}

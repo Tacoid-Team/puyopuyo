@@ -9,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.tacoid.puyopuyo.Controller;
 import com.tacoid.puyopuyo.PuyoPuyo;
-import com.tacoid.puyopuyo.ScoreManager;
 import com.tacoid.puyopuyo.SoundPlayer;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.ScoreManager.GameType;
@@ -29,6 +28,8 @@ import com.tacoid.puyopuyo.actors.StartActor;
 import com.tacoid.puyopuyo.actors.GameOverActor.GameOverType;
 import com.tacoid.puyopuyo.actors.TimeBonusActor;
 import com.tacoid.puyopuyo.logic.GameLogic;
+import com.tacoid.puyopuyo.logic.IA;
+import com.tacoid.puyopuyo.logic.IAEasy;
 import com.tacoid.puyopuyo.logic.IAHard;
 import com.tacoid.puyopuyo.logic.State;
 
@@ -45,7 +46,7 @@ public class GameVersusScreen implements GameScreen {
 	private NextPieceActor nextPieceActorIA;
 	protected float elapsedTime;
 
-	private IAHard ia;
+	private IA ia;
 	private InputProcessor controller;
 	private ControlerActor controllerActor;
 	private PauseMenu pauseMenu;
@@ -75,13 +76,46 @@ public class GameVersusScreen implements GameScreen {
 
 	}
 
-	protected void initGraphics() {
-		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
-				false);
+	private GameVersusScreen() {
 		gameLogic = new GameLogic();
 		gameLogicIA = new GameLogic();
 		gameLogic.setOpponent(gameLogicIA);
 		gameLogicIA.setOpponent(gameLogic);
+	}
+	
+	public void setLevel(int level) {
+		if (level == 0) {
+			gameLogic.setSpeed(0.5f);
+			gameLogicIA.setSpeed(0.5f);
+			gameLogic.setNColors(3);
+			gameLogicIA.setNColors(4);
+			ia = new IAEasy(gameLogicIA);
+		} else if (level == 1) {
+			gameLogic.setSpeed(0.5f);
+			gameLogicIA.setSpeed(0.5f);
+			gameLogic.setNColors(4);
+			gameLogicIA.setNColors(4);
+			ia = new IAHard(gameLogicIA);
+		} else if (level == 2) {
+			gameLogic.setSpeed(0.3f);
+			gameLogicIA.setSpeed(0.3f);
+			gameLogic.setNColors(4);
+			gameLogicIA.setNColors(4);
+			gameLogicIA.setCheatMode(true);
+			ia = new IAHard(gameLogicIA);
+		} else if (level == 3) {
+			gameLogic.setSpeed(0.15f);
+			gameLogicIA.setSpeed(0.3f);
+			gameLogic.setNColors(5);
+			gameLogicIA.setNColors(5);
+			gameLogicIA.setCheatMode(true);
+			ia = new IAHard(gameLogicIA);
+		}
+	}
+	
+	protected void initGraphics() {
+		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
+				false);
 		controller = new Controller(gameLogic, stage);
 		gameOver = null;
 
@@ -127,7 +161,6 @@ public class GameVersusScreen implements GameScreen {
 		startActor.show();
 		stage.addActor(startActor);
 
-		ia = new IAHard(gameLogicIA);
 	}
 
 	public static GameVersusScreen getInstance() {

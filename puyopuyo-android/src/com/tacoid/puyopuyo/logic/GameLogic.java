@@ -47,6 +47,7 @@ public class GameLogic {
 
 	private boolean isIA;
 	private int n_colors = 4;
+	private boolean cheatMode = false;
 
 	public GameLogic() {
 		init();
@@ -99,6 +100,25 @@ public class GameLogic {
 		combo = 1;
 	}
 
+	private int cheatColor() {
+		int[] counts = new int[GARBAGE];
+		for (int c = 0; c < COLUMNS; c++) {
+			int l = LINES;
+			while (l >= 0 && grid[l][c] == 0) l--;
+			if (l >= 0 && grid[l][c] > 0 && grid[l][c] != GARBAGE) {
+				counts[grid[l][c]]++;
+			}
+		}
+		
+		int max = 1;
+		for (int i = 1; i < GARBAGE; i++) {
+			if (counts[max] < counts[i]) {
+				max = i;
+			}
+		}
+		return max;
+	}
+	
 	private boolean generate() {
 		// Sens de la piece :
 		// [x] [x][ ] [ ] [ ][x]
@@ -108,7 +128,17 @@ public class GameLogic {
 		rot = nextRot;
 
 		int coul1 = 1 + (int) (Math.random() * n_colors);
-		int coul2 = 1 + (int) (Math.random() * n_colors);
+		int coul2;
+		
+		if (cheatMode) {
+			if (Math.random() < 0.5) {
+				coul2 = coul1;
+			} else {
+				coul2 = cheatColor();
+			}
+		} else {
+			coul2 = 1 + (int) (Math.random() * n_colors);
+		}
 		nextRot = (int) (Math.random() * 4);
 
 		switch (nextRot) {
@@ -568,5 +598,9 @@ public class GameLogic {
 	
 	public void setNColors(int n) {
 		this.n_colors = n;
+	}
+
+	public void setCheatMode(boolean cheatMode) {
+		this.cheatMode = cheatMode;
 	}
 }

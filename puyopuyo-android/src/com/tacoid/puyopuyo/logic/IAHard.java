@@ -1,6 +1,6 @@
 package com.tacoid.puyopuyo.logic;
 
-public class IAHard {
+public class IAHard implements IA {
 	float sum = 0f;
 	private GameLogic logic;
 	private int potentiel;

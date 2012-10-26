@@ -1,6 +1,5 @@
 package com.tacoid.puyopuyo.screens;
 
-import com.tacoid.puyopuyo.ScoreManager;
 import com.tacoid.puyopuyo.ScoreManager.GameType;
 import com.tacoid.puyopuyo.actors.TimeActor;
 import com.tacoid.puyopuyo.logic.State;
