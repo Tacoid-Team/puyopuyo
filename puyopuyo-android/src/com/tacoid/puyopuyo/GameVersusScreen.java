@@ -25,7 +25,7 @@ import com.tacoid.puyopuyo.actors.StartActor;
 import com.tacoid.puyopuyo.actors.GameOverActor.GameOverType;
 import com.tacoid.puyopuyo.actors.TimeBonusActor;
 import com.tacoid.puyopuyo.logic.GameLogic;
-import com.tacoid.puyopuyo.logic.IA;
+import com.tacoid.puyopuyo.logic.IAHard;
 import com.tacoid.puyopuyo.logic.State;
 
 public class GameVersusScreen implements GameScreen {
@@ -41,7 +41,7 @@ public class GameVersusScreen implements GameScreen {
 	private NextPieceActor nextPieceActorIA;
 	protected float elapsedTime;
 
-	private IA ia;
+	private IAHard ia;
 	private InputProcessor controller;
 	private ControlerActor controllerActor;
 	private PauseMenu pauseMenu;
@@ -123,9 +123,7 @@ public class GameVersusScreen implements GameScreen {
 		startActor.show();
 		stage.addActor(startActor);
 
-		ia = new IA(gameLogicIA);
-		
-
+		ia = new IAHard(gameLogicIA);
 	}
 
 	public static GameVersusScreen getInstance() {
