@@ -1,7 +1,9 @@
 package com.tacoid.puyopuyo;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -15,11 +17,12 @@ import com.tacoid.puyopuyo.actors.SoundButtonActor;
 import com.tacoid.puyopuyo.actors.SwingMenu;
 
 
-public class MainMenuScreen implements Screen {
+public class MainMenuScreen implements Screen, InputProcessor {
 	private static final int VIRTUAL_WIDTH = 1280;
 	private static final int VIRTUAL_HEIGHT = 768;
 	private static MainMenuScreen instance = null;
 	private Stage stage;
+	private SwingMenu menu;
 	
 	private MainMenuScreen() {
 		init();
@@ -37,9 +40,9 @@ public class MainMenuScreen implements Screen {
 		
 		stage.addActor(new BackgroundActor(ScreenOrientation.LANDSCAPE));
 		
-		SwingMenu menu = new SwingMenu(ScreenOrientation.LANDSCAPE);
+		menu = new SwingMenu(ScreenOrientation.LANDSCAPE);
 		
-		menu.initBegin();
+		menu.initBegin("main");
 		{
 			/* SOLO BUTTON */
 			TextureRegion playRegion =  PuyoPuyo.getInstance().atlasPlank.findRegion("solo-fr");
@@ -59,11 +62,31 @@ public class MainMenuScreen implements Screen {
 		}	
 		menu.initEnd();
 		
+		menu.initBegin("versus");
+		{
+			/* EASY BUTTON */
+			TextureRegion easyRegion =  PuyoPuyo.getInstance().atlasPlank.findRegion("easy");
+			menu.addButton(new LevelButton(easyRegion, easyRegion));
+			
+			/* MEDIUM BUTTON */
+			TextureRegion mediumRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("medium");
+			menu.addButton(new LevelButton(mediumRegion, mediumRegion));
+			
+			/* HARD BUTTON */
+			TextureRegion hardRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("hard");
+			menu.addButton(new LevelButton(hardRegion, hardRegion));
+			
+			/* VERY HARD BUTTON */
+			TextureRegion vhardRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("veryhard");
+			menu.addButton(new LevelButton(vhardRegion, vhardRegion));
+		}	
+		menu.initEnd();
+		
 		stage.addActor(menu);
 		addButton(MusicButtonActor.createMusicButton(),VIRTUAL_WIDTH-64, VIRTUAL_HEIGHT-64);
 		addButton(SoundButtonActor.createSoundButton(),VIRTUAL_WIDTH-2*64-10, VIRTUAL_HEIGHT-64);
 
-		menu.show();
+		menu.show("main");
 		
 		MusicPlayer.getInstance().setVolume(0.8f);
 		MusicPlayer.getInstance().playMusic(MusicType.MAIN, true);
@@ -116,7 +139,7 @@ public class MainMenuScreen implements Screen {
 
 	@Override
 	public void show() {
-		Gdx.input.setInputProcessor(stage);
+		Gdx.input.setInputProcessor(this);
 	}
 
 	private class SoloButton extends Button{
@@ -148,8 +171,9 @@ public class MainMenuScreen implements Screen {
 			return true;
 		}
 		public void touchUp(float x, float y, int pointer) {
-			GameVersusScreen.getInstance().init();
-			PuyoPuyo.getInstance().setScreen(GameVersusScreen.getInstance());
+			menu.switchMenuAnimated("versus");
+			//GameVersusScreen.getInstance().init();
+			//PuyoPuyo.getInstance().setScreen(GameVersusScreen.getInstance());
 		}
 	}
 	
@@ -185,5 +209,73 @@ public class MainMenuScreen implements Screen {
 			Gdx.app.exit();
 		}
 	}
+	
+	private class LevelButton extends Button{
+		public LevelButton(TextureRegion regionUp, TextureRegion regionDown) {
+			super(regionUp, regionDown);
+			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		public boolean touchDown(float x, float y, int pointer) {
+			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
+			return true;
+		}
+		public void touchUp(float x, float y, int pointer) {
+			GameVersusScreen.getInstance().init();
+			PuyoPuyo.getInstance().setScreen(GameVersusScreen.getInstance());
+			menu.switchMenu("main");
+		}
+	}
+
+	@Override
+	public boolean keyDown(int key) {
+		switch (key) {
+		case Keys.BACK:
+			if(!menu.getCurrentMenu().equals("main")) {
+				menu.switchMenuAnimated("main");
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean keyTyped(char arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean keyUp(int arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean scrolled(int arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchDown(int x, int y, int pointer, int button) {
+		return stage.touchDown(x, y, pointer, button);
+	}
+
+	@Override
+	public boolean touchDragged(int arg0, int arg1, int arg2) {
+		return stage.touchDragged(arg0, arg1, arg2);
+	}
+
+	@Override
+	public boolean touchMoved(int x, int y) {
+		return stage.touchMoved(x, y);
+	}
+
+	@Override
+	public boolean touchUp(int x, int y, int pointer, int button) {
+		return stage.touchUp(x, y, pointer, button);
+	}
+	
 
 }

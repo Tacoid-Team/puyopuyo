@@ -52,30 +52,58 @@ continuer-fr
   orig: 253, 160
   offset: 0, 0
   index: -1
-quitter-fr
+easy
   rotate: false
   xy: 253, 0
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-rejouer-fr
+hard
   rotate: false
   xy: 506, 0
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-solo-fr
+medium
   rotate: false
   xy: 759, 0
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-versus-fr
+quitter-fr
   rotate: false
   xy: 1280, 654
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+rejouer-fr
+  rotate: false
+  xy: 1533, 654
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+solo-fr
+  rotate: false
+  xy: 1786, 654
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+versus-fr
+  rotate: false
+  xy: 1184, 494
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+veryhard
+  rotate: false
+  xy: 1437, 494
   size: 253, 160
   orig: 253, 160
   offset: 0, 0

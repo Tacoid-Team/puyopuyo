@@ -54,7 +54,7 @@ public class PauseMenu extends Group{
 		
 		menu = new SwingMenu(orientation);
 		
-		menu.initBegin();
+		menu.initBegin("pause");
 		menu.addButton(new ContinueButton(continueRegion));
 		menu.addButton(new QuitButton(quitRegion));
 		menu.initEnd();
@@ -69,7 +69,7 @@ public class PauseMenu extends Group{
 	public void show() {
 		gameScreen.gamePause();
 		this.visible = true;
-		menu.show();
+		menu.show("pause");
 	}
 	
 	public void hide() {

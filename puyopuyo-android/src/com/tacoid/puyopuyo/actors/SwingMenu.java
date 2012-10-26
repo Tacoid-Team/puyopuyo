@@ -1,7 +1,10 @@
 package com.tacoid.puyopuyo.actors;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,28 +20,82 @@ public class SwingMenu extends Group{
 	
 	private static final float BUTTON_HEIGHT = 250;
 	
-	private List<Actor> buttons;
+	private enum State {
+		SHOWING,
+		HIDING,
+		IDLE;
+	};
+	
+	private Map<String,Group> menus;
+	private Group currentGroup;
+	private String currentName;
 
 	private Interpolation interpBush;
 	private Interpolation interpButton;
 	private float timeBush;
 	private float timeButton;
+	private State state = State.IDLE;
+	
+	private boolean switching = false;
+	private String nextMenu;
+	
+	
 	
 	private class BushActor extends Actor {
 		private TextureRegion ForegroundTex;
-		
-		
+
 		public BushActor() {
 			ForegroundTex = new TextureRegion(PuyoPuyo.getInstance().atlasPlank.findRegion("foreground"));
 		}
 		
 		@Override
 		public void draw(SpriteBatch batch, float delta) {
-		     timeBush+=Gdx.graphics.getDeltaTime()*0.4;
-		     timeButton+=Gdx.graphics.getDeltaTime()*0.4;
-		     for(int i=0; i<buttons.size(); i++) {
-		    	 buttons.get(i).y = interpButton.apply(0, BUTTON_HEIGHT, Math.min(timeButton,1.0f));
-		     }
+			boolean keepGoing = false;
+			switch(state) {
+			case HIDING:
+				if(timeBush >= 0.5f) {
+					timeBush-=Gdx.graphics.getDeltaTime()*0.6;
+					keepGoing = true;
+				}
+				
+				if( timeButton >= -0.1f) {
+					timeButton-=Gdx.graphics.getDeltaTime()*1.0;
+					keepGoing = true;
+				}
+				
+				if(!keepGoing) {
+					if(switching) {
+						show(nextMenu);
+					} else {
+						this.touchable =false;
+						this.visible = false;
+						state = State.IDLE;
+					}
+				}
+				break;
+			case SHOWING:
+				if(timeBush <= 1.0f) {
+					timeBush+=Gdx.graphics.getDeltaTime()*0.4;
+					keepGoing = true;
+				}
+				
+				if( timeButton <= 1.0f) {
+					timeButton+=Gdx.graphics.getDeltaTime()*0.5;
+					keepGoing = true;
+				} 
+				if(!keepGoing){
+					state = State.IDLE;
+				}
+				break;
+			case IDLE:
+				break;
+			}
+			
+			currentGroup.y = interpButton.apply(0, BUTTON_HEIGHT, Math.min(timeButton,1.0f));
+			/*
+			for(int i=0; i<currentGroup.size(); i++) {
+				currentList.get(i).y = interpButton.apply(0, BUTTON_HEIGHT, Math.min(timeButton,1.0f));
+			}*/
 			batch.draw(ForegroundTex,0,interpBush.apply(-ForegroundTex.getRegionHeight(),0.0f,Math.min(timeBush,1.0f)));
 		}
 
@@ -59,36 +116,68 @@ public class SwingMenu extends Group{
 		
 		interpBush = new Interpolation.Pow(2);
 		interpButton = new Interpolation.SwingOut(1.5f);
-		addActor(new BushActor());
+		menus = new HashMap<String, Group>();
 	}
 	
-	public void initBegin() {
-		buttons = new ArrayList<Actor>();
+	public void initBegin(String menu) {
+		menus.put(menu, new Group());
+		currentGroup = menus.get(menu);
+		currentName = menu;
 	}
 	
 	public void addButton( Actor actor) {
-		buttons.add(actor);
+		currentGroup.addActor(actor);
 	}
 	
 	public void initEnd() {
-		for(int i=0; i<buttons.size(); i++) {
-			/*buttons.get(i).x = VIRTUAL_WIDTH*(i+1)/(buttons.size()+1)-128;*/
-			buttons.get(i).x = (i+1)*(VIRTUAL_WIDTH-buttons.size()*256)/(buttons.size()+1)+i*256;
-			buttons.get(i).y = 0;
-			addActor(buttons.get(i));
+		int size = currentGroup.getActors().size();
+		for(int i=0; i<size; i++) {
+			/*currentList.get(i).x = VIRTUAL_WIDTH*(i+1)/(buttons.size()+1)-128;*/
+			currentGroup.getActors().get(i).x = (i+1)*(VIRTUAL_WIDTH-size*256)/(size+1)+i*256;
+			currentGroup.getActors().get(i).y = 0;
+		//addActor(buttons.get(i));
 		}
-		addActor(new BushActor());
 	}
-	public void show() {
+	public void show(String menu) 
+	{
+		this.clear();
+		currentGroup = menus.get(menu);
+		currentName = menu;
+		
+		this.addActor(currentGroup);
+		this.addActor(new BushActor());
+		
+		state=State.SHOWING;
 		timeBush = 0.5f;
-		timeButton = 0.0f;
+		timeButton = -0.1f;
 		this.touchable =true;
 		this.visible = true;
+		switching = false;
 	}
 	
 	public void hide() {
-		this.touchable =false;
-		this.visible = false;
+		state=State.HIDING;
 	}
+	
+	/* Change de menu avec animation */
+	public void switchMenuAnimated(String menu) {
+		this.hide();
+		switching = true;
+		nextMenu = menu;
+	}
+	
+	/* Change de menu sans animation */
+	public void switchMenu(String menu) {
+		this.clear();
+		currentGroup = menus.get(menu);
+		
+		this.addActor(currentGroup);
+		this.addActor(new BushActor());
+	}
+	
+	public String getCurrentMenu() {
+		return currentName;
+	}
+	
 
 }

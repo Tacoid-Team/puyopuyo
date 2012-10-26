@@ -88,7 +88,7 @@ public class GameOverActor extends Group {
 		gameOverSprite = new Sprite(PuyoPuyo.getInstance().atlasPlank.findRegion("gameover"));
 		
 		menu = new SwingMenu(gs.getOrientation());
-		menu.initBegin();
+		menu.initBegin("gameover");
 		menu.addButton(new ReplayButton(rejouerRegion, rejouerRegion));
 		menu.addButton(new QuitButton(quitterRegion, quitterRegion));
 		menu.initEnd();
@@ -110,7 +110,7 @@ public class GameOverActor extends Group {
 	}
 	
 	public void show(GameOverType type) {
-		menu.show();
+		menu.show("gameover");
 		this.type = type;
 		this.visible = true;
 		this.HighScore = ScoreManager.getInstance().getScore(gameScreen.getGameType());
