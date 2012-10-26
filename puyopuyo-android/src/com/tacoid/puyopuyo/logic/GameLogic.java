@@ -45,42 +45,8 @@ public class GameLogic {
 	
 	protected boolean paused = false;
 
-	private int[][] DIR = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
-	
 	private boolean isIA;
 	private int n_colors = 4;
-
-	private class Explosion {
-		private int nbPuyos;
-
-		public Explosion(GameLogic logic, ArrayList<Coord> removes) {
-			this.nbPuyos = removes.size();
-
-			ArrayList<Coord> removeGarbage = new ArrayList<Coord>();
-			
-			for (Coord coord : removes) {
-				for (int[] dir : DIR) {
-					if (coord.l + dir[0] >= 0 && coord.l + dir[0] < logic.LINES
-							&& coord.c + dir[1] >= 0
-							&& coord.c + dir[1] < logic.COLUMNS) {
-						if (logic.grid[coord.l + dir[0]][coord.c + dir[1]] == GARBAGE) {
-							removeGarbage.add(new Coord(coord.l + dir[0], coord.c + dir[1], GARBAGE));
-						}
-					}
-				}
-			}
-			
-			removes.addAll(removeGarbage);
-			
-			for (Coord coord : removes) {
-				grid[coord.l][coord.c] = 0;
-			}
-		}
-
-		public int getNbPuyos() {
-			return nbPuyos;
-		}
-	}
 
 	public GameLogic() {
 		init();
@@ -379,7 +345,7 @@ public class GameLogic {
 				+ floodfill(l, c - 1, coul, list);
 	}
 
-	private ArrayList<Explosion> resolve() {
+	public ArrayList<Explosion> resolve() {
 		ArrayList<Explosion> remove = new ArrayList<Explosion>();
 		gridFF = new boolean[LINES][COLUMNS];
 		for (int l = 0; l < LINES; l++) {
@@ -414,9 +380,9 @@ public class GameLogic {
 		}
 	}
 
-	public void descendreEtPose() {
+	public int descendreEtPose() {
 		pose();
-
+		points = 0;
 		combo = 1;
 		do {
 			fallings = gravity();
@@ -426,11 +392,11 @@ public class GameLogic {
 
 			removes = resolve();
 			for (Explosion r : removes) {
-
-				score += r.getNbPuyos() * 10 * (r.getNbPuyos() - 3) * combo;
+				points += r.getNbPuyos() * 10 * (r.getNbPuyos() - 3) * combo;
 			}
 			combo *= 2;
 		} while (removes.size() > 0);
+		return points;
 	}
 
 	public void update(float delta) {
