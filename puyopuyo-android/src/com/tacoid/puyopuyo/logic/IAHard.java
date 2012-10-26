@@ -4,6 +4,8 @@ public class IAHard {
 	float sum = 0f;
 	private GameLogic logic;
 	private int potentiel;
+	
+	private Solution dyn[][];
 
 	public IAHard(GameLogic logic) {
 		this.logic = logic;
@@ -25,18 +27,46 @@ public class IAHard {
 		@Override
 		public int compareTo(Solution another) {
 			if (points != another.points) {
+				// On choisit ce qui rapporte le plus de points.
 				return points - another.points;
-			} else if (potentiel != another.potentiel) {
-				return potentiel - another.potentiel;
-			} else if (h != another.h) {
-				return another.h - h;
+			} else if (points > 0 || Math.abs(potentiel - 2 * h - (another.potentiel - 2 * another.h)) < 2) {
+				// Si 2 solutions rapportent des points, ou que le potentiel est à peu près identique on prend le plus sûr.
+				return another.m - m;			
 			} else {
-				return another.m - m;
+				// Si aucun ne rapporte de point et potentiel bien différent, on utilise le potentiel.
+				return potentiel - 2 * h - (another.potentiel - 2 * another.h);
 			}
 		}
 	}
 
 	private Solution choice(int n, GameLogic cl, int m) {
+		Coord p1 = cl.getPiece()[0];
+		Coord p2 = cl.getPiece()[1];
+		
+		int dl = p1.l - p2.l;
+		int dc = p1.c - p2.c;
+		
+		int r;
+		if (dl == 0) {
+			if (dc == 1) {
+				r = 0;
+			} else {
+				r = 1;
+			}
+		} else if (dl == 1) {
+			r = 2;
+		} else {
+			r = 3;
+		}
+
+		if (dyn[p1.l * logic.COLUMNS + p1.c][r] != null) {
+			// Si on a déjà été dans cette position en moins de mouvement
+			if (dyn[p1.l * logic.COLUMNS + p1.c][r].m <= m) {
+				// Alors c'est naze.
+				return new Solution(-1, 0, 0, 0);
+			}
+		}
+		
 		if (n == 0) {
 			cl.poseEtGravity();
 			
@@ -72,7 +102,8 @@ public class IAHard {
 
 			int h = hauteur(cl);
 
-			return new Solution(points, potentiel, h, m);
+			dyn[p1.l * logic.COLUMNS + p1.c][r] = new Solution(points, potentiel, h, m);
+			return dyn[p1.l * logic.COLUMNS + p1.c][r];
 		} else {
 			GameLogic[] logics = new GameLogic[5];
 
@@ -89,15 +120,18 @@ public class IAHard {
 			Solution scoreMax = choice(0, logics[0], m);
 			int max = 0;
 			for (int i = 1; i < 5; i++) {
+				if (logics[i].getPiece()[0].equals(logic.getPiece()[0]) && logics[i].getPiece()[1].equals(logic.getPiece()[1])) {
+					// Si le déplacement ou la rotation a marché, sinon ça sert à rien.
+					continue;
+				}
 				Solution score = choice(n - 1, logics[i], m + 1);
 				if (score.compareTo(scoreMax) > 0) {
 					max = i;
 					scoreMax = score;
 				}
-			}
+			}				
 
 			if (n == 4) {
-
 				switch (max) {
 				case 0:
 					logic.down();
@@ -117,7 +151,8 @@ public class IAHard {
 				}
 			}
 
-			return scoreMax;
+			dyn[p1.l * logic.COLUMNS + p1.c][r] = scoreMax;
+			return dyn[p1.l * logic.COLUMNS + p1.c][r];
 		}
 	}
 
@@ -148,25 +183,12 @@ public class IAHard {
 	}
 
 	public void choice1() {
-		logic.gridFF = new boolean[logic.LINES][logic.COLUMNS];
-		int[][] grid = logic.getGrid();
-		potentiel = 0;
-		for (int l = 0; l < logic.LINES; l++) {
-			for (int c = 0; c < logic.COLUMNS; c++) {
-				if (grid[l][c] > 0 && !logic.gridFF[l][c]) {
-					int count = logic.floodfill(l, c, grid[l][c], null);
-					if (count > 1) {
-						potentiel += count * count;
-					}
-				}
-			}
-		}
-
+		dyn = new Solution[(logic.LINES + 1) * logic.COLUMNS][4];
 		choice(4, logic, 0);
 	}
 
 	public void update(float delta) {
-		if (logic.getState() == State.MOVE) {
+		if (logic.getState() == State.MOVE && !logic.paused) {
 			sum += delta;
 			if (sum > 0.2) {
 				sum = 0;

@@ -145,7 +145,6 @@ public class GameVersusScreen implements GameScreen {
 	@Override
 	public void dispose() {
 		Gdx.app.log("Versus", "paused");
-
 	}
 
 	@Override
