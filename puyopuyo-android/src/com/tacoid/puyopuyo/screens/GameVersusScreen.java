@@ -85,27 +85,27 @@ public class GameVersusScreen implements GameScreen {
 	
 	public void setLevel(int level) {
 		if (level == 0) {
-			gameLogic.setSpeed(0.5f);
-			gameLogicIA.setSpeed(0.5f);
+			gameLogic.setInitialSpeed(0.5f);
+			gameLogicIA.setInitialSpeed(0.5f);
 			gameLogic.setNColors(3);
 			gameLogicIA.setNColors(4);
 			ia = new IAEasy(gameLogicIA);
 		} else if (level == 1) {
-			gameLogic.setSpeed(0.5f);
-			gameLogicIA.setSpeed(0.5f);
+			gameLogic.setInitialSpeed(0.5f);
+			gameLogicIA.setInitialSpeed(0.5f);
 			gameLogic.setNColors(4);
 			gameLogicIA.setNColors(4);
 			ia = new IAHard(gameLogicIA);
 		} else if (level == 2) {
-			gameLogic.setSpeed(0.3f);
-			gameLogicIA.setSpeed(0.3f);
+			gameLogic.setInitialSpeed(0.3f);
+			gameLogicIA.setInitialSpeed(0.3f);
 			gameLogic.setNColors(4);
 			gameLogicIA.setNColors(4);
 			gameLogicIA.setCheatMode(true);
 			ia = new IAHard(gameLogicIA);
 		} else if (level == 3) {
-			gameLogic.setSpeed(0.15f);
-			gameLogicIA.setSpeed(0.3f);
+			gameLogic.setInitialSpeed(0.15f);
+			gameLogicIA.setInitialSpeed(0.3f);
 			gameLogic.setNColors(5);
 			gameLogicIA.setNColors(5);
 			gameLogicIA.setCheatMode(true);

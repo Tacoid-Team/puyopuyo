@@ -48,6 +48,7 @@ public class GameLogic {
 	private boolean isIA;
 	private int n_colors = 4;
 	private boolean cheatMode = false;
+	private float initialSpeed = 0.4f;
 
 	public GameLogic() {
 		init();
@@ -59,7 +60,7 @@ public class GameLogic {
 		sum = 0;
 		rot = 0;
 		nextRot = 0;
-		speed = 0.4f;
+		speed = initialSpeed;
 		state = State.MOVE;
 		points = 0;
 		garbage = 0;
@@ -590,6 +591,11 @@ public class GameLogic {
 	
 	public boolean isPaused() {
 		return paused;
+	}
+	
+	public void setInitialSpeed(float speed) {
+		this.initialSpeed = speed;
+		this.speed = speed;
 	}
 	
 	public void setSpeed(float speed) {
