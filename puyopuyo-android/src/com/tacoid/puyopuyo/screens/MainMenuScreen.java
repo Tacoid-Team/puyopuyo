@@ -227,8 +227,8 @@ public class MainMenuScreen implements Screen, InputProcessor {
 			return true;
 		}
 		public void touchUp(float x, float y, int pointer) {
-			GameVersusScreen.getInstance().init();
 			GameVersusScreen.getInstance().setLevel(level);
+			GameVersusScreen.getInstance().init();
 			PuyoPuyo.getInstance().setScreen(GameVersusScreen.getInstance());
 			menu.switchMenu("main");
 		}
