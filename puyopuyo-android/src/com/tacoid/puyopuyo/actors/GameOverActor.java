@@ -106,7 +106,7 @@ public class GameOverActor extends Group {
 		font.setScale(0.8f);
 		
 		this.hide();
-
+		this.visible = true;
 	}
 	
 	public void show(GameOverType type) {
@@ -122,7 +122,7 @@ public class GameOverActor extends Group {
 	}
 	
 	public void hide() {
-		menu.hide();
+		menu.hideInstant();
 		this.visible = false;
 	}
 	

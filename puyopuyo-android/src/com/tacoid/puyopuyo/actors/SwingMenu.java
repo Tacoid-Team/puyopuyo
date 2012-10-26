@@ -156,6 +156,12 @@ public class SwingMenu extends Group{
 		state=State.HIDING;
 	}
 	
+	public void hideInstant() {
+		state=State.HIDING;
+		timeBush = 0.5f;
+		timeButton = -0.1f;
+	}
+	
 	/* Change de menu avec animation */
 	public void switchMenuAnimated(String menu) {
 		this.hide();

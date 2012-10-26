@@ -63,18 +63,16 @@ public class PauseMenu extends Group{
 		this.addActor(menu);
 		
 		this.gameScreen = gameScreen;
-		visible = false;
+		visible = true;
 	}
 	
 	public void show() {
 		gameScreen.gamePause();
-		this.visible = true;
 		menu.show("pause");
 	}
 	
 	public void hide() {
 		gameScreen.gameResume();
-		this.visible = false;
-		menu.hide();
+		menu.hideInstant();
 	}
 }
