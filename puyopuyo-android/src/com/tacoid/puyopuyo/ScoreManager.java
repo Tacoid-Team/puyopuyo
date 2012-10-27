@@ -47,6 +47,7 @@ public class ScoreManager {
 	
 	public void unlockLevel(GameType type, int level) {
 		pref.putBoolean(type.toString()+"_"+level+"_unlocked", true);
+		pref.flush();
 	}
 
 }

@@ -299,6 +299,4 @@ public class MainMenuScreen implements Screen, InputProcessor {
 	public boolean touchUp(int x, int y, int pointer, int button) {
 		return stage.touchUp(x, y, pointer, button);
 	}
-	
-
 }
