@@ -34,4 +34,12 @@ public class GameTimeAttackScreen extends GameScreenPortrait {
 	public GameType getGameType() {
 		return GameType.CHRONO;
 	}
+
+	@Override
+	public int getLevel() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
 }

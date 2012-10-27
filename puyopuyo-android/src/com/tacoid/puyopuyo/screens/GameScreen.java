@@ -21,5 +21,7 @@ public interface GameScreen extends Screen {
 	public GameType getGameType();
 	
 	public int getScore();
+	
+	public int getLevel();
 
 }

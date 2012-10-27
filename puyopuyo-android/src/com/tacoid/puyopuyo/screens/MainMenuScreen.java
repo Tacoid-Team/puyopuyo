@@ -5,14 +5,18 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.tacoid.puyopuyo.MusicPlayer;
 import com.tacoid.puyopuyo.PuyoPuyo;
+import com.tacoid.puyopuyo.ScoreManager;
 import com.tacoid.puyopuyo.SoundPlayer;
 import com.tacoid.puyopuyo.MusicPlayer.MusicType;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
+import com.tacoid.puyopuyo.ScoreManager.GameType;
 import com.tacoid.puyopuyo.SoundPlayer.SoundType;
 import com.tacoid.puyopuyo.actors.BackgroundActor;
 import com.tacoid.puyopuyo.actors.MusicButtonActor;
@@ -215,10 +219,12 @@ public class MainMenuScreen implements Screen, InputProcessor {
 	
 	private class LevelButton extends Button{
 		private int level;
+		private Sprite redCross;
 		
 		public LevelButton(int level, TextureRegion regionUp, TextureRegion regionDown) {
 			super(regionUp, regionDown);
 			this.level = level;
+			redCross = new Sprite(PuyoPuyo.getInstance().atlasPlank.findRegion("redcross"));
 		}
 
 		@Override
@@ -227,10 +233,21 @@ public class MainMenuScreen implements Screen, InputProcessor {
 			return true;
 		}
 		public void touchUp(float x, float y, int pointer) {
-			GameVersusScreen.getInstance().setLevel(level);
-			GameVersusScreen.getInstance().init();
-			PuyoPuyo.getInstance().setScreen(GameVersusScreen.getInstance());
-			menu.switchMenu("main");
+			if(ScoreManager.getInstance().isLevelUnlocked(GameType.VERSUS_IA, level)) {
+				GameVersusScreen.getInstance().setLevel(level);
+				GameVersusScreen.getInstance().init();
+				PuyoPuyo.getInstance().setScreen(GameVersusScreen.getInstance());
+				menu.switchMenu("main");
+			}
+		}
+		
+		public void draw (SpriteBatch batch, float parentAlpha) {
+			super.draw(batch, parentAlpha);
+			if(!ScoreManager.getInstance().isLevelUnlocked(GameType.VERSUS_IA, level)) {
+				redCross.setX(this.x+50);
+				redCross.setY(this.y+30);
+				redCross.draw(batch);
+			}
 		}
 	}
 

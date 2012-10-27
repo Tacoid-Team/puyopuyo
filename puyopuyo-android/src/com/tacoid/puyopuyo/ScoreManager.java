@@ -1,5 +1,7 @@
 package com.tacoid.puyopuyo;
 
+import java.lang.reflect.TypeVariable;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
@@ -34,6 +36,17 @@ public class ScoreManager {
 	public void setScore(GameType type, int score) {
 		pref.putInteger(type.toString(), score);
 		pref.flush();
+	}
+	
+	public boolean isLevelUnlocked(GameType type, int level) {
+		if(level == 0)
+			return true;
+		else 
+			return pref.getBoolean(type.toString()+"_"+level+"_unlocked", false);
+	}
+	
+	public void unlockLevel(GameType type, int level) {
+		pref.putBoolean(type.toString()+"_"+level+"_unlocked", true);
 	}
 
 }

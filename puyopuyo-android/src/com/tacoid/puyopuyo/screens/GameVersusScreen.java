@@ -54,6 +54,8 @@ public class GameVersusScreen implements GameScreen {
 	private GameOverActor gameOver;
 	private boolean gamePaused;
 	
+	private int level;
+	
 	private void addButton(Button button, int x, int y) {
 		stage.addActor(button);
 		button.x = x;
@@ -82,6 +84,7 @@ public class GameVersusScreen implements GameScreen {
 	}
 	
 	public void setLevel(int level) {
+		this.level = level;
 		if (level == 0) {
 			gameLogic.setInitialSpeed(0.5f);
 			gameLogicIA.setInitialSpeed(0.5f);
@@ -109,6 +112,9 @@ public class GameVersusScreen implements GameScreen {
 			gameLogicIA.setCheatMode(true);
 			ia = new IAHard(gameLogicIA);
 		}
+	}
+	public int getLevel() {
+		return level;
 	}
 	
 	protected void initGraphics() {

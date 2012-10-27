@@ -120,6 +120,9 @@ public class GameOverActor extends Group {
 			ScoreManager.getInstance().setScore(gameScreen.getGameType(), gameScreen.getScore());
 			this.newHighScore = true;
 		}
+		if(gameScreen.getGameType() == GameType.VERSUS_IA && type == GameOverType.WIN) {
+			ScoreManager.getInstance().unlockLevel(GameType.VERSUS_IA, gameScreen.getLevel()+1);
+		}
 	}
 	
 	public void hide() {
