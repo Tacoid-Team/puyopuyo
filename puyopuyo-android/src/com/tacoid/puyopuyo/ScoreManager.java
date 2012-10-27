@@ -1,7 +1,5 @@
 package com.tacoid.puyopuyo;
 
-import java.lang.reflect.TypeVariable;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
