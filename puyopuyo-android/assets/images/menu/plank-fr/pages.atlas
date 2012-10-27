@@ -94,6 +94,13 @@ solo
   orig: 253, 160
   offset: 0, 0
   index: -1
+redcross
+  rotate: false
+  xy: 931, 434
+  size: 170, 108
+  orig: 170, 108
+  offset: 0, 0
+  index: -1
 versus
   rotate: false
   xy: 1184, 494
