@@ -71,6 +71,7 @@ public class GameOverActor extends Group {
 	
 	private int HighScore = 0;
 	private boolean newHighScore = false;
+	private boolean newUnlock = false;
 	
 	private BitmapFont font;
 	
@@ -121,7 +122,10 @@ public class GameOverActor extends Group {
 			this.newHighScore = true;
 		}
 		if(gameScreen.getGameType() == GameType.VERSUS_IA && type == GameOverType.WIN) {
-			ScoreManager.getInstance().unlockLevel(GameType.VERSUS_IA, gameScreen.getLevel()+1);
+			if(!ScoreManager.getInstance().isLevelUnlocked(GameType.VERSUS_IA, gameScreen.getLevel()+1)) {
+				ScoreManager.getInstance().unlockLevel(GameType.VERSUS_IA, gameScreen.getLevel()+1);
+				newUnlock = true;
+			}
 		}
 	}
 	
@@ -135,7 +139,7 @@ public class GameOverActor extends Group {
 		super.draw(batch,arg1);
 		if(gameScreen.getOrientation() == ScreenOrientation.LANDSCAPE) {
 			x = 500;
-			y = 400;
+			y = 450;
 		} else {
 			x = 270;
 			y = 500;
@@ -151,6 +155,25 @@ public class GameOverActor extends Group {
 			else {
 				font.draw(batch, i18n.getString("meilleur_score") + String.valueOf(HighScore), x,y-30f);
 			}
+		} else if(newUnlock) {
+			String levelname;
+			font.setScale(0.8f);
+			font.setColor(1f, 1f, 1f, 1f);
+			switch(gameScreen.getLevel()+1) {
+			case 1:
+				levelname=i18n.getString("moyen");
+				break;
+			case 2:
+				levelname=i18n.getString("difficile");
+				break;
+			case 3:
+				levelname=i18n.getString("tres_difficile");
+				break;
+			default:
+				levelname="Invalid level";
+			}
+			String message = i18n.getString("niveau") + " " + levelname + " " + i18n.getString("deverrouille");
+			font.draw(batch, message, x-font.getBounds(message).width/2 ,y);
 		}
 
 		switch(type) {

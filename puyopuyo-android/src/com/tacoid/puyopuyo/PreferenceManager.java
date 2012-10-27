@@ -39,7 +39,6 @@ public class PreferenceManager {
 	}
 	
 	void setPreference(Preference pref, String value) {
-		System.out.println("Writing preference ("+pref.toString()+"="+value+")");
 		prefs.putString(pref.toString(), value);
 		prefs.flush();
 	}
@@ -49,7 +48,6 @@ public class PreferenceManager {
 	}
 	
 	String getPreference(Preference pref) {
-		System.out.println("Reading preference ("+pref.toString()+"="+prefs.getString(pref.toString())+")");
 		return prefs.getString(pref.toString());
 	}
 }
