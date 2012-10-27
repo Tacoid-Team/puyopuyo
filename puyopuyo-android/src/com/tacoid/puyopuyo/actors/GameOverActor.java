@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.tacoid.puyopuyo.I18nManager;
 import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.ScoreManager;
+import com.tacoid.puyopuyo.ScoreManager.GameType;
 import com.tacoid.puyopuyo.SoundPlayer;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.SoundPlayer.SoundType;
@@ -115,7 +116,7 @@ public class GameOverActor extends Group {
 		this.visible = true;
 		this.HighScore = ScoreManager.getInstance().getScore(gameScreen.getGameType());
 		this.newHighScore = false;
-		if(HighScore < gameScreen.getScore()) {
+		if(HighScore < gameScreen.getScore() && gameScreen.getGameType() != GameType.VERSUS_IA) {
 			ScoreManager.getInstance().setScore(gameScreen.getGameType(), gameScreen.getScore());
 			this.newHighScore = true;
 		}
@@ -137,12 +138,12 @@ public class GameOverActor extends Group {
 			y = 500;
 		}
 		
-		if (gameScreen.getScore() > 0) {
+		if (gameScreen.getGameType() != GameType.VERSUS_IA) {
 			font.setScale(0.8f);
 			font.setColor(1f, 1f, 1f, 1f);
 			font.draw(batch, i18n.getString("score") + String.valueOf(gameScreen.getScore()), x+font.getBounds("Score : " + String.valueOf(gameScreen.getScore())).width/2,y);
 			if(newHighScore) {
-				font.draw(batch, i18n.getString("nouveau_record"), x,y-30f);
+				font.draw(batch, i18n.getString("nouveau_record"), x, y - 30f);
 			}
 			else {
 				font.draw(batch, i18n.getString("meilleur_score") + String.valueOf(HighScore), x,y-30f);
