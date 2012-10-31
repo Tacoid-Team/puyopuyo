@@ -1,6 +1,7 @@
 package com.tacoid.puyopuyo.actors;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.puyopuyo.PuyoPuyo;
@@ -16,6 +17,8 @@ public class GridActor extends Actor {
 	private TextureRegion[] boules_fall = new TextureRegion[6];
 	private TextureRegion[] boules_h = new TextureRegion[6];
 	private TextureRegion[] boules_v = new TextureRegion[6];
+	private TextureRegion next_nuisance_big;
+	private TextureRegion next_nuisance_small;
 	private PuyoPuyo puyopuyo;
 	private GameLogic logic;
 	private int origX;
@@ -73,11 +76,28 @@ public class GridActor extends Actor {
 		boules_v[3] = puyopuyo.atlasPuyo.findRegion("blue_vertical-" + sizePuyo);
 		boules_v[4] = puyopuyo.atlasPuyo.findRegion("black_vertical-" + sizePuyo);
 		
+		next_nuisance_big = puyopuyo.atlasPuyo.findRegion("next_nuisance-" + ((sizePuyo * 3) / 4));
+		next_nuisance_small = puyopuyo.atlasPuyo.findRegion("next_nuisance-" + (sizePuyo / 2));
+		
 		white = puyopuyo.atlasPuyo.findRegion("white-" + sizePuyo);
 	}
 
 	@Override
 	public void draw(SpriteBatch batch, float alpha) {
+		int garbage = logic.garbage;
+		int offset = 0;
+		
+		while (garbage >= logic.COLUMNS) {
+			batch.draw(next_nuisance_big, origX + offset, origY + 5 + logic.LINES * size - size / 4);
+			offset += size * 3 / 4;
+			garbage -= logic.COLUMNS;
+		}
+		while (garbage > 0) {
+			batch.draw(next_nuisance_small, origX + offset, origY + 5 + logic.LINES * size - size / 4);
+			offset += size / 2;
+			garbage--;
+		}
+		
 		int[][] grid = logic.getGrid();
 		
 		for (int l = 0; l < logic.LINES; l++) {

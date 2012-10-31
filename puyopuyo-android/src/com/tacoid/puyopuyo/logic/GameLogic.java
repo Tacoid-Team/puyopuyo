@@ -40,7 +40,7 @@ public class GameLogic {
 	private boolean isDown = false;
 	private GameLogic opponent = null;
 	private int points = 0;
-	private int garbage = 0;
+	public int garbage = 0;
 	private float leftoverNuisance = 0f;
 	
 	protected boolean paused = false;

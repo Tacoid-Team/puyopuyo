@@ -24,35 +24,35 @@ gameover
   orig: 655, 200
   offset: 0, 0
   index: -1
-gagne
+perdu
   rotate: false
   xy: 0, 160
   size: 512, 256
   orig: 512, 256
   offset: 0, 0
   index: -1
-perdu
+gagne
   rotate: false
   xy: 512, 160
   size: 512, 256
   orig: 512, 256
   offset: 0, 0
   index: -1
-chrono
+continuer
   rotate: false
   xy: 0, 0
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-continuer
+versus
   rotate: false
   xy: 931, 542
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-easy
+chrono
   rotate: false
   xy: 253, 0
   size: 253, 160
@@ -66,14 +66,14 @@ hard
   orig: 253, 160
   offset: 0, 0
   index: -1
-medium
+easy
   rotate: false
   xy: 759, 0
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-quitter
+medium
   rotate: false
   xy: 1280, 654
   size: 253, 160
@@ -87,7 +87,7 @@ rejouer
   orig: 253, 160
   offset: 0, 0
   index: -1
-solo
+veryhard
   rotate: false
   xy: 1786, 654
   size: 253, 160
@@ -101,14 +101,14 @@ redcross
   orig: 170, 108
   offset: 0, 0
   index: -1
-versus
+solo
   rotate: false
   xy: 1184, 494
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-veryhard
+quitter
   rotate: false
   xy: 1437, 494
   size: 253, 160
