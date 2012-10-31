@@ -41,8 +41,6 @@ public class Controller implements InputProcessor {
 		case Keys.BACK:
 			PuyoPuyo.getInstance().setScreen(MainMenuScreen.getInstance());
 			break;
-		default:
-			System.out.println("puyopuyo " + key);
 		}
 		return false;
 	}
