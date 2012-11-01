@@ -17,7 +17,8 @@ public class SoundPlayer {
 		TOUCH_MENU,
 		GARBAGE,
 		WIN,
-		LOSE
+		LOSE,
+		NUISANCE
 	}
 	
 	private boolean muted = false;
@@ -34,6 +35,7 @@ public class SoundPlayer {
 		sounds.put(SoundType.GARBAGE, PuyoPuyo.getInstance().manager.get("sounds/bleep.wav", Sound.class));
 		sounds.put(SoundType.WIN, PuyoPuyo.getInstance().manager.get("sounds/bleep.wav", Sound.class));
 		sounds.put(SoundType.LOSE, PuyoPuyo.getInstance().manager.get("sounds/bleep.wav", Sound.class));
+		sounds.put(SoundType.NUISANCE, PuyoPuyo.getInstance().manager.get("sounds/nuisance.wav", Sound.class));
 		
 		if(!PreferenceManager.getInstance().isPreferenceDefined(Preference.SOUND_STATE)) {
 			PreferenceManager.getInstance().setPreference(Preference.SOUND_STATE, "on");

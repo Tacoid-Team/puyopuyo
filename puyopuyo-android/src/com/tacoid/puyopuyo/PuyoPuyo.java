@@ -98,6 +98,7 @@ public class PuyoPuyo extends Game {
 		manager.load("sounds/bleep2.wav", Sound.class);
 		manager.load("sounds/explode.wav", Sound.class);
 		manager.load("sounds/click.wav", Sound.class);
+		manager.load("sounds/nuisance.wav", Sound.class);
 		
 		manager.load("sounds/AnoyingMusic.mp3", Music.class);
 		

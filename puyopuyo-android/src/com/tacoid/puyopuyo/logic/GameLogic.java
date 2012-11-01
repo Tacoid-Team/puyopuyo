@@ -474,8 +474,16 @@ public class GameLogic {
 					f.update(delta);
 				}
 				if (sum > 0.5) {
+					boolean playGarbage = false;
 					for (Falling f : fallings) {
 						grid[f.getEnd().l][f.getEnd().c] = f.getEnd().coul;
+						if(f.getEnd().coul == GARBAGE) {
+							playGarbage = true;
+						}
+					}
+					
+					if(playGarbage == true) {
+						SoundPlayer.getInstance().playSound(SoundType.NUISANCE, 0.5f, true);
 					}
 					fallings = null;
 					first = true;
@@ -517,6 +525,7 @@ public class GameLogic {
 
 	private void generateGarbage() {
 		int l = LINES;
+		
 		while (garbage >= COLUMNS) {
 			for (int c = 0; c < COLUMNS; c++) {
 				grid[l][c] = GARBAGE;
