@@ -61,7 +61,7 @@ public class GridActor extends Actor {
 		boules_fall[2] = puyopuyo.atlasPuyo.findRegion("red_fall-" + sizePuyo);
 		boules_fall[3] = puyopuyo.atlasPuyo.findRegion("blue_fall-" + sizePuyo);
 		boules_fall[4] = puyopuyo.atlasPuyo.findRegion("ninja_fall-" + sizePuyo);
-		boules_fall[5] = puyopuyo.atlasPuyo.findRegion("nuisance-" + sizePuyo);
+		boules_fall[5] = puyopuyo.atlasPuyo.findRegion("nuisance_fall-" + sizePuyo);
 		
 		boules_h[0] = puyopuyo.atlasPuyo.findRegion("green_horizontal-" + sizePuyo);
 		boules_h[1] = puyopuyo.atlasPuyo.findRegion("yellow_horizontal-" + sizePuyo);
