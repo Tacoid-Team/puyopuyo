@@ -477,7 +477,7 @@ public class GameLogic {
 					boolean playGarbage = false;
 					for (Falling f : fallings) {
 						grid[f.getEnd().l][f.getEnd().c] = f.getEnd().coul;
-						if(f.getEnd().coul == GARBAGE) {
+						if(f.getEnd().coul == GARBAGE && f.getInitial().l >= LINES) {
 							playGarbage = true;
 						}
 					}

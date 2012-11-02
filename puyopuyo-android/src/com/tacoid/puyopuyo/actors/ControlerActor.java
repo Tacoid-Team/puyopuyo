@@ -27,14 +27,14 @@ public class ControlerActor extends Group {
 		case LANDSCAPE:
 			addActor(new MoveButton(MoveType.LEFT, logic, 20, 260, leftRegion, leftDownRegion));
 			addActor(new MoveButton(MoveType.RIGHT, logic, 145, 200, rightRegion, rightDownRegion));
-			addActor(new MoveButton(MoveType.DOWN, logic, 80, 40, downRegion, downDownRegion));
+			addActor(new MoveButton(MoveType.DOWN, logic, 80, 50, downRegion, downDownRegion));
 			addActor(new MoveButton(MoveType.ROT_LEFT, logic, 1000, 200, rotleftRegion, rotleftDownRegion));
 			addActor(new MoveButton(MoveType.ROT_RIGHT, logic, 1125, 260, rotrightRegion, rotrightDownRegion));
 			break;
 		case PORTRAIT:
-			addActor(new MoveButton(MoveType.LEFT, logic, 20, 200, leftRegion, leftDownRegion));
-			addActor(new MoveButton(MoveType.RIGHT, logic, 145, 140, rightRegion, rightDownRegion));
-			addActor(new MoveButton(MoveType.DOWN, logic, 80, 20, downRegion, downDownRegion));
+			addActor(new MoveButton(MoveType.LEFT, logic, 15, 300, leftRegion, leftDownRegion));
+			addActor(new MoveButton(MoveType.RIGHT, logic, 140, 240, rightRegion, rightDownRegion));
+			addActor(new MoveButton(MoveType.DOWN, logic, 75, 100, downRegion, downDownRegion));
 			addActor(new MoveButton(MoveType.ROT_LEFT, logic, 488, 100, rotleftRegion, rotleftDownRegion));
 			addActor(new MoveButton(MoveType.ROT_RIGHT, logic, 613, 160, rotrightRegion, rotrightDownRegion));
 			break;
