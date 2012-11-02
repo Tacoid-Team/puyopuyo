@@ -146,7 +146,7 @@ public class SwingMenu extends Group{
 		
 		state=State.SHOWING;
 		timeBush = 0.5f;
-		timeButton = -0.1f;
+		timeButton = -0.2f;
 		this.touchable =true;
 		this.visible = true;
 		switching = false;
@@ -159,7 +159,7 @@ public class SwingMenu extends Group{
 	public void hideInstant() {
 		state=State.HIDING;
 		timeBush = 0.5f;
-		timeButton = -0.1f;
+		timeButton = -0.2f;
 	}
 	
 	/* Change de menu avec animation */
