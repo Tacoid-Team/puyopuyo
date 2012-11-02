@@ -390,7 +390,7 @@ public class GameLogic {
 			}
 		}
 		if(!isIA && !remove.isEmpty()) {
-			SoundPlayer.getInstance().playSound(SoundType.EXPLODE, 1.0f, true);
+			SoundPlayer.getInstance().playSound(SoundType.EXPLODE, 1.0f, 0.8f + (combo/5.0f));
 		}
 		return remove;
 	}

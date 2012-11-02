@@ -66,6 +66,15 @@ public class SoundPlayer {
 		
 	}
 	
+	public void playSound(SoundType sound, float volume, float pitch) {
+		Sound s = sounds.get(sound);
+		long id;
+		
+		id = s.play(muted?0:volume);
+		s.setPitch(id, pitch);
+		
+	}
+	
 	public void mute() {
 		muted = true;
 		PreferenceManager.getInstance().setPreference(Preference.SOUND_STATE, "off");
