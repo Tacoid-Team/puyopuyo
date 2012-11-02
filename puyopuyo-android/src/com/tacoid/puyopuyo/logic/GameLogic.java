@@ -36,7 +36,7 @@ public class GameLogic {
 
 	private boolean first = true;
 	private ArrayList<Explosion> removes;
-	private int combo = 1;
+	private int combo = 0;
 	private boolean isDown = false;
 	private GameLogic opponent = null;
 	private int points = 0;
@@ -98,7 +98,7 @@ public class GameLogic {
 		nextRot = logic.nextRot;
 
 		state = logic.state;
-		combo = 1;
+		combo = 0;
 	}
 
 	private int cheatColor() {
@@ -390,7 +390,7 @@ public class GameLogic {
 			}
 		}
 		if(!isIA && !remove.isEmpty()) {
-			SoundPlayer.getInstance().playSound(SoundType.EXPLODE, 1.0f, 0.8f + (combo/5.0f));
+			SoundPlayer.getInstance().playSound(SoundType.EXPLODE, 1.0f, 0.8f + ((combo + 1)/100.0f));
 		}
 		return remove;
 	}
@@ -414,7 +414,7 @@ public class GameLogic {
 	public int descendreEtPose() {
 		pose();
 		points = 0;
-		combo = 1;
+		combo = 0;
 		do {
 			fallings = gravity();
 			for (Falling f : fallings) {
@@ -423,9 +423,12 @@ public class GameLogic {
 
 			removes = resolve();
 			for (Explosion r : removes) {
-				points += r.getNbPuyos() * 10 * (r.getNbPuyos() - 3) * combo;
+				points += r.getNbPuyos() * 10 * (r.getNbPuyos() - 3 + combo);
 			}
-			combo *= 2;
+			if (combo == 0)
+				combo = 8;
+			else
+				combo *= 2;
 		} while (removes.size() > 0);
 		return points;
 	}
@@ -495,9 +498,10 @@ public class GameLogic {
 				if (first) {
 					removes = resolve();
 					for (Explosion r : removes) {
-						int p = r.getNbPuyos() * 10 * (r.getNbPuyos() - 3) * combo;
+						int p = r.getNbPuyos() * 10 * (r.getNbPuyos() - 3 + combo);
+						System.out.println(p);
 						if (opponent != null) {
-							float nuisance = p / 50.0f + leftoverNuisance;
+							float nuisance = p / 70.0f + leftoverNuisance;
 							leftoverNuisance = nuisance - (int) nuisance;
 							opponent.sendGarbage((int) nuisance);
 						}
@@ -509,12 +513,15 @@ public class GameLogic {
 					if (removes.size() > 0) {
 						state = State.GRAVITY;
 						first = true;
-						combo *= 2;
+						if (combo == 0)
+							combo = 8;
+						else
+							combo *= 2;
 					} else {
 						state = State.GARBAGE;
 						score += points;
 						points = 0;
-						combo = 1;
+						combo = 0;
 					}
 					sum = 0f;
 				}
