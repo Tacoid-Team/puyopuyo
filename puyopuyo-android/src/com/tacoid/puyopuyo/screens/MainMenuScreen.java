@@ -33,6 +33,8 @@ public class MainMenuScreen implements Screen, InputProcessor {
 	
 	private MainMenuScreen() {
 		init();
+		MusicPlayer.getInstance().setVolume(0.8f);
+		MusicPlayer.getInstance().playMusic(MusicType.MAIN, true);
 	}
 	
 	private void addButton(Button button, int x, int y) {
@@ -41,7 +43,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		button.y = y;
 	}
 	
-	private void init() {
+	void init() {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
 		
@@ -95,9 +97,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 
 		menu.show("main");
 		
-		MusicPlayer.getInstance().setVolume(0.8f);
-		MusicPlayer.getInstance().playMusic(MusicType.MAIN, true);
-		
+	
 	}
 	
 	static public MainMenuScreen getInstance()

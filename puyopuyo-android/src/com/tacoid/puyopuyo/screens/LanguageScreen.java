@@ -39,6 +39,7 @@ public class LanguageScreen implements Screen {
 		public void click(Actor arg0, float arg1, float arg2) {
 			I18nManager.getInstance().setLanguage(lang);
 			puyopuyo.loadLocalizedAssets();
+			MainMenuScreen.getInstance().init();
 			puyopuyo.setScreen(MainMenuScreen.getInstance());
 		}
 		
