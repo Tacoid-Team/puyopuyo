@@ -15,7 +15,7 @@ public class GameSoloScreen extends GameScreenPortrait {
 	
 	protected void initGraphics() {
 		super.initGraphics();
-		LevelActor levelActor = new LevelActor(this, 80, 830);
+		LevelActor levelActor = new LevelActor(this, 140, 830);
 		stage.addActor(levelActor);
 	}
 

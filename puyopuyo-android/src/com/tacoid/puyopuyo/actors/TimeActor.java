@@ -12,25 +12,29 @@ public class TimeActor extends Actor {
 	private BitmapFont font;
 	private int origX, origY;
 	private GameTimeAttackScreen screen;
+	private String timeText;
+	private float offset;
 
 	public TimeActor(GameTimeAttackScreen screen, int origX, int origY) {
 		this.screen = screen;
 		this.origX = origX;
 		this.origY = origY;
-		// A commenter pour le porting gwt
-		
 		
 		font = PuyoPuyo.getInstance().manager.get("images/font_score.fnt", BitmapFont.class);
 		font.setScale(0.65f);
 		font.setColor(1f, 1f, 1f, 1f);
+		
+		this.timeText = I18nManager.getInstance().getString("temps_restant");
+		this.offset = font.getBounds(timeText + "XXX").width / 2;
+		
 	}
 
 	@Override
 	public void draw(SpriteBatch batch, float alpha) {
-		String time = I18nManager.getInstance().getString("temps_restant") + String.valueOf((int)screen.getTimeLeft());
+		String time = timeText + String.valueOf((int)screen.getTimeLeft());
 		font.setScale(0.65f);
 		font.setColor(1f, 1f, 1f, 1f);
-		font.draw(batch, time, origX, origY);
+		font.draw(batch, time, origX - offset, origY);
 	}
 
 	@Override

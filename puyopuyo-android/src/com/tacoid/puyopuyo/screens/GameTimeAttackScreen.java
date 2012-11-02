@@ -10,7 +10,7 @@ public class GameTimeAttackScreen extends GameScreenPortrait {
 
 	protected void initGraphics() {
 		super.initGraphics();
-		TimeActor timeActor = new TimeActor(this, 30, 830);
+		TimeActor timeActor = new TimeActor(this, 140, 830);
 		stage.addActor(timeActor);
 	}
 

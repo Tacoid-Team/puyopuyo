@@ -27,7 +27,7 @@ public class LevelActor extends Actor {
 		String level = I18nManager.getInstance().getString("niveau")  + String.valueOf(screen.getLevel());
 		font.setColor(1f, 1f, 1f, 1f);
 		font.setScale(1.0f);
-		font.draw(batch, level, origX, origY);
+		font.draw(batch, level, origX - font.getBounds(level).width / 2, origY);
 	}
 
 	@Override
@@ -35,6 +35,5 @@ public class LevelActor extends Actor {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 	
 }
