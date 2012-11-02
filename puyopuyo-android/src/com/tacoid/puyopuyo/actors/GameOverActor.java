@@ -124,7 +124,7 @@ public class GameOverActor extends Group {
 			this.newHighScore = true;
 		}
 		if(gameScreen.getGameType() == GameType.VERSUS_IA && type == GameOverType.WIN) {
-			if(!ScoreManager.getInstance().isLevelUnlocked(GameType.VERSUS_IA, gameScreen.getLevel()+1)) {
+			if(gameScreen.getLevel()<3 && !ScoreManager.getInstance().isLevelUnlocked(GameType.VERSUS_IA, gameScreen.getLevel()+1)) {
 				ScoreManager.getInstance().unlockLevel(GameType.VERSUS_IA, gameScreen.getLevel()+1);
 				newUnlock = true;
 			}
