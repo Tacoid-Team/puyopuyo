@@ -45,21 +45,21 @@ rejouer
   orig: 254, 160
   offset: 0, 0
   index: -1
-chrono
+continuer
   rotate: false
   xy: 358, 123
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-continuer
+versus
   rotate: false
   xy: 973, 551
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-easy
+chrono
   rotate: false
   xy: 1280, 663
   size: 253, 160
@@ -73,21 +73,21 @@ hard
   orig: 253, 160
   offset: 0, 0
   index: -1
-medium
+easy
   rotate: false
   xy: 1226, 503
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-quitter
+medium
   rotate: false
   xy: 1479, 503
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-redcross
+veryhard
   rotate: false
   xy: 1786, 663
   size: 253, 160
@@ -101,17 +101,17 @@ solo
   orig: 253, 160
   offset: 0, 0
   index: -1
-versus
+quitter
   rotate: false
   xy: 719, 391
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-veryhard
+redcross
   rotate: false
-  xy: 972, 391
-  size: 253, 160
-  orig: 253, 160
+  xy: 358, 15
+  size: 170, 108
+  orig: 170, 108
   offset: 0, 0
   index: -1
