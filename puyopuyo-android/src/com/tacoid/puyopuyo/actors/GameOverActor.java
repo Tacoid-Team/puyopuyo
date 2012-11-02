@@ -38,6 +38,7 @@ public class GameOverActor extends Group {
 		}
 		
 		public void touchUp(float x, float y, int pointer) {
+			newUnlock = false;
 			PuyoPuyo.getInstance().setScreen(MainMenuScreen.getInstance());
 		}
 		
@@ -57,6 +58,7 @@ public class GameOverActor extends Group {
 		
 		public void touchUp(float x, float y, int pointer) {
 			gameScreen.init();
+			newUnlock = false;
 			hide();
 		}
 		
