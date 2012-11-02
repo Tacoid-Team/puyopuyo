@@ -167,7 +167,7 @@ public class GameLogic {
 	public void rotateRight() {
 		if (state == State.MOVE) {
 			if(!isIA) {
-				SoundPlayer.getInstance().playSound(SoundType.ROTATE, 0.8f, true);
+				SoundPlayer.getInstance().playSound(SoundType.ROTATE, 0.5f, true);
 			}
 			Coord newPiece[] = new Coord[2];
 			newPiece[0] = new Coord(piece[0].l, piece[0].c, piece[0].coul);
@@ -223,7 +223,7 @@ public class GameLogic {
 	public void rotateLeft() {
 		if (state == State.MOVE) {
 			if(!isIA) {
-				SoundPlayer.getInstance().playSound(SoundType.ROTATE, 0.8f, true);
+				SoundPlayer.getInstance().playSound(SoundType.ROTATE, 0.5f, true);
 			}
 			Coord newPiece[] = new Coord[2];
 			newPiece[0] = new Coord(piece[0].l, piece[0].c, piece[0].coul);
@@ -295,7 +295,7 @@ public class GameLogic {
 			}
 			if (ok) {
 				if(!isIA) {
-					SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.5f, true);
+					SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.3f, true);
 				}
 				for (int i = 0; i < 2; i++) {
 					piece[i].c--;
@@ -315,7 +315,7 @@ public class GameLogic {
 			}
 			if (ok) {
 				if(!isIA) {
-					SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.5f, true);
+					SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.3f, true);
 				}
 				for (int i = 0; i < 2; i++) {
 					piece[i].c++;
