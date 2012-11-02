@@ -280,7 +280,7 @@ public class GameLogic {
 		if (state == State.MOVE) {
 			descendre();
 			if(!isIA) {
-				SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.5f, true);
+				SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.2f, true);
 			}
 		}
 	}
@@ -295,7 +295,7 @@ public class GameLogic {
 			}
 			if (ok) {
 				if(!isIA) {
-					SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.3f, true);
+					SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.2f, true);
 				}
 				for (int i = 0; i < 2; i++) {
 					piece[i].c--;
@@ -315,7 +315,7 @@ public class GameLogic {
 			}
 			if (ok) {
 				if(!isIA) {
-					SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.3f, true);
+					SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.2f, true);
 				}
 				for (int i = 0; i < 2; i++) {
 					piece[i].c++;
@@ -390,7 +390,7 @@ public class GameLogic {
 			}
 		}
 		if(!isIA && !remove.isEmpty()) {
-			SoundPlayer.getInstance().playSound(SoundType.EXPLODE, 1.0f, 0.8f + ((combo + 1)/100.0f));
+			SoundPlayer.getInstance().playSound(SoundType.EXPLODE, 1.0f, 0.8f + combo / 30.0f);
 		}
 		return remove;
 	}
