@@ -66,7 +66,6 @@ public class GameSoloScreen extends GameScreenPortrait {
 
 	@Override
 	public void init() {
-		super.init();
 		level = 1;
 		timeLevel = 0;
 		timeGarbage = 0;
@@ -74,6 +73,7 @@ public class GameSoloScreen extends GameScreenPortrait {
 		n_colors = 3;
 		gameLogic.setSpeed(speed);
 		gameLogic.setNColors(n_colors);
+		super.init();
 	}
 
 	public static GameSoloScreen getInstance() {
