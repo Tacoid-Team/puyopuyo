@@ -18,6 +18,9 @@ public class Controller implements InputProcessor {
 	
 	@Override
 	public boolean keyDown(int key) {
+		if (key != Keys.BACK && gameLogic.isPaused()) {
+			return false;
+		}
 		switch (key) {
 		case Keys.LEFT:
 			gameLogic.moveLeft();
