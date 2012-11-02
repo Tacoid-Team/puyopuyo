@@ -1,0 +1,117 @@
+
+pages.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+foreground
+  rotate: false
+  xy: 0, 711
+  size: 1280, 312
+  orig: 1280, 312
+  offset: 0, 0
+  index: -1
+perdu
+  rotate: false
+  xy: 0, 496
+  size: 719, 215
+  orig: 719, 215
+  offset: 0, 0
+  index: -1
+gameover
+  rotate: false
+  xy: 1280, 823
+  size: 655, 200
+  orig: 655, 200
+  offset: 0, 0
+  index: -1
+gagne
+  rotate: false
+  xy: 0, 283
+  size: 613, 213
+  orig: 613, 213
+  offset: 0, 0
+  index: -1
+touchtostart
+  rotate: false
+  xy: 0, 0
+  size: 358, 283
+  orig: 358, 283
+  offset: 0, 0
+  index: -1
+rejouer
+  rotate: false
+  xy: 719, 551
+  size: 254, 160
+  orig: 254, 160
+  offset: 0, 0
+  index: -1
+chrono
+  rotate: false
+  xy: 358, 123
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+continuer
+  rotate: false
+  xy: 973, 551
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+easy
+  rotate: false
+  xy: 1280, 663
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+hard
+  rotate: false
+  xy: 1533, 663
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+medium
+  rotate: false
+  xy: 1226, 503
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+quitter
+  rotate: false
+  xy: 1479, 503
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+redcross
+  rotate: false
+  xy: 1786, 663
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+solo
+  rotate: false
+  xy: 1732, 503
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+versus
+  rotate: false
+  xy: 719, 391
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+veryhard
+  rotate: false
+  xy: 972, 391
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1

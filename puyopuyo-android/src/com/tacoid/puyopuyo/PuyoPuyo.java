@@ -105,7 +105,8 @@ public class PuyoPuyo extends Game {
 	}
 
 	public void loadLocalizedAssets() {
-		atlasPlank = new TextureAtlas(Gdx.files.internal("images/menu/plank-fr/pages.atlas"));
+	
+		atlasPlank = new TextureAtlas(Gdx.files.internal("images/menu/plank-" + I18nManager.getInstance().getLanguage().toString() + "/pages.atlas"));
 	}
 
 	public void setDesktopMode(boolean b) {

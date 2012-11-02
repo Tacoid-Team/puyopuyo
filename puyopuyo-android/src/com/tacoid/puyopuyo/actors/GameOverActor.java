@@ -101,7 +101,7 @@ public class GameOverActor extends Group {
 		
 		winSprite.setPosition(x-winSprite.getWidth()/2, y-winSprite.getHeight()/2);
 		loseSprite.setPosition(x-loseSprite.getWidth()/2, y-loseSprite.getHeight()/2);
-		gameOverSprite.setPosition(x-loseSprite.getWidth()/2 - 64, y-loseSprite.getHeight()/2);
+		gameOverSprite.setPosition(x-gameOverSprite.getWidth()/2, y-gameOverSprite.getHeight()/2);
 		
 		gameScreen = gs;
 		this.type = GameOverType.GAMEOVER;
@@ -155,7 +155,7 @@ public class GameOverActor extends Group {
 				font.draw(batch, i18n.getString("nouveau_record"), x, y - 30f);
 			}
 			else {
-				font.draw(batch, i18n.getString("meilleur_score") + String.valueOf(HighScore), x,y-30f);
+				font.draw(batch, i18n.getString("record") + String.valueOf(HighScore), x,y-30f);
 			}
 		} else if(newUnlock) {
 			String levelname;
