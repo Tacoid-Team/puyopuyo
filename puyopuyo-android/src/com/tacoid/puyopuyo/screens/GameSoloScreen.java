@@ -13,7 +13,7 @@ public class GameSoloScreen extends GameScreenPortrait {
 	private int n_colors;
 	private float timeGarbage;
 	
-	protected void initGraphics() {
+	public void initGraphics() {
 		super.initGraphics();
 		LevelActor levelActor = new LevelActor(this, 140, 830);
 		stage.addActor(levelActor);

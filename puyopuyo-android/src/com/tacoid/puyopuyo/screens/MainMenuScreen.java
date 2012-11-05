@@ -43,7 +43,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		button.y = y;
 	}
 	
-	void init() {
+	public void init() {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
 		

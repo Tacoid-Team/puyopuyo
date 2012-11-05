@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.tacoid.puyopuyo.PreferenceManager.Preference;
+import com.tacoid.puyopuyo.screens.GameSoloScreen;
+import com.tacoid.puyopuyo.screens.GameTimeAttackScreen;
+import com.tacoid.puyopuyo.screens.GameVersusScreen;
 import com.tacoid.puyopuyo.screens.LanguageScreen;
 import com.tacoid.puyopuyo.screens.LoadingScreen;
 import com.tacoid.puyopuyo.screens.MainMenuScreen;
@@ -114,6 +117,10 @@ public class PuyoPuyo extends Game {
 
 	public void loadLocalizedAssets() {
 		atlasPlank = new TextureAtlas(Gdx.files.internal("images/menu/plank-" + I18nManager.getInstance().getLanguage().toString() + "/pages.atlas"));
+		MainMenuScreen.getInstance().init();
+		GameVersusScreen.getInstance().initGraphics();
+		GameSoloScreen.getInstance().initGraphics();
+		GameTimeAttackScreen.getInstance().initGraphics();
 	}
 
 	public void setDesktopMode(boolean b) {

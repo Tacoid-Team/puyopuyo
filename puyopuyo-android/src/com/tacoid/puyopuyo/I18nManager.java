@@ -73,7 +73,7 @@ public class I18nManager {
 	public void setLanguage(String preference) throws Exception {
 		for(Language l : Language.values()) {
 			if(l.string.equals(preference)) {
-				lang = l;
+				setLanguage(l);
 				return;
 			}
 		}

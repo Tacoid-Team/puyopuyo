@@ -42,10 +42,6 @@ public class LanguageScreen implements Screen {
 			I18nManager.getInstance().setLanguage(lang);
 			PreferenceManager.getInstance().setPreference(Preference.LANGUAGE,lang.toString());
 			puyopuyo.loadLocalizedAssets();
-			MainMenuScreen.getInstance().init();
-			GameVersusScreen.getInstance().initGraphics();
-			GameSoloScreen.getInstance().initGraphics();
-			GameTimeAttackScreen.getInstance().initGraphics();
 			puyopuyo.setScreen(MainMenuScreen.getInstance());
 		}
 		

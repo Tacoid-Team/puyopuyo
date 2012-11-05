@@ -117,7 +117,7 @@ public class GameVersusScreen implements GameScreen {
 		return level;
 	}
 	
-	protected void initGraphics() {
+	public void initGraphics() {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
 		controller = new Controller(gameLogic, stage);
