@@ -147,7 +147,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 			// Update model
 			gameLogic.update(delta);
 			if(gameEnded()) {
-				gameOver.show(GameOverType.GAMEOVER);
+				gameOver();
 			}
 		} else {
 			//Gdx.input.setInputProcessor(null);
@@ -201,6 +201,12 @@ public abstract class GameScreenPortrait implements GameScreen {
 		elapsedTime = 0;
 	}
 
+	private void gameOver() {
+		controllerActor.touchable = false;
+		pauseButton.touchable = false;
+		gameOver.show(GameOverType.GAMEOVER);
+	}
+	
 	@Override
 	public void gamePause() {
 		gamePaused = true;

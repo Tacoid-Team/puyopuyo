@@ -209,13 +209,7 @@ public class GameVersusScreen implements GameScreen {
 			ia.update(delta);
 			if (gameLogic.getState() == State.LOST
 					|| gameLogicIA.getState() == State.LOST) {
-				gridActor.visible = false;
-				gridActorIA.visible = false;
-				if(gameLogic.getState() == State.LOST){
-					gameOver.show(GameOverType.LOSE);
-				} else {
-					gameOver.show(GameOverType.WIN);
-				}
+				gameOver();
 			}
 		}
 
@@ -253,6 +247,16 @@ public class GameVersusScreen implements GameScreen {
 		startActor.show();
 	}
 
+	private void gameOver() {
+		if(gameLogic.getState() == State.LOST){
+			gameOver.show(GameOverType.LOSE);
+		} else {
+			gameOver.show(GameOverType.WIN);
+		}
+		controllerActor.touchable = false;
+		pauseButton.touchable = false;
+	}
+	
 	@Override
 	public void gamePause() {
 		gamePaused = true;
