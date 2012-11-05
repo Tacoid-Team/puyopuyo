@@ -48,12 +48,13 @@ public class PuyoPuyo extends Game {
 		/* Si update renvoi true, c'est que tout est chargé, on a plus qu'à afficher le screen qu'on veut. Sinon, on affiche le screen de chargement */
 		if (manager.update()) {
 			if (getScreen() == null || justLaunched) {
-				if(PreferenceManager.getInstance().getPreference(Preference.LANGUAGE).equals("UNDEFINED")) {
-					setScreen(LanguageScreen.getInstance());
-				} else {
-					I18nManager.getInstance().setLanguage(PreferenceManager.getInstance().getPreference(Preference.LANGUAGE));
+				String language = PreferenceManager.getInstance().getPreference(Preference.LANGUAGE);
+				try {
+					I18nManager.getInstance().setLanguage(language);
 					loadLocalizedAssets();
 					setScreen(MainMenuScreen.getInstance());
+				} catch (Exception e) {
+					setScreen(LanguageScreen.getInstance());
 				}
 				justLaunched = false;
 			} else if (!loaded){
