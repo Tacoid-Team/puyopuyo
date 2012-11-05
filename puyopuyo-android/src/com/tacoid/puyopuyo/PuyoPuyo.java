@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.tacoid.puyopuyo.PreferenceManager.Preference;
 import com.tacoid.puyopuyo.screens.LanguageScreen;
 import com.tacoid.puyopuyo.screens.LoadingScreen;
+import com.tacoid.puyopuyo.screens.MainMenuScreen;
 
 public class PuyoPuyo extends Game {
 
@@ -47,7 +48,13 @@ public class PuyoPuyo extends Game {
 		/* Si update renvoi true, c'est que tout est chargé, on a plus qu'à afficher le screen qu'on veut. Sinon, on affiche le screen de chargement */
 		if (manager.update()) {
 			if (getScreen() == null || justLaunched) {
-				setScreen(LanguageScreen.getInstance());
+				if(PreferenceManager.getInstance().getPreference(Preference.LANGUAGE).equals("UNDEFINED")) {
+					setScreen(LanguageScreen.getInstance());
+				} else {
+					I18nManager.getInstance().setLanguage(PreferenceManager.getInstance().getPreference(Preference.LANGUAGE));
+					loadLocalizedAssets();
+					setScreen(MainMenuScreen.getInstance());
+				}
 				justLaunched = false;
 			} else if (!loaded){
 				getScreen().show();
@@ -105,7 +112,6 @@ public class PuyoPuyo extends Game {
 	}
 
 	public void loadLocalizedAssets() {
-	
 		atlasPlank = new TextureAtlas(Gdx.files.internal("images/menu/plank-" + I18nManager.getInstance().getLanguage().toString() + "/pages.atlas"));
 	}
 

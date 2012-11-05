@@ -11,8 +11,10 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
 import com.tacoid.puyopuyo.I18nManager;
+import com.tacoid.puyopuyo.PreferenceManager;
 import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.I18nManager.Language;
+import com.tacoid.puyopuyo.PreferenceManager.Preference;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.actors.BackgroundActor;
 
@@ -38,6 +40,7 @@ public class LanguageScreen implements Screen {
 		@Override
 		public void click(Actor arg0, float arg1, float arg2) {
 			I18nManager.getInstance().setLanguage(lang);
+			PreferenceManager.getInstance().setPreference(Preference.LANGUAGE,lang.toString());
 			puyopuyo.loadLocalizedAssets();
 			MainMenuScreen.getInstance().init();
 			GameVersusScreen.getInstance().initGraphics();

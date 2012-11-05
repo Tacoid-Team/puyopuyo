@@ -69,4 +69,13 @@ public class I18nManager {
 	public String getString(String name) {
 		return strings.getProperty(name);
 	}
+
+	public void setLanguage(String preference) {
+		for(Language l : Language.values()) {
+			if(l.string.equals(preference)) {
+				lang = l;
+				break;
+			}
+		}
+	}
 }

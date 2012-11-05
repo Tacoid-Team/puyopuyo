@@ -38,7 +38,7 @@ public class PreferenceManager {
 		
 	}
 	
-	void setPreference(Preference pref, String value) {
+	public void setPreference(Preference pref, String value) {
 		prefs.putString(pref.toString(), value);
 		prefs.flush();
 	}
