@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.google.analytics.tracking.android.EasyTracker;
 import com.tacoid.puyopuyo.I18nManager;
 import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.ScoreManager;
@@ -128,6 +129,13 @@ public class GameOverActor extends Group {
 				ScoreManager.getInstance().unlockLevel(GameType.VERSUS_IA, gameScreen.getLevel()+1);
 				newUnlock = true;
 			}
+		}
+		
+		/* TRACKING */
+		if(gameScreen.getGameType() == GameType.VERSUS_IA) {
+			EasyTracker.getTracker().trackEvent("gameplay", "game_over", gameScreen.getGameType().toString()+"_"+gameScreen.getLevel()+"_"+type.toString(), null);
+		} else {
+			EasyTracker.getTracker().trackEvent("gameplay", "game_over", gameScreen.getGameType().toString()+"_"+type.toString(), null);
 		}
 	}
 	

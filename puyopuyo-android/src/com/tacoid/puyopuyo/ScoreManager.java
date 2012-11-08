@@ -2,6 +2,7 @@ package com.tacoid.puyopuyo;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.google.analytics.tracking.android.EasyTracker;
 
 public class ScoreManager {
 	public enum GameType {
@@ -33,6 +34,7 @@ public class ScoreManager {
 	
 	public void setScore(GameType type, int score) {
 		pref.putInteger(type.toString(), score);
+		EasyTracker.getTracker().trackEvent("gameplay", "new_score", type.toString(), (long) score);
 		pref.flush();
 	}
 	

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.audio.Sound;
+import com.google.analytics.tracking.android.EasyTracker;
 import com.tacoid.puyopuyo.PreferenceManager.Preference;
 
 public class SoundPlayer {
@@ -77,11 +78,13 @@ public class SoundPlayer {
 	
 	public void mute() {
 		muted = true;
+		EasyTracker.getTracker().trackEvent("UI", "sound", "sound mute", null);
 		PreferenceManager.getInstance().setPreference(Preference.SOUND_STATE, "off");
 	}
 	
 	public void unmute() {
 		muted = false;
+		EasyTracker.getTracker().trackEvent("UI", "sound", "sound unmute", null);
 		PreferenceManager.getInstance().setPreference(Preference.SOUND_STATE, "on");
 	}
 	

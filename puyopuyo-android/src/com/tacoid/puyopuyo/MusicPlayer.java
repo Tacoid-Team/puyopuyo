@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.audio.Music;
+import com.google.analytics.tracking.android.EasyTracker;
 import com.tacoid.puyopuyo.PreferenceManager.Preference;
 
 public class MusicPlayer {
@@ -78,6 +79,7 @@ public class MusicPlayer {
 		if(playing != null && playing.isPlaying()) {
 			playing.setVolume(0.0f);
 		}
+		EasyTracker.getTracker().trackEvent("UI", "sound", "music mute", null);
 		PreferenceManager.getInstance().setPreference(Preference.MUSIC_STATE, "off");
 	}
 	
@@ -86,6 +88,7 @@ public class MusicPlayer {
 		if(playing != null && playing.isPlaying()) {
 			playing.setVolume(volume);
 		}
+		EasyTracker.getTracker().trackEvent("UI", "sound", "music unmute", null);
 		PreferenceManager.getInstance().setPreference(Preference.MUSIC_STATE, "on");
 	}
 	

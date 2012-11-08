@@ -3,7 +3,9 @@ package com.tacoid.puyopuyo.actors;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.google.analytics.tracking.android.EasyTracker;
 import com.tacoid.puyopuyo.PuyoPuyo;
+import com.tacoid.puyopuyo.ScoreManager.GameType;
 import com.tacoid.puyopuyo.SoundPlayer;
 import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.SoundPlayer.SoundType;
@@ -44,6 +46,13 @@ public class PauseMenu extends Group{
 		
 		public void touchUp(float x, float y, int pointer) {
 			hide();
+			GameType type = gameScreen.getGameType();
+			if(type == GameType.VERSUS_IA) {
+				EasyTracker.getTracker().trackEvent("UI", "button_click",type.toString()+" Level "+ gameScreen.getLevel() +" quit before end", null);
+			} else {
+				EasyTracker.getTracker().trackEvent("UI", "button_click",type.toString() + " quit before end", null);
+			}
+			
 			PuyoPuyo.getInstance().setScreen(MainMenuScreen.getInstance());
 		}
 	}

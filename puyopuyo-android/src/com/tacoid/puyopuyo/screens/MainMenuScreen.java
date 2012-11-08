@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.google.analytics.tracking.android.EasyTracker;
 import com.tacoid.puyopuyo.MusicPlayer;
 import com.tacoid.puyopuyo.PuyoPuyo;
 import com.tacoid.puyopuyo.ScoreManager;
@@ -162,6 +163,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		}
 		public void touchUp(float x, float y, int pointer) {
 			GameSoloScreen.getInstance().init();
+			EasyTracker.getTracker().trackEvent("gameplay", "game_start", "solo", null);
 			PuyoPuyo.getInstance().setScreen(GameSoloScreen.getInstance());
 		}
 	}
@@ -197,6 +199,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		}
 		public void touchUp(float x, float y, int pointer) {
 			GameTimeAttackScreen.getInstance().init();
+			EasyTracker.getTracker().trackEvent("gameplay", "game_start", "chrono", null);
 			PuyoPuyo.getInstance().setScreen(GameTimeAttackScreen.getInstance());
 		}
 	}
@@ -213,6 +216,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 			return true;
 		}
 		public void touchUp(float x, float y, int pointer) {
+			EasyTracker.getTracker().trackEvent("UI", "button_click", "quit", null);
 			Gdx.app.exit();
 		}
 	}
@@ -236,6 +240,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 			if(ScoreManager.getInstance().isLevelUnlocked(GameType.VERSUS_IA, level)) {
 				GameVersusScreen.getInstance().setLevel(level);
 				GameVersusScreen.getInstance().init();
+				EasyTracker.getTracker().trackEvent("gameplay", "game_start", "versus_"+level, null);
 				PuyoPuyo.getInstance().setScreen(GameVersusScreen.getInstance());
 				menu.switchMenu("main");
 			}
