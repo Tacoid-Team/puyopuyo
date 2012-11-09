@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.audio.Sound;
-import com.google.analytics.tracking.android.EasyTracker;
 import com.tacoid.puyopuyo.PreferenceManager.Preference;
 import com.tacoid.tracking.TrackingManager;
 

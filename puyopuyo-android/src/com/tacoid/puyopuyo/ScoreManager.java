@@ -2,7 +2,6 @@ package com.tacoid.puyopuyo;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
-import com.google.analytics.tracking.android.EasyTracker;
 import com.tacoid.tracking.TrackingManager;
 
 public class ScoreManager {

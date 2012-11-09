@@ -1,6 +1,5 @@
 package com.tacoid.tracking;
 
-import com.badlogic.gdx.Gdx;
 import com.google.analytics.tracking.android.EasyTracker;
 
 public class GoogleAnalyticsTracker implements ITracker {

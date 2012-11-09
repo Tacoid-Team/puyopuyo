@@ -1,6 +1,5 @@
 package com.tacoid.puyopuyo;
 
-import android.content.Context;
 import android.os.Bundle;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.google.analytics.tracking.android.EasyTracker;
