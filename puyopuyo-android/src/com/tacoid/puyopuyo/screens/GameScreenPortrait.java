@@ -103,7 +103,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		pauseMenu = new PauseMenu(this, ScreenOrientation.PORTRAIT);
 		stage.addActor(pauseMenu);
 		
-		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, VIRTUAL_HEIGHT/2);
+		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, 3*VIRTUAL_HEIGHT/5);
 		stage.addActor(gameOver);
 		
 		startActor = new StartActor(this);

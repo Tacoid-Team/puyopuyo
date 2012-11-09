@@ -146,24 +146,28 @@ public class GameOverActor extends Group {
 	
 	public void draw(SpriteBatch batch, float arg1) {
 		float x=0,y=0;
+		String message;
 		super.draw(batch,arg1);
 		if(gameScreen.getOrientation() == ScreenOrientation.LANDSCAPE) {
-			x = 500;
+			x = 640;
 			y = 450;
 		} else {
-			x = 270;
+			x = 384;
 			y = 500;
 		}
 		
 		if (gameScreen.getGameType() != GameType.VERSUS_IA) {
 			font.setScale(0.8f);
 			font.setColor(1f, 1f, 1f, 1f);
-			font.draw(batch, i18n.getString("score") + String.valueOf(gameScreen.getScore()), x+font.getBounds("Score : " + String.valueOf(gameScreen.getScore())).width/2,y);
+			message =  i18n.getString("score") + String.valueOf(gameScreen.getScore());
+			font.draw(batch, message, x-font.getBounds(message).width/2,y);
 			if(newHighScore) {
-				font.draw(batch, i18n.getString("nouveau_record"), x, y - 30f);
+				message = i18n.getString("nouveau_record");
+				font.draw(batch, i18n.getString("nouveau_record"), x-font.getBounds(message).width/2, y - 30f);
 			}
 			else {
-				font.draw(batch, i18n.getString("record") + String.valueOf(HighScore), x,y-30f);
+				message = i18n.getString("record") + String.valueOf(HighScore);
+				font.draw(batch, i18n.getString("record") + String.valueOf(HighScore), x-font.getBounds(message).width/2,y-30f);
 			}
 		} else if(newUnlock) {
 			String levelname;
@@ -182,7 +186,7 @@ public class GameOverActor extends Group {
 			default:
 				levelname="Invalid level";
 			}
-			String message = i18n.getString("niveau") + " " + levelname + " " + i18n.getString("deverrouille");
+			message = i18n.getString("niveau") + " " + levelname + " " + i18n.getString("deverrouille");
 			font.draw(batch, message, x-font.getBounds(message).width/2 ,y);
 		}
 

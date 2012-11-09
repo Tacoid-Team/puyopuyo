@@ -154,7 +154,7 @@ public class GameVersusScreen implements GameScreen {
 		pauseMenu = new PauseMenu(this, ScreenOrientation.LANDSCAPE);
 		stage.addActor(pauseMenu);
 		
-		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, 3*VIRTUAL_HEIGHT/4);
+		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, 8*VIRTUAL_HEIGHT/9-25);
 		stage.addActor(gameOver);
 		
 		startActor = new StartActor(this);
