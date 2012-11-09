@@ -262,6 +262,9 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		case Keys.BACK:
 			if(!menu.getCurrentMenu().equals("main")) {
 				menu.switchMenuAnimated("main");
+			} else {
+				TrackingManager.getTracker().trackEvent("UI", "button_click", "android_quit", null);
+				Gdx.app.exit();
 			}
 		}
 		return false;
