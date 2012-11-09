@@ -11,6 +11,7 @@ import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.SoundPlayer.SoundType;
 import com.tacoid.puyopuyo.screens.GameScreen;
 import com.tacoid.puyopuyo.screens.MainMenuScreen;
+import com.tacoid.tracking.TrackingManager;
 public class PauseMenu extends Group{
 	
 	private GameScreen gameScreen;
@@ -48,9 +49,9 @@ public class PauseMenu extends Group{
 			hide();
 			GameType type = gameScreen.getGameType();
 			if(type == GameType.VERSUS_IA) {
-				EasyTracker.getTracker().trackEvent("UI", "button_click",type.toString()+" Level "+ gameScreen.getLevel() +" quit before end", null);
+				TrackingManager.getTracker().trackEvent("UI", "button_click",type.toString()+" Level "+ gameScreen.getLevel() +" quit before end", null);
 			} else {
-				EasyTracker.getTracker().trackEvent("UI", "button_click",type.toString() + " quit before end", null);
+				TrackingManager.getTracker().trackEvent("UI", "button_click",type.toString() + " quit before end", null);
 			}
 			
 			PuyoPuyo.getInstance().setScreen(MainMenuScreen.getInstance());

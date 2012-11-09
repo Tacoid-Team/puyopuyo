@@ -17,6 +17,7 @@ import com.tacoid.puyopuyo.PuyoPuyo.ScreenOrientation;
 import com.tacoid.puyopuyo.SoundPlayer.SoundType;
 import com.tacoid.puyopuyo.screens.GameScreen;
 import com.tacoid.puyopuyo.screens.MainMenuScreen;
+import com.tacoid.tracking.TrackingManager;
 
 public class GameOverActor extends Group {
 	
@@ -133,9 +134,9 @@ public class GameOverActor extends Group {
 		
 		/* TRACKING */
 		if(gameScreen.getGameType() == GameType.VERSUS_IA) {
-			EasyTracker.getTracker().trackEvent("gameplay", "game_over", gameScreen.getGameType().toString()+"_"+gameScreen.getLevel()+"_"+type.toString(), null);
+			TrackingManager.getTracker().trackEvent("gameplay", "game_over", gameScreen.getGameType().toString()+"_"+gameScreen.getLevel()+"_"+type.toString(), null);
 		} else {
-			EasyTracker.getTracker().trackEvent("gameplay", "game_over", gameScreen.getGameType().toString()+"_"+type.toString(), null);
+			TrackingManager.getTracker().trackEvent("gameplay", "game_over", gameScreen.getGameType().toString()+"_"+type.toString(), null);
 		}
 	}
 	
