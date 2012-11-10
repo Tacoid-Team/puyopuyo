@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-        </activity>android.permission.INTERNEandroid.permission.INTERNE
+        </activity>
     </application>
 
 </manifest>
