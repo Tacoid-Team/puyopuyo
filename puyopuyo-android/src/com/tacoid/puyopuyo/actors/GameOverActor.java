@@ -68,11 +68,12 @@ public class GameOverActor extends Group {
 	private Sprite winSprite;
 	private Sprite loseSprite;
 	private Sprite gameOverSprite;
+	private Sprite scorePanelSprite;
 	private GameScreen gameScreen;
 	private SwingMenu menu;
 	private GameOverType type;
 	
-	private int HighScore = 0;
+	private int highScore = 0;
 	private boolean newHighScore = false;
 	private boolean newUnlock = false;
 	
@@ -83,7 +84,7 @@ public class GameOverActor extends Group {
 	
 	
 	public GameOverActor(GameScreen gs, float x, float y) {
-		
+		gameScreen = gs;
 		i18n = I18nManager.getInstance();
 		
 		TextureRegion quitterRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter");
@@ -91,6 +92,11 @@ public class GameOverActor extends Group {
 		winSprite = new Sprite(PuyoPuyo.getInstance().atlasPlank.findRegion("gagne"));
 		loseSprite = new Sprite(PuyoPuyo.getInstance().atlasPlank.findRegion("perdu"));
 		gameOverSprite = new Sprite(PuyoPuyo.getInstance().atlasPlank.findRegion("gameover"));
+		if(gameScreen.getOrientation() == ScreenOrientation.LANDSCAPE) {
+			scorePanelSprite = new Sprite(PuyoPuyo.getInstance().atlasPanelsLandscape.findRegion("score-panel"));
+		} else {
+			scorePanelSprite = new Sprite(PuyoPuyo.getInstance().atlasPanelsPortrait.findRegion("score-panel"));
+		}
 		
 		menu = new SwingMenu(gs.getOrientation());
 		menu.initBegin("gameover");
@@ -104,7 +110,12 @@ public class GameOverActor extends Group {
 		loseSprite.setPosition(x-loseSprite.getWidth()/2, y-loseSprite.getHeight()/2);
 		gameOverSprite.setPosition(x-gameOverSprite.getWidth()/2, y-gameOverSprite.getHeight()/2);
 		
-		gameScreen = gs;
+		if(gameScreen.getOrientation() == ScreenOrientation.LANDSCAPE) {
+			scorePanelSprite.setPosition(x - scorePanelSprite.getWidth() / 2, 450);
+		} else {
+			scorePanelSprite.setPosition(x - scorePanelSprite.getWidth() / 2, 470);
+		}
+		
 		this.type = GameOverType.GAMEOVER;
 		
 		font = PuyoPuyo.getInstance().manager.get("images/font_score.fnt", BitmapFont.class);
@@ -118,9 +129,9 @@ public class GameOverActor extends Group {
 		menu.show("gameover");
 		this.type = type;
 		this.visible = true;
-		this.HighScore = ScoreManager.getInstance().getScore(gameScreen.getGameType());
+		this.highScore = ScoreManager.getInstance().getScore(gameScreen.getGameType());
 		this.newHighScore = false;
-		if(HighScore < gameScreen.getScore() && gameScreen.getGameType() != GameType.VERSUS_IA) {
+		if(highScore < gameScreen.getScore() && gameScreen.getGameType() != GameType.VERSUS_IA) {
 			ScoreManager.getInstance().setScore(gameScreen.getGameType(), gameScreen.getScore());
 			this.newHighScore = true;
 		}
@@ -150,13 +161,13 @@ public class GameOverActor extends Group {
 		super.draw(batch,arg1);
 		if(gameScreen.getOrientation() == ScreenOrientation.LANDSCAPE) {
 			x = 640;
-			y = 450;
+			y = 500;
 		} else {
 			x = 384;
-			y = 500;
+			y = 558;
 		}
-		
 		if (gameScreen.getGameType() != GameType.VERSUS_IA) {
+			scorePanelSprite.draw(batch);
 			font.setScale(0.8f);
 			font.setColor(1f, 1f, 1f, 1f);
 			message =  i18n.getString("score") + String.valueOf(gameScreen.getScore());
@@ -166,10 +177,11 @@ public class GameOverActor extends Group {
 				font.draw(batch, i18n.getString("nouveau_record"), x-font.getBounds(message).width/2, y - 30f);
 			}
 			else {
-				message = i18n.getString("record") + String.valueOf(HighScore);
-				font.draw(batch, i18n.getString("record") + String.valueOf(HighScore), x-font.getBounds(message).width/2,y-30f);
+				message = i18n.getString("record") + String.valueOf(highScore);
+				font.draw(batch, i18n.getString("record") + String.valueOf(highScore), x-font.getBounds(message).width/2,y-30f);
 			}
 		} else if(newUnlock) {
+			scorePanelSprite.draw(batch);
 			String levelname;
 			font.setScale(0.8f);
 			font.setColor(1f, 1f, 1f, 1f);

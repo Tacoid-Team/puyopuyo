@@ -5,22 +5,29 @@ filter: Nearest,Nearest
 repeat: none
 main-panel
   rotate: false
-  xy: 1, 260
+  xy: 1, 333
   size: 341, 670
   orig: 341, 670
   offset: 0, 0
   index: -1
 left-panel
   rotate: false
-  xy: 1, 1
+  xy: 1, 74
   size: 164, 257
   orig: 164, 257
   offset: 0, 0
   index: -1
 top-panel
   rotate: false
-  xy: 167, 186
+  xy: 167, 259
   size: 178, 72
   orig: 178, 72
+  offset: 0, 0
+  index: -1
+score-panel
+  rotate: false
+  xy: 1, 1
+  size: 481, 71
+  orig: 481, 71
   offset: 0, 0
   index: -1
