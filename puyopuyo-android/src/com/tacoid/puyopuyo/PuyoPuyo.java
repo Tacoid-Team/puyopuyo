@@ -17,6 +17,8 @@ import com.tacoid.puyopuyo.screens.LoadingScreen;
 import com.tacoid.puyopuyo.screens.MainMenuScreen;
 
 public class PuyoPuyo extends Game {
+	
+	private IActivityRequestHandler myRequestHandler;
 
 	private static PuyoPuyo instance = null;
 	public AssetManager manager;
@@ -40,13 +42,22 @@ public class PuyoPuyo extends Game {
 	
 	private PuyoPuyo() {}
 	
+	public static void setHandler(IActivityRequestHandler handler) {
+		getInstance().myRequestHandler = handler;
+	}
+	
 	public static PuyoPuyo getInstance() {
+
 		if (instance == null) {
 			instance = new PuyoPuyo();
 		}
 		return instance;
 	}
-		
+	
+	public IActivityRequestHandler getHandler() {
+		return myRequestHandler;
+	}
+	
 	public void render() {
 		/* Si update renvoi true, c'est que tout est chargé, on a plus qu'à afficher le screen qu'on veut. Sinon, on affiche le screen de chargement */
 		if (manager.update()) {
@@ -56,6 +67,7 @@ public class PuyoPuyo extends Game {
 					I18nManager.getInstance().setLanguage(language);
 					loadLocalizedAssets();
 					setScreen(MainMenuScreen.getInstance());
+					myRequestHandler.showAds(true);
 				} catch (Exception e) {
 					setScreen(LanguageScreen.getInstance());
 				}
@@ -79,6 +91,9 @@ public class PuyoPuyo extends Game {
 		Gdx.input.setCatchBackKey(true);
 		
 		loadAssets();
+		
+		myRequestHandler.showAds(false);
+		
 		System.out.println(PreferenceManager.getInstance().getPreference(Preference.LANGUAGE));
 		
         justLaunched = true;

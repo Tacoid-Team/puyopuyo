@@ -29,6 +29,7 @@ public class PauseMenu extends Group{
 		}
 
 		public void touchUp(float x, float y, int pointer) {
+			PuyoPuyo.getInstance().getHandler().showAds(false);
 			hide();
 		}
 	}
@@ -52,7 +53,7 @@ public class PauseMenu extends Group{
 			} else {
 				TrackingManager.getTracker().trackEvent("UI", "button_click",type.toString() + " quit before end", null);
 			}
-			
+			PuyoPuyo.getInstance().getHandler().setPortrait(false);
 			PuyoPuyo.getInstance().setScreen(MainMenuScreen.getInstance());
 		}
 	}
@@ -76,6 +77,7 @@ public class PauseMenu extends Group{
 	}
 	
 	public void show() {
+		PuyoPuyo.getInstance().getHandler().showAds(true);
 		gameScreen.gamePause();
 		menu.show("pause");
 	}

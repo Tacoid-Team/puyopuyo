@@ -40,6 +40,7 @@ public class GameOverActor extends Group {
 		
 		public void touchUp(float x, float y, int pointer) {
 			newUnlock = false;
+			PuyoPuyo.getInstance().getHandler().setPortrait(false);
 			PuyoPuyo.getInstance().setScreen(MainMenuScreen.getInstance());
 		}
 		
@@ -60,6 +61,7 @@ public class GameOverActor extends Group {
 		public void touchUp(float x, float y, int pointer) {
 			gameScreen.init();
 			newUnlock = false;
+			PuyoPuyo.getInstance().getHandler().showAds(false);
 			hide();
 		}
 		
@@ -141,6 +143,8 @@ public class GameOverActor extends Group {
 				newUnlock = true;
 			}
 		}
+		
+		PuyoPuyo.getInstance().getHandler().showAds(true);
 		
 		/* TRACKING */
 		if(gameScreen.getGameType() == GameType.VERSUS_IA) {

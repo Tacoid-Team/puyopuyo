@@ -164,6 +164,8 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		public void touchUp(float x, float y, int pointer) {
 			GameSoloScreen.getInstance().init();
 			TrackingManager.getTracker().trackEvent("gameplay", "game_start", "solo", null);
+			PuyoPuyo.getInstance().getHandler().showAds(false);
+			PuyoPuyo.getInstance().getHandler().setPortrait(true);
 			PuyoPuyo.getInstance().setScreen(GameSoloScreen.getInstance());
 		}
 	}
@@ -181,8 +183,6 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		}
 		public void touchUp(float x, float y, int pointer) {
 			menu.switchMenuAnimated("versus");
-			//GameVersusScreen.getInstance().init();
-			//PuyoPuyo.getInstance().setScreen(GameVersusScreen.getInstance());
 		}
 	}
 	
@@ -200,6 +200,8 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		public void touchUp(float x, float y, int pointer) {
 			GameTimeAttackScreen.getInstance().init();
 			TrackingManager.getTracker().trackEvent("gameplay", "game_start", "chrono", null);
+			PuyoPuyo.getInstance().getHandler().showAds(false);
+			PuyoPuyo.getInstance().getHandler().setPortrait(true);
 			PuyoPuyo.getInstance().setScreen(GameTimeAttackScreen.getInstance());
 		}
 	}
@@ -241,6 +243,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 				GameVersusScreen.getInstance().setLevel(level);
 				GameVersusScreen.getInstance().init();
 				TrackingManager.getTracker().trackEvent("gameplay", "game_start", "versus_"+level, null);
+				PuyoPuyo.getInstance().getHandler().showAds(false);
 				PuyoPuyo.getInstance().setScreen(GameVersusScreen.getInstance());
 				menu.switchMenu("main");
 			}
