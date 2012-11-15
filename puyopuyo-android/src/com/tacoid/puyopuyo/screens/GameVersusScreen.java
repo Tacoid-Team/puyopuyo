@@ -151,7 +151,7 @@ public class GameVersusScreen implements GameScreen {
 		addButton(MusicButtonActor.createMusicButton(),VIRTUAL_WIDTH-64, VIRTUAL_HEIGHT-64);
 		addButton(SoundButtonActor.createSoundButton(),VIRTUAL_WIDTH-2*64-10, VIRTUAL_HEIGHT-64);
 		
-		pauseMenu = new PauseMenu(this, ScreenOrientation.LANDSCAPE);
+		pauseMenu = new PauseMenu(this, ScreenOrientation.LANDSCAPE, !gamePaused);
 		stage.addActor(pauseMenu);
 		
 		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, 8*VIRTUAL_HEIGHT/9-25);

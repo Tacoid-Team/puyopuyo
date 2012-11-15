@@ -58,7 +58,7 @@ public class PauseMenu extends Group{
 		}
 	}
 	
-	public PauseMenu(GameScreen gameScreen, ScreenOrientation orientation) {
+	public PauseMenu(GameScreen gameScreen, ScreenOrientation orientation, boolean hidden) {
 		TextureRegion continueRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("continuer");
 		TextureRegion quitRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter");
 		
@@ -68,7 +68,9 @@ public class PauseMenu extends Group{
 		menu.addButton(new ContinueButton(continueRegion));
 		menu.addButton(new QuitButton(quitRegion));
 		menu.initEnd();
-		menu.hide();
+		if (hidden) {
+			menu.hide();
+		}
 		
 		this.addActor(menu);
 		

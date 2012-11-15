@@ -100,15 +100,32 @@ public abstract class GameScreenPortrait implements GameScreen {
 		addButton(MusicButtonActor.createMusicButton(),VIRTUAL_WIDTH-64, VIRTUAL_HEIGHT-64);
 		addButton(SoundButtonActor.createSoundButton(),VIRTUAL_WIDTH-2*64-10, VIRTUAL_HEIGHT-64);
 		
-		pauseMenu = new PauseMenu(this, ScreenOrientation.PORTRAIT);
-		stage.addActor(pauseMenu);
 		
+		pauseMenu = new PauseMenu(this, ScreenOrientation.PORTRAIT, !gamePaused);
+		stage.addActor(pauseMenu);
+		if (gamePaused) {
+			pauseMenu.show();
+		}
+		
+		boolean show = true;
+		if (gameOver != null) {
+			show = gameOver.visible;
+		}
 		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, 3*VIRTUAL_HEIGHT/5);
 		stage.addActor(gameOver);
+		if (!show) {
+			gameOver.hide();
+		}
 		
+		show = true;
+		if (startActor != null) {
+			show = startActor.visible;
+		}
 		startActor = new StartActor(this);
-		startActor.show();
 		stage.addActor(startActor);
+		if (!show) {
+			startActor.hide();
+		}
 		
 		if (!PuyoPuyo.getInstance().getDesktopMode()) {
 			stage.getCamera().rotate(-90, 0, 0, 1);
@@ -180,12 +197,12 @@ public abstract class GameScreenPortrait implements GameScreen {
 
 	@Override
 	public void resume() {
-		resize(0, 0);
 		show();
 	}
 
 	@Override
 	public void show() {
+		resize(0, 0);
 		Gdx.input.setInputProcessor(controller);
 	}
 
