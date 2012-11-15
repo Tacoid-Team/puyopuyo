@@ -41,5 +41,4 @@ public class GameTimeAttackScreen extends GameScreenPortrait {
 		return 0;
 	}
 	
-	
 }

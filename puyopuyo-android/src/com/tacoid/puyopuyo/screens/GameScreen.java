@@ -23,5 +23,7 @@ public interface GameScreen extends Screen {
 	public int getScore();
 	
 	public int getLevel();
+	
+	public float getElapsedTime();
 
 }
