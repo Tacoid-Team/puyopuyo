@@ -81,6 +81,7 @@ public class GameVersusScreen implements GameScreen {
 		gameLogicIA = new GameLogic();
 		gameLogic.setOpponent(gameLogicIA);
 		gameLogicIA.setOpponent(gameLogic);
+		elapsedTime = 0;
 	}
 	
 	public void setLevel(int level) {
@@ -196,7 +197,7 @@ public class GameVersusScreen implements GameScreen {
 	@Override
 	public void render(float delta) {
 		GLCommon gl = Gdx.gl;
-
+		
 		if (gameLogic.getState() != State.LOST
 				&& gameLogicIA.getState() != State.LOST) {
 			if (!gamePaused) {
@@ -314,6 +315,12 @@ public class GameVersusScreen implements GameScreen {
 	
 	public int getTimeBonus() {
 		return Math.max(0, 25000 - (int)(elapsedTime * 50));
+	}
+
+
+	@Override
+	public float getElapsedTime() {
+		return elapsedTime;
 	}
 
 }

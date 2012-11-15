@@ -148,9 +148,9 @@ public class GameOverActor extends Group {
 		
 		/* TRACKING */
 		if(gameScreen.getGameType() == GameType.VERSUS_IA) {
-			TrackingManager.getTracker().trackEvent("gameplay", "game_over", gameScreen.getGameType().toString()+"_"+gameScreen.getLevel()+"_"+type.toString(), null);
+			TrackingManager.getTracker().trackEvent("gameplay", "game_over", gameScreen.getGameType().toString()+"_"+gameScreen.getLevel()+"_"+type.toString(), (long) gameScreen.getElapsedTime());
 		} else {
-			TrackingManager.getTracker().trackEvent("gameplay", "game_over", gameScreen.getGameType().toString()+"_"+type.toString(), null);
+			TrackingManager.getTracker().trackEvent("gameplay", "game_over", gameScreen.getGameType().toString()+"_"+type.toString(), (long) gameScreen.getElapsedTime());
 		}
 	}
 	
