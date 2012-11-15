@@ -152,15 +152,31 @@ public class GameVersusScreen implements GameScreen {
 		addButton(MusicButtonActor.createMusicButton(),VIRTUAL_WIDTH-64, VIRTUAL_HEIGHT-64);
 		addButton(SoundButtonActor.createSoundButton(),VIRTUAL_WIDTH-2*64-10, VIRTUAL_HEIGHT-64);
 		
+	
+		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, 8*VIRTUAL_HEIGHT/9-25);
+		stage.addActor(gameOver);
+		gameOver.hide();
+		
 		pauseMenu = new PauseMenu(this, ScreenOrientation.LANDSCAPE, !gamePaused);
 		stage.addActor(pauseMenu);
 		
-		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, 8*VIRTUAL_HEIGHT/9-25);
-		stage.addActor(gameOver);
-		
+		boolean show = true;
+		if (startActor != null) {
+			show = startActor.visible;
+		}
+
 		startActor = new StartActor(this);
-		startActor.show();
+		if (show) {
+			startActor.show();
+		} else {
+			startActor.visible = false;
+			startActor.touchable = false;
+			if (gamePaused) {
+				pauseMenu.show();
+			}
+		}
 		stage.addActor(startActor);
+		
 
 	}
 
@@ -230,12 +246,12 @@ public class GameVersusScreen implements GameScreen {
 
 	@Override
 	public void resume() {
-		resize(0, 0);
 		show();
 	}
 
 	@Override
 	public void show() {
+		resize(0, 0);
 		Gdx.input.setInputProcessor(controller);
 	}
 
