@@ -54,7 +54,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		stage.addActor(new BackgroundActor(ScreenOrientation.LANDSCAPE));
 		
 		pweekSprite = new Sprite( PuyoPuyo.getInstance().atlasPlank.findRegion("pweek"));
-		pweekSprite.setPosition(VIRTUAL_WIDTH/2 - pweekSprite.getWidth()/2, VIRTUAL_HEIGHT- pweekSprite.getHeight()-80);
+		pweekSprite.setPosition(VIRTUAL_WIDTH/2 - pweekSprite.getWidth()/2, VIRTUAL_HEIGHT- pweekSprite.getHeight()-70);
 		
 		menu = new SwingMenu(ScreenOrientation.LANDSCAPE);
 		
