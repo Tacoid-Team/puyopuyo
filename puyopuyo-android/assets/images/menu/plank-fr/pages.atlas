@@ -5,113 +5,120 @@ filter: Nearest,Nearest
 repeat: none
 foreground
   rotate: false
-  xy: 0, 702
+  xy: 0, 689
   size: 1280, 312
   orig: 1280, 312
   offset: 0, 0
   index: -1
 touchtostart
   rotate: false
-  xy: 0, 416
+  xy: 0, 403
   size: 931, 286
   orig: 931, 286
   offset: 0, 0
   index: -1
+pweek
+  rotate: false
+  xy: 0, 160
+  size: 800, 243
+  orig: 800, 243
+  offset: 0, 0
+  index: -1
 gameover
   rotate: false
-  xy: 1280, 814
+  xy: 1280, 801
   size: 655, 200
   orig: 655, 200
   offset: 0, 0
   index: -1
-perdu
-  rotate: false
-  xy: 0, 160
-  size: 512, 256
-  orig: 512, 256
-  offset: 0, 0
-  index: -1
 gagne
   rotate: false
-  xy: 512, 160
+  xy: 1280, 545
   size: 512, 256
   orig: 512, 256
   offset: 0, 0
   index: -1
-continuer
+chrono
   rotate: false
   xy: 0, 0
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-versus
+continuer
   rotate: false
-  xy: 931, 542
+  xy: 931, 529
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-chrono
+perdu
   rotate: false
-  xy: 253, 0
+  xy: 1184, 289
+  size: 512, 256
+  orig: 512, 256
+  offset: 0, 0
+  index: -1
+easy
+  rotate: false
+  xy: 931, 369
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 hard
   rotate: false
-  xy: 506, 0
-  size: 253, 160
-  orig: 253, 160
-  offset: 0, 0
-  index: -1
-easy
-  rotate: false
-  xy: 759, 0
+  xy: 253, 0
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 medium
   rotate: false
-  xy: 1280, 654
-  size: 253, 160
-  orig: 253, 160
-  offset: 0, 0
-  index: -1
-rejouer
-  rotate: false
-  xy: 1533, 654
-  size: 253, 160
-  orig: 253, 160
-  offset: 0, 0
-  index: -1
-veryhard
-  rotate: false
-  xy: 1786, 654
-  size: 253, 160
-  orig: 253, 160
-  offset: 0, 0
-  index: -1
-redcross
-  rotate: false
-  xy: 931, 434
-  size: 170, 108
-  orig: 170, 108
-  offset: 0, 0
-  index: -1
-solo
-  rotate: false
-  xy: 1184, 494
+  xy: 506, 0
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 quitter
   rotate: false
-  xy: 1437, 494
+  xy: 1792, 641
   size: 253, 160
   orig: 253, 160
+  offset: 0, 0
+  index: -1
+rejouer
+  rotate: false
+  xy: 1792, 481
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+solo
+  rotate: false
+  xy: 1696, 321
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+versus
+  rotate: false
+  xy: 1696, 161
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+veryhard
+  rotate: false
+  xy: 800, 209
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+redcross
+  rotate: false
+  xy: 800, 101
+  size: 170, 108
+  orig: 170, 108
   offset: 0, 0
   index: -1

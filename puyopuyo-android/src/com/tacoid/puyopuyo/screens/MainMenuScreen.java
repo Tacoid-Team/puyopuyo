@@ -30,7 +30,9 @@ public class MainMenuScreen implements Screen, InputProcessor {
 	private static final int VIRTUAL_HEIGHT = 768;
 	private static MainMenuScreen instance = null;
 	private Stage stage;
+	private SpriteBatch batch;
 	private SwingMenu menu;
+	private Sprite pweekSprite;
 	
 	private MainMenuScreen() {
 		init();
@@ -47,8 +49,12 @@ public class MainMenuScreen implements Screen, InputProcessor {
 	public void init() {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
+		batch = new SpriteBatch(1);
 		
 		stage.addActor(new BackgroundActor(ScreenOrientation.LANDSCAPE));
+		
+		pweekSprite = new Sprite( PuyoPuyo.getInstance().atlasPlank.findRegion("pweek"));
+		pweekSprite.setPosition(VIRTUAL_WIDTH/2 - pweekSprite.getWidth()/2, VIRTUAL_HEIGHT- pweekSprite.getHeight()-80);
 		
 		menu = new SwingMenu(ScreenOrientation.LANDSCAPE);
 		
@@ -130,6 +136,9 @@ public class MainMenuScreen implements Screen, InputProcessor {
 	public void render(float arg0) {    
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.draw();
+		batch.begin();
+		pweekSprite.draw(batch);
+		batch.end();
 		stage.act(Gdx.graphics.getDeltaTime());
 		
 	}
