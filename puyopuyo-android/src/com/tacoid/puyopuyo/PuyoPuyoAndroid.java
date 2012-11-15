@@ -6,7 +6,6 @@ import android.os.Message;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
@@ -75,20 +74,20 @@ public class PuyoPuyoAndroid extends AndroidApplication implements IActivityRequ
 	    public void onCreate(Bundle savedInstanceState) {
 		    super.onCreate(savedInstanceState);
 		    
-		    // Création du layout
+		    // Crï¿½ation du layout
 		    RelativeLayout layout = new RelativeLayout(this);
 		
-		    // Fait ce que "initialize" est sensé faire
+		    // Fait ce que "initialize" est sensï¿½ faire
 		    requestWindowFeature(Window.FEATURE_NO_TITLE);
 		    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
 		                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
 		
-		    // Création de la vue libGdx
+		    // Crï¿½ation de la vue libGdx
 		    PuyoPuyo.setHandler(this);
 		    View gameView = initializeForView(PuyoPuyo.getInstance(), false);
 		
-		    // Création de la vu adMob
+		    // Crï¿½ation de la vu adMob
 		    adView = new AdView(this, AdSize.BANNER, "a150a3f124cd8c4"); // Put in your secret key here
 		    adView.loadAd(new AdRequest());
 		    adView.setAdListener(this);
