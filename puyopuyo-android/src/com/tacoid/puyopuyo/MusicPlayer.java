@@ -3,7 +3,6 @@ package com.tacoid.puyopuyo;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.tacoid.puyopuyo.PreferenceManager.Preference;
 import com.tacoid.tracking.TrackingManager;
