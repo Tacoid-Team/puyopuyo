@@ -97,12 +97,8 @@ public class PuyoPuyo extends Game {
 		
 		loadAssets();
 		
-		
-		
 		myRequestHandler.showAds(false);
-		
-		System.out.println(PreferenceManager.getInstance().getPreference(Preference.LANGUAGE));
-		
+
         justLaunched = true;
 	}
 	

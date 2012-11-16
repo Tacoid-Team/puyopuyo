@@ -49,8 +49,7 @@ public class I18nManager {
 	
 	public void setLanguage(Language lang) {
 		this.lang = lang;
-		
-		System.out.println("assets/strings-"+lang+".properties");
+
 		FileHandle file = Gdx.files.internal("strings-"+lang+".properties");		
 
 		try {
