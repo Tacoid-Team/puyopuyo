@@ -102,8 +102,9 @@ public class SwingMenu extends Group{
 			return null;
 		}
 	}
-
+	
 	public SwingMenu(ScreenOrientation orientation) {
+		
 		if(orientation == ScreenOrientation.LANDSCAPE) {
 			VIRTUAL_WIDTH = 1280;
 		} else {
@@ -148,6 +149,10 @@ public class SwingMenu extends Group{
 		timeButton = -0.2f;
 		this.touchable =true;
 		this.visible = true;
+		
+		/* On initialise le y ici, car dans la file de rendering, les bouttons sont en premiers, et passent donc après le BushActor qui set la position des bouttons. */
+		currentGroup.y = interpButton.apply(0, BUTTON_HEIGHT, Math.min(timeButton,1.0f));
+		
 		switching = false;
 	}
 	
