@@ -63,9 +63,9 @@ public class PuyoPuyo extends Game {
 		if (manager.update()) {
 			if (justLaunched) {
 				String language = PreferenceManager.getInstance().getPreference(Preference.LANGUAGE);
+				MusicPlayer.getInstance().init();
+				SoundPlayer.getInstance().init();
 				if(I18nManager.getInstance().setLanguage(language)) {
-					MusicPlayer.getInstance().init();
-					SoundPlayer.getInstance().init();
 					loadLocalizedAssets();
 					if (getScreen() == null) {
 						setScreen(MainMenuScreen.getInstance());
