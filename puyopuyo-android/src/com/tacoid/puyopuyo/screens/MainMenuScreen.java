@@ -158,6 +158,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 
 	@Override
 	public void show() {
+		resize(0, 0);
 		Gdx.input.setInputProcessor(this);
 	}
 
