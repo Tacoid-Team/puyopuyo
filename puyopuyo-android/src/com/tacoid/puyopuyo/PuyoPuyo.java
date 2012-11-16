@@ -8,7 +8,6 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.tacoid.puyopuyo.MusicPlayer.MusicType;
 import com.tacoid.puyopuyo.PreferenceManager.Preference;
 import com.tacoid.puyopuyo.screens.GameSoloScreen;
 import com.tacoid.puyopuyo.screens.GameTimeAttackScreen;

@@ -24,7 +24,7 @@ public class PauseMenu extends Group{
 		}
 		
 		public boolean touchDown(float x, float y, int pointer) {
-			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 1.0f, true);
+			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
 			return true;
 		}
 
@@ -41,7 +41,7 @@ public class PauseMenu extends Group{
 		}
 
 		public boolean touchDown(float x, float y, int pointer) {
-			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 1.0f, true);
+			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
 			return true;
 		}
 		
