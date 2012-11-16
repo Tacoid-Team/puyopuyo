@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.tacoid.puyopuyo.MusicPlayer.MusicType;
 import com.tacoid.puyopuyo.PreferenceManager.Preference;
 import com.tacoid.puyopuyo.screens.GameSoloScreen;
 import com.tacoid.puyopuyo.screens.GameTimeAttackScreen;
@@ -63,8 +64,9 @@ public class PuyoPuyo extends Game {
 		if (manager.update()) {
 			if (justLaunched) {
 				String language = PreferenceManager.getInstance().getPreference(Preference.LANGUAGE);
-				try {
-					I18nManager.getInstance().setLanguage(language);
+				if(I18nManager.getInstance().setLanguage(language)) {
+					MusicPlayer.getInstance().init();
+					SoundPlayer.getInstance().init();
 					loadLocalizedAssets();
 					if (getScreen() == null) {
 						setScreen(MainMenuScreen.getInstance());
@@ -72,7 +74,7 @@ public class PuyoPuyo extends Game {
 					} else {
 						getScreen().show();
 					}
-				} catch (Exception e) {
+				} else {
 					setScreen(LanguageScreen.getInstance());
 				}
 				justLaunched = false;
@@ -95,6 +97,8 @@ public class PuyoPuyo extends Game {
 		Gdx.input.setCatchBackKey(true);
 		
 		loadAssets();
+		
+		
 		
 		myRequestHandler.showAds(false);
 		
@@ -133,8 +137,10 @@ public class PuyoPuyo extends Game {
 		manager.load("sounds/AnoyingMusic.mp3", Music.class);
 		
 	}
+	static int i = 0;
 
 	public void loadLocalizedAssets() {
+
 		atlasPlank = new TextureAtlas(Gdx.files.internal("images/menu/plank-" + I18nManager.getInstance().getLanguage().toString() + "/pages.atlas"));
 		MainMenuScreen.getInstance().init();
 		GameVersusScreen.getInstance().initGraphics();

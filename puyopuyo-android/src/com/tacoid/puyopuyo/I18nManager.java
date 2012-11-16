@@ -70,13 +70,13 @@ public class I18nManager {
 		return strings.getProperty(name);
 	}
 
-	public void setLanguage(String preference) throws Exception {
+	public boolean setLanguage(String preference) {
 		for(Language l : Language.values()) {
 			if(l.string.equals(preference)) {
 				setLanguage(l);
-				return;
+				return true;
 			}
 		}
-		throw new Exception("Langage unknown");
+		return false;
 	}
 }

@@ -83,10 +83,9 @@ public class GameOverActor extends Group {
 	
 	private I18nManager i18n;
 	
-	
-	
 	public GameOverActor(GameScreen gs, float x, float y) {
 		gameScreen = gs;
+
 		i18n = I18nManager.getInstance();
 		
 		TextureRegion quitterRegion = PuyoPuyo.getInstance().atlasPlank.findRegion("quitter");

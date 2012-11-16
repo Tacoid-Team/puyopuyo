@@ -117,8 +117,9 @@ public class GameVersusScreen implements GameScreen {
 	public int getLevel() {
 		return level;
 	}
-	
+
 	public void initGraphics() {
+
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
 		controller = new Controller(gameLogic, stage);
@@ -183,7 +184,6 @@ public class GameVersusScreen implements GameScreen {
 	public static GameVersusScreen getInstance() {
 		if (instance == null) {
 			instance = new GameVersusScreen();
-			instance.initGraphics();
 		}
 		return instance;
 	}

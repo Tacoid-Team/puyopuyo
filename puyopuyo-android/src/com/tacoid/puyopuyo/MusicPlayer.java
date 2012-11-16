@@ -3,6 +3,7 @@ package com.tacoid.puyopuyo;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.tacoid.puyopuyo.PreferenceManager.Preference;
 import com.tacoid.tracking.TrackingManager;
@@ -20,10 +21,11 @@ public class MusicPlayer {
 	private Music playing = null;
 	private boolean muted = false;
 	
-	private MusicPlayer() {
+	public void init() {
 		musics = new HashMap<MusicType, Music>();
 		playing = null;
 		
+		//musics.put(MusicType.MAIN, Gdx.audio.newMusic(Gdx.files.internal("sounds/AnoyingMusic.mp3")));
 		musics.put(MusicType.MAIN, PuyoPuyo.getInstance().manager.get("sounds/AnoyingMusic.mp3", Music.class));
 		
 		if(!PreferenceManager.getInstance().isPreferenceDefined(Preference.MUSIC_STATE)) {
@@ -34,6 +36,10 @@ public class MusicPlayer {
 			}
 		}
 	}
+	
+	private MusicPlayer() {
+	}
+	
 	
 	public static MusicPlayer getInstance() {
 		if (instance == null) {

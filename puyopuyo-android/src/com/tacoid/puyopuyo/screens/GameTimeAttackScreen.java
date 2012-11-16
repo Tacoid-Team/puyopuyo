@@ -17,7 +17,6 @@ public class GameTimeAttackScreen extends GameScreenPortrait {
 	public static GameTimeAttackScreen getInstance() {
 		if (instance == null) {
 			instance = new GameTimeAttackScreen();
-			instance.initGraphics();
 		}
 		return instance;
 	}

@@ -103,8 +103,10 @@ public class SwingMenu extends Group{
 		}
 	}
 	
+	static int i = 0;
 	public SwingMenu(ScreenOrientation orientation) {
-		
+		i++;
+		System.out.println("versus=================================>" + i);
 		if(orientation == ScreenOrientation.LANDSCAPE) {
 			VIRTUAL_WIDTH = 1280;
 		} else {

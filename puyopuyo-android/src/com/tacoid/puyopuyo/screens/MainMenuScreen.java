@@ -33,11 +33,10 @@ public class MainMenuScreen implements Screen, InputProcessor {
 	private SpriteBatch batch;
 	private SwingMenu menu;
 	private Sprite pweekSprite;
+	int i = 0;
 	
 	private MainMenuScreen() {
-		init();
-		MusicPlayer.getInstance().setVolume(0.8f);
-		MusicPlayer.getInstance().playMusic(MusicType.MAIN, true);
+		//init();
 	}
 	
 	private void addButton(Button button, int x, int y) {
@@ -47,10 +46,12 @@ public class MainMenuScreen implements Screen, InputProcessor {
 	}
 	
 	public void init() {
+		MusicPlayer.getInstance().setVolume(0.8f);
+		MusicPlayer.getInstance().playMusic(MusicType.MAIN, true);
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
 		batch = new SpriteBatch(1);
-		
+
 		stage.addActor(new BackgroundActor(ScreenOrientation.LANDSCAPE));
 		
 		pweekSprite = new Sprite( PuyoPuyo.getInstance().atlasPlank.findRegion("pweek"));

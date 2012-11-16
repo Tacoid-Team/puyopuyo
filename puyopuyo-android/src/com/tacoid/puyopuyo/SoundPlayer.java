@@ -25,7 +25,7 @@ public class SoundPlayer {
 	private boolean muted = false;
 	private Map<SoundType, Sound> sounds;
 	
-	private SoundPlayer() {
+	public void init() {
 		sounds = new HashMap<SoundType, Sound>();
 		
 		sounds.put(SoundType.ROTATE, PuyoPuyo.getInstance().manager.get("sounds/bleep2.wav", Sound.class));
@@ -45,6 +45,9 @@ public class SoundPlayer {
 				muted = true;
 			}
 		}
+	}
+	
+	private SoundPlayer() {
 		
 		
 	}
