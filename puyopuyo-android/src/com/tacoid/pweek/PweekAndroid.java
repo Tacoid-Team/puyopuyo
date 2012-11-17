@@ -21,14 +21,14 @@ import com.tacoid.tracking.TrackingManager.TrackerType;
 
 public class PweekAndroid extends AndroidApplication implements IActivityRequestHandler, AdListener
 {	
-	  private AdView adView;
+	  private static AdView adView;
 	  
-	  	private final int PORTRAIT_ADS = 3;
-	  	private final int LANDSCAPE_ADS = 2;
-	    private final int SHOW_ADS = 1;
-	    private final int HIDE_ADS = 0;
+	  	private final static int PORTRAIT_ADS = 3;
+	  	private final static int LANDSCAPE_ADS = 2;
+	    private final static int SHOW_ADS = 1;
+	    private final static int HIDE_ADS = 0;
 
-	    protected Handler handler = new Handler()
+	    static protected Handler handler = new Handler()
 	    {
 	        @Override
 	        public void handleMessage(Message msg) {
@@ -94,9 +94,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 
 		    
 		    // Ajout de la vu libGdx au layout
-		    layout.addView(gameView);
-		    
-		    AdRequest request = new AdRequest();        
+		    layout.addView(gameView);     
 		
 		    // Ajout de la vu adMob au layout
 		    RelativeLayout.LayoutParams adParams = 
