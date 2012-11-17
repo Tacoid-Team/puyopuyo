@@ -88,6 +88,15 @@ public class PuyoPuyo extends Game {
 		}
 	}
 	
+	public void resize (int width, int height) {
+		if (getScreen() != null){
+			getScreen().resize(width, height);
+		}
+		else {
+			LoadingScreen.getInstance().resize(width, height);
+		}
+	}
+	
 	@Override
 	public void create() {		
 		loadingScreen = LoadingScreen.getInstance();

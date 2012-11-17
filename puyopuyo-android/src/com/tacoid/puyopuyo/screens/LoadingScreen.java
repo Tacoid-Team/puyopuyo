@@ -97,6 +97,7 @@ public class LoadingScreen implements Screen {
 
 	@Override
 	public void show() {
+		resize(0,0);
 		Gdx.input.setInputProcessor(stage);
 		
 	}

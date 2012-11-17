@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.tacoid.puyopuyo.MusicPlayer;
@@ -30,9 +31,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 	private static final int VIRTUAL_HEIGHT = 768;
 	private static MainMenuScreen instance = null;
 	private Stage stage;
-	private SpriteBatch batch;
 	private SwingMenu menu;
-	private Sprite pweekSprite;
 	int i = 0;
 	
 	private MainMenuScreen() {
@@ -50,12 +49,8 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		MusicPlayer.getInstance().playMusic(MusicType.MAIN, true);
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
-		batch = new SpriteBatch(1);
 
 		stage.addActor(new BackgroundActor(ScreenOrientation.LANDSCAPE));
-		
-		pweekSprite = new Sprite( PuyoPuyo.getInstance().atlasPlank.findRegion("pweek"));
-		pweekSprite.setPosition(VIRTUAL_WIDTH/2 - pweekSprite.getWidth()/2, VIRTUAL_HEIGHT- pweekSprite.getHeight()-70);
 		
 		menu = new SwingMenu(ScreenOrientation.LANDSCAPE);
 		
@@ -106,6 +101,8 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		menu.hideInstant();
 		menu.show("main");
 		
+		stage.addActor(new PweekLogo());
+		
 	
 	}
 	
@@ -138,11 +135,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 	public void render(float arg0) {    
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.draw();
-		batch.begin();
-		pweekSprite.draw(batch);
-		batch.end();
-		stage.act(Gdx.graphics.getDeltaTime());
-		
+		stage.act(Gdx.graphics.getDeltaTime());	
 	}
 
 	@Override
@@ -160,6 +153,28 @@ public class MainMenuScreen implements Screen, InputProcessor {
 	public void show() {
 		resize(0, 0);
 		Gdx.input.setInputProcessor(this);
+	}
+	
+	private class PweekLogo extends Actor {
+		
+		private Sprite sprite;
+		
+		public PweekLogo() {
+			sprite = new Sprite( PuyoPuyo.getInstance().atlasPlank.findRegion("pweek"));
+			sprite.setPosition(VIRTUAL_WIDTH/2 - sprite.getWidth()/2, VIRTUAL_HEIGHT- sprite.getHeight()-70);
+		}
+		
+		@Override
+		public void draw(SpriteBatch batch, float arg1) {
+			sprite.draw(batch);
+		}
+
+		@Override
+		public Actor hit(float arg0, float arg1) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
 	}
 
 	private class SoloButton extends Button{
