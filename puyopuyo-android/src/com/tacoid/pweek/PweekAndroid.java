@@ -52,6 +52,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	        		    adParams.addRule(RelativeLayout.CENTER_VERTICAL);
 	        		    adView.setLayoutParams(adParams);
 	                	adView.setRotation(-90.0f);
+	                	adView.setTranslationX(adView.getWidth() / 2 - adView.getHeight() / 2);
 
 	                	break;
 	                }
