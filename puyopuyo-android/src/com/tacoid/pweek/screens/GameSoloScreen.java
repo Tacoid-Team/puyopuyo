@@ -92,5 +92,4 @@ public class GameSoloScreen extends GameScreenPortrait {
 	public GameType getGameType() {
 		return GameType.SOLO;
 	}
-
 }

@@ -30,6 +30,7 @@ import com.tacoid.pweek.logic.IA;
 import com.tacoid.pweek.logic.IAEasy;
 import com.tacoid.pweek.logic.IAHard;
 import com.tacoid.pweek.logic.State;
+import com.tacoid.tracking.TrackingManager;
 
 public class GameVersusScreen implements GameScreen {
 	private static final int VIRTUAL_WIDTH = 1280;
@@ -122,7 +123,7 @@ public class GameVersusScreen implements GameScreen {
 
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
-		controller = new Controller(gameLogic, stage);
+		controller = new Controller(gameLogic, this, stage);
 		gameOver = null;
 
 		gridActor = new GridActor(gameLogic, 296, 26, 54, 48);
@@ -338,5 +339,13 @@ public class GameVersusScreen implements GameScreen {
 	public float getElapsedTime() {
 		return elapsedTime;
 	}
-
+	
+	@Override
+	public void quit() {
+		pauseMenu.hide();
+		GameType type = getGameType();
+		TrackingManager.getTracker().trackEvent("UI", "button_click",type.toString()+" Level "+ getLevel() +" quit before end", null);
+		Pweek.getInstance().getHandler().setPortrait(false);
+		Pweek.getInstance().setScreen(MainMenuScreen.getInstance());
+	}
 }

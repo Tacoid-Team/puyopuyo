@@ -11,6 +11,7 @@ import com.tacoid.pweek.Controller;
 import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.SoundPlayer;
 import com.tacoid.pweek.Pweek.ScreenOrientation;
+import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.pweek.SoundPlayer.SoundType;
 import com.tacoid.pweek.actors.BackgroundActor;
 import com.tacoid.pweek.actors.ControlerActor;
@@ -27,6 +28,7 @@ import com.tacoid.pweek.actors.StartActor;
 import com.tacoid.pweek.actors.GameOverActor.GameOverType;
 import com.tacoid.pweek.logic.GameLogic;
 import com.tacoid.pweek.logic.State;
+import com.tacoid.tracking.TrackingManager;
 
 public abstract class GameScreenPortrait implements GameScreen {
 	
@@ -77,7 +79,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
 		
-		controller = new Controller(gameLogic, stage);
+		controller = new Controller(gameLogic, this, stage);
 
 		gridActor = new GridActor(gameLogic, 280, 325, 70, 64);
 		nextPieceActor = new NextPieceActor(gameLogic, 75, 920, 64);
@@ -259,5 +261,14 @@ public abstract class GameScreenPortrait implements GameScreen {
 	@Override
 	public int getScore() {
 		return gameLogic.getScore();
+	}
+	
+	@Override
+	public void quit() {
+		pauseMenu.hide();
+		GameType type = getGameType();
+		TrackingManager.getTracker().trackEvent("UI", "button_click",type.toString() + " quit before end", null);
+		Pweek.getInstance().getHandler().setPortrait(false);
+		Pweek.getInstance().setScreen(MainMenuScreen.getInstance());
 	}
 }

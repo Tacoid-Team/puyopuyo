@@ -4,15 +4,17 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.tacoid.pweek.logic.GameLogic;
-import com.tacoid.pweek.screens.MainMenuScreen;
+import com.tacoid.pweek.screens.GameScreen;
 
 public class Controller implements InputProcessor {
 
 	private GameLogic gameLogic;
 	private Stage stage;
+	private GameScreen gameScreen;
 
-	public Controller(GameLogic gameLogic, Stage stage) {
+	public Controller(GameLogic gameLogic, GameScreen gameScreen, Stage stage) {
 		this.gameLogic = gameLogic;
+		this.gameScreen = gameScreen;
 		this.stage = stage;
 	}
 	
@@ -42,7 +44,7 @@ public class Controller implements InputProcessor {
 			gameLogic.dropPiece();
 			break;
 		case Keys.BACK:
-			Pweek.getInstance().setScreen(MainMenuScreen.getInstance());
+			gameScreen.quit();
 			break;
 		}
 		return false;

@@ -26,4 +26,5 @@ public interface GameScreen extends Screen {
 	
 	public float getElapsedTime();
 
+	public void quit();
 }
