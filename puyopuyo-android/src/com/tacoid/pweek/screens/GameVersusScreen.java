@@ -253,7 +253,7 @@ public class GameVersusScreen implements GameScreen {
 	@Override
 	public void show() {
 		Pweek.getInstance().getHandler().setPortrait(false);
-		Pweek.getInstance().getHandler().showAds(false);
+		Pweek.getInstance().getHandler().showAds(!startActor.visible && (gamePaused || gameOver.visible));
 		resize(0, 0);
 		Gdx.input.setInputProcessor(controller);
 	}
