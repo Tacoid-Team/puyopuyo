@@ -40,7 +40,6 @@ public class GameOverActor extends Group {
 		
 		public void touchUp(float x, float y, int pointer) {
 			newUnlock = false;
-			Pweek.getInstance().getHandler().setPortrait(false);
 			Pweek.getInstance().setScreen(MainMenuScreen.getInstance());
 		}
 		

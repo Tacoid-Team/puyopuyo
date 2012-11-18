@@ -52,11 +52,14 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	        		    adParams.addRule(RelativeLayout.CENTER_VERTICAL);
 	        		    adView.setLayoutParams(adParams);
 	                	adView.setRotation(-90.0f);
-	                	adView.setTranslationX(adView.getWidth() / 2 - adView.getHeight() / 2);
-
+	                	if (adView.getWidth() > 0) {
+	                		adView.setTranslationX(adView.getWidth() / 2 - adView.getHeight() / 2);
+	                	} else {
+	                		adView.setTranslationX(AdSize.BANNER.getWidth() / 2 - AdSize.BANNER.getHeight() / 2);
+	                	}
 	                	break;
 	                }
-	                case LANDSCAPE_ADS: 
+	                case LANDSCAPE_ADS:
 	                {
 	        		    RelativeLayout.LayoutParams adParams = 
 	        		            new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, 
@@ -65,6 +68,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	        		    adParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
 	        		    adView.setLayoutParams(adParams);
 	                	adView.setRotation(0.0f);
+	                	adView.setTranslationX(0.0f);
 	                	break;
 	                }
 	            }

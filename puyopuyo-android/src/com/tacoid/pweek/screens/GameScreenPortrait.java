@@ -201,6 +201,8 @@ public abstract class GameScreenPortrait implements GameScreen {
 
 	@Override
 	public void show() {
+		Pweek.getInstance().getHandler().setPortrait(true);
+		Pweek.getInstance().getHandler().showAds(!startActor.visible && (gamePaused || gameEnded()));
 		resize(0, 0);
 		Gdx.input.setInputProcessor(controller);
 	}
@@ -268,7 +270,6 @@ public abstract class GameScreenPortrait implements GameScreen {
 		pauseMenu.hide();
 		GameType type = getGameType();
 		TrackingManager.getTracker().trackEvent("UI", "button_click",type.toString() + " quit before end", null);
-		Pweek.getInstance().getHandler().setPortrait(false);
 		Pweek.getInstance().setScreen(MainMenuScreen.getInstance());
 	}
 }

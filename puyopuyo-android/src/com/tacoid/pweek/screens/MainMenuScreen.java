@@ -151,6 +151,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 
 	@Override
 	public void show() {
+		Pweek.getInstance().getHandler().setPortrait(false);
 		resize(0, 0);
 		Gdx.input.setInputProcessor(this);
 	}
@@ -191,8 +192,6 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		public void touchUp(float x, float y, int pointer) {
 			GameSoloScreen.getInstance().init();
 			TrackingManager.getTracker().trackEvent("gameplay", "game_start", "solo", null);
-			Pweek.getInstance().getHandler().showAds(false);
-			Pweek.getInstance().getHandler().setPortrait(true);
 			Pweek.getInstance().setScreen(GameSoloScreen.getInstance());
 		}
 	}
@@ -227,8 +226,6 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		public void touchUp(float x, float y, int pointer) {
 			GameTimeAttackScreen.getInstance().init();
 			TrackingManager.getTracker().trackEvent("gameplay", "game_start", "chrono", null);
-			Pweek.getInstance().getHandler().showAds(false);
-			Pweek.getInstance().getHandler().setPortrait(true);
 			Pweek.getInstance().setScreen(GameTimeAttackScreen.getInstance());
 		}
 	}

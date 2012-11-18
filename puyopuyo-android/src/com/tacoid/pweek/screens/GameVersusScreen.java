@@ -252,6 +252,8 @@ public class GameVersusScreen implements GameScreen {
 
 	@Override
 	public void show() {
+		Pweek.getInstance().getHandler().setPortrait(false);
+		Pweek.getInstance().getHandler().showAds(false);
 		resize(0, 0);
 		Gdx.input.setInputProcessor(controller);
 	}
@@ -345,7 +347,6 @@ public class GameVersusScreen implements GameScreen {
 		pauseMenu.hide();
 		GameType type = getGameType();
 		TrackingManager.getTracker().trackEvent("UI", "button_click",type.toString()+" Level "+ getLevel() +" quit before end", null);
-		Pweek.getInstance().getHandler().setPortrait(false);
 		Pweek.getInstance().setScreen(MainMenuScreen.getInstance());
 	}
 }
