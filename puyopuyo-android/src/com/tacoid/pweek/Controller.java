@@ -80,6 +80,7 @@ public class Controller implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int x, int y, int pointer, int button) {
+		last = Calendar.getInstance().getTimeInMillis();
 		if (gameScreen.getOrientation() == ScreenOrientation.PORTRAIT) {
 			this.downX = -y;
 			this.downY = x;
@@ -132,7 +133,6 @@ public class Controller implements InputProcessor {
 			if (Calendar.getInstance().getTimeInMillis() - last < 500) {
 				gameLogic.rotateLeft();
 			}
-			last = Calendar.getInstance().getTimeInMillis();
 		}
 		return false;
 	}
