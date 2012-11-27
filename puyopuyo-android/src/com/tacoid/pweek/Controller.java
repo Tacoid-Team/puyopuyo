@@ -101,15 +101,17 @@ public class Controller implements InputProcessor {
 		if (x - downX > gameScreen.getPuyoSize()) {
 			if (gameLogic.moveRight()) {
 				downX = x;
+				downY = y;
 			}
 			last = 0;
 		} else if (x - downX < -gameScreen.getPuyoSize()) {
 			if (gameLogic.moveLeft()) {
 				downX = x;
+				downY = y;
 			}
 			last = 0;
-		} else if (y - downY > gameScreen.getPuyoSize()) {
-			gameLogic.moveDown();
+		} else if (y - downY > gameScreen.getPuyoSize() * 3) {
+			gameLogic.dropPiece();
 			downY = y;
 			last = 0;
 		}
