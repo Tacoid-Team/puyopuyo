@@ -285,7 +285,7 @@ public class GameLogic {
 		}
 	}
 
-	public void moveLeft() {
+	public boolean moveLeft() {
 		if (state == State.MOVE) {
 			boolean ok = true;
 			for (int i = 0; i < 2; i++) {
@@ -301,10 +301,12 @@ public class GameLogic {
 					piece[i].c--;
 				}
 			}
+			return ok;
 		}
+		return false;
 	}
 
-	public void moveRight() {
+	public boolean moveRight() {
 		if (state == State.MOVE) {
 			boolean ok = true;
 			for (int i = 0; i < 2; i++) {
@@ -321,7 +323,9 @@ public class GameLogic {
 					piece[i].c++;
 				}
 			}
+			return ok;
 		}
+		return false;
 	}
 	
 	public void dropPiece() {

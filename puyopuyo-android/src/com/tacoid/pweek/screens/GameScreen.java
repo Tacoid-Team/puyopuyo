@@ -18,6 +18,8 @@ public interface GameScreen extends Screen {
 	
 	public float getWidth();
 	
+	public int getPuyoSize();
+	
 	public GameType getGameType();
 	
 	public int getScore();

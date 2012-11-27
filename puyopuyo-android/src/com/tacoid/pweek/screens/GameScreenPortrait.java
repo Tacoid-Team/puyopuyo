@@ -34,6 +34,8 @@ public abstract class GameScreenPortrait implements GameScreen {
 	
 	private static final int VIRTUAL_WIDTH = 768;
 	private static final int VIRTUAL_HEIGHT = 1280;
+	
+	private int puyoSize = 64;
 
 	protected boolean end = false;
 	protected float elapsedTime;
@@ -75,14 +77,18 @@ public abstract class GameScreenPortrait implements GameScreen {
 		gameLogic = new GameLogic();
 	}
 	
+	public int getPuyoSize() {
+		return puyoSize;
+	}
+	
 	protected void initGraphics() {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
 		
 		controller = new Controller(gameLogic, this, stage);
 
-		gridActor = new GridActor(gameLogic, 280, 325, 70, 64);
-		nextPieceActor = new NextPieceActor(gameLogic, 75, 920, 64);
+		gridActor = new GridActor(gameLogic, 280, 325, 70, puyoSize);
+		nextPieceActor = new NextPieceActor(gameLogic, 75, 920, puyoSize);
 		ScoreActor scoreActor = new ScoreActor(gameLogic, 520, 1245);
 		HighScoreActor highScoreActor = new HighScoreActor(this, 218, 1250);
 		

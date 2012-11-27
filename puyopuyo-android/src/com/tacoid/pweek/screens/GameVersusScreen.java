@@ -45,6 +45,8 @@ public class GameVersusScreen implements GameScreen {
 	private NextPieceActor nextPieceActorIA;
 	protected float elapsedTime;
 
+	private int puyoSize = 48;
+	
 	private IA ia;
 	private InputProcessor controller;
 	private ControlerActor controllerActor;
@@ -83,6 +85,10 @@ public class GameVersusScreen implements GameScreen {
 		gameLogic.setOpponent(gameLogicIA);
 		gameLogicIA.setOpponent(gameLogic);
 		elapsedTime = 0;
+	}
+	
+	public int getPuyoSize() {
+		return puyoSize;
 	}
 	
 	public void setLevel(int level) {
@@ -126,12 +132,12 @@ public class GameVersusScreen implements GameScreen {
 		controller = new Controller(gameLogic, this, stage);
 		gameOver = null;
 
-		gridActor = new GridActor(gameLogic, 296, 26, 54, 48);
-		nextPieceActor = new NextPieceActor(gameLogic, 95, 500, 48);
+		gridActor = new GridActor(gameLogic, 296, 26, 54, puyoSize);
+		nextPieceActor = new NextPieceActor(gameLogic, 95, 500, puyoSize);
 		ScoreActor scoreActor = new ScoreActor(gameLogic, 550, 743);
 
-		gridActorIA = new GridActor(gameLogicIA, 650, 26, 54, 48);
-		nextPieceActorIA = new NextPieceActor(gameLogicIA, 1066, 500, 48);
+		gridActorIA = new GridActor(gameLogicIA, 650, 26, 54, puyoSize);
+		nextPieceActorIA = new NextPieceActor(gameLogicIA, 1066, 500, puyoSize);
 		ScoreActor scoreActorIA = new ScoreActor(gameLogicIA, 830, 743);
 		
 		TextureRegion pauseRegion = new TextureRegion(Pweek.getInstance().atlasBouttons.findRegion("pause_button"));
