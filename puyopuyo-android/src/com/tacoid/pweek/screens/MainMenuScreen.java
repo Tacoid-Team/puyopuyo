@@ -56,13 +56,13 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		
 		menu.initBegin("main");
 		{
-			/* SOLO BUTTON */
-			TextureRegion playRegion =  Pweek.getInstance().atlasPlank.findRegion("solo");
-			menu.addButton(new SoloButton(playRegion, playRegion));
-			
 			/* VERUS BUTTON */
 			TextureRegion versusRegion = Pweek.getInstance().atlasPlank.findRegion("versus");
 			menu.addButton(new VersusButton(versusRegion, versusRegion));
+			
+			/* SOLO BUTTON */
+			TextureRegion playRegion =  Pweek.getInstance().atlasPlank.findRegion("solo");
+			menu.addButton(new SoloButton(playRegion, playRegion));
 			
 			/* CHRONO BUTTON */
 			TextureRegion chronoRegion = Pweek.getInstance().atlasPlank.findRegion("chrono");
