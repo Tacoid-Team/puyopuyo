@@ -161,14 +161,22 @@ public class GameVersusScreen implements GameScreen {
 		addButton(SoundButtonActor.createSoundButton(),VIRTUAL_WIDTH-2*64-10, VIRTUAL_HEIGHT-64);
 		
 	
+		boolean show = false;
+		if (gameOver != null) {
+			show = gameOver.visible;
+		}
 		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, 8*VIRTUAL_HEIGHT/9-25);
 		stage.addActor(gameOver);
-		gameOver.hide();
+		if (show) {
+			gameOver();
+		} else {
+			gameOver.hide();
+		}
 		
 		pauseMenu = new PauseMenu(this, ScreenOrientation.LANDSCAPE, !gamePaused);
 		stage.addActor(pauseMenu);
 		
-		boolean show = true;
+		show = true;
 		if (startActor != null) {
 			show = startActor.visible;
 		}

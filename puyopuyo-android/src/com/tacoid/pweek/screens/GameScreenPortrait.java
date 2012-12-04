@@ -108,15 +108,22 @@ public abstract class GameScreenPortrait implements GameScreen {
 		addButton(MusicButtonActor.createMusicButton(),VIRTUAL_WIDTH-64, VIRTUAL_HEIGHT-64);
 		addButton(SoundButtonActor.createSoundButton(),VIRTUAL_WIDTH-2*64-10, VIRTUAL_HEIGHT-64);
 		
-	
+		boolean show = false;
+		if (gameOver != null) {
+			show = gameOver.visible;
+		}
 		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, 3*VIRTUAL_HEIGHT/5);
 		stage.addActor(gameOver);
-		gameOver.hide();
+		if (show) {
+			gameOver();
+		} else {
+			gameOver.hide();
+		}
 		
 		pauseMenu = new PauseMenu(this, ScreenOrientation.PORTRAIT, !gamePaused);
 		stage.addActor(pauseMenu);
 	
-		boolean show = true;
+		show = true;
 		if (startActor != null) {
 			show = startActor.visible;
 		}
