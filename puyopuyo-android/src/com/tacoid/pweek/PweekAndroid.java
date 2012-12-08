@@ -1,5 +1,6 @@
 package com.tacoid.pweek;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -30,6 +31,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 
 	    static protected Handler handler = new Handler()
 	    {
+	        @SuppressLint("NewApi")
 	        @Override
 	        public void handleMessage(Message msg) {
 	            switch(msg.what) {
@@ -51,12 +53,14 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	        		    adParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 	        		    adParams.addRule(RelativeLayout.CENTER_VERTICAL);
 	        		    adView.setLayoutParams(adParams);
-	                	adView.setRotation(-90.0f);
-	                	if (adView.getWidth() > 0) {
-	                		adView.setTranslationX(adView.getWidth() / 2 - adView.getHeight() / 2);
-	                	} else {
-	                		adView.setTranslationX(AdSize.BANNER.getWidth() / 2 - AdSize.BANNER.getHeight() / 2);
-	                	}
+	        		    if (android.os.Build.VERSION.SDK_INT >= 11) {
+		                	adView.setRotation(-90.0f);
+		                	if (adView.getWidth() > 0) {
+		                		adView.setTranslationX(adView.getWidth() / 2 - adView.getHeight() / 2);
+		                	} else {
+		                		adView.setTranslationX(AdSize.BANNER.getWidth() / 2 - AdSize.BANNER.getHeight() / 2);
+		                	}
+	        		    }
 	                	break;
 	                }
 	                case LANDSCAPE_ADS:
@@ -67,8 +71,10 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	        		    adParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 	        		    adParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
 	        		    adView.setLayoutParams(adParams);
-	                	adView.setRotation(0.0f);
-	                	adView.setTranslationX(0.0f);
+	        		    if (android.os.Build.VERSION.SDK_INT >= 11) {
+	        		    	adView.setRotation(0.0f);
+	        		    	adView.setTranslationX(0.0f);
+	        		    }
 	                	break;
 	                }
 	            }
