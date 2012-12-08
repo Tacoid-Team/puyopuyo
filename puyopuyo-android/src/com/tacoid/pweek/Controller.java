@@ -111,7 +111,7 @@ public class Controller implements InputProcessor {
 				downY = y;
 			}
 			last = 0;
-		} else if (y - downY > gameScreen.getPuyoSize() * 3) {
+		} else if (y - downY > gameScreen.getPuyoSize() * 2) {
 			gameLogic.dropPiece();
 			downY = y;
 			last = 0;
@@ -130,7 +130,13 @@ public class Controller implements InputProcessor {
 		if (stage.touchUp(x, y, pointer, button)) {
 			return true;
 		} else { 
-			if (Calendar.getInstance().getTimeInMillis() - last < 500) {
+			if (gameScreen.getOrientation() == ScreenOrientation.PORTRAIT) {
+				int buf = x;
+				x = -y;
+				y = buf;
+			}
+			if (Math.abs(this.downX - x) < 20 && Math.abs(this.downY - y) < 20 &&    
+					Calendar.getInstance().getTimeInMillis() - last < 200) {
 				gameLogic.rotateLeft();
 			}
 		}
