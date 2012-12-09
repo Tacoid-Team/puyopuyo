@@ -4,6 +4,8 @@ public class IAEasy implements IA {
 	float sum = 0f;
 	private GameLogic logic;
 	private int potentiel;
+	private Solution dyn[][];
+
 
 	public IAEasy(GameLogic logic) {
 		this.logic = logic;
@@ -20,7 +22,33 @@ public class IAEasy implements IA {
 	}
 
 	private Solution choice(int n, GameLogic cl, int m) {
-		if (n == 0) {
+		Coord p1 = cl.getPiece()[0];
+		Coord p2 = cl.getPiece()[1];
+		int dl = p1.l - p2.l;
+		int dc = p1.c - p2.c;
+		
+		int r;
+		if (dl == 0) {
+			if (dc == 1) {
+				r = 0;
+			} else {
+				r = 1;
+			}
+		} else if (dl == 1) {
+			r = 2;
+		} else {
+			r = 3;
+		}
+		
+		if (dyn[p1.l * logic.COLUMNS + p1.c][r] != null) {
+			// Si on a déjà été dans cette position en moins de mouvement
+			if (dyn[p1.l * logic.COLUMNS + p1.c][r].m <= m) {
+				// Alors c'est naze.
+				return new Solution(-1, 0);
+			}
+		}
+		
+		if (n == 0) {			
 			int diff = 0;
 			cl.poseEtGravity();
 
@@ -33,7 +61,8 @@ public class IAEasy implements IA {
 				}
 			}
 
-			return new Solution(potentiel + diff, m);
+			dyn[p1.l * logic.COLUMNS + p1.c][r] = new Solution(potentiel + diff, m);
+			return dyn[p1.l * logic.COLUMNS + p1.c][r];
 		} else {
 			GameLogic[] logics = new GameLogic[5];
 
@@ -80,7 +109,8 @@ public class IAEasy implements IA {
 				}
 			}
 
-			return scoreMax;
+			dyn[p1.l * logic.COLUMNS + p1.c][r] = scoreMax;
+			return dyn[p1.l * logic.COLUMNS + p1.c][r];
 		}
 	}
 
@@ -112,6 +142,7 @@ public class IAEasy implements IA {
 			}
 		}
 
+		dyn = new Solution[(logic.LINES + 1) * logic.COLUMNS][4];
 		choice(4, logic, 0);
 	}
 
