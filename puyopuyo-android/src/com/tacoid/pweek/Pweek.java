@@ -141,7 +141,6 @@ public class Pweek extends Game {
 		manager.load("sounds/AnoyingMusic.mp3", Music.class);
 		
 	}
-	static int i = 0;
 
 	public void loadLocalizedAssets() {
 

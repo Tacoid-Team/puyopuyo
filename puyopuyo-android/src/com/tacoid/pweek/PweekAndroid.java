@@ -81,7 +81,8 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	        }
 	    };
 	    
-	    @Override
+	    @SuppressLint("NewApi")
+		@Override
 	    public void onCreate(Bundle savedInstanceState) {
 		    super.onCreate(savedInstanceState);
 		    
@@ -121,6 +122,11 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		
 		    // Hook it all up
 		    setContentView(layout);
+		    
+		    if (android.os.Build.VERSION.SDK_INT >= 11) {
+		    	View rootView = getWindow().getDecorView();
+		    	rootView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
+		    }
 	}
     
     protected void onStart() {
