@@ -5,119 +5,126 @@ filter: Nearest,Nearest
 repeat: none
 foreground
   rotate: false
-  xy: 0, 656
+  xy: 0, 712
   size: 1280, 312
   orig: 1280, 312
   offset: 0, 0
   index: -1
 pweek
   rotate: false
-  xy: 0, 413
+  xy: 0, 469
   size: 800, 243
   orig: 800, 243
   offset: 0, 0
   index: -1
 perdu
   rotate: false
-  xy: 1280, 753
+  xy: 1280, 809
   size: 719, 215
   orig: 719, 215
   offset: 0, 0
   index: -1
 gameover
   rotate: false
-  xy: 0, 213
+  xy: 0, 269
   size: 655, 200
   orig: 655, 200
   offset: 0, 0
   index: -1
 gagne
   rotate: false
-  xy: 0, 0
+  xy: 0, 56
   size: 613, 213
   orig: 613, 213
   offset: 0, 0
   index: -1
 touchtostart
   rotate: false
-  xy: 800, 373
+  xy: 800, 429
   size: 358, 283
   orig: 358, 283
   offset: 0, 0
   index: -1
+continuer
+  rotate: false
+  xy: 1280, 649
+  size: 257, 160
+  orig: 257, 160
+  offset: 0, 0
+  index: -1
 rejouer
   rotate: false
-  xy: 1280, 593
-  size: 254, 160
-  orig: 254, 160
+  xy: 1537, 649
+  size: 257, 160
+  orig: 257, 160
+  offset: 0, 0
+  index: -1
+versus
+  rotate: false
+  xy: 1794, 649
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+text3013
+  rotate: false
+  xy: 0, 0
+  size: 126, 56
+  orig: 126, 56
+  offset: 0, 0
+  index: -1
+quitter
+  rotate: false
+  xy: 1158, 489
+  size: 257, 160
+  orig: 257, 160
   offset: 0, 0
   index: -1
 chrono
   rotate: false
-  xy: 1534, 593
-  size: 253, 160
-  orig: 253, 160
-  offset: 0, 0
-  index: -1
-continuer
-  rotate: false
-  xy: 1787, 593
-  size: 253, 160
-  orig: 253, 160
-  offset: 0, 0
-  index: -1
-easy
-  rotate: false
-  xy: 1158, 433
+  xy: 1415, 489
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 hard
   rotate: false
-  xy: 1411, 433
+  xy: 1668, 489
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+easy
+  rotate: false
+  xy: 1158, 329
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 medium
   rotate: false
-  xy: 1664, 433
-  size: 253, 160
-  orig: 253, 160
-  offset: 0, 0
-  index: -1
-quitter
-  rotate: false
-  xy: 1158, 273
-  size: 253, 160
-  orig: 253, 160
-  offset: 0, 0
-  index: -1
-solo
-  rotate: false
-  xy: 1411, 273
-  size: 253, 160
-  orig: 253, 160
-  offset: 0, 0
-  index: -1
-versus
-  rotate: false
-  xy: 1664, 273
+  xy: 1411, 329
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 veryhard
   rotate: false
-  xy: 655, 213
+  xy: 1664, 329
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+solo
+  rotate: false
+  xy: 655, 269
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 redcross
   rotate: false
-  xy: 613, 105
+  xy: 613, 161
   size: 170, 108
   orig: 170, 108
   offset: 0, 0
