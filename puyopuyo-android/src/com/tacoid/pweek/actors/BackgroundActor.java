@@ -52,10 +52,8 @@ public class BackgroundActor extends Actor{
 	}
 
 	@Override
-	public Actor hit(float arg0, float arg1) {
-		// TODO Auto-generated method stub
+	public Actor hit(float x, float y, boolean touchable) {
 		return null;
 	}
-
 	
 }

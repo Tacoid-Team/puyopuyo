@@ -9,8 +9,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.MusicPlayer;
 import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.ScoreManager;
@@ -40,8 +43,8 @@ public class MainMenuScreen implements Screen, InputProcessor {
 	
 	private void addButton(Button button, int x, int y) {
 		stage.addActor(button);
-		button.x = x;
-		button.y = y;
+		button.setX(x);
+		button.setY(y);
 	}
 	
 	public void init() {
@@ -172,7 +175,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		}
 
 		@Override
-		public Actor hit(float arg0, float arg1) {
+		public Actor hit(float arg0, float arg1, boolean touchable) {
 			// TODO Auto-generated method stub
 			return null;
 		}
@@ -181,70 +184,92 @@ public class MainMenuScreen implements Screen, InputProcessor {
 
 	private class SoloButton extends Button{
 		public SoloButton(TextureRegion regionUp, TextureRegion regionDown) {
-			super(regionUp, regionDown);
-			// TODO Auto-generated constructor stub
-		}
-
-		@Override
-		public boolean touchDown(float x, float y, int pointer) {
-			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
-			return true;
-		}
-		public void touchUp(float x, float y, int pointer) {
-			GameSoloScreen.getInstance().init();
-			TrackingManager.getTracker().trackEvent("gameplay", "game_start", "solo", null);
-			Pweek.getInstance().setScreen(GameSoloScreen.getInstance());
+			super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown));
+			
+			addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
+					return true;
+				}
+				
+				@Override
+				public void touchUp(InputEvent event, float x, float y,
+						int pointer, int button) {
+					GameSoloScreen.getInstance().init();
+					TrackingManager.getTracker().trackEvent("gameplay", "game_start", "solo", null);
+					Pweek.getInstance().setScreen(GameSoloScreen.getInstance());
+				}
+			});
 		}
 	}
 	
 	private class VersusButton extends Button{
 		public VersusButton(TextureRegion regionUp, TextureRegion regionDown) {
-			super(regionUp, regionDown);
-			// TODO Auto-generated constructor stub
-		}
+			super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown));
 
-		@Override
-		public boolean touchDown(float x, float y, int pointer) {
-			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
-			return true;
-		}
-		public void touchUp(float x, float y, int pointer) {
-			menu.switchMenuAnimated("versus");
+			addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
+					return true;
+				}
+				
+				@Override
+				public void touchUp(InputEvent event, float x, float y,
+						int pointer, int button) {
+					menu.switchMenuAnimated("versus");
+				}
+				
+			});
 		}
 	}
 	
 	private class ChronoButton extends Button{
 		public ChronoButton(TextureRegion regionUp, TextureRegion regionDown) {
-			super(regionUp, regionDown);
-			// TODO Auto-generated constructor stub
-		}
+			super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown));
 
-		@Override
-		public boolean touchDown(float x, float y, int pointer) {
-			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
-			return true;
-		}
-		public void touchUp(float x, float y, int pointer) {
-			GameTimeAttackScreen.getInstance().init();
-			TrackingManager.getTracker().trackEvent("gameplay", "game_start", "chrono", null);
-			Pweek.getInstance().setScreen(GameTimeAttackScreen.getInstance());
+			addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
+					return true;
+				}
+				
+				@Override
+				public void touchUp(InputEvent event, float x, float y,
+						int pointer, int button) {
+					// TODO Auto-generated method stub
+					GameTimeAttackScreen.getInstance().init();
+					TrackingManager.getTracker().trackEvent("gameplay", "game_start", "chrono", null);
+					Pweek.getInstance().setScreen(GameTimeAttackScreen.getInstance());
+				}
+			});
 		}
 	}
 	
 	private class ExitButton extends Button{
 		public ExitButton(TextureRegion regionUp, TextureRegion regionDown) {
-			super(regionUp, regionDown);
-			// TODO Auto-generated constructor stub
-		}
-
-		@Override
-		public boolean touchDown(float x, float y, int pointer) {
-			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
-			return true;
-		}
-		public void touchUp(float x, float y, int pointer) {
-			TrackingManager.getTracker().trackEvent("UI", "button_click", "quit", null);
-			Gdx.app.exit();
+			super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown));
+			
+			addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
+					return true;
+				}
+				
+				@Override
+				public void touchUp(InputEvent event, float x, float y,
+						int pointer, int button) {
+					TrackingManager.getTracker().trackEvent("UI", "button_click", "quit", null);
+					Gdx.app.exit();
+				}
+			});
 		}
 	}
 	
@@ -252,33 +277,39 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		private int level;
 		private Sprite redCross;
 		
-		public LevelButton(int level, TextureRegion regionUp, TextureRegion regionDown) {
-			super(regionUp, regionDown);
-			this.level = level;
+		public LevelButton(final int level, TextureRegion regionUp, TextureRegion regionDown) {
+			super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown));
 			redCross = new Sprite(Pweek.getInstance().atlasPlank.findRegion("redcross"));
-		}
-
-		@Override
-		public boolean touchDown(float x, float y, int pointer) {
-			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
-			return true;
-		}
-		public void touchUp(float x, float y, int pointer) {
-			if(ScoreManager.getInstance().isLevelUnlocked(GameType.VERSUS_IA, level)) {
-				GameVersusScreen.getInstance().setLevel(level);
-				GameVersusScreen.getInstance().init();
-				TrackingManager.getTracker().trackEvent("gameplay", "game_start", "versus_"+level, null);
-				Pweek.getInstance().getHandler().showAds(false);
-				Pweek.getInstance().setScreen(GameVersusScreen.getInstance());
-				menu.switchMenu("main");
-			}
+			
+			addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
+					return true;
+				}
+				
+				@Override
+				public void touchUp(InputEvent event, float x, float y,
+						int pointer, int button) {
+					if(ScoreManager.getInstance().isLevelUnlocked(GameType.VERSUS_IA, level)) {
+						GameVersusScreen.getInstance().setLevel(level);
+						GameVersusScreen.getInstance().init();
+						TrackingManager.getTracker().trackEvent("gameplay", "game_start", "versus_"+level, null);
+						Pweek.getInstance().getHandler().showAds(false);
+						Pweek.getInstance().setScreen(GameVersusScreen.getInstance());
+						menu.switchMenu("main");
+					}
+				}
+			});
 		}
 		
-		public void draw (SpriteBatch batch, float parentAlpha) {
+		@Override
+		public void draw(SpriteBatch batch, float parentAlpha) {
 			super.draw(batch, parentAlpha);
 			if(!ScoreManager.getInstance().isLevelUnlocked(GameType.VERSUS_IA, level)) {
-				redCross.setX(this.x+50);
-				redCross.setY(this.y+30);
+				redCross.setX(this.getX() + 50);
+				redCross.setY(this.getY() + 30);
 				redCross.draw(batch);
 			}
 		}
@@ -327,8 +358,8 @@ public class MainMenuScreen implements Screen, InputProcessor {
 	}
 
 	@Override
-	public boolean touchMoved(int x, int y) {
-		return stage.touchMoved(x, y);
+	public boolean mouseMoved(int x, int y) {
+		return stage.mouseMoved(x, y);
 	}
 
 	@Override

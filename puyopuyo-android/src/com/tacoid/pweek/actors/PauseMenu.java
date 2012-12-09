@@ -2,7 +2,10 @@ package com.tacoid.pweek.actors;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.SoundPlayer;
 import com.tacoid.pweek.Pweek.ScreenOrientation;
@@ -15,36 +18,46 @@ public class PauseMenu extends Group{
 	
 	private SwingMenu menu;
 	
-	private class ContinueButton extends Button{
+	private class ContinueButton extends Button {
 		public ContinueButton(TextureRegion region) {
-			super(region);
-			x = 100;
-		}
-		
-		public boolean touchDown(float x, float y, int pointer) {
-			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
-			return true;
-		}
+			super(new TextureRegionDrawable(region));
+			setX(100);
+			addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
+					return true;
+				}
 
-		public void touchUp(float x, float y, int pointer) {
-			Pweek.getInstance().getHandler().showAds(false);
-			hide();
+				@Override
+				public void touchUp(InputEvent event, float x, float y,
+						int pointer, int button) {
+					Pweek.getInstance().getHandler().showAds(false);
+					hide();
+				}
+			});
 		}
 	}
 	
 	private class QuitButton extends Button{
 		public QuitButton(TextureRegion region) {
-			super(region);
-			x = 800;
-		}
-
-		public boolean touchDown(float x, float y, int pointer) {
-			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
-			return true;
-		}
-		
-		public void touchUp(float x, float y, int pointer) {
-			gameScreen.quit();
+			super(new TextureRegionDrawable(region));
+			setX(800);
+			addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
+					return true;
+				}
+				
+				@Override
+				public void touchUp(InputEvent event, float x, float y,
+						int pointer, int button) {
+					gameScreen.quit();
+				}
+			});
 		}
 	}
 	
@@ -65,7 +78,7 @@ public class PauseMenu extends Group{
 		this.addActor(menu);
 		
 		this.gameScreen = gameScreen;
-		visible = true;
+		setVisible(true);
 	}
 	
 	public void show() {

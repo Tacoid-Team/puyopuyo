@@ -6,7 +6,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.I18nManager;
 import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.ScoreManager;
@@ -29,41 +32,50 @@ public class GameOverActor extends Group {
 	private class QuitButton extends Button {
 
 		public QuitButton(TextureRegion regionUp, TextureRegion regionDown) {
-			super(regionUp, regionDown);
-			// TODO Auto-generated constructor stub
-		}
+			super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown));
+			
+			addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
+					return true;
+				}
+				
+				@Override
+				public void touchUp(InputEvent event, float x, float y,
+						int pointer, int button) {
+					newUnlock = false;
+					Pweek.getInstance().setScreen(MainMenuScreen.getInstance());
+				}
 		
-		public boolean touchDown(float x, float y, int pointer) {
-			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
-			return true;
-		}
-		
-		public void touchUp(float x, float y, int pointer) {
-			newUnlock = false;
-			Pweek.getInstance().setScreen(MainMenuScreen.getInstance());
-		}
-		
+			});
+		}		
 	}
 	
 	private class ReplayButton extends Button {
 
 		public ReplayButton(TextureRegion regionUp, TextureRegion regionDown) {
-			super(regionUp, regionDown);
-			// TODO Auto-generated constructor stub
+			super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown));
+			
+			addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
+					return true;
+				}
+				
+				@Override
+				public void touchUp(InputEvent event, float x, float y,
+						int pointer, int button) {
+					gameScreen.init();
+					newUnlock = false;
+					Pweek.getInstance().getHandler().showAds(false);
+					hide();
+				}
+			});
 		}
-		
-		public boolean touchDown(float x, float y, int pointer) {
-			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
-			return true;
-		}
-		
-		public void touchUp(float x, float y, int pointer) {
-			gameScreen.init();
-			newUnlock = false;
-			Pweek.getInstance().getHandler().showAds(false);
-			hide();
-		}
-		
 	}
 	
 	private Sprite winSprite;
@@ -122,13 +134,13 @@ public class GameOverActor extends Group {
 		font.setScale(0.8f);
 		
 		this.hide();
-		this.visible = true;
+		this.setVisible(true);
 	}
 	
 	public void show(GameOverType type) {
 		menu.show("gameover");
 		this.type = type;
-		this.visible = true;
+		this.setVisible(true);
 		this.highScore = ScoreManager.getInstance().getScore(gameScreen.getGameType());
 		this.newHighScore = false;
 		if(highScore < gameScreen.getScore() && gameScreen.getGameType() != GameType.VERSUS_IA) {
@@ -154,7 +166,7 @@ public class GameOverActor extends Group {
 	
 	public void hide() {
 		menu.hideInstant();
-		this.visible = false;
+		this.setVisible(false);
 	}
 	
 	public void draw(SpriteBatch batch, float arg1) {

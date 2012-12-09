@@ -121,11 +121,6 @@ public class Controller implements InputProcessor {
 	}
 
 	@Override
-	public boolean touchMoved(int x, int y) {
-		return stage.touchMoved(x, y);
-	}
-
-	@Override
 	public boolean touchUp(int x, int y, int pointer, int button) {
 		if (stage.touchUp(x, y, pointer, button)) {
 			return true;
@@ -141,6 +136,11 @@ public class Controller implements InputProcessor {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public boolean mouseMoved(int x, int y) {
+		return stage.mouseMoved(x, y);
 	}
 
 }

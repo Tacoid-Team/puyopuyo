@@ -37,7 +37,7 @@ public class PortraitPanelActor extends Actor {
 	}
 
 	@Override
-	public Actor hit(float arg0, float arg1) {
+	public Actor hit(float arg0, float arg1, boolean touchable) {
 		// TODO Auto-generated method stub
 		return null;
 	}

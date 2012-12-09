@@ -5,8 +5,12 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GLCommon;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.Controller;
 import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.SoundPlayer;
@@ -55,21 +59,24 @@ public abstract class GameScreenPortrait implements GameScreen {
 	protected class PauseButton extends Button {
 
 		public PauseButton(TextureRegion region) {
-			super(region);
+			super(new TextureRegionDrawable(region));
+			
+			addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
+					pauseMenu.show();
+					return true;
+				}
+			});
 		}
-		
-		public boolean touchDown(float x, float y, int pointer) {
-			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
-			pauseMenu.show();
-			return true;
-		}
-
 	}
 
 	private void addButton(Button button, int x, int y) {
 		stage.addActor(button);
-		button.x = x;
-		button.y = y;
+		button.setX(x);
+		button.setY(y);
 	}
 
 	public GameScreenPortrait() {
@@ -110,7 +117,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		
 		boolean show = false;
 		if (gameOver != null) {
-			show = gameOver.visible;
+			show = gameOver.isVisible();
 		}
 		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, 3*VIRTUAL_HEIGHT/5);
 		stage.addActor(gameOver);
@@ -125,15 +132,15 @@ public abstract class GameScreenPortrait implements GameScreen {
 	
 		show = true;
 		if (startActor != null) {
-			show = startActor.visible;
+			show = startActor.isVisible();
 		}
 		startActor = new StartActor(this);
 		stage.addActor(startActor);
 		if (show) {
 			startActor.show();
 		} else {
-			startActor.visible = false;
-			startActor.touchable = false;
+			startActor.setVisible(false);
+			startActor.setTouchable(Touchable.disabled);
 			if (gamePaused) {
 				pauseMenu.show();
 			}
@@ -215,7 +222,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 	@Override
 	public void show() {
 		Pweek.getInstance().getHandler().setPortrait(true);
-		Pweek.getInstance().getHandler().showAds(!startActor.visible && (gamePaused || gameEnded()));
+		Pweek.getInstance().getHandler().showAds(!startActor.isVisible() && (gamePaused || gameEnded()));
 		resize(0, 0);
 		Gdx.input.setInputProcessor(controller);
 	}
@@ -233,8 +240,8 @@ public abstract class GameScreenPortrait implements GameScreen {
 	}
 
 	private void gameOver() {
-		controllerActor.touchable = false;
-		pauseButton.touchable = false;
+		controllerActor.setTouchable(Touchable.disabled);
+		pauseButton.setTouchable(Touchable.disabled);
 		gameOver.show(GameOverType.GAMEOVER);
 	}
 	
@@ -242,21 +249,22 @@ public abstract class GameScreenPortrait implements GameScreen {
 	public void gamePause() {
 		gamePaused = true;
 		gameLogic.pause();
-		gridActor.visible = false;
-		nextPieceActor.visible = false;
-		controllerActor.touchable = false;
-		pauseButton.touchable = false;
+		
+		gridActor.setVisible(false);
+		nextPieceActor.setVisible(false);
+		controllerActor.setTouchable(Touchable.disabled);
+		pauseButton.setTouchable(Touchable.disabled);
 	}
 
 	@Override
 	public void gameResume() {
 		gamePaused = false;
 		gameLogic.resume();
-		gridActor.visible = true;
-		nextPieceActor.visible = true;
-		controllerActor.touchable = true;
-		controllerActor.touchable = true;
-		pauseButton.touchable = true;
+		
+		gridActor.setVisible(true);
+		nextPieceActor.setVisible(true);
+		controllerActor.setTouchable(Touchable.enabled);
+		pauseButton.setTouchable(Touchable.enabled);
 	}
 	
 	public ScreenOrientation getOrientation() {

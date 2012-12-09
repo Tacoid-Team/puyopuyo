@@ -2,19 +2,29 @@ package com.tacoid.pweek.actors;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.MusicPlayer;
 import com.tacoid.pweek.Pweek;
 
-public class MusicButtonActor extends Button implements ClickListener{
+public class MusicButtonActor extends Button {
 
 	private MusicButtonActor(TextureRegion regionUp, TextureRegion regionDown,
 			TextureRegion regionChecked) {
-		super(regionUp, regionDown, regionChecked);
+		super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown), new TextureRegionDrawable(regionChecked));
 		setChecked(MusicPlayer.getInstance().isMuted());
-		setClickListener(this);
+		addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				if(isChecked()) {
+					MusicPlayer.getInstance().mute();
+				} else {
+					MusicPlayer.getInstance().unmute();
+				}
+			}
+		});
 	}
 	
 	static public MusicButtonActor createMusicButton() {
@@ -24,14 +34,7 @@ public class MusicButtonActor extends Button implements ClickListener{
 		return new MusicButtonActor(musicOnRegion, musicOnRegion, musicOffRegion);
 	}
 
-	@Override
-	public void click(Actor arg0, float arg1, float arg2) {
-		if(this.isChecked()) {
-			MusicPlayer.getInstance().mute();
-		} else {
-			MusicPlayer.getInstance().unmute();
-		}
-	}
+	
 	public void draw (SpriteBatch batch, float parentAlpha) {
 		if(MusicPlayer.getInstance().isMuted()) {
 			this.setChecked(true);

@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.Pweek.ScreenOrientation;
 
@@ -64,8 +65,8 @@ public class SwingMenu extends Group{
 					if(switching) {
 						show(nextMenu);
 					} else {
-						this.touchable =false;
-						this.visible = false;
+						setTouchable(Touchable.disabled);
+						setVisible(false);
 						state = State.IDLE;
 					}
 				}
@@ -88,7 +89,7 @@ public class SwingMenu extends Group{
 				break;
 			}
 			
-			currentGroup.y = interpButton.apply(0, BUTTON_HEIGHT, Math.min(timeButton,1.0f));
+			currentGroup.setY(interpButton.apply(0, BUTTON_HEIGHT, Math.min(timeButton,1.0f)));
 			/*
 			for(int i=0; i<currentGroup.size(); i++) {
 				currentList.get(i).y = interpButton.apply(0, BUTTON_HEIGHT, Math.min(timeButton,1.0f));
@@ -97,7 +98,7 @@ public class SwingMenu extends Group{
 		}
 
 		@Override
-		public Actor hit(float arg0, float arg1) {
+		public Actor hit(float arg0, float arg1, boolean touchable) {
 			// TODO Auto-generated method stub
 			return null;
 		}
@@ -127,12 +128,12 @@ public class SwingMenu extends Group{
 	}
 	
 	public void initEnd() {
-		int size = currentGroup.getActors().size();
-		for(int i=0; i<size; i++) {
-			/*currentList.get(i).x = VIRTUAL_WIDTH*(i+1)/(buttons.size()+1)-128;*/
-			currentGroup.getActors().get(i).x = (i+1)*(VIRTUAL_WIDTH-size*256)/(size+1)+i*256;
-			currentGroup.getActors().get(i).y = 0;
-		//addActor(buttons.get(i));
+		int size = currentGroup.getChildren().size;
+		int i = 0;
+		for (Actor a : currentGroup.getChildren()) {
+			a.setX((i+1)*(VIRTUAL_WIDTH-size*256)/(size+1)+i*256);
+			a.setY(0);
+			i++;
 		}
 	}
 	public void show(String menu) 
@@ -147,11 +148,11 @@ public class SwingMenu extends Group{
 		state=State.SHOWING;
 		timeBush = 0.5f;
 		timeButton = -0.2f;
-		this.touchable =true;
-		this.visible = true;
+		setTouchable(Touchable.enabled);
+		setVisible(true);
 		
 		/* On initialise le y ici, car dans la file de rendering, les bouttons sont en premiers, et passent donc apr�s le BushActor qui set la position des bouttons. */
-		currentGroup.y = interpButton.apply(0, BUTTON_HEIGHT, Math.min(timeButton,1.0f));
+		currentGroup.setY(interpButton.apply(0, BUTTON_HEIGHT, Math.min(timeButton,1.0f)));
 		
 		switching = false;
 	}

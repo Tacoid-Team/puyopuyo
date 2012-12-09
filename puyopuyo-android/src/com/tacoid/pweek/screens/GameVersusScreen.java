@@ -5,8 +5,12 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GLCommon;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.Controller;
 import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.SoundPlayer;
@@ -61,22 +65,25 @@ public class GameVersusScreen implements GameScreen {
 	
 	private void addButton(Button button, int x, int y) {
 		stage.addActor(button);
-		button.x = x;
-		button.y = y;
+		button.setX(x);
+		button.setY(y);
 	}
 	
 	public class PauseButton extends Button {
 
 		public PauseButton(TextureRegion region) {
-			super(region);
+			super(new TextureRegionDrawable(region));
+			
+			addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
+					pauseMenu.show();
+					return true;
+				}
+			});
 		}
-		
-		public boolean touchDown(float x, float y, int pointer) {
-			SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
-			pauseMenu.show();
-			return true;
-		}
-
 	}
 
 	private GameVersusScreen() {
@@ -163,7 +170,7 @@ public class GameVersusScreen implements GameScreen {
 	
 		boolean show = false;
 		if (gameOver != null) {
-			show = gameOver.visible;
+			show = gameOver.isVisible();
 		}
 		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, 8*VIRTUAL_HEIGHT/9-25);
 		stage.addActor(gameOver);
@@ -178,22 +185,20 @@ public class GameVersusScreen implements GameScreen {
 		
 		show = true;
 		if (startActor != null) {
-			show = startActor.visible;
+			show = startActor.isVisible();
 		}
 
 		startActor = new StartActor(this);
 		if (show) {
 			startActor.show();
 		} else {
-			startActor.visible = false;
-			startActor.touchable = false;
+			startActor.setVisible(false);
+			startActor.setTouchable(Touchable.disabled);
 			if (gamePaused) {
 				pauseMenu.show();
 			}
 		}
 		stage.addActor(startActor);
-		
-
 	}
 
 	public static GameVersusScreen getInstance() {
@@ -267,7 +272,7 @@ public class GameVersusScreen implements GameScreen {
 	@Override
 	public void show() {
 		Pweek.getInstance().getHandler().setPortrait(false);
-		Pweek.getInstance().getHandler().showAds(!startActor.visible && (gamePaused || gameOver.visible));
+		Pweek.getInstance().getHandler().showAds(!startActor.isVisible() && (gamePaused || gameOver.isVisible()));
 		resize(0, 0);
 		Gdx.input.setInputProcessor(controller);
 	}
@@ -287,8 +292,8 @@ public class GameVersusScreen implements GameScreen {
 		} else {
 			gameOver.show(GameOverType.WIN);
 		}
-		controllerActor.touchable = false;
-		pauseButton.touchable = false;
+		controllerActor.setTouchable(Touchable.disabled);
+		pauseButton.setTouchable(Touchable.disabled);
 	}
 	
 	@Override
@@ -296,12 +301,13 @@ public class GameVersusScreen implements GameScreen {
 		gamePaused = true;
 		gameLogic.pause();
 		gameLogicIA.pause();
-		gridActor.visible = false;
-		gridActorIA.visible = false;
-		nextPieceActor.visible = false;
-		nextPieceActorIA.visible = false;
-		controllerActor.touchable = false;
-		pauseButton.touchable = false;
+		
+		gridActor.setVisible(false);
+		gridActorIA.setVisible(false);
+		nextPieceActor.setVisible(false);
+		nextPieceActorIA.setVisible(false);
+		controllerActor.setTouchable(Touchable.disabled);
+		pauseButton.setTouchable(Touchable.disabled);
 	}
 
 	@Override
@@ -309,12 +315,14 @@ public class GameVersusScreen implements GameScreen {
 		gamePaused = false;
 		gameLogic.resume();
 		gameLogicIA.resume();
-		gridActor.visible = true;
-		gridActorIA.visible = true;
-		nextPieceActor.visible = true;
-		nextPieceActorIA.visible = true;
-		controllerActor.touchable = true;
-		pauseButton.touchable = true;
+		
+
+		gridActor.setVisible(true);
+		gridActorIA.setVisible(true);
+		nextPieceActor.setVisible(true);
+		nextPieceActorIA.setVisible(true);
+		controllerActor.setTouchable(Touchable.enabled);
+		pauseButton.setTouchable(Touchable.enabled);
 	}
 
 	@Override

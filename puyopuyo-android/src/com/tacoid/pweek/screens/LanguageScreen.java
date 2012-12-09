@@ -6,10 +6,11 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.I18nManager;
 import com.tacoid.pweek.PreferenceManager;
 import com.tacoid.pweek.Pweek;
@@ -27,24 +28,19 @@ public class LanguageScreen implements Screen {
 	private Stage stage;
 	private Pweek puyopuyo = null;
 	
-	private class LangButton extends Button implements ClickListener{
-
-		I18nManager.Language lang;
+	private class LangButton extends Button {
 		
-		public LangButton(TextureRegion region, I18nManager.Language lang) {
-			super(region);
-			this.lang = lang;
-			setClickListener(this);
-		}
-
-		@Override
-		public void click(Actor arg0, float arg1, float arg2) {
-			I18nManager.getInstance().setLanguage(lang);
-			PreferenceManager.getInstance().setPreference(Preference.LANGUAGE,lang.toString());
-			puyopuyo.loadLocalizedAssets();
-			puyopuyo.setScreen(MainMenuScreen.getInstance());
-		}
-		
+		public LangButton(TextureRegion region, final I18nManager.Language lang) {
+			super(new TextureRegionDrawable(region));
+			addListener(new ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					I18nManager.getInstance().setLanguage(lang);
+					PreferenceManager.getInstance().setPreference(Preference.LANGUAGE,lang.toString());
+					puyopuyo.loadLocalizedAssets();
+					puyopuyo.setScreen(MainMenuScreen.getInstance());				}
+			});
+		}		
 	}
 	
 	public static LanguageScreen getInstance() {
@@ -67,10 +63,10 @@ public class LanguageScreen implements Screen {
 				false);
 		
 		/* Positionnement des bouttons aux premier tier et deuxieme tier de l'�cran */
-		enButton.x = 2*VIRTUAL_WIDTH/3 - enRegion.getRegionWidth()/2;
-		enButton.y = VIRTUAL_HEIGHT/3 - enRegion.getRegionHeight()/2;
-		frButton.x = VIRTUAL_WIDTH/3 - frRegion.getRegionWidth()/2;
-		frButton.y = VIRTUAL_HEIGHT/3 - enRegion.getRegionHeight()/2;
+		enButton.setX(2*VIRTUAL_WIDTH/3 - enRegion.getRegionWidth()/2);
+		enButton.setY(VIRTUAL_HEIGHT/3 - enRegion.getRegionHeight()/2);
+		frButton.setX(VIRTUAL_WIDTH/3 - frRegion.getRegionWidth()/2);
+		frButton.setY(VIRTUAL_HEIGHT/3 - enRegion.getRegionHeight()/2);
 		
 		stage.addActor(new BackgroundActor(ScreenOrientation.LANDSCAPE));
 		stage.addActor(enButton);

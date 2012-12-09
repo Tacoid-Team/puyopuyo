@@ -2,23 +2,30 @@ package com.tacoid.pweek.actors;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.SoundPlayer;
 
-public class SoundButtonActor extends Button implements ClickListener{
+public class SoundButtonActor extends Button {
 
 	private SoundButtonActor(TextureRegion regionUp, TextureRegion regionDown,
 			TextureRegion regionChecked) {
-		super(regionUp, regionDown, regionChecked);
+		super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown), new TextureRegionDrawable(regionChecked));
 		setChecked(SoundPlayer.getInstance().isMuted());
-		this.
-		setClickListener(this);
+		this.addListener(new com.badlogic.gdx.scenes.scene2d.utils.ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				if(isChecked()) {
+					SoundPlayer.getInstance().mute();
+				} else {
+					SoundPlayer.getInstance().unmute();
+				}
+			}
+		});
 	}
-	
-	
+
 	static public SoundButtonActor createSoundButton() {
 		TextureRegion musicOnRegion = new TextureRegion(Pweek.getInstance().atlasBouttons.findRegion("sound-on"));
 		TextureRegion musicOffRegion = new TextureRegion(Pweek.getInstance().atlasBouttons.findRegion("sound-off"));
@@ -26,14 +33,6 @@ public class SoundButtonActor extends Button implements ClickListener{
 		return new SoundButtonActor(musicOnRegion, musicOnRegion, musicOffRegion);
 	}
 
-	@Override
-	public void click(Actor arg0, float arg1, float arg2) {
-		if(this.isChecked()) {
-			SoundPlayer.getInstance().mute();
-		} else {
-			SoundPlayer.getInstance().unmute();
-		}
-	}
 	public void draw (SpriteBatch batch, float parentAlpha) {
 		if(SoundPlayer.getInstance().isMuted()) {
 			this.setChecked(true);
@@ -43,6 +42,4 @@ public class SoundButtonActor extends Button implements ClickListener{
 		super.draw(batch, parentAlpha);
 		
 	}
-	
-
 }
