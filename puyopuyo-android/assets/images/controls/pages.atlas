@@ -3,7 +3,7 @@ pages.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-right
+down
   rotate: false
   xy: 1, 275
   size: 135, 135
@@ -17,56 +17,56 @@ down_down
   orig: 135, 135
   offset: 0, 0
   index: -1
-rotleft
+left
   rotate: false
   xy: 138, 275
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
   index: -1
-rotright_down
+left_down
   rotate: false
   xy: 1, 1
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
   index: -1
-down
+right
   rotate: false
   xy: 138, 138
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
   index: -1
-left_down
+right_down
   rotate: false
   xy: 275, 275
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
   index: -1
-right_down
+rotleft
   rotate: false
   xy: 138, 1
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
   index: -1
-rotright
+rotleft_down
   rotate: false
   xy: 275, 138
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
   index: -1
-rotleft_down
+rotright
   rotate: false
   xy: 412, 275
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
   index: -1
-left
+rotright_down
   rotate: false
   xy: 275, 1
   size: 135, 135

@@ -31,7 +31,7 @@ gameover
   orig: 655, 200
   offset: 0, 0
   index: -1
-perdu
+gagne
   rotate: false
   xy: 1280, 545
   size: 512, 256
@@ -45,35 +45,35 @@ continuer
   orig: 257, 160
   offset: 0, 0
   index: -1
-rejouer
+quitter
   rotate: false
   xy: 931, 529
   size: 257, 160
   orig: 257, 160
   offset: 0, 0
   index: -1
-gagne
+perdu
   rotate: false
   xy: 1188, 289
   size: 512, 256
   orig: 512, 256
   offset: 0, 0
   index: -1
-quitter
+rejouer
   rotate: false
   xy: 931, 369
   size: 257, 160
   orig: 257, 160
   offset: 0, 0
   index: -1
-versus
+chrono
   rotate: false
   xy: 257, 0
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-chrono
+easy
   rotate: false
   xy: 510, 0
   size: 253, 160
@@ -87,28 +87,28 @@ hard
   orig: 253, 160
   offset: 0, 0
   index: -1
-easy
+medium
   rotate: false
   xy: 1792, 481
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-medium
+solo
   rotate: false
   xy: 1700, 321
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-veryhard
+versus
   rotate: false
   xy: 1700, 161
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-solo
+veryhard
   rotate: false
   xy: 800, 209
   size: 253, 160
