@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
+import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.google.ads.Ad;
 import com.google.ads.AdListener;
 import com.google.ads.AdRequest;
@@ -95,9 +96,13 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
 		
+		    AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
+		    config.hideStatusBar = true;
+		    config.useGL20 = false;
+		    
 		    // Cr�ation de la vue libGdx
 		    Pweek.setHandler(this);
-		    View gameView = initializeForView(Pweek.getInstance(), false);
+		    View gameView = initializeForView(Pweek.getInstance(), config);
 		
 		    // Cr�ation de la vu adMob
 //		    adView = new AdView(this, AdSize.BANNER, "a150a3f124cd8c4"); // Put in your secret key here
@@ -122,11 +127,6 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		
 		    // Hook it all up
 		    setContentView(layout);
-		    
-		    if (android.os.Build.VERSION.SDK_INT >= 11) {
-		    	View rootView = getWindow().getDecorView();
-		    	rootView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
-		    }
 	}
     
     protected void onStart() {
