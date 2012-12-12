@@ -180,9 +180,9 @@ public class GameOverActor extends Group {
 				ScoreManager.getInstance().unlockLevel(GameType.VERSUS_IA, gameScreen.getLevel()+1);
 				newUnlock = true;
 			} 
-			
-			/* On affiche le boutton "Next level" quand le joueur gagne */
-			hasNext = true;
+			if(gameScreen.getLevel()<3) {
+				hasNext = true;
+			}
 		}
 		
 		if(hasNext) {
