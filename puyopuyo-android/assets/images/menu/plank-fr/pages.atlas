@@ -38,56 +38,56 @@ gagne
   orig: 512, 256
   offset: 0, 0
   index: -1
-continuer
-  rotate: false
-  xy: 0, 0
-  size: 257, 160
-  orig: 257, 160
-  offset: 0, 0
-  index: -1
-quitter
-  rotate: false
-  xy: 931, 529
-  size: 257, 160
-  orig: 257, 160
-  offset: 0, 0
-  index: -1
-perdu
-  rotate: false
-  xy: 1188, 289
-  size: 512, 256
-  orig: 512, 256
-  offset: 0, 0
-  index: -1
-rejouer
-  rotate: false
-  xy: 931, 369
-  size: 257, 160
-  orig: 257, 160
-  offset: 0, 0
-  index: -1
 chrono
   rotate: false
-  xy: 257, 0
+  xy: 0, 0
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
+continuer
+  rotate: false
+  xy: 931, 529
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+perdu
+  rotate: false
+  xy: 1184, 289
+  size: 512, 256
+  orig: 512, 256
+  offset: 0, 0
+  index: -1
 easy
   rotate: false
-  xy: 510, 0
+  xy: 931, 369
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 hard
   rotate: false
-  xy: 1792, 641
+  xy: 253, 0
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 medium
+  rotate: false
+  xy: 506, 0
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+quitter
+  rotate: false
+  xy: 1792, 641
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+rejouer
   rotate: false
   xy: 1792, 481
   size: 253, 160
@@ -96,14 +96,14 @@ medium
   index: -1
 solo
   rotate: false
-  xy: 1700, 321
+  xy: 1696, 321
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 versus
   rotate: false
-  xy: 1700, 161
+  xy: 1696, 161
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
@@ -115,9 +115,16 @@ veryhard
   orig: 253, 160
   offset: 0, 0
   index: -1
+suivant
+  rotate: false
+  xy: 800, 53
+  size: 251, 156
+  orig: 251, 156
+  offset: 0, 0
+  index: -1
 redcross
   rotate: false
-  xy: 800, 101
+  xy: 1053, 181
   size: 170, 108
   orig: 170, 108
   offset: 0, 0
