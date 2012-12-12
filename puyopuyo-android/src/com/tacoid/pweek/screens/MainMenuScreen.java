@@ -280,6 +280,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		public LevelButton(final int level, TextureRegion regionUp, TextureRegion regionDown) {
 			super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown));
 			redCross = new Sprite(Pweek.getInstance().atlasPlank.findRegion("redcross"));
+			this.level = level;
 			
 			addListener(new InputListener() {
 				@Override
@@ -303,7 +304,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 				}
 			});
 		}
-		
+				
 		@Override
 		public void draw(SpriteBatch batch, float parentAlpha) {
 			super.draw(batch, parentAlpha);
