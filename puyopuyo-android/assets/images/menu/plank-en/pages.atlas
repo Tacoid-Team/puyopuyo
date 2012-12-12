@@ -45,49 +45,49 @@ touchtostart
   orig: 358, 283
   offset: 0, 0
   index: -1
-rejouer
+continuer
   rotate: false
   xy: 1280, 593
-  size: 254, 160
-  orig: 254, 160
+  size: 257, 160
+  orig: 257, 160
+  offset: 0, 0
+  index: -1
+quitter
+  rotate: false
+  xy: 1537, 593
+  size: 257, 160
+  orig: 257, 160
   offset: 0, 0
   index: -1
 chrono
   rotate: false
-  xy: 1534, 593
+  xy: 1794, 593
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
-continuer
+rejouer
   rotate: false
-  xy: 1787, 593
-  size: 253, 160
-  orig: 253, 160
+  xy: 1158, 433
+  size: 257, 160
+  orig: 257, 160
   offset: 0, 0
   index: -1
 easy
   rotate: false
-  xy: 1158, 433
+  xy: 1415, 433
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 hard
   rotate: false
-  xy: 1411, 433
+  xy: 1668, 433
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 medium
-  rotate: false
-  xy: 1664, 433
-  size: 253, 160
-  orig: 253, 160
-  offset: 0, 0
-  index: -1
-quitter
   rotate: false
   xy: 1158, 273
   size: 253, 160
