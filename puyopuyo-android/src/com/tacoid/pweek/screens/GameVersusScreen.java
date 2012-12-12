@@ -243,7 +243,7 @@ public class GameVersusScreen implements GameScreen {
 			// Update model
 			gameLogic.update(delta);
 			gameLogicIA.update(delta);
-			ia.update(delta);
+			//ia.update(delta);
 			if (gameLogic.getState() == State.LOST
 					|| gameLogicIA.getState() == State.LOST) {
 				gameOver();

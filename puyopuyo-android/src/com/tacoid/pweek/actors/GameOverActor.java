@@ -18,6 +18,7 @@ import com.tacoid.pweek.Pweek.ScreenOrientation;
 import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.pweek.SoundPlayer.SoundType;
 import com.tacoid.pweek.screens.GameScreen;
+import com.tacoid.pweek.screens.GameVersusScreen;
 import com.tacoid.pweek.screens.MainMenuScreen;
 import com.tacoid.tracking.TrackingManager;
 
@@ -78,6 +79,32 @@ public class GameOverActor extends Group {
 		}
 	}
 	
+	private class NextLevelButton extends Button {
+
+		public NextLevelButton(TextureRegion regionUp, TextureRegion regionDown) {
+			super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown));
+			
+			addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
+					return true;
+				}
+				
+				@Override
+				public void touchUp(InputEvent event, float x, float y,
+						int pointer, int button) {
+					((GameVersusScreen)gameScreen).setLevel(gameScreen.getLevel()+1);
+					gameScreen.init();
+					newUnlock = false;
+					Pweek.getInstance().getHandler().showAds(false);
+					hide();
+				}
+			});
+		}
+	}
+	
 	private Sprite winSprite;
 	private Sprite loseSprite;
 	private Sprite gameOverSprite;
@@ -101,6 +128,7 @@ public class GameOverActor extends Group {
 		
 		TextureRegion quitterRegion = Pweek.getInstance().atlasPlank.findRegion("quitter");
 		TextureRegion rejouerRegion = Pweek.getInstance().atlasPlank.findRegion("rejouer");
+		TextureRegion nextRegion = Pweek.getInstance().atlasPlank.findRegion("suivant");
 		winSprite = new Sprite(Pweek.getInstance().atlasPlank.findRegion("gagne"));
 		loseSprite = new Sprite(Pweek.getInstance().atlasPlank.findRegion("perdu"));
 		gameOverSprite = new Sprite(Pweek.getInstance().atlasPlank.findRegion("gameover"));
@@ -111,7 +139,13 @@ public class GameOverActor extends Group {
 		}
 		
 		menu = new SwingMenu(gs.getOrientation());
-		menu.initBegin("gameover");
+		menu.initBegin("gameover-simple");
+		menu.addButton(new ReplayButton(rejouerRegion, rejouerRegion));
+		menu.addButton(new QuitButton(quitterRegion, quitterRegion));
+		menu.initEnd();
+		
+		menu.initBegin("gameover-next");
+		menu.addButton(new NextLevelButton(nextRegion, nextRegion));
 		menu.addButton(new ReplayButton(rejouerRegion, rejouerRegion));
 		menu.addButton(new QuitButton(quitterRegion, quitterRegion));
 		menu.initEnd();
@@ -138,7 +172,25 @@ public class GameOverActor extends Group {
 	}
 	
 	public void show(GameOverType type) {
-		menu.show("gameover");
+		
+		boolean hasNext = false;
+		
+		if(gameScreen.getGameType() == GameType.VERSUS_IA && type == GameOverType.WIN) {
+			if(gameScreen.getLevel()<3 && !ScoreManager.getInstance().isLevelUnlocked(GameType.VERSUS_IA, gameScreen.getLevel()+1)) {
+				ScoreManager.getInstance().unlockLevel(GameType.VERSUS_IA, gameScreen.getLevel()+1);
+				newUnlock = true;
+			} 
+			
+			/* On affiche le boutton "Next level" quand le joueur gagne */
+			hasNext = true;
+		}
+		
+		if(hasNext) {
+			menu.show("gameover-next");
+		} else {
+			menu.show("gameover-simple");
+		}
+		
 		this.type = type;
 		this.setVisible(true);
 		this.highScore = ScoreManager.getInstance().getScore(gameScreen.getGameType());
@@ -147,13 +199,7 @@ public class GameOverActor extends Group {
 			ScoreManager.getInstance().setScore(gameScreen.getGameType(), gameScreen.getScore());
 			this.newHighScore = true;
 		}
-		if(gameScreen.getGameType() == GameType.VERSUS_IA && type == GameOverType.WIN) {
-			if(gameScreen.getLevel()<3 && !ScoreManager.getInstance().isLevelUnlocked(GameType.VERSUS_IA, gameScreen.getLevel()+1)) {
-				ScoreManager.getInstance().unlockLevel(GameType.VERSUS_IA, gameScreen.getLevel()+1);
-				newUnlock = true;
-			}
-		}
-		
+
 		Pweek.getInstance().getHandler().showAds(true);
 		
 		/* TRACKING */
