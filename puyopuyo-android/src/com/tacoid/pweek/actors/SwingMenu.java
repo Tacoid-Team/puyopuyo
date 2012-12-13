@@ -16,6 +16,11 @@ import com.tacoid.pweek.Pweek.ScreenOrientation;
 public class SwingMenu extends Group{
 	private int VIRTUAL_WIDTH;
 	
+	private final double BUSH_HIDE_SPEED = 0.6;
+	private final double BUTTON_HIDE_SPEED = 1.0;
+	private final double BUSH_SHOW_SPEED = 0.8;
+	private final double BUTTON_SHOW_SPEED = 0.9;
+	
 	private static final float BUTTON_HEIGHT = 250;
 	
 	private enum State {
@@ -37,8 +42,6 @@ public class SwingMenu extends Group{
 	private boolean switching = false;
 	private String nextMenu;
 	
-	
-	
 	private class BushActor extends Actor {
 		private TextureRegion ForegroundTex;
 
@@ -52,12 +55,12 @@ public class SwingMenu extends Group{
 			switch(state) {
 			case HIDING:
 				if(timeBush >= 0.5f) {
-					timeBush-=Gdx.graphics.getDeltaTime()*0.6;
+					timeBush-=Gdx.graphics.getDeltaTime()*BUSH_HIDE_SPEED;
 					keepGoing = true;
 				}
 				
 				if( timeButton >= -0.1f) {
-					timeButton-=Gdx.graphics.getDeltaTime()*1.0;
+					timeButton-=Gdx.graphics.getDeltaTime()*BUTTON_HIDE_SPEED;
 					keepGoing = true;
 				}
 				
@@ -73,12 +76,12 @@ public class SwingMenu extends Group{
 				break;
 			case SHOWING:
 				if(timeBush <= 1.0f) {
-					timeBush+=Gdx.graphics.getDeltaTime()*0.4;
+					timeBush+=Gdx.graphics.getDeltaTime()*BUSH_SHOW_SPEED;
 					keepGoing = true;
 				}
 				
 				if( timeButton <= 1.0f) {
-					timeButton+=Gdx.graphics.getDeltaTime()*0.5;
+					timeButton+=Gdx.graphics.getDeltaTime()*BUTTON_SHOW_SPEED;
 					keepGoing = true;
 				} 
 				if(!keepGoing){
