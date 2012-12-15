@@ -3,58 +3,58 @@ pages.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-gameover
-  rotate: false
-  xy: 0, 304
-  size: 655, 200
-  orig: 655, 200
-  offset: 0, 0
-  index: -1
 pweek
   rotate: false
-  xy: 0, 182
+  xy: 0, 120
   size: 400, 122
   orig: 400, 122
   offset: 0, 0
   index: -1
+gameover
+  rotate: false
+  xy: 0, 0
+  size: 393, 120
+  orig: 393, 120
+  offset: 0, 0
+  index: -1
 continuer
   rotate: false
-  xy: 655, 344
+  xy: 400, 82
   size: 257, 160
   orig: 257, 160
   offset: 0, 0
   index: -1
 quitter
   rotate: false
-  xy: 0, 22
+  xy: 657, 82
   size: 257, 160
   orig: 257, 160
   offset: 0, 0
   index: -1
 rejouer
   rotate: false
-  xy: 400, 144
+  xy: 914, 82
   size: 257, 160
   orig: 257, 160
   offset: 0, 0
   index: -1
 chrono
   rotate: false
-  xy: 657, 184
+  xy: 1171, 82
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 solo
   rotate: false
-  xy: 657, 24
+  xy: 1424, 82
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 touchtostart
   rotate: false
-  xy: 257, 0
+  xy: 1677, 98
   size: 183, 144
   orig: 183, 144
   offset: 0, 0

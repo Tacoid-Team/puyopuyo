@@ -14,7 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.I18nManager;
 import com.tacoid.pweek.ScoreManager;
 import com.tacoid.pweek.SoundPlayer;
-import com.tacoid.pweek.Pweek.ScreenOrientation;
 import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.pweek.SoundPlayer.SoundType;
 import com.tacoid.pweek.screens.GameScreen;
@@ -82,6 +81,7 @@ public class GameOverActor extends Group {
 	private Sprite scorePanelSprite;
 	private GameScreen gameScreen;
 	private SwingMenu menu;
+	private float x, y;
 
 	private int highScore = 0;
 	private boolean newHighScore = false;
@@ -91,6 +91,8 @@ public class GameOverActor extends Group {
 	private I18nManager i18n;
 
 	public GameOverActor(TextureAtlas atlasPlank, TextureAtlas atlasPanels, BitmapFont font, GameScreen gs, float x, float y) {
+		this.x = x;
+		this.y = y;
 		gameScreen = gs;
 
 		i18n = I18nManager.getInstance();
@@ -109,16 +111,12 @@ public class GameOverActor extends Group {
 
 		this.addActor(menu);
 
-		gameOverSprite.setPosition(x-gameOverSprite.getWidth()/2, y-gameOverSprite.getHeight()/2);
+		gameOverSprite.setPosition(x-gameOverSprite.getWidth()/2, y);
 
-		if(gameScreen.getOrientation() == ScreenOrientation.LANDSCAPE) {
-			scorePanelSprite.setPosition(x - scorePanelSprite.getWidth() / 2, 450);
-		} else {
-			scorePanelSprite.setPosition(x - scorePanelSprite.getWidth() / 2, 470);
-		}
+		scorePanelSprite.setPosition(x - scorePanelSprite.getWidth() / 2, y - scorePanelSprite.getHeight() - 20);
 
 		this.font = font;
-		font.setScale(0.8f);
+		font.setScale(1f);
 
 		this.hide();
 		this.setVisible(true);
@@ -138,11 +136,7 @@ public class GameOverActor extends Group {
 		PweekMini.getInstance().getHandler().showAds(true);
 
 		/* TRACKING */
-		if(gameScreen.getGameType() == GameType.VERSUS_IA) {
-			TrackingManager.getTracker().trackEvent("gameplay", "game_over", gameScreen.getGameType().toString()+"_"+gameScreen.getLevel()+"_"+type.toString(), (long) gameScreen.getElapsedTime());
-		} else {
-			TrackingManager.getTracker().trackEvent("gameplay", "game_over", gameScreen.getGameType().toString()+"_"+type.toString(), (long) gameScreen.getElapsedTime());
-		}
+		TrackingManager.getTracker().trackEvent("gameplay", "game_over", gameScreen.getGameType().toString()+"_"+type.toString(), (long) gameScreen.getElapsedTime());
 	}
 
 	public void hide() {
@@ -151,28 +145,20 @@ public class GameOverActor extends Group {
 	}
 
 	public void draw(SpriteBatch batch, float arg1) {
-		float x=0,y=0;
 		String message;
 		super.draw(batch,arg1);
-		if(gameScreen.getOrientation() == ScreenOrientation.LANDSCAPE) {
-			x = 640;
-			y = 500;
-		} else {
-			x = 384;
-			y = 558;
-		}
+
 		scorePanelSprite.draw(batch);
 		font.setScale(0.8f);
 		font.setColor(1f, 1f, 1f, 1f);
 		message =  i18n.getString("score") + String.valueOf(gameScreen.getScore());
-		font.draw(batch, message, x-font.getBounds(message).width/2,y);
-		if(newHighScore) {
+		font.draw(batch, message, x / 2 - font.getBounds(message).width / 2, y - scorePanelSprite.getHeight() / 2 - 10);
+		if (newHighScore) {
 			message = i18n.getString("nouveau_record");
-			font.draw(batch, i18n.getString("nouveau_record"), x-font.getBounds(message).width/2, y - 30f);
-		}
-		else {
+			font.draw(batch, i18n.getString("nouveau_record"), 3 * x / 2 - font.getBounds(message).width/2, y - scorePanelSprite.getHeight() / 2 - 10);
+		} else {
 			message = i18n.getString("record") + String.valueOf(highScore);
-			font.draw(batch, i18n.getString("record") + String.valueOf(highScore), x-font.getBounds(message).width/2,y-30f);
+			font.draw(batch, i18n.getString("record") + String.valueOf(highScore), 3 * x / 2 - font.getBounds(message).width/2, y - scorePanelSprite.getHeight() / 2 - 10);
 		}
 
 		gameOverSprite.draw(batch);
