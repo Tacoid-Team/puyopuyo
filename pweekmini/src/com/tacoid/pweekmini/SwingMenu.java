@@ -85,7 +85,7 @@ public class SwingMenu extends Group{
 				break;
 			}
 			
-			currentGroup.setY(interpButton.apply(-BUTTON_HEIGHT, 50, Math.min(timeButton,1.0f)));
+			currentGroup.setY(interpButton.apply(-BUTTON_HEIGHT, 85, Math.min(timeButton, 1.0f)));
 			/*
 			for(int i=0; i<currentGroup.size(); i++) {
 				currentList.get(i).y = interpButton.apply(0, BUTTON_HEIGHT, Math.min(timeButton,1.0f));
@@ -119,7 +119,7 @@ public class SwingMenu extends Group{
 		int i = 0;
 		for (Actor a : currentGroup.getChildren()) {
 			a.setX(VIRTUAL_WIDTH / 2 - a.getWidth() / 2);
-			a.setY((size - (i + 1)) * (a.getHeight() + 20));
+			a.setY((size - (i + 1)) * (a.getHeight() + 13));
 			i++;
 		}
 	}
