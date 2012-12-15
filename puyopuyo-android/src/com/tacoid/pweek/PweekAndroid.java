@@ -23,121 +23,121 @@ import com.tacoid.tracking.TrackingManager.TrackerType;
 
 public class PweekAndroid extends AndroidApplication implements IActivityRequestHandler, AdListener
 {	
-	  private static AdView adView;
-	  
-	  	private final static int PORTRAIT_ADS = 3;
-	  	private final static int LANDSCAPE_ADS = 2;
-	    private final static int SHOW_ADS = 1;
-	    private final static int HIDE_ADS = 0;
+	private static AdView adView;
 
-	    static protected Handler handler = new Handler()
-	    {
-	        @SuppressLint("NewApi")
-	        @Override
-	        public void handleMessage(Message msg) {
-	            switch(msg.what) {
-	                case SHOW_ADS:
-	                {
-	                    adView.setVisibility(View.VISIBLE);
-	                    break;
-	                }
-	                case HIDE_ADS:
-	                {
-	                    adView.setVisibility(View.GONE);
-	                    break;
-	                }
-	                case PORTRAIT_ADS: 
-	                {
-	        		    RelativeLayout.LayoutParams adParams = 
-	        		            new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, 
-	        		                            RelativeLayout.LayoutParams.WRAP_CONTENT);
-	        		    adParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-	        		    adParams.addRule(RelativeLayout.CENTER_VERTICAL);
-	        		    adView.setLayoutParams(adParams);
-	        		    if (android.os.Build.VERSION.SDK_INT >= 11) {
-		                	adView.setRotation(-90.0f);
-		                	if (adView.getWidth() > 0) {
-		                		adView.setTranslationX(adView.getWidth() / 2 - adView.getHeight() / 2);
-		                	} else {
-		                		adView.setTranslationX(AdSize.BANNER.getWidth() / 2 - AdSize.BANNER.getHeight() / 2);
-		                	}
-	        		    }
-	                	break;
-	                }
-	                case LANDSCAPE_ADS:
-	                {
-	        		    RelativeLayout.LayoutParams adParams = 
-	        		            new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, 
-	        		                            RelativeLayout.LayoutParams.WRAP_CONTENT);
-	        		    adParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-	        		    adParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-	        		    adView.setLayoutParams(adParams);
-	        		    if (android.os.Build.VERSION.SDK_INT >= 11) {
-	        		    	adView.setRotation(0.0f);
-	        		    	adView.setTranslationX(0.0f);
-	        		    }
-	                	break;
-	                }
-	            }
-	        }
-	    };
-	    
-	    @SuppressLint("NewApi")
+	private final static int PORTRAIT_ADS = 3;
+	private final static int LANDSCAPE_ADS = 2;
+	private final static int SHOW_ADS = 1;
+	private final static int HIDE_ADS = 0;
+
+	static protected Handler handler = new Handler()
+	{
+		@SuppressLint("NewApi")
 		@Override
-	    public void onCreate(Bundle savedInstanceState) {
-		    super.onCreate(savedInstanceState);
-		    
-		    // Cr�ation du layout
-		    RelativeLayout layout = new RelativeLayout(this);
-		
-		    // Fait ce que "initialize" est sens� faire
-		    requestWindowFeature(Window.FEATURE_NO_TITLE);
-		    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
-		                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-		
-		    AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-		    config.hideStatusBar = true;
-		    config.useGL20 = false;
-		    
-		    // Cr�ation de la vue libGdx
-		    Pweek.setHandler(this);
-		    View gameView = initializeForView(Pweek.getInstance(), config);
-		
-		    // Cr�ation de la vu adMob
-//		    adView = new AdView(this, AdSize.BANNER, "a150a3f124cd8c4"); // Put in your secret key here
-		    adView = new AdView(this, AdSize.BANNER, "aaaaaaaaaaaaaaa"); // Put in your secret key here
-		    adView.loadAd(new AdRequest());
-		    adView.setAdListener(this);
+		public void handleMessage(Message msg) {
+			switch(msg.what) {
+			case SHOW_ADS:
+			{
+				adView.setVisibility(View.VISIBLE);
+				break;
+			}
+			case HIDE_ADS:
+			{
+				adView.setVisibility(View.GONE);
+				break;
+			}
+			case PORTRAIT_ADS: 
+			{
+				RelativeLayout.LayoutParams adParams = 
+						new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, 
+								RelativeLayout.LayoutParams.WRAP_CONTENT);
+				adParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+				adParams.addRule(RelativeLayout.CENTER_VERTICAL);
+				adView.setLayoutParams(adParams);
+				if (android.os.Build.VERSION.SDK_INT >= 11) {
+					adView.setRotation(-90.0f);
+					if (adView.getWidth() > 0) {
+						adView.setTranslationX(adView.getWidth() / 2 - adView.getHeight() / 2);
+					} else {
+						adView.setTranslationX(AdSize.BANNER.getWidth() / 2 - AdSize.BANNER.getHeight() / 2);
+					}
+				}
+				break;
+			}
+			case LANDSCAPE_ADS:
+			{
+				RelativeLayout.LayoutParams adParams = 
+						new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, 
+								RelativeLayout.LayoutParams.WRAP_CONTENT);
+				adParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+				adParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+				adView.setLayoutParams(adParams);
+				if (android.os.Build.VERSION.SDK_INT >= 11) {
+					adView.setRotation(0.0f);
+					adView.setTranslationX(0.0f);
+				}
+				break;
+			}
+			}
+		}
+	};
 
-		    
-		    // Ajout de la vu libGdx au layout
-		    layout.addView(gameView);     
-		
-		    // Ajout de la vu adMob au layout
-		    RelativeLayout.LayoutParams adParams = 
-		            new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, 
-		                            RelativeLayout.LayoutParams.WRAP_CONTENT);
-		    adParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-		    adParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-		    
-		    adView.setLayoutParams(adParams);
-		
-		    layout.addView(adView, adParams);
-		
-		    // Hook it all up
-		    setContentView(layout);
+	@SuppressLint("NewApi")
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		// Cr�ation du layout
+		RelativeLayout layout = new RelativeLayout(this);
+
+		// Fait ce que "initialize" est sens� faire
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+
+		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
+		config.hideStatusBar = true;
+		config.useGL20 = false;
+
+		// Cr�ation de la vue libGdx
+		Pweek.setHandler(this);
+		View gameView = initializeForView(Pweek.getInstance(), config);
+
+		// Cr�ation de la vu adMob
+		//		    adView = new AdView(this, AdSize.BANNER, "a150a3f124cd8c4"); // Put in your secret key here
+		adView = new AdView(this, AdSize.BANNER, "aaaaaaaaaaaaaaa"); // Put in your secret key here
+		adView.loadAd(new AdRequest());
+		adView.setAdListener(this);
+
+
+		// Ajout de la vu libGdx au layout
+		layout.addView(gameView);     
+
+		// Ajout de la vu adMob au layout
+		RelativeLayout.LayoutParams adParams = 
+				new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, 
+						RelativeLayout.LayoutParams.WRAP_CONTENT);
+		adParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+		adParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+
+		adView.setLayoutParams(adParams);
+
+		layout.addView(adView, adParams);
+
+		// Hook it all up
+		setContentView(layout);
 	}
-    
-    protected void onStart() {
-    	super.onStart();
-    	TrackingManager.setTrackerType(TrackerType.GOOGLE_ANALYTICS);
-    	EasyTracker.getInstance().activityStart(this);
-    }
-    protected void onStop() {
-    	super.onStop();
-    	EasyTracker.getInstance().activityStop(this); 
-    }
+
+	protected void onStart() {
+		super.onStart();
+		TrackingManager.setTrackerType(TrackerType.GOOGLE_ANALYTICS);
+		EasyTracker.getInstance().activityStart(this);
+	}
+	protected void onStop() {
+		super.onStop();
+		EasyTracker.getInstance().activityStop(this); 
+	}
 
 	@Override
 	public void showAds(boolean show) {
@@ -172,7 +172,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	@Override
 	public void onReceiveAd(Ad arg0) {
 		TrackingManager.getTracker().trackEvent("Ads","adMob", "onReceiveAd", null);
-		
+
 	}
-    
+
 }

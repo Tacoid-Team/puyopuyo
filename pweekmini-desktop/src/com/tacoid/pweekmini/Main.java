@@ -2,6 +2,7 @@ package com.tacoid.pweekmini;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.tacoid.pweek.IActivityRequestHandler;
 import com.tacoid.pweekmini.PweekMini;
 import com.tacoid.tracking.TrackingManager;
 import com.tacoid.tracking.TrackingManager.TrackerType;
@@ -28,6 +29,12 @@ public class Main implements IActivityRequestHandler {
 
 	@Override
 	public void showAds(boolean show) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setPortrait(boolean isPortrait) {
 		// TODO Auto-generated method stub
 		
 	}

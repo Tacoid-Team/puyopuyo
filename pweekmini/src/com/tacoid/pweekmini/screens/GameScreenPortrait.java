@@ -1,9 +1,10 @@
-package com.tacoid.pweek.screens;
+package com.tacoid.pweekmini.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GLCommon;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -11,21 +12,20 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.Controller;
-import com.tacoid.pweek.Pweek;
+import com.tacoid.pweekmini.PweekMini;
 import com.tacoid.pweek.SoundPlayer;
 import com.tacoid.pweek.Pweek.ScreenOrientation;
 import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.pweek.SoundPlayer.SoundType;
-import com.tacoid.pweek.actors.BackgroundActor;
-import com.tacoid.pweek.actors.ControlerActor;
 import com.tacoid.pweek.actors.GameOverActor;
 import com.tacoid.pweek.actors.GridActor;
 import com.tacoid.pweek.actors.HighScoreActor;
 import com.tacoid.pweek.actors.MusicButtonActor;
 import com.tacoid.pweek.actors.NextPieceActor;
-import com.tacoid.pweek.actors.PauseMenu;
+import com.tacoid.pweekmini.actors.PauseMenu;
 import com.tacoid.pweek.actors.PortraitPanelActor;
 import com.tacoid.pweek.actors.ScoreActor;
 import com.tacoid.pweek.actors.SoundButtonActor;
@@ -33,12 +33,13 @@ import com.tacoid.pweek.actors.StartActor;
 import com.tacoid.pweek.actors.GameOverActor.GameOverType;
 import com.tacoid.pweek.logic.GameLogic;
 import com.tacoid.pweek.logic.State;
+import com.tacoid.pweek.screens.GameScreen;
 import com.tacoid.tracking.TrackingManager;
 
 public abstract class GameScreenPortrait implements GameScreen {
 	
-	private static final int VIRTUAL_WIDTH = 768;
-	private static final int VIRTUAL_HEIGHT = 1280;
+	private static final int VIRTUAL_WIDTH = 480;
+	private static final int VIRTUAL_HEIGHT = 800;
 	
 	private int puyoSize = 64;
 
@@ -51,7 +52,6 @@ public abstract class GameScreenPortrait implements GameScreen {
 	
 	private GridActor gridActor;
 	private InputProcessor controller;
-	private ControlerActor controllerActor;
 	protected boolean gamePaused;
 	private GameOverActor gameOver;
 	private StartActor startActor;
@@ -95,32 +95,30 @@ public abstract class GameScreenPortrait implements GameScreen {
 		
 		controller = new Controller(gameLogic, this, stage);
 
-		gridActor = new GridActor(Pweek.getInstance().atlasPuyo, gameLogic, 280, 325, 70, puyoSize);
-		nextPieceActor = new NextPieceActor(Pweek.getInstance().atlasPuyo, gameLogic, 75, 920, puyoSize);
-		ScoreActor scoreActor = new ScoreActor(Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), gameLogic, 520, 1245);
-		HighScoreActor highScoreActor = new HighScoreActor(Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), this, 218, 1250);
+		gridActor = new GridActor(PweekMini.getInstance().atlasPuyo, gameLogic, 280, 325, 70, puyoSize);
+		nextPieceActor = new NextPieceActor(PweekMini.getInstance().atlasPuyo, gameLogic, 75, 920, puyoSize);
+		ScoreActor scoreActor = new ScoreActor(PweekMini.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), gameLogic, 520, 1245);
+		HighScoreActor highScoreActor = new HighScoreActor(PweekMini.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), this, 218, 1250);
 		
-		TextureRegion pauseRegion = new TextureRegion(Pweek.getInstance().atlasBouttons.findRegion("pause_button"));
-		stage.addActor(new BackgroundActor(ScreenOrientation.PORTRAIT));
-		stage.addActor(new PortraitPanelActor(Pweek.getInstance().atlasPanelsPortrait));
+		TextureRegion pauseRegion = new TextureRegion(PweekMini.getInstance().atlasBouttons.findRegion("pause_button"));
+		//stage.addActor(new BackgroundActor(ScreenOrientation.PORTRAIT));
+		stage.addActor(new Image(new TextureRegion(PweekMini.getInstance().manager.get("images/background.png", Texture.class), 480, 800)));
+		stage.addActor(new PortraitPanelActor(PweekMini.getInstance().atlasPanelsPortrait));
 		stage.addActor(gridActor);
 		stage.addActor(nextPieceActor);
 		stage.addActor(scoreActor);
 		stage.addActor(highScoreActor);
-
-		controllerActor = new ControlerActor(ScreenOrientation.PORTRAIT, gameLogic);
-		stage.addActor(controllerActor);
 		
 		pauseButton = new PauseButton(pauseRegion);
 		addButton(pauseButton,10,VIRTUAL_HEIGHT-10-pauseRegion.getRegionHeight());
-		addButton(MusicButtonActor.createMusicButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-64, VIRTUAL_HEIGHT-64);
-		addButton(SoundButtonActor.createSoundButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-2*64-10, VIRTUAL_HEIGHT-64);
+		addButton(MusicButtonActor.createMusicButton(PweekMini.getInstance().atlasBouttons),VIRTUAL_WIDTH-64, VIRTUAL_HEIGHT-64);
+		addButton(SoundButtonActor.createSoundButton(PweekMini.getInstance().atlasBouttons),VIRTUAL_WIDTH-2*64-10, VIRTUAL_HEIGHT-64);
 		
 		boolean show = false;
 		if (gameOver != null) {
 			show = gameOver.isVisible();
 		}
-		gameOver = new GameOverActor(Pweek.getInstance().atlasPlank, Pweek.getInstance().atlasPanelsPortrait, Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), this, VIRTUAL_WIDTH/2, 3*VIRTUAL_HEIGHT/5);
+		gameOver = new GameOverActor(PweekMini.getInstance().atlasPlank, PweekMini.getInstance().atlasPanelsPortrait, PweekMini.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), this, VIRTUAL_WIDTH/2, 3*VIRTUAL_HEIGHT/5);
 		stage.addActor(gameOver);
 		if (show) {
 			gameOver();
@@ -128,14 +126,14 @@ public abstract class GameScreenPortrait implements GameScreen {
 			gameOver.hide();
 		}
 		
-		pauseMenu = new PauseMenu(Pweek.getInstance().atlasPlank, this, Pweek.getInstance().getHandler(), ScreenOrientation.PORTRAIT, !gamePaused);
+		pauseMenu = new PauseMenu(PweekMini.getInstance().atlasPlank, this, PweekMini.getInstance().getHandler(), ScreenOrientation.PORTRAIT, !gamePaused);
 		stage.addActor(pauseMenu);
 	
 		show = true;
 		if (startActor != null) {
 			show = startActor.isVisible();
 		}
-		startActor = new StartActor(Pweek.getInstance().atlasPlank, this);
+		startActor = new StartActor(PweekMini.getInstance().atlasPlank, this);
 		stage.addActor(startActor);
 		if (show) {
 			startActor.show();
@@ -146,11 +144,6 @@ public abstract class GameScreenPortrait implements GameScreen {
 				pauseMenu.show();
 			}
 		}
-				
-		if (!Pweek.getInstance().getDesktopMode()) {
-			stage.getCamera().rotate(-90, 0, 0, 1);
-		}
-		
 	}
 
 	@Override
@@ -207,11 +200,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 
 	@Override
 	public void resize(int arg0, int arg1) {
-		if (Pweek.getInstance().getDesktopMode()) {
-			stage.setViewport(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, false);
-		} else {
-			stage.setViewport(VIRTUAL_HEIGHT, VIRTUAL_WIDTH, false);
-		}
+		stage.setViewport(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, false);
 		stage.getCamera().position.set(VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2, 0);
 	}
 
@@ -222,8 +211,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 
 	@Override
 	public void show() {
-		Pweek.getInstance().getHandler().setPortrait(true);
-		Pweek.getInstance().getHandler().showAds(!startActor.isVisible() && (gamePaused || gameEnded()));
+		PweekMini.getInstance().getHandler().showAds(!startActor.isVisible() && (gamePaused || gameEnded()));
 		resize(0, 0);
 		Gdx.input.setInputProcessor(controller);
 	}
@@ -241,7 +229,6 @@ public abstract class GameScreenPortrait implements GameScreen {
 	}
 
 	private void gameOver() {
-		controllerActor.setTouchable(Touchable.disabled);
 		pauseButton.setTouchable(Touchable.disabled);
 		gameOver.show(GameOverType.GAMEOVER);
 	}
@@ -253,7 +240,6 @@ public abstract class GameScreenPortrait implements GameScreen {
 		
 		gridActor.setVisible(false);
 		nextPieceActor.setVisible(false);
-		controllerActor.setTouchable(Touchable.disabled);
 		pauseButton.setTouchable(Touchable.disabled);
 	}
 
@@ -264,7 +250,6 @@ public abstract class GameScreenPortrait implements GameScreen {
 		
 		gridActor.setVisible(true);
 		nextPieceActor.setVisible(true);
-		controllerActor.setTouchable(Touchable.enabled);
 		pauseButton.setTouchable(Touchable.enabled);
 	}
 	
@@ -292,6 +277,6 @@ public abstract class GameScreenPortrait implements GameScreen {
 		pauseMenu.hide();
 		GameType type = getGameType();
 		TrackingManager.getTracker().trackEvent("UI", "button_click",type.toString() + " quit before end", null);
-		Pweek.getInstance().setScreen(MainMenuScreen.getInstance());
+		PweekMini.getInstance().setScreen(MainMenuScreen.getInstance());
 	}
 }

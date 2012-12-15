@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.tacoid.pweek.I18nManager;
+import com.tacoid.pweek.IActivityRequestHandler;
 import com.tacoid.pweek.MusicPlayer;
 import com.tacoid.pweek.PreferenceManager;
 import com.tacoid.pweek.PreferenceManager.Preference;

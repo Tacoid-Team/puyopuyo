@@ -1,0 +1,411 @@
+
+pages.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+nuisance_fall-64
+  rotate: false
+  xy: 1, 423
+  size: 68, 88
+  orig: 68, 88
+  offset: 0, 0
+  index: -1
+white-64
+  rotate: false
+  xy: 71, 441
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+black_horizontal-64
+  rotate: false
+  xy: 1, 357
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+black_vertical-64
+  rotate: false
+  xy: 143, 447
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+blue_fall-64
+  rotate: false
+  xy: 1, 291
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+blue_happy-64
+  rotate: false
+  xy: 209, 447
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+blue_horizontal-64
+  rotate: false
+  xy: 1, 225
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+blue_sleep-64
+  rotate: false
+  xy: 275, 447
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+blue_vertical-64
+  rotate: false
+  xy: 1, 159
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+green_fall-64
+  rotate: false
+  xy: 341, 447
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+green_happy-64
+  rotate: false
+  xy: 1, 93
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+green_horizontal-64
+  rotate: false
+  xy: 407, 447
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+green_sleep-64
+  rotate: false
+  xy: 1, 27
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+green_vertical-64
+  rotate: false
+  xy: 71, 375
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+ninja_fall-64
+  rotate: false
+  xy: 67, 309
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+ninja_happy-64
+  rotate: false
+  xy: 67, 243
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+nuisance-64
+  rotate: false
+  xy: 67, 177
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+pirate_fall-64
+  rotate: false
+  xy: 67, 111
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+pirate_happy-64
+  rotate: false
+  xy: 67, 45
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+next_nuisance-24
+  rotate: false
+  xy: 1, 1
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+next_nuisance-36
+  rotate: false
+  xy: 473, 475
+  size: 36, 36
+  orig: 36, 36
+  offset: 0, 0
+  index: -1
+nuisance_fall-48
+  rotate: false
+  xy: 137, 375
+  size: 50, 64
+  orig: 50, 64
+  offset: 0, 0
+  index: -1
+red_fall-64
+  rotate: false
+  xy: 189, 381
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+red_happy-64
+  rotate: false
+  xy: 255, 381
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+red_horizontal-64
+  rotate: false
+  xy: 321, 381
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+red_sleep-64
+  rotate: false
+  xy: 387, 381
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+red_vertical-64
+  rotate: false
+  xy: 133, 309
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+yellow_happy-64
+  rotate: false
+  xy: 133, 243
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+yellow_horizontal-64
+  rotate: false
+  xy: 133, 177
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+yellow_sleep-64
+  rotate: false
+  xy: 133, 111
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+yellow_vertical-64
+  rotate: false
+  xy: 133, 45
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+white-48
+  rotate: false
+  xy: 199, 325
+  size: 54, 54
+  orig: 54, 54
+  offset: 0, 0
+  index: -1
+black_horizontal-48
+  rotate: false
+  xy: 199, 275
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+black_vertical-48
+  rotate: false
+  xy: 255, 331
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+blue_fall-48
+  rotate: false
+  xy: 199, 225
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+blue_happy-48
+  rotate: false
+  xy: 305, 331
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+blue_horizontal-48
+  rotate: false
+  xy: 199, 175
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+blue_sleep-48
+  rotate: false
+  xy: 355, 331
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+blue_vertical-48
+  rotate: false
+  xy: 199, 125
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+green_fall-48
+  rotate: false
+  xy: 199, 75
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+green_happy-48
+  rotate: false
+  xy: 405, 331
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+green_horizontal-48
+  rotate: false
+  xy: 199, 25
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+green_sleep-48
+  rotate: false
+  xy: 453, 397
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+green_vertical-48
+  rotate: false
+  xy: 455, 347
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+next_nuisance-48
+  rotate: false
+  xy: 455, 297
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+ninja_fall-48
+  rotate: false
+  xy: 249, 275
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+ninja_happy-48
+  rotate: false
+  xy: 249, 225
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+nuisance-48
+  rotate: false
+  xy: 249, 175
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+red_fall-48
+  rotate: false
+  xy: 249, 125
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+red_happy-48
+  rotate: false
+  xy: 249, 75
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+red_horizontal-48
+  rotate: false
+  xy: 249, 25
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+red_sleep-48
+  rotate: false
+  xy: 299, 281
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+red_vertical-48
+  rotate: false
+  xy: 299, 231
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+yellow_happy-48
+  rotate: false
+  xy: 349, 281
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+yellow_horizontal-48
+  rotate: false
+  xy: 299, 181
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+yellow_sleep-48
+  rotate: false
+  xy: 349, 231
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+yellow_vertical-48
+  rotate: false
+  xy: 399, 281
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+next_nuisance-32
+  rotate: false
+  xy: 299, 147
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

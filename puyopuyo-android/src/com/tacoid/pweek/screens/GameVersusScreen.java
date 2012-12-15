@@ -181,7 +181,7 @@ public class GameVersusScreen implements GameScreen {
 			gameOver.hide();
 		}
 		
-		pauseMenu = new PauseMenu(Pweek.getInstance().atlasPlank, this, ScreenOrientation.LANDSCAPE, !gamePaused);
+		pauseMenu = new PauseMenu(Pweek.getInstance().atlasPlank, this, Pweek.getInstance().getHandler(), ScreenOrientation.LANDSCAPE, !gamePaused);
 		stage.addActor(pauseMenu);
 		
 		show = true;
