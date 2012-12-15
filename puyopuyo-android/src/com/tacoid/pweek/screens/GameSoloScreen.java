@@ -1,5 +1,6 @@
 package com.tacoid.pweek.screens;
 
+import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.pweek.actors.LevelActor;
 
@@ -16,7 +17,7 @@ public class GameSoloScreen extends GameScreenPortrait {
 
 	public void initGraphics() {
 		super.initGraphics();
-		LevelActor levelActor = new LevelActor(this, 140, 835);
+		LevelActor levelActor = new LevelActor(Pweek.getInstance().manager, this, 140, 835);
 		stage.addActor(levelActor);
 	}
 

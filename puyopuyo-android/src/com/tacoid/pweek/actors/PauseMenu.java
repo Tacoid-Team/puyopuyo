@@ -1,5 +1,6 @@
 package com.tacoid.pweek.actors;
 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -12,7 +13,7 @@ import com.tacoid.pweek.Pweek.ScreenOrientation;
 import com.tacoid.pweek.SoundPlayer.SoundType;
 import com.tacoid.pweek.screens.GameScreen;
 
-public class PauseMenu extends Group{
+public class PauseMenu extends Group {
 	
 	private GameScreen gameScreen;
 	
@@ -61,9 +62,9 @@ public class PauseMenu extends Group{
 		}
 	}
 	
-	public PauseMenu(GameScreen gameScreen, ScreenOrientation orientation, boolean hidden) {
-		TextureRegion continueRegion = Pweek.getInstance().atlasPlank.findRegion("continuer");
-		TextureRegion quitRegion = Pweek.getInstance().atlasPlank.findRegion("quitter");
+	public PauseMenu(TextureAtlas atlasPlank, GameScreen gameScreen, ScreenOrientation orientation, boolean hidden) {
+		TextureRegion continueRegion = atlasPlank.findRegion("continuer");
+		TextureRegion quitRegion = atlasPlank.findRegion("quitter");
 		
 		menu = new SwingMenu(orientation);
 		

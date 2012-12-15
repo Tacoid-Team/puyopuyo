@@ -1,9 +1,9 @@
 package com.tacoid.pweek.actors;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.logic.Coord;
 import com.tacoid.pweek.logic.GameLogic;
 
@@ -15,17 +15,16 @@ public class NextPieceActor extends Actor {
 	private GameLogic logic;
 	private TextureRegion[] boules = new TextureRegion[5];
 
-	public NextPieceActor(GameLogic logic, int origX, int origY, int size) {
+	public NextPieceActor(TextureAtlas atlasPuyo, GameLogic logic, int origX, int origY, int size) {
 		this.logic = logic;
 		this.origX = origX;
 		this.origY = origY;
 		this.size = size + 2;
-		Pweek puyopuyo = Pweek.getInstance();
-		boules[0] = puyopuyo.atlasPuyo.findRegion("green_happy-" + size);
-		boules[1] = puyopuyo.atlasPuyo.findRegion("yellow_happy-" + size);
-		boules[2] = puyopuyo.atlasPuyo.findRegion("red_happy-" + size);
-		boules[3] = puyopuyo.atlasPuyo.findRegion("blue_happy-" + size);
-		boules[4] = puyopuyo.atlasPuyo.findRegion("ninja_happy-" + size);
+		boules[0] = atlasPuyo.findRegion("green_happy-" + size);
+		boules[1] = atlasPuyo.findRegion("yellow_happy-" + size);
+		boules[2] = atlasPuyo.findRegion("red_happy-" + size);
+		boules[3] = atlasPuyo.findRegion("blue_happy-" + size);
+		boules[4] = atlasPuyo.findRegion("ninja_happy-" + size);
 	}
 	
 	@Override

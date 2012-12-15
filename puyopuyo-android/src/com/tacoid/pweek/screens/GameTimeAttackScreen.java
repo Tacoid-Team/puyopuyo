@@ -1,16 +1,17 @@
 package com.tacoid.pweek.screens;
 
+import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.pweek.actors.TimeActor;
 import com.tacoid.pweek.logic.State;
 
-public class GameTimeAttackScreen extends GameScreenPortrait {
+public class GameTimeAttackScreen extends GameScreenPortrait implements IGameTimeAttackScreen {
 	
 	private static GameTimeAttackScreen instance = null;
 
 	public void initGraphics() {
 		super.initGraphics();
-		TimeActor timeActor = new TimeActor(this, 140, 835);
+		TimeActor timeActor = new TimeActor(Pweek.getInstance().manager, this, 140, 835);
 		stage.addActor(timeActor);
 	}
 

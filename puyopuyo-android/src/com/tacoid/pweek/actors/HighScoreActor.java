@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.pweek.I18nManager;
-import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.ScoreManager;
 import com.tacoid.pweek.screens.GameScreen;
 
@@ -15,12 +14,11 @@ public class HighScoreActor extends Actor {
 	private GameScreen screen;
 	
 
-	public HighScoreActor(GameScreen screen, int origX, int origY) {
+	public HighScoreActor(BitmapFont font, GameScreen screen, int origX, int origY) {
 		this.screen = screen;
 		this.origX = origX;
 		this.origY = origY;
-		// A commenter pour le porting gwt
-		font = Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class);
+		this.font = font;
 		font.setColor(0, 0, 0, 1.0f);
 	}
 

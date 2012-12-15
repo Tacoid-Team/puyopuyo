@@ -1,26 +1,26 @@
 package com.tacoid.pweek.actors;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.pweek.I18nManager;
-import com.tacoid.pweek.Pweek;
-import com.tacoid.pweek.screens.GameTimeAttackScreen;
+import com.tacoid.pweek.screens.IGameTimeAttackScreen;
 
 public class TimeActor extends Actor {
 
 	private BitmapFont font;
 	private int origX, origY;
-	private GameTimeAttackScreen screen;
+	private IGameTimeAttackScreen screen;
 	private String timeText;
 	private float offset;
 
-	public TimeActor(GameTimeAttackScreen screen, int origX, int origY) {
+	public TimeActor(AssetManager manager, IGameTimeAttackScreen screen, int origX, int origY) {
 		this.screen = screen;
 		this.origX = origX;
 		this.origY = origY;
 		
-		font = Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class);
+		font = manager.get("images/font_score.fnt", BitmapFont.class);
 		font.setScale(0.65f);
 		font.setColor(1f, 1f, 1f, 1f);
 		

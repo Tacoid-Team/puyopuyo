@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GLCommon;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -137,15 +138,14 @@ public class GameVersusScreen implements GameScreen {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
 		controller = new Controller(gameLogic, this, stage);
-		gameOver = null;
 
-		gridActor = new GridActor(gameLogic, 296, 26, 54, puyoSize);
-		nextPieceActor = new NextPieceActor(gameLogic, 95, 500, puyoSize);
-		ScoreActor scoreActor = new ScoreActor(gameLogic, 550, 743);
+		gridActor = new GridActor(Pweek.getInstance().atlasPuyo, gameLogic, 296, 26, 54, puyoSize);
+		nextPieceActor = new NextPieceActor(Pweek.getInstance().atlasPuyo, gameLogic, 95, 500, puyoSize);
+		ScoreActor scoreActor = new ScoreActor(Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), gameLogic, 550, 743);
 
-		gridActorIA = new GridActor(gameLogicIA, 650, 26, 54, puyoSize);
-		nextPieceActorIA = new NextPieceActor(gameLogicIA, 1066, 500, puyoSize);
-		ScoreActor scoreActorIA = new ScoreActor(gameLogicIA, 830, 743);
+		gridActorIA = new GridActor(Pweek.getInstance().atlasPuyo, gameLogicIA, 650, 26, 54, puyoSize);
+		nextPieceActorIA = new NextPieceActor(Pweek.getInstance().atlasPuyo, gameLogicIA, 1066, 500, puyoSize);
+		ScoreActor scoreActorIA = new ScoreActor(Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), gameLogicIA, 830, 743);
 		
 		TextureRegion pauseRegion = new TextureRegion(Pweek.getInstance().atlasBouttons.findRegion("pause_button"));
 
@@ -172,7 +172,8 @@ public class GameVersusScreen implements GameScreen {
 		if (gameOver != null) {
 			show = gameOver.isVisible();
 		}
-		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, 8*VIRTUAL_HEIGHT/9-25);
+		gameOver = new GameOverActor(Pweek.getInstance().atlasPlank, Pweek.getInstance().atlasPanelsLandscape, Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), this, VIRTUAL_WIDTH/2, 8*VIRTUAL_HEIGHT/9-25);
+
 		stage.addActor(gameOver);
 		if (show) {
 			gameOver();
@@ -180,7 +181,7 @@ public class GameVersusScreen implements GameScreen {
 			gameOver.hide();
 		}
 		
-		pauseMenu = new PauseMenu(this, ScreenOrientation.LANDSCAPE, !gamePaused);
+		pauseMenu = new PauseMenu(Pweek.getInstance().atlasPlank, this, ScreenOrientation.LANDSCAPE, !gamePaused);
 		stage.addActor(pauseMenu);
 		
 		show = true;
@@ -188,7 +189,7 @@ public class GameVersusScreen implements GameScreen {
 			show = startActor.isVisible();
 		}
 
-		startActor = new StartActor(this);
+		startActor = new StartActor(Pweek.getInstance().atlasPlank, this);
 		if (show) {
 			startActor.show();
 		} else {

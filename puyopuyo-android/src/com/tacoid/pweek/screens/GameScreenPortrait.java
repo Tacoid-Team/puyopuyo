@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GLCommon;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -94,14 +95,14 @@ public abstract class GameScreenPortrait implements GameScreen {
 		
 		controller = new Controller(gameLogic, this, stage);
 
-		gridActor = new GridActor(gameLogic, 280, 325, 70, puyoSize);
-		nextPieceActor = new NextPieceActor(gameLogic, 75, 920, puyoSize);
-		ScoreActor scoreActor = new ScoreActor(gameLogic, 520, 1245);
-		HighScoreActor highScoreActor = new HighScoreActor(this, 218, 1250);
+		gridActor = new GridActor(Pweek.getInstance().atlasPuyo, gameLogic, 280, 325, 70, puyoSize);
+		nextPieceActor = new NextPieceActor(Pweek.getInstance().atlasPuyo, gameLogic, 75, 920, puyoSize);
+		ScoreActor scoreActor = new ScoreActor(Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), gameLogic, 520, 1245);
+		HighScoreActor highScoreActor = new HighScoreActor(Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), this, 218, 1250);
 		
 		TextureRegion pauseRegion = new TextureRegion(Pweek.getInstance().atlasBouttons.findRegion("pause_button"));
 		stage.addActor(new BackgroundActor(ScreenOrientation.PORTRAIT));
-		stage.addActor(new PortraitPanelActor());
+		stage.addActor(new PortraitPanelActor(Pweek.getInstance().atlasPanelsPortrait));
 		stage.addActor(gridActor);
 		stage.addActor(nextPieceActor);
 		stage.addActor(scoreActor);
@@ -119,7 +120,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		if (gameOver != null) {
 			show = gameOver.isVisible();
 		}
-		gameOver = new GameOverActor(this, VIRTUAL_WIDTH/2, 3*VIRTUAL_HEIGHT/5);
+		gameOver = new GameOverActor(Pweek.getInstance().atlasPlank, Pweek.getInstance().atlasPanelsPortrait, Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), this, VIRTUAL_WIDTH/2, 3*VIRTUAL_HEIGHT/5);
 		stage.addActor(gameOver);
 		if (show) {
 			gameOver();
@@ -127,14 +128,14 @@ public abstract class GameScreenPortrait implements GameScreen {
 			gameOver.hide();
 		}
 		
-		pauseMenu = new PauseMenu(this, ScreenOrientation.PORTRAIT, !gamePaused);
+		pauseMenu = new PauseMenu(Pweek.getInstance().atlasPlank, this, ScreenOrientation.PORTRAIT, !gamePaused);
 		stage.addActor(pauseMenu);
 	
 		show = true;
 		if (startActor != null) {
 			show = startActor.isVisible();
 		}
-		startActor = new StartActor(this);
+		startActor = new StartActor(Pweek.getInstance().atlasPlank, this);
 		stage.addActor(startActor);
 		if (show) {
 			startActor.show();

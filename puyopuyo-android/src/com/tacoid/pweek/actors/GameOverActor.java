@@ -3,6 +3,7 @@ package com.tacoid.pweek.actors;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -121,22 +122,22 @@ public class GameOverActor extends Group {
 	
 	private I18nManager i18n;
 	
-	public GameOverActor(GameScreen gs, float x, float y) {
+	public GameOverActor(TextureAtlas atlasPlank, TextureAtlas atlasPanels, BitmapFont font, GameScreen gs, float x, float y) {
 		gameScreen = gs;
 
 		i18n = I18nManager.getInstance();
 		
-		TextureRegion quitterRegion = Pweek.getInstance().atlasPlank.findRegion("quitter");
-		TextureRegion rejouerRegion = Pweek.getInstance().atlasPlank.findRegion("rejouer");
-		TextureRegion nextRegion = Pweek.getInstance().atlasPlank.findRegion("suivant");
-		winSprite = new Sprite(Pweek.getInstance().atlasPlank.findRegion("gagne"));
-		loseSprite = new Sprite(Pweek.getInstance().atlasPlank.findRegion("perdu"));
-		gameOverSprite = new Sprite(Pweek.getInstance().atlasPlank.findRegion("gameover"));
-		if(gameScreen.getOrientation() == ScreenOrientation.LANDSCAPE) {
-			scorePanelSprite = new Sprite(Pweek.getInstance().atlasPanelsLandscape.findRegion("score-panel"));
-		} else {
-			scorePanelSprite = new Sprite(Pweek.getInstance().atlasPanelsPortrait.findRegion("score-panel"));
+		TextureRegion nextRegion = null;
+		TextureRegion quitterRegion = atlasPlank.findRegion("quitter");
+		TextureRegion rejouerRegion = atlasPlank.findRegion("rejouer");
+		if (gameScreen.getGameType() == GameType.VERSUS_IA) {
+			nextRegion = atlasPlank.findRegion("suivant");
+			winSprite = new Sprite(atlasPlank.findRegion("gagne"));
+			loseSprite = new Sprite(atlasPlank.findRegion("perdu"));
 		}
+		gameOverSprite = new Sprite(atlasPlank.findRegion("gameover"));
+		
+		scorePanelSprite = new Sprite(atlasPanels.findRegion("score-panel"));
 		
 		menu = new SwingMenu(gs.getOrientation());
 		menu.initBegin("gameover-simple");
@@ -144,16 +145,20 @@ public class GameOverActor extends Group {
 		menu.addButton(new QuitButton(quitterRegion, quitterRegion));
 		menu.initEnd();
 		
-		menu.initBegin("gameover-next");
-		menu.addButton(new NextLevelButton(nextRegion, nextRegion));
-		menu.addButton(new ReplayButton(rejouerRegion, rejouerRegion));
-		menu.addButton(new QuitButton(quitterRegion, quitterRegion));
-		menu.initEnd();
+		if (gameScreen.getGameType() == GameType.VERSUS_IA) {
+			menu.initBegin("gameover-next");
+			menu.addButton(new NextLevelButton(nextRegion, nextRegion));
+			menu.addButton(new ReplayButton(rejouerRegion, rejouerRegion));
+			menu.addButton(new QuitButton(quitterRegion, quitterRegion));
+			menu.initEnd();
+		}
 		
 		this.addActor(menu);
 		
-		winSprite.setPosition(x-winSprite.getWidth()/2, y-winSprite.getHeight()/2);
-		loseSprite.setPosition(x-loseSprite.getWidth()/2, y-loseSprite.getHeight()/2);
+		if (gameScreen.getGameType() == GameType.VERSUS_IA) {
+			winSprite.setPosition(x-winSprite.getWidth()/2, y-winSprite.getHeight()/2);
+			loseSprite.setPosition(x-loseSprite.getWidth()/2, y-loseSprite.getHeight()/2);
+		}
 		gameOverSprite.setPosition(x-gameOverSprite.getWidth()/2, y-gameOverSprite.getHeight()/2);
 		
 		if(gameScreen.getOrientation() == ScreenOrientation.LANDSCAPE) {
@@ -164,7 +169,7 @@ public class GameOverActor extends Group {
 		
 		this.type = GameOverType.GAMEOVER;
 		
-		font = Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class);
+		this.font = font;
 		font.setScale(0.8f);
 		
 		this.hide();

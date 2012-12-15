@@ -2,9 +2,9 @@ package com.tacoid.pweek.actors;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.tacoid.pweek.Pweek;
 
 public class PortraitPanelActor extends Actor {
 	private Sprite mainPanel;
@@ -12,10 +12,10 @@ public class PortraitPanelActor extends Actor {
 	private Sprite leftPanel;
 	private Sprite leftPanel2;
 	
-	public PortraitPanelActor() {
-		TextureRegion mainPanelRegion = Pweek.getInstance().atlasPanelsPortrait.findRegion("main-panel");
-		TextureRegion leftPanelRegion = Pweek.getInstance().atlasPanelsPortrait.findRegion("left-panel");
-		TextureRegion topPanelRegion =  Pweek.getInstance().atlasPanelsPortrait.findRegion("top-panel");
+	public PortraitPanelActor(TextureAtlas atlasPanelsPortrait) {
+		TextureRegion mainPanelRegion = atlasPanelsPortrait.findRegion("main-panel");
+		TextureRegion leftPanelRegion = atlasPanelsPortrait.findRegion("left-panel");
+		TextureRegion topPanelRegion =  atlasPanelsPortrait.findRegion("top-panel");
 
 		mainPanel = new Sprite(mainPanelRegion);
 		topPanel = new Sprite(topPanelRegion);

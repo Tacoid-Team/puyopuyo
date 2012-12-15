@@ -1,9 +1,9 @@
 package com.tacoid.pweek.actors;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.logic.Coord;
 import com.tacoid.pweek.logic.Falling;
 import com.tacoid.pweek.logic.GameLogic;
@@ -18,7 +18,6 @@ public class GridActor extends Actor {
 	private TextureRegion[] boules_v = new TextureRegion[6];
 	private TextureRegion next_nuisance_big;
 	private TextureRegion next_nuisance_small;
-	private Pweek puyopuyo;
 	private GameLogic logic;
 	private int origX;
 	private int origY;
@@ -34,51 +33,50 @@ public class GridActor extends Actor {
 	 * @param size Taille d'une colonne.
 	 * @param sizePuyo Taille d'un puyo
 	 */
-	public GridActor(GameLogic logic, int origX, int origY, int size, int sizePuyo) {
+	public GridActor(TextureAtlas atlasPuyo, GameLogic logic, int origX, int origY, int size, int sizePuyo) {
 		this.origX = origX;
 		this.origY = origY;
 		this.logic = logic;
 		this.size = size;
 		this.offWhite = (size - sizePuyo) / 2;
-		puyopuyo = Pweek.getInstance();
 		
-		boules[0] = puyopuyo.atlasPuyo.findRegion("green_happy-" + sizePuyo);
-		boules[1] = puyopuyo.atlasPuyo.findRegion("yellow_happy-" + sizePuyo);
-		boules[2] = puyopuyo.atlasPuyo.findRegion("red_happy-" + sizePuyo);
-		boules[3] = puyopuyo.atlasPuyo.findRegion("blue_happy-" + sizePuyo);
-		boules[4] = puyopuyo.atlasPuyo.findRegion("ninja_happy-" + sizePuyo);
-		boules[5] = puyopuyo.atlasPuyo.findRegion("nuisance-" + sizePuyo);
+		boules[0] = atlasPuyo.findRegion("green_happy-" + sizePuyo);
+		boules[1] = atlasPuyo.findRegion("yellow_happy-" + sizePuyo);
+		boules[2] = atlasPuyo.findRegion("red_happy-" + sizePuyo);
+		boules[3] = atlasPuyo.findRegion("blue_happy-" + sizePuyo);
+		boules[4] = atlasPuyo.findRegion("ninja_happy-" + sizePuyo);
+		boules[5] = atlasPuyo.findRegion("nuisance-" + sizePuyo);
 		
-		boules_f[0] = puyopuyo.atlasPuyo.findRegion("green_sleep-" + sizePuyo);
-		boules_f[1] = puyopuyo.atlasPuyo.findRegion("yellow_sleep-" + sizePuyo);
-		boules_f[2] = puyopuyo.atlasPuyo.findRegion("red_sleep-" + sizePuyo);
-		boules_f[3] = puyopuyo.atlasPuyo.findRegion("blue_sleep-" + sizePuyo);
-		boules_f[4] = puyopuyo.atlasPuyo.findRegion("ninja_happy-" + sizePuyo);
-		boules_f[5] = puyopuyo.atlasPuyo.findRegion("nuisance-" + sizePuyo);
+		boules_f[0] = atlasPuyo.findRegion("green_sleep-" + sizePuyo);
+		boules_f[1] = atlasPuyo.findRegion("yellow_sleep-" + sizePuyo);
+		boules_f[2] = atlasPuyo.findRegion("red_sleep-" + sizePuyo);
+		boules_f[3] = atlasPuyo.findRegion("blue_sleep-" + sizePuyo);
+		boules_f[4] = atlasPuyo.findRegion("ninja_happy-" + sizePuyo);
+		boules_f[5] = atlasPuyo.findRegion("nuisance-" + sizePuyo);
 		
-		boules_fall[0] = puyopuyo.atlasPuyo.findRegion("green_fall-" + sizePuyo);
-		boules_fall[1] = puyopuyo.atlasPuyo.findRegion("yellow_happy-" + sizePuyo);
-		boules_fall[2] = puyopuyo.atlasPuyo.findRegion("red_fall-" + sizePuyo);
-		boules_fall[3] = puyopuyo.atlasPuyo.findRegion("blue_fall-" + sizePuyo);
-		boules_fall[4] = puyopuyo.atlasPuyo.findRegion("ninja_fall-" + sizePuyo);
-		boules_fall[5] = puyopuyo.atlasPuyo.findRegion("nuisance_fall-" + sizePuyo);
+		boules_fall[0] = atlasPuyo.findRegion("green_fall-" + sizePuyo);
+		boules_fall[1] = atlasPuyo.findRegion("yellow_happy-" + sizePuyo);
+		boules_fall[2] = atlasPuyo.findRegion("red_fall-" + sizePuyo);
+		boules_fall[3] = atlasPuyo.findRegion("blue_fall-" + sizePuyo);
+		boules_fall[4] = atlasPuyo.findRegion("ninja_fall-" + sizePuyo);
+		boules_fall[5] = atlasPuyo.findRegion("nuisance_fall-" + sizePuyo);
 		
-		boules_h[0] = puyopuyo.atlasPuyo.findRegion("green_horizontal-" + sizePuyo);
-		boules_h[1] = puyopuyo.atlasPuyo.findRegion("yellow_horizontal-" + sizePuyo);
-		boules_h[2] = puyopuyo.atlasPuyo.findRegion("red_horizontal-" + sizePuyo);
-		boules_h[3] = puyopuyo.atlasPuyo.findRegion("blue_horizontal-" + sizePuyo);
-		boules_h[4] = puyopuyo.atlasPuyo.findRegion("black_horizontal-" + sizePuyo);
+		boules_h[0] = atlasPuyo.findRegion("green_horizontal-" + sizePuyo);
+		boules_h[1] = atlasPuyo.findRegion("yellow_horizontal-" + sizePuyo);
+		boules_h[2] = atlasPuyo.findRegion("red_horizontal-" + sizePuyo);
+		boules_h[3] = atlasPuyo.findRegion("blue_horizontal-" + sizePuyo);
+		boules_h[4] = atlasPuyo.findRegion("black_horizontal-" + sizePuyo);
 
-		boules_v[0] = puyopuyo.atlasPuyo.findRegion("green_vertical-" + sizePuyo);
-		boules_v[1] = puyopuyo.atlasPuyo.findRegion("yellow_vertical-" + sizePuyo);
-		boules_v[2] = puyopuyo.atlasPuyo.findRegion("red_vertical-" + sizePuyo);
-		boules_v[3] = puyopuyo.atlasPuyo.findRegion("blue_vertical-" + sizePuyo);
-		boules_v[4] = puyopuyo.atlasPuyo.findRegion("black_vertical-" + sizePuyo);
+		boules_v[0] = atlasPuyo.findRegion("green_vertical-" + sizePuyo);
+		boules_v[1] = atlasPuyo.findRegion("yellow_vertical-" + sizePuyo);
+		boules_v[2] = atlasPuyo.findRegion("red_vertical-" + sizePuyo);
+		boules_v[3] = atlasPuyo.findRegion("blue_vertical-" + sizePuyo);
+		boules_v[4] = atlasPuyo.findRegion("black_vertical-" + sizePuyo);
 		
-		next_nuisance_big = puyopuyo.atlasPuyo.findRegion("next_nuisance-" + ((sizePuyo * 3) / 4));
-		next_nuisance_small = puyopuyo.atlasPuyo.findRegion("next_nuisance-" + (sizePuyo / 2));
+		next_nuisance_big = atlasPuyo.findRegion("next_nuisance-" + ((sizePuyo * 3) / 4));
+		next_nuisance_small = atlasPuyo.findRegion("next_nuisance-" + (sizePuyo / 2));
 		
-		white = puyopuyo.atlasPuyo.findRegion("white-" + sizePuyo);
+		white = atlasPuyo.findRegion("white-" + sizePuyo);
 	}
 
 	@Override

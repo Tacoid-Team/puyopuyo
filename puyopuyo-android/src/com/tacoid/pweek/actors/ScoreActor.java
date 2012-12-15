@@ -3,7 +3,6 @@ package com.tacoid.pweek.actors;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.logic.GameLogic;
 
 public class ScoreActor extends Actor {
@@ -13,12 +12,12 @@ public class ScoreActor extends Actor {
 	private int origY;
 	
 
-	public ScoreActor(GameLogic logic, int origX, int origY) {
+	public ScoreActor(BitmapFont font, GameLogic logic, int origX, int origY) {
 		this.logic = logic;
 		this.origX = origX;
 		this.origY = origY;
 		// A commenter pour le porting gwt
-		font = Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class);
+		this.font = font;
 		font.setColor(1f, 1f, 1f, 1f);
 	}
 

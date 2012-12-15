@@ -13,6 +13,8 @@ import com.tacoid.pweek.MusicPlayer;
 import com.tacoid.pweek.PreferenceManager;
 import com.tacoid.pweek.PreferenceManager.Preference;
 import com.tacoid.pweek.SoundPlayer;
+import com.tacoid.pweekmini.screens.GameSoloScreen;
+import com.tacoid.pweekmini.screens.GameTimeAttackScreen;
 import com.tacoid.pweekmini.screens.LanguageScreen;
 import com.tacoid.pweekmini.screens.LoadingScreen;
 import com.tacoid.pweekmini.screens.MainMenuScreen;
@@ -32,7 +34,6 @@ public class PweekMini extends Game {
 	private boolean desktopMode;
 	public static final int VIRTUAL_WIDTH = 480;
 	public static final int VIRTUAL_HEIGHT = 800;
-//	private LoadingScreen loadingScreen;
 	private boolean loaded = false;
 	private boolean justLaunched = true;
 	private LoadingScreen loadingScreen = null;
@@ -126,9 +127,8 @@ public class PweekMini extends Game {
 		manager.load("images/background.png", Texture.class);
 		manager.load("images/logo.png", Texture.class);
 		
-		/*atlasPuyo = new TextureAtlas(Gdx.files.internal("images/puyos/pages.atlas"));
-		atlasPanelsLandscape = new TextureAtlas(Gdx.files.internal("images/panels/landscape/pages.atlas"));
-		atlasPanelsPortrait = new TextureAtlas(Gdx.files.internal("images/panels/portrait/pages.atlas"));*/
+		atlasPuyo = new TextureAtlas(Gdx.files.internal("images/puyos/pages.atlas"));
+		atlasPanelsPortrait = new TextureAtlas(Gdx.files.internal("images/panels/portrait/pages.atlas"));
 		atlasBouttons = new TextureAtlas(Gdx.files.internal("images/bouttons/pages.atlas"));
 		
 		/*** Son ***/
@@ -145,8 +145,8 @@ public class PweekMini extends Game {
 	public void loadLocalizedAssets() {
 		atlasPlank = new TextureAtlas(Gdx.files.internal("images/menu/plank-" + I18nManager.getInstance().getLanguage().toString() + "/pages.atlas"));
 		MainMenuScreen.getInstance().init();
-//		GameSoloScreen.getInstance().initGraphics();
-//		GameTimeAttackScreen.getInstance().initGraphics();
+		GameSoloScreen.getInstance().initGraphics();
+		GameTimeAttackScreen.getInstance().initGraphics();
 	}
 
 	public void setDesktopMode(boolean b) {

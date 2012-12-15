@@ -1,25 +1,25 @@
 package com.tacoid.pweek.actors;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.pweek.I18nManager;
-import com.tacoid.pweek.Pweek;
-import com.tacoid.pweek.screens.GameSoloScreen;
+import com.tacoid.pweek.screens.GameScreen;
 
 public class LevelActor extends Actor {
-	private GameSoloScreen screen;
+	private GameScreen screen;
 	private BitmapFont font;
 	private int origX;
 	private int origY;
 	
 
-	public LevelActor(GameSoloScreen screen, int origX, int origY) {
+	public LevelActor(AssetManager manager, GameScreen screen, int origX, int origY) {
 		this.screen = screen;
 		this.origX = origX;
 		this.origY = origY;
-		// A commenter pour le porting gwt
-		font = Pweek.getInstance().manager.get("images/font_level.fnt", BitmapFont.class);
+		
+		font = manager.get("images/font_level.fnt", BitmapFont.class);
 	}
 
 	@Override

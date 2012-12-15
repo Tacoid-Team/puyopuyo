@@ -33,7 +33,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 	int i = 0;
 	
 	private MainMenuScreen() {
-		//init();
+		init();
 	}
 	
 	private void addButton(Button button, int x, int y) {
@@ -147,9 +147,9 @@ public class MainMenuScreen implements Screen, InputProcessor {
 				@Override
 				public void touchUp(InputEvent event, float x, float y,
 						int pointer, int button) {
-//					GameSoloScreen.getInstance().init();
+					GameSoloScreen.getInstance().init();
 					TrackingManager.getTracker().trackEvent("gameplay", "game_start", "solo", null);
-//					Pweek.getInstance().setScreen(GameSoloScreen.getInstance());
+					PweekMini.getInstance().setScreen(GameSoloScreen.getInstance());
 				}
 			});
 		}
@@ -170,10 +170,9 @@ public class MainMenuScreen implements Screen, InputProcessor {
 				@Override
 				public void touchUp(InputEvent event, float x, float y,
 						int pointer, int button) {
-					// TODO Auto-generated method stub
-//					GameTimeAttackScreen.getInstance().init();
+					GameTimeAttackScreen.getInstance().init();
 					TrackingManager.getTracker().trackEvent("gameplay", "game_start", "chrono", null);
-//					Pweek.getInstance().setScreen(GameTimeAttackScreen.getInstance());
+					PweekMini.getInstance().setScreen(GameTimeAttackScreen.getInstance());
 				}
 			});
 		}

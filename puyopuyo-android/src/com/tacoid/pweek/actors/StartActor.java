@@ -2,11 +2,11 @@ package com.tacoid.pweek.actors;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.screens.GameScreen;
 
 public class StartActor extends Actor {
@@ -15,8 +15,8 @@ public class StartActor extends Actor {
 	
 	Sprite touchSprite;
 	
-	public StartActor(GameScreen screen) {
-		touchSprite = new Sprite(Pweek.getInstance().atlasPlank.findRegion("touchtostart"));
+	public StartActor(TextureAtlas atlasPlank, GameScreen screen) {
+		touchSprite = new Sprite(atlasPlank.findRegion("touchtostart"));
 		gameScreen = screen;
 		switch(screen.getOrientation()) {
 		case LANDSCAPE:
