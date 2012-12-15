@@ -20,17 +20,17 @@ import com.tacoid.pweek.SoundPlayer;
 import com.tacoid.pweek.Pweek.ScreenOrientation;
 import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.pweek.SoundPlayer.SoundType;
-import com.tacoid.pweek.actors.GameOverActor;
+import com.tacoid.pweekmini.actors.GameOverActor;
 import com.tacoid.pweek.actors.GridActor;
-import com.tacoid.pweek.actors.HighScoreActor;
+import com.tacoid.pweekmini.actors.HighScoreActor;
 import com.tacoid.pweek.actors.MusicButtonActor;
 import com.tacoid.pweek.actors.NextPieceActor;
 import com.tacoid.pweekmini.actors.PauseMenu;
-import com.tacoid.pweek.actors.PortraitPanelActor;
+import com.tacoid.pweekmini.actors.PortraitPanelActor;
 import com.tacoid.pweek.actors.ScoreActor;
 import com.tacoid.pweek.actors.SoundButtonActor;
 import com.tacoid.pweek.actors.StartActor;
-import com.tacoid.pweek.actors.GameOverActor.GameOverType;
+import com.tacoid.pweekmini.actors.GameOverActor.GameOverType;
 import com.tacoid.pweek.logic.GameLogic;
 import com.tacoid.pweek.logic.State;
 import com.tacoid.pweek.screens.GameScreen;
@@ -41,7 +41,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 	private static final int VIRTUAL_WIDTH = 480;
 	private static final int VIRTUAL_HEIGHT = 800;
 	
-	private int puyoSize = 64;
+	private int puyoSize = 48;
 
 	protected boolean end = false;
 	protected float elapsedTime;
@@ -95,13 +95,13 @@ public abstract class GameScreenPortrait implements GameScreen {
 		
 		controller = new Controller(gameLogic, this, stage);
 
-		gridActor = new GridActor(PweekMini.getInstance().atlasPuyo, gameLogic, 280, 325, 70, puyoSize);
-		nextPieceActor = new NextPieceActor(PweekMini.getInstance().atlasPuyo, gameLogic, 75, 920, puyoSize);
-		ScoreActor scoreActor = new ScoreActor(PweekMini.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), gameLogic, 520, 1245);
-		HighScoreActor highScoreActor = new HighScoreActor(PweekMini.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), this, 218, 1250);
+		gridActor = new GridActor(PweekMini.getInstance().atlasPuyo, gameLogic, 148, 130, 50, puyoSize);
+		nextPieceActor = new NextPieceActor(PweekMini.getInstance().atlasPuyo, gameLogic, 21, 590, puyoSize);
+		ScoreActor scoreActor = new ScoreActor(PweekMini.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), gameLogic, 300, 786);
+		HighScoreActor highScoreActor = new HighScoreActor(PweekMini.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), this, 76, 440);
 		
 		TextureRegion pauseRegion = new TextureRegion(PweekMini.getInstance().atlasBouttons.findRegion("pause_button"));
-		//stage.addActor(new BackgroundActor(ScreenOrientation.PORTRAIT));
+
 		stage.addActor(new Image(new TextureRegion(PweekMini.getInstance().manager.get("images/background.png", Texture.class), 480, 800)));
 		stage.addActor(new PortraitPanelActor(PweekMini.getInstance().atlasPanelsPortrait));
 		stage.addActor(gridActor);

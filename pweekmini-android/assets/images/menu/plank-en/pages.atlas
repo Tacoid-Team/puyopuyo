@@ -5,57 +5,57 @@ filter: Nearest,Nearest
 repeat: none
 gameover
   rotate: false
-  xy: 0, 283
+  xy: 0, 304
   size: 655, 200
   orig: 655, 200
   offset: 0, 0
   index: -1
-touchtostart
-  rotate: false
-  xy: 0, 0
-  size: 358, 283
-  orig: 358, 283
-  offset: 0, 0
-  index: -1
 pweek
   rotate: false
-  xy: 655, 361
+  xy: 0, 182
   size: 400, 122
   orig: 400, 122
   offset: 0, 0
   index: -1
 continuer
   rotate: false
-  xy: 358, 123
+  xy: 655, 344
   size: 257, 160
   orig: 257, 160
   offset: 0, 0
   index: -1
 quitter
   rotate: false
-  xy: 1055, 323
+  xy: 0, 22
   size: 257, 160
   orig: 257, 160
   offset: 0, 0
   index: -1
 rejouer
   rotate: false
-  xy: 1312, 323
+  xy: 400, 144
   size: 257, 160
   orig: 257, 160
   offset: 0, 0
   index: -1
 chrono
   rotate: false
-  xy: 1569, 323
+  xy: 657, 184
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 solo
   rotate: false
-  xy: 655, 201
+  xy: 657, 24
   size: 253, 160
   orig: 253, 160
+  offset: 0, 0
+  index: -1
+touchtostart
+  rotate: false
+  xy: 257, 0
+  size: 183, 144
+  orig: 183, 144
   offset: 0, 0
   index: -1

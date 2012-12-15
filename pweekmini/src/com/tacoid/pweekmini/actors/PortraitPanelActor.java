@@ -1,4 +1,4 @@
-package com.tacoid.pweek.actors;
+package com.tacoid.pweekmini.actors;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -22,10 +22,10 @@ public class PortraitPanelActor extends Actor {
 		leftPanel = new Sprite(leftPanelRegion);
 		leftPanel2 = new Sprite(topPanelRegion);
 		
-		mainPanel.setPosition(280, 300);
-		topPanel.setPosition(360, 1190);
-		leftPanel.setPosition(40, 860);
-		leftPanel2.setPosition(20, 780);
+		mainPanel.setPosition(150, 120);
+		topPanel.setPosition(200, 750);
+		leftPanel.setPosition(20, 550);
+		leftPanel2.setPosition(10, 505);
 	}
 	
 	@Override

@@ -12,7 +12,7 @@ public class GameTimeAttackScreen extends GameScreenPortrait implements IGameTim
 
 	public void initGraphics() {
 		super.initGraphics();
-		TimeActor timeActor = new TimeActor(PweekMini.getInstance().manager, this, 140, 835);
+		TimeActor timeActor = new TimeActor(PweekMini.getInstance().manager, this, 76, 535);
 		stage.addActor(timeActor);
 	}
 
