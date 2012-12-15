@@ -1,11 +1,11 @@
 package com.tacoid.pweek.actors;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.SoundPlayer;
 
 public class SoundButtonActor extends Button {
@@ -26,9 +26,9 @@ public class SoundButtonActor extends Button {
 		});
 	}
 
-	static public SoundButtonActor createSoundButton() {
-		TextureRegion musicOnRegion = new TextureRegion(Pweek.getInstance().atlasBouttons.findRegion("sound-on"));
-		TextureRegion musicOffRegion = new TextureRegion(Pweek.getInstance().atlasBouttons.findRegion("sound-off"));
+	static public SoundButtonActor createSoundButton(TextureAtlas atlasButtons) {
+		TextureRegion musicOnRegion = new TextureRegion(atlasButtons.findRegion("sound-on"));
+		TextureRegion musicOffRegion = new TextureRegion(atlasButtons.findRegion("sound-off"));
 		
 		return new SoundButtonActor(musicOnRegion, musicOnRegion, musicOffRegion);
 	}

@@ -43,11 +43,11 @@ public class PreferenceManager {
 		prefs.flush();
 	}
 	
-	boolean isPreferenceDefined(Preference pref) {
+	public boolean isPreferenceDefined(Preference pref) {
 		return !undefPref.equals(this.getPreference(pref));
 	}
 	
-	String getPreference(Preference pref) {
+	public String getPreference(Preference pref) {
 		return prefs.getString(pref.toString());
 	}
 }

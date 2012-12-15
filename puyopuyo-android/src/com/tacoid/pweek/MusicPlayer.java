@@ -20,12 +20,11 @@ public class MusicPlayer {
 	private Music playing = null;
 	private boolean muted = false;
 	
-	public void init() {
+	public void init(Music music) {
 		musics = new HashMap<MusicType, Music>();
 		playing = null;
 		
-		//musics.put(MusicType.MAIN, Gdx.audio.newMusic(Gdx.files.internal("sounds/AnoyingMusic.mp3")));
-		musics.put(MusicType.MAIN, Pweek.getInstance().manager.get("sounds/AnoyingMusic.mp3", Music.class));
+		musics.put(MusicType.MAIN, music);
 		
 		if(!PreferenceManager.getInstance().isPreferenceDefined(Preference.MUSIC_STATE)) {
 			PreferenceManager.getInstance().setPreference(Preference.MUSIC_STATE, "on");

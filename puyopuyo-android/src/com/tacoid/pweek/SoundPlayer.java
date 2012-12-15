@@ -3,6 +3,7 @@ package com.tacoid.pweek;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.tacoid.pweek.PreferenceManager.Preference;
 import com.tacoid.tracking.TrackingManager;
@@ -25,18 +26,18 @@ public class SoundPlayer {
 	private boolean muted = false;
 	private Map<SoundType, Sound> sounds;
 	
-	public void init() {
+	public void init(AssetManager manager) {
 		sounds = new HashMap<SoundType, Sound>();
 		
-		sounds.put(SoundType.ROTATE, Pweek.getInstance().manager.get("sounds/bleep2.wav", Sound.class));
-		sounds.put(SoundType.MOVE, Pweek.getInstance().manager.get("sounds/bleep.wav", Sound.class));
-		sounds.put(SoundType.FALL, Pweek.getInstance().manager.get("sounds/bleep.wav", Sound.class));
-		sounds.put(SoundType.EXPLODE, Pweek.getInstance().manager.get("sounds/explode.wav", Sound.class));
-		sounds.put(SoundType.TOUCH_MENU, Pweek.getInstance().manager.get("sounds/click.wav", Sound.class));
-		sounds.put(SoundType.GARBAGE, Pweek.getInstance().manager.get("sounds/bleep.wav", Sound.class));
-		sounds.put(SoundType.WIN, Pweek.getInstance().manager.get("sounds/bleep.wav", Sound.class));
-		sounds.put(SoundType.LOSE, Pweek.getInstance().manager.get("sounds/bleep.wav", Sound.class));
-		sounds.put(SoundType.NUISANCE, Pweek.getInstance().manager.get("sounds/nuisance.wav", Sound.class));
+		sounds.put(SoundType.ROTATE, manager.get("sounds/bleep2.wav", Sound.class));
+		sounds.put(SoundType.MOVE, manager.get("sounds/bleep.wav", Sound.class));
+		sounds.put(SoundType.FALL, manager.get("sounds/bleep.wav", Sound.class));
+		sounds.put(SoundType.EXPLODE, manager.get("sounds/explode.wav", Sound.class));
+		sounds.put(SoundType.TOUCH_MENU, manager.get("sounds/click.wav", Sound.class));
+		sounds.put(SoundType.GARBAGE, manager.get("sounds/bleep.wav", Sound.class));
+		sounds.put(SoundType.WIN, manager.get("sounds/bleep.wav", Sound.class));
+		sounds.put(SoundType.LOSE, manager.get("sounds/bleep.wav", Sound.class));
+		sounds.put(SoundType.NUISANCE, manager.get("sounds/nuisance.wav", Sound.class));
 		
 		if(!PreferenceManager.getInstance().isPreferenceDefined(Preference.SOUND_STATE)) {
 			PreferenceManager.getInstance().setPreference(Preference.SOUND_STATE, "on");

@@ -63,8 +63,8 @@ public class Pweek extends Game {
 		if (manager.update()) {
 			if (justLaunched) {
 				String language = PreferenceManager.getInstance().getPreference(Preference.LANGUAGE);
-				MusicPlayer.getInstance().init();
-				SoundPlayer.getInstance().init();
+				MusicPlayer.getInstance().init(manager.get("sounds/AnoyingMusic.mp3", Music.class));
+				SoundPlayer.getInstance().init(manager);
 				if(I18nManager.getInstance().setLanguage(language)) {
 					loadLocalizedAssets();
 					if (getScreen() == null) {
