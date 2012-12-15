@@ -105,7 +105,8 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		    View gameView = initializeForView(Pweek.getInstance(), config);
 		
 		    // Cr�ation de la vu adMob
-		    adView = new AdView(this, AdSize.BANNER, "a150a3f124cd8c4"); // Put in your secret key here
+//		    adView = new AdView(this, AdSize.BANNER, "a150a3f124cd8c4"); // Put in your secret key here
+		    adView = new AdView(this, AdSize.BANNER, "aaaaaaaaaaaaaaa"); // Put in your secret key here
 		    adView.loadAd(new AdRequest());
 		    adView.setAdListener(this);
 
