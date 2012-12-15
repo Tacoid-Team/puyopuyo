@@ -254,7 +254,8 @@ public abstract class GameScreenPortrait implements GameScreen {
 	}
 	
 	public ScreenOrientation getOrientation() {
-		return ScreenOrientation.PORTRAIT;
+		return ScreenOrientation.LANDSCAPE;
+		// Ceci est un hack : en gros, en landscape les acteurs ne font pas de rotation.
 	}	
 	
 	@Override
