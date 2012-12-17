@@ -149,7 +149,7 @@ public class GameOverActor extends Group {
 		super.draw(batch,arg1);
 
 		scorePanelSprite.draw(batch);
-		font.setScale(0.8f);
+		font.setScale(1f);
 		font.setColor(1f, 1f, 1f, 1f);
 		message =  i18n.getString("score") + String.valueOf(gameScreen.getScore());
 		font.draw(batch, message, x / 2 - font.getBounds(message).width / 2, y - scorePanelSprite.getHeight() / 2 - 10);

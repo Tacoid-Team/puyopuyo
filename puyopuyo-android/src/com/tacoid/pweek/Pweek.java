@@ -99,7 +99,9 @@ public class Pweek extends Game {
 	
 	@Override
 	public void create() {		
-		loadingScreen = LoadingScreen.getInstance();
+		loadingScreen = LoadingScreen.getInstance();		
+		LoadingScreen.getInstance().resize(0, 0);
+
 		manager = new AssetManager();
 	
 		Gdx.input.setCatchBackKey(true);

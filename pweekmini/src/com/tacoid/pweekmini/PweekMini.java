@@ -87,23 +87,23 @@ public class PweekMini extends Game {
 			loaded = true;
 			super.render();
 		} else {
-			if (loadingScreen  != null) loadingScreen.render(Gdx.graphics.getDeltaTime());
+			if (loadingScreen != null) loadingScreen.render(Gdx.graphics.getDeltaTime());
 			loaded = false;
 		}
 	}
 	
-	public void resize (int width, int height) {
+	public void resize(int width, int height) {
 		if (getScreen() != null){
 			getScreen().resize(width, height);
-		}
-		else {
+		} else {
 			LoadingScreen.getInstance().resize(width, height);
 		}
 	}
 	
 	@Override
-	public void create() {		
+	public void create() {
 		loadingScreen = LoadingScreen.getInstance();
+		loadingScreen.resize(0, 0);
 		manager = new AssetManager();
 	
 		Gdx.input.setCatchBackKey(true);
@@ -112,6 +112,7 @@ public class PweekMini extends Game {
 		
 		myRequestHandler.showAds(false);
 
+		loaded = false;
         justLaunched = true;
 	}
 	
