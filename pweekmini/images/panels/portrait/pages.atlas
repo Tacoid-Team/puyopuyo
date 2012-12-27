@@ -1,0 +1,33 @@
+
+pages.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+main-panel
+  rotate: false
+  xy: 1, 248
+  size: 310, 610
+  orig: 310, 610
+  offset: 0, 0
+  index: -1
+score-panel
+  rotate: false
+  xy: 1, 175
+  size: 481, 71
+  orig: 481, 71
+  offset: 0, 0
+  index: -1
+left-panel
+  rotate: false
+  xy: 1, 1
+  size: 110, 172
+  orig: 110, 172
+  offset: 0, 0
+  index: -1
+top-panel
+  rotate: false
+  xy: 313, 805
+  size: 131, 53
+  orig: 131, 53
+  offset: 0, 0
+  index: -1

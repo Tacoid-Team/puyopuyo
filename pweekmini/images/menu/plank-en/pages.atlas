@@ -1,0 +1,61 @@
+
+pages.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+pweek
+  rotate: false
+  xy: 0, 280
+  size: 426, 163
+  orig: 426, 163
+  offset: 0, 0
+  index: -1
+gameover
+  rotate: false
+  xy: 0, 160
+  size: 393, 120
+  orig: 393, 120
+  offset: 0, 0
+  index: -1
+continuer
+  rotate: false
+  xy: 426, 283
+  size: 257, 160
+  orig: 257, 160
+  offset: 0, 0
+  index: -1
+quitter
+  rotate: false
+  xy: 0, 0
+  size: 257, 160
+  orig: 257, 160
+  offset: 0, 0
+  index: -1
+rejouer
+  rotate: false
+  xy: 683, 283
+  size: 257, 160
+  orig: 257, 160
+  offset: 0, 0
+  index: -1
+chrono
+  rotate: false
+  xy: 257, 0
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+solo
+  rotate: false
+  xy: 510, 123
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+touchtostart
+  rotate: false
+  xy: 763, 139
+  size: 183, 144
+  orig: 183, 144
+  offset: 0, 0
+  index: -1
