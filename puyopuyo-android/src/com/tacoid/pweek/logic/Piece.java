@@ -3,7 +3,8 @@ package com.tacoid.pweek.logic;
 public class Piece {
 	public Coord[] coords = new Coord[2];
 	public Coord[] prevCoords = new Coord[2];
-	public long lastMove = 0;
+	public long lastMoveC = 0;
+	public long lastMoveL = 0;
 
 	public Piece() {
 		prevCoords[0] = new Coord(0, 0, 0);
@@ -21,10 +22,10 @@ public class Piece {
 		if (ok) {
 			for (int i = 0; i < 2; i++) {
 				prevCoords[i].c = coords[i].c;
-				prevCoords[i].l = coords[i].l;
+				//prevCoords[i].l = coords[i].l;
 				coords[i].c++;
 			}
-			lastMove = System.currentTimeMillis();
+			lastMoveC = System.currentTimeMillis();
 		}
 		return ok;
 	}
@@ -39,10 +40,10 @@ public class Piece {
 		if (ok) {
 			for (int i = 0; i < 2; i++) {
 				prevCoords[i].c = coords[i].c;
-				prevCoords[i].l = coords[i].l;
+				//prevCoords[i].l = coords[i].l;
 				coords[i].c--;
 			}
-			lastMove = System.currentTimeMillis();
+			lastMoveC = System.currentTimeMillis();
 		}
 		return ok;
 	}
@@ -56,11 +57,11 @@ public class Piece {
 		}
 		if (result) {
 			for (int i = 0; i < 2; i++) {
-				prevCoords[i].c = coords[i].c;
+				//prevCoords[i].c = coords[i].c;
 				prevCoords[i].l = coords[i].l;
 				coords[i].l--;
 			}
-			lastMove = System.currentTimeMillis();
+			lastMoveL = System.currentTimeMillis();
 		}
 		return result;
 	}
@@ -68,12 +69,13 @@ public class Piece {
 	public Coord[] interpolatedCoord() {
 		long currentDate = System.currentTimeMillis();
 		
-		float a = Math.min(1, (currentDate - lastMove) / 100.0f);
+		float aC = Math.min(1, (currentDate - lastMoveC) / 100.0f);
+		float aL = Math.min(1, (currentDate - lastMoveL) / 100.0f);
 		
 		Coord[] result = new Coord[2];
 		for (int i = 0; i < 2; i++) {
-			float c = prevCoords[i].c + (coords[i].c - prevCoords[i].c) * a;
-			float l = prevCoords[i].l + (coords[i].l - prevCoords[i].l) * a;
+			float c = prevCoords[i].c + (coords[i].c - prevCoords[i].c) * aC;
+			float l = prevCoords[i].l + (coords[i].l - prevCoords[i].l) * aL;
 			
 			result[i] = new Coord(l, c, coords[i].coul);
 		}
