@@ -22,10 +22,10 @@ public class IAEasy implements IA {
 	}
 
 	private Solution choice(int n, GameLogic cl, int m) {
-		Coord p1 = cl.getPiece()[0];
-		Coord p2 = cl.getPiece()[1];
-		int dl = p1.l - p2.l;
-		int dc = p1.c - p2.c;
+		Coord p1 = cl.getPiece().coords[0];
+		Coord p2 = cl.getPiece().coords[1];
+		int dl = (int)(p1.l - p2.l);
+		int dc = (int)(p1.c - p2.c);
 		
 		int r;
 		if (dl == 0) {
@@ -40,9 +40,9 @@ public class IAEasy implements IA {
 			r = 3;
 		}
 		
-		if (dyn[p1.l * logic.COLUMNS + p1.c][r] != null) {
+		if (dyn[(int)p1.l * GameLogic.COLUMNS + (int)p1.c][r] != null) {
 			// Si on a déjà été dans cette position en moins de mouvement
-			if (dyn[p1.l * logic.COLUMNS + p1.c][r].m <= m) {
+			if (dyn[(int)p1.l * GameLogic.COLUMNS + (int)p1.c][r].m <= m) {
 				// Alors c'est naze.
 				return new Solution(-1, 0);
 			}
@@ -52,8 +52,8 @@ public class IAEasy implements IA {
 			int diff = 0;
 			cl.poseEtGravity();
 
-			for (Coord c : cl.getPiece()) {
-				int count = floodfill(c.l, c.c, c.coul, cl);
+			for (Coord c : cl.getPiece().coords) {
+				int count = floodfill((int)c.l, (int)c.c, c.coul, cl);
 				if (count > 2) {
 					diff = -(count - 1) * (count - 1) + count * count;
 				} else if (count == 2) {
@@ -61,8 +61,8 @@ public class IAEasy implements IA {
 				}
 			}
 
-			dyn[p1.l * logic.COLUMNS + p1.c][r] = new Solution(potentiel + diff, m);
-			return dyn[p1.l * logic.COLUMNS + p1.c][r];
+			dyn[(int)p1.l * GameLogic.COLUMNS + (int)p1.c][r] = new Solution(potentiel + diff, m);
+			return dyn[(int)p1.l * GameLogic.COLUMNS + (int)p1.c][r];
 		} else {
 			GameLogic[] logics = new GameLogic[5];
 
@@ -90,7 +90,7 @@ public class IAEasy implements IA {
 			if (n == 4) {
 				switch (max) {
 				case 0:
-					if (logic.getPiece()[0].l < 10) {
+					if (logic.getPiece().coords[0].l < 10) {
 						logic.dropPiece();
 					}
 					break;
@@ -109,13 +109,13 @@ public class IAEasy implements IA {
 				}
 			}
 
-			dyn[p1.l * logic.COLUMNS + p1.c][r] = scoreMax;
-			return dyn[p1.l * logic.COLUMNS + p1.c][r];
+			dyn[(int)p1.l * GameLogic.COLUMNS + (int)p1.c][r] = scoreMax;
+			return dyn[(int)p1.l * GameLogic.COLUMNS + (int)p1.c][r];
 		}
 	}
 
 	private int floodfill(int l, int c, int coul, GameLogic logic) {
-		if (l < 0 || c < 0 || l >= logic.LINES || c >= logic.COLUMNS
+		if (l < 0 || c < 0 || l >= GameLogic.LINES || c >= GameLogic.COLUMNS
 				|| logic.grid[l][c] != coul) {
 			return 0;
 		}
@@ -128,11 +128,11 @@ public class IAEasy implements IA {
 	}
 
 	public void choice1() {
-		logic.gridFF = new boolean[logic.LINES][logic.COLUMNS];
+		logic.gridFF = new boolean[GameLogic.LINES][GameLogic.COLUMNS];
 		int[][] grid = logic.getGrid();
 		potentiel = 0;
-		for (int l = 0; l < logic.LINES; l++) {
-			for (int c = 0; c < logic.COLUMNS; c++) {
+		for (int l = 0; l < GameLogic.LINES; l++) {
+			for (int c = 0; c < GameLogic.COLUMNS; c++) {
 				if (grid[l][c] > 0 && !logic.gridFF[l][c]) {
 					int count = logic.floodfill(l, c, grid[l][c], null);
 					if (count > 1) {
@@ -142,7 +142,7 @@ public class IAEasy implements IA {
 			}
 		}
 
-		dyn = new Solution[(logic.LINES + 1) * logic.COLUMNS][4];
+		dyn = new Solution[(GameLogic.LINES + 1) * GameLogic.COLUMNS][4];
 		choice(4, logic, 0);
 	}
 

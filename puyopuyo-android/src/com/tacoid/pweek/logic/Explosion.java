@@ -14,10 +14,10 @@ class Explosion {
 		
 		for (Coord coord : removes) {
 			for (int[] dir : DIR) {
-				if (coord.l + dir[0] >= 0 && coord.l + dir[0] < logic.LINES
+				if (coord.l + dir[0] >= 0 && coord.l + dir[0] < GameLogic.LINES
 						&& coord.c + dir[1] >= 0
-						&& coord.c + dir[1] < logic.COLUMNS) {
-					if (logic.grid[coord.l + dir[0]][coord.c + dir[1]] == logic.GARBAGE) {
+						&& coord.c + dir[1] < GameLogic.COLUMNS) {
+					if (logic.grid[(int)coord.l + dir[0]][(int)coord.c + dir[1]] == logic.GARBAGE) {
 						removeGarbage.add(new Coord(coord.l + dir[0], coord.c + dir[1], logic.GARBAGE));
 					}
 				}
@@ -27,7 +27,7 @@ class Explosion {
 		removes.addAll(removeGarbage);
 		
 		for (Coord coord : removes) {
-			logic.grid[coord.l][coord.c] = 0;
+			logic.grid[(int)coord.l][(int)coord.c] = 0;
 		}
 	}
 

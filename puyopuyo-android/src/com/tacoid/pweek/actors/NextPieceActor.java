@@ -29,12 +29,12 @@ public class NextPieceActor extends Actor {
 	
 	@Override
 	public void draw(SpriteBatch batch, float alpha) {
-		Coord[] piece = logic.getNextPiece();
+		Coord[] piece = logic.getNextPiece().coords;
 		if (piece != null) {
 			if (piece[0].coul > 0)
-				batch.draw(boules[piece[0].coul-1], origX + (piece[0].c - logic.COLUMNS / 2) * size, origY + (piece[0].l - logic.LINES + 1) * size);
+				batch.draw(boules[piece[0].coul-1], origX + (piece[0].c - GameLogic.COLUMNS / 2) * size, origY + (piece[0].l - GameLogic.LINES + 1) * size);
 			if (piece[1].coul > 0)
-				batch.draw(boules[piece[1].coul-1], origX + (piece[1].c - logic.COLUMNS / 2) * size, origY + (piece[1].l - logic.LINES + 1) * size);
+				batch.draw(boules[piece[1].coul-1], origX + (piece[1].c - GameLogic.COLUMNS / 2) * size, origY + (piece[1].l - GameLogic.LINES + 1) * size);
 		}
 	}
 

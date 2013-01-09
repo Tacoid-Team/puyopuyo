@@ -3,10 +3,12 @@ package com.tacoid.pweek.actors;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.pweek.logic.Coord;
 import com.tacoid.pweek.logic.Falling;
 import com.tacoid.pweek.logic.GameLogic;
+import com.tacoid.pweek.logic.Piece;
 import com.tacoid.pweek.logic.State;
 
 public class GridActor extends Actor {
@@ -84,26 +86,26 @@ public class GridActor extends Actor {
 		int garbage = logic.garbage;
 		int offset = 0;
 		
-		while (garbage >= logic.COLUMNS) {
-			batch.draw(next_nuisance_big, origX + offset, origY + 5 + logic.LINES * size - size / 4);
+		while (garbage >= GameLogic.COLUMNS) {
+			batch.draw(next_nuisance_big, origX + offset, origY + 5 + GameLogic.LINES * size - size / 4);
 			offset += size * 3 / 4;
-			garbage -= logic.COLUMNS;
+			garbage -= GameLogic.COLUMNS;
 		}
 		while (garbage > 0) {
-			batch.draw(next_nuisance_small, origX + offset, origY + 5 + logic.LINES * size - size / 4);
+			batch.draw(next_nuisance_small, origX + offset, origY + 5 + GameLogic.LINES * size - size / 4);
 			offset += size / 2;
 			garbage--;
 		}
 		
 		int[][] grid = logic.getGrid();
 		
-		for (int l = 0; l < logic.LINES; l++) {
-			for (int c = 0; c < logic.COLUMNS; c++) {
+		for (int l = 0; l < GameLogic.LINES; l++) {
+			for (int c = 0; c < GameLogic.COLUMNS; c++) {
 				if (grid[l][c] > 0 && grid[l][c] != logic.GARBAGE) {
-					if (c < logic.COLUMNS - 1 && grid[l][c] == grid[l][c+1]) {
+					if (c < GameLogic.COLUMNS - 1 && grid[l][c] == grid[l][c+1]) {
 						batch.draw(boules_h[grid[l][c] - 1], c * size + origX + size / 2, l * size + origY);
 					}
-					if (l < logic.LINES - 1 && grid[l][c] == grid[l+1][c]) {
+					if (l < GameLogic.LINES - 1 && grid[l][c] == grid[l+1][c]) {
 						batch.draw(boules_v[grid[l][c] - 1], c * size + origX, l * size + origY + size / 2);
 					}
 				}
@@ -111,8 +113,8 @@ public class GridActor extends Actor {
 			}
 		}
 		
-		for (int l = 0; l < logic.LINES; l++) {
-			for (int c = 0; c < logic.COLUMNS; c++) {
+		for (int l = 0; l < GameLogic.LINES; l++) {
+			for (int c = 0; c < GameLogic.COLUMNS; c++) {
 				if (grid[l][c] > 0) {
 					batch.draw(boules_f[grid[l][c] - 1], c * (size + 1) + origX,
 							l * size + origY);
@@ -121,18 +123,16 @@ public class GridActor extends Actor {
 		}
 
 		if (logic.getState() != State.LOST) {
-			Coord[] next = logic.getPiece();
-			if (next != null) {
-				if (next[0].coul > 0 && next[0].l < logic.LINES) {
-					batch.draw(white, next[0].c * (size + 1) + origX - offWhite, 
-							next[0].l * size + origY - offWhite);
-					batch.draw(boules[next[0].coul - 1],
-							next[0].c * (size + 1) + origX, next[0].l * size + origY);
-				}
-				if (next[1].coul > 0 && next[1].l < logic.LINES) {
-					batch.draw(boules[next[1].coul - 1],
-							next[1].c * (size + 1) + origX, next[1].l * size + origY);
-				}
+			Coord[] nextC = logic.getPiece().interpolatedCoord(); 
+			if (nextC[0].coul > 0 && nextC[0].l < GameLogic.LINES) {
+				batch.draw(white, nextC[0].c * (size + 1) + origX - offWhite, 
+						nextC[0].l * size + origY - offWhite);
+				batch.draw(boules[nextC[0].coul - 1],
+						nextC[0].c * (size + 1) + origX, nextC[0].l * size + origY);
+			}
+			if (nextC[1].coul > 0 && nextC[1].l < GameLogic.LINES) {
+				batch.draw(boules[nextC[1].coul - 1],
+						nextC[1].c * (size + 1) + origX, nextC[1].l * size + origY);
 			}
 		}
 

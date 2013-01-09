@@ -40,11 +40,11 @@ public class IAHard implements IA {
 	}
 
 	private Solution choice(int n, GameLogic cl, int m) {
-		Coord p1 = cl.getPiece()[0];
-		Coord p2 = cl.getPiece()[1];
+		Coord p1 = cl.getPiece().coords[0];
+		Coord p2 = cl.getPiece().coords[1];
 		
-		int dl = p1.l - p2.l;
-		int dc = p1.c - p2.c;
+		int dl = (int)(p1.l - p2.l);
+		int dc = (int)(p1.c - p2.c);
 		
 		int r;
 		if (dl == 0) {
@@ -59,9 +59,9 @@ public class IAHard implements IA {
 			r = 3;
 		}
 
-		if (dyn[p1.l * logic.COLUMNS + p1.c][r] != null) {
+		if (dyn[(int)p1.l * GameLogic.COLUMNS + (int)p1.c][r] != null) {
 			// Si on a déjà été dans cette position en moins de mouvement
-			if (dyn[p1.l * logic.COLUMNS + p1.c][r].m <= m) {
+			if (dyn[(int)p1.l * GameLogic.COLUMNS + (int)p1.c][r].m <= m) {
 				// Alors c'est naze.
 				return new Solution(-1, 0, 0, 0);
 			}
@@ -73,9 +73,9 @@ public class IAHard implements IA {
 			int points = cl.descendreEtPose();
 
 			potentiel = 0;
-			cl.gridFF = new boolean[cl.LINES][cl.COLUMNS];
-			for (int l = 0; l < cl.LINES; l++) {
-				for (int c = 0; c < cl.COLUMNS; c++) {
+			cl.gridFF = new boolean[GameLogic.LINES][GameLogic.COLUMNS];
+			for (int l = 0; l < GameLogic.LINES; l++) {
+				for (int c = 0; c < GameLogic.COLUMNS; c++) {
 					if (cl.grid[l][c] > 0 && cl.grid[l][c] != cl.GARBAGE) {
 						int count = floodfill(l, c, cl.grid[l][c], cl);
 						if (count > 1) {
@@ -102,8 +102,8 @@ public class IAHard implements IA {
 
 			int h = hauteur(cl);
 
-			dyn[p1.l * logic.COLUMNS + p1.c][r] = new Solution(points, potentiel, h, m);
-			return dyn[p1.l * logic.COLUMNS + p1.c][r];
+			dyn[(int)p1.l * GameLogic.COLUMNS + (int)p1.c][r] = new Solution(points, potentiel, h, m);
+			return dyn[(int)p1.l * GameLogic.COLUMNS + (int)p1.c][r];
 		} else {
 			GameLogic[] logics = new GameLogic[5];
 
@@ -120,7 +120,7 @@ public class IAHard implements IA {
 			Solution scoreMax = choice(0, logics[0], m);
 			int max = 0;
 			for (int i = 1; i < 5; i++) {
-				if (logics[i].getPiece()[0].equals(logic.getPiece()[0]) && logics[i].getPiece()[1].equals(logic.getPiece()[1])) {
+				if (logics[i].getPiece().coords[0].equals(logic.getPiece().coords[0]) && logics[i].getPiece().coords[1].equals(logic.getPiece().coords[1])) {
 					// Si le déplacement ou la rotation a marché, sinon ça sert à rien.
 					continue;
 				}
@@ -151,15 +151,15 @@ public class IAHard implements IA {
 				}
 			}
 
-			dyn[p1.l * logic.COLUMNS + p1.c][r] = scoreMax;
-			return dyn[p1.l * logic.COLUMNS + p1.c][r];
+			dyn[(int)p1.l * GameLogic.COLUMNS + (int)p1.c][r] = scoreMax;
+			return dyn[(int)p1.l * GameLogic.COLUMNS + (int)p1.c][r];
 		}
 	}
 
 	private int hauteur(GameLogic logic) {
-		int l = logic.LINES - 1;
+		int l = GameLogic.LINES - 1;
 		while (l >= 0) {
-			for (int c = 0; c < logic.COLUMNS; c++) {
+			for (int c = 0; c < GameLogic.COLUMNS; c++) {
 				if (logic.grid[l][c] != 0) {
 					return l + 1;
 				}
@@ -170,7 +170,7 @@ public class IAHard implements IA {
 	}
 
 	private int floodfill(int l, int c, int coul, GameLogic logic) {
-		if (l < 0 || c < 0 || l >= logic.LINES || c >= logic.COLUMNS
+		if (l < 0 || c < 0 || l >= GameLogic.LINES || c >= GameLogic.COLUMNS
 				|| logic.grid[l][c] != coul) {
 			return 0;
 		}
@@ -183,7 +183,7 @@ public class IAHard implements IA {
 	}
 
 	public void choice1() {
-		dyn = new Solution[(logic.LINES + 1) * logic.COLUMNS][4];
+		dyn = new Solution[(GameLogic.LINES + 1) * GameLogic.COLUMNS][4];
 		choice(4, logic, 0);
 	}
 

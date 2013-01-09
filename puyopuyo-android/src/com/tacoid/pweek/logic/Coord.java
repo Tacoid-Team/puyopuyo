@@ -1,11 +1,11 @@
 package com.tacoid.pweek.logic;
 
 public class Coord {
-	public int l;
-	public int c;
+	public float l;
+	public float c;
 	public int coul;
 	
-	public Coord(int l, int c, int coul) {
+	public Coord(float l, float c, int coul) {
 		this.l = l;
 		this.c = c;
 		this.coul = coul;

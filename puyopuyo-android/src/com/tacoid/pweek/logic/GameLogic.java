@@ -16,15 +16,15 @@ public class GameLogic {
 		ROT_LEFT
 	}
 
-	public final int LINES = 12;
-	public final int COLUMNS = 6;
+	public final static int LINES = 12;
+	public final static int COLUMNS = 6;
 	public final int GARBAGE = 6;
 
 	private State state = State.MOVE;
 
 	int grid[][] = new int[LINES * 2][COLUMNS];
-	private Coord[] piece = new Coord[2];
-	private Coord[] nextPiece = new Coord[2];
+	private Piece piece = new Piece();
+	private Piece nextPiece = new Piece();
 	private int rot = 0;
 	private int nextRot = 0;
 
@@ -86,14 +86,14 @@ public class GameLogic {
 		this.isIA = isIA;
 
 		// piece + next piece :
-		piece[0] = new Coord(logic.piece[0].l, logic.piece[0].c,
-				logic.piece[0].coul);
-		piece[1] = new Coord(logic.piece[1].l, logic.piece[1].c,
-				logic.piece[1].coul);
-		nextPiece[0] = new Coord(logic.nextPiece[0].l, logic.nextPiece[0].c,
-				logic.nextPiece[0].coul);
-		nextPiece[1] = new Coord(logic.nextPiece[1].l, logic.nextPiece[1].c,
-				logic.nextPiece[1].coul);
+		piece.coords[0] = new Coord(logic.piece.coords[0].l, logic.piece.coords[0].c,
+				logic.piece.coords[0].coul);
+		piece.coords[1] = new Coord(logic.piece.coords[1].l, logic.piece.coords[1].c,
+				logic.piece.coords[1].coul);
+		nextPiece.coords[0] = new Coord(logic.nextPiece.coords[0].l, logic.nextPiece.coords[0].c,
+				logic.nextPiece.coords[0].coul);
+		nextPiece.coords[1] = new Coord(logic.nextPiece.coords[1].l, logic.nextPiece.coords[1].c,
+				logic.nextPiece.coords[1].coul);
 		rot = logic.rot;
 		nextRot = logic.nextRot;
 
@@ -124,8 +124,8 @@ public class GameLogic {
 		// Sens de la piece :
 		// [x] [x][ ] [ ] [ ][x]
 		// [ ] [x]
-		piece[0] = nextPiece[0];
-		piece[1] = nextPiece[1];
+		piece.coords[0] = nextPiece.coords[0];
+		piece.coords[1] = nextPiece.coords[1];
 		rot = nextRot;
 
 		int coul1 = 1 + (int) (Math.random() * n_colors);
@@ -144,24 +144,24 @@ public class GameLogic {
 
 		switch (nextRot) {
 		case 0:
-			nextPiece[0] = new Coord(LINES - 1, COLUMNS / 2, coul1);
-			nextPiece[1] = new Coord(LINES, COLUMNS / 2, coul2);
+			nextPiece.coords[0] = new Coord(LINES - 1, COLUMNS / 2, coul1);
+			nextPiece.coords[1] = new Coord(LINES, COLUMNS / 2, coul2);
 			break;
 		case 1:
-			nextPiece[0] = new Coord(LINES, COLUMNS / 2, coul1);
-			nextPiece[1] = new Coord(LINES, COLUMNS / 2 + 1, coul2);
+			nextPiece.coords[0] = new Coord(LINES, COLUMNS / 2, coul1);
+			nextPiece.coords[1] = new Coord(LINES, COLUMNS / 2 + 1, coul2);
 			break;
 		case 2:
-			nextPiece[0] = new Coord(LINES, COLUMNS / 2, coul1);
-			nextPiece[1] = new Coord(LINES - 1, COLUMNS / 2, coul2);
+			nextPiece.coords[0] = new Coord(LINES, COLUMNS / 2, coul1);
+			nextPiece.coords[1] = new Coord(LINES - 1, COLUMNS / 2, coul2);
 			break;
 		case 3:
-			nextPiece[0] = new Coord(LINES, COLUMNS / 2 + 1, coul1);
-			nextPiece[1] = new Coord(LINES, COLUMNS / 2, coul2);
+			nextPiece.coords[0] = new Coord(LINES, COLUMNS / 2 + 1, coul1);
+			nextPiece.coords[1] = new Coord(LINES, COLUMNS / 2, coul2);
 			break;
 		}
 
-		return (piece[0] == null) || (grid[piece[0].l][piece[0].c] == 0 && grid[piece[1].l][piece[1].c] == 0);
+		return (piece.coords[0] == null) || (grid[(int)piece.coords[0].l][(int)piece.coords[0].c] == 0 && grid[(int)piece.coords[1].l][(int)piece.coords[1].c] == 0);
 	}
 
 	public void rotateRight() {
@@ -170,8 +170,8 @@ public class GameLogic {
 				SoundPlayer.getInstance().playSound(SoundType.ROTATE, 0.5f, true);
 			}
 			Coord newPiece[] = new Coord[2];
-			newPiece[0] = new Coord(piece[0].l, piece[0].c, piece[0].coul);
-			newPiece[1] = new Coord(piece[1].l, piece[1].c, piece[1].coul);
+			newPiece[0] = new Coord(piece.coords[0].l, piece.coords[0].c, piece.coords[0].coul);
+			newPiece[1] = new Coord(piece.coords[1].l, piece.coords[1].c, piece.coords[1].coul);
 
 			int decL = 0;
 			int decC = 0;
@@ -211,10 +211,10 @@ public class GameLogic {
 				newPiece[0].l++;
 			}
 
-			if (grid[newPiece[0].l][newPiece[0].c] == 0
-					&& grid[newPiece[1].l][newPiece[1].c] == 0) {
-				piece[0] = newPiece[0];
-				piece[1] = newPiece[1];
+			if (grid[(int)newPiece[0].l][(int)newPiece[0].c] == 0
+					&& grid[(int)newPiece[1].l][(int)newPiece[1].c] == 0) {
+				piece.coords[0] = newPiece[0];
+				piece.coords[1] = newPiece[1];
 				rot = (rot + 1) % 4;
 			}
 		}
@@ -226,8 +226,8 @@ public class GameLogic {
 				SoundPlayer.getInstance().playSound(SoundType.ROTATE, 0.5f, true);
 			}
 			Coord newPiece[] = new Coord[2];
-			newPiece[0] = new Coord(piece[0].l, piece[0].c, piece[0].coul);
-			newPiece[1] = new Coord(piece[1].l, piece[1].c, piece[1].coul);
+			newPiece[0] = new Coord(piece.coords[0].l, piece.coords[0].c, piece.coords[0].coul);
+			newPiece[1] = new Coord(piece.coords[1].l, piece.coords[1].c, piece.coords[1].coul);
 
 			int decL = 0;
 			int decC = 0;
@@ -267,10 +267,10 @@ public class GameLogic {
 				newPiece[0].l++;
 			}
 
-			if (grid[newPiece[0].l][newPiece[0].c] == 0
-					&& grid[newPiece[1].l][newPiece[1].c] == 0) {
-				piece[0] = newPiece[0];
-				piece[1] = newPiece[1];
+			if (grid[(int)newPiece[0].l][(int)newPiece[0].c] == 0
+					&& grid[(int)newPiece[1].l][(int)newPiece[1].c] == 0) {
+				piece.coords[0] = newPiece[0];
+				piece.coords[1] = newPiece[1];
 				rot = (rot + 3) % 4;
 			}
 		}
@@ -278,7 +278,7 @@ public class GameLogic {
 
 	public void moveDown() {
 		if (state == State.MOVE) {
-			descendre();
+			piece.descendre(grid);
 			if(!isIA) {
 				SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.2f, true);
 			}
@@ -287,43 +287,24 @@ public class GameLogic {
 
 	public boolean moveLeft() {
 		if (state == State.MOVE) {
-			boolean ok = true;
-			for (int i = 0; i < 2; i++) {
-				if (piece[i].c <= 0 || grid[piece[i].l][piece[i].c - 1] > 0) {
-					ok = false;
-				}
-			}
-			if (ok) {
+			if (piece.moveLeft(grid)) {
 				if(!isIA) {
 					SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.2f, true);
 				}
-				for (int i = 0; i < 2; i++) {
-					piece[i].c--;
-				}
+				return true;
 			}
-			return ok;
 		}
 		return false;
 	}
-
+	
 	public boolean moveRight() {
 		if (state == State.MOVE) {
-			boolean ok = true;
-			for (int i = 0; i < 2; i++) {
-				if (piece[i].c >= COLUMNS - 1
-						|| grid[piece[i].l][piece[i].c + 1] > 0) {
-					ok = false;
-				}
-			}
-			if (ok) {
+			if (piece.moveRight(grid)) {
 				if(!isIA) {
 					SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.2f, true);
 				}
-				for (int i = 0; i < 2; i++) {
-					piece[i].c++;
-				}
+				return true;
 			}
-			return ok;
 		}
 		return false;
 	}
@@ -332,21 +313,6 @@ public class GameLogic {
 		if (state == State.MOVE) {
 			state = State.POSE;
 		}
-	}
-
-	private boolean descendre() {
-		boolean result = true;
-		for (Coord p : piece) {
-			if (p.l <= 0 || grid[p.l - 1][p.c] > 0) {
-				result = false;
-			}
-		}
-		if (result) {
-			for (Coord p : piece) {
-				p.l--;
-			}
-		}
-		return result;
 	}
 
 	private ArrayList<Falling> gravity() {
@@ -400,18 +366,18 @@ public class GameLogic {
 	}
 
 	private void pose() {
-		for (Coord p : piece) {
-			grid[p.l][p.c] = p.coul;
+		for (Coord p : piece.coords) {
+			grid[(int)p.l][(int)p.c] = p.coul;
 			p.coul = 0;
 		}
 	}
 
 	public void poseEtGravity() {
-		for (Coord c : piece) {
-			while (c.l > 0 && grid[c.l - 1][c.c] == 0) {
+		for (Coord c : piece.coords) {
+			while (c.l > 0 && grid[(int)c.l - 1][(int)c.c] == 0) {
 				c.l--;
 			}
-			grid[c.l][c.c] = c.coul;
+			grid[(int)c.l][(int)c.c] = c.coul;
 		}
 	}
 
@@ -422,7 +388,7 @@ public class GameLogic {
 		do {
 			fallings = gravity();
 			for (Falling f : fallings) {
-				grid[f.getEnd().l][f.getEnd().c] = f.getEnd().coul;
+				grid[(int)f.getEnd().l][(int)f.getEnd().c] = f.getEnd().coul;
 			}
 
 			removes = resolve();
@@ -458,7 +424,7 @@ public class GameLogic {
 					first = false;
 				}
 				if (sum > speed || (isDown && sum > 0.1f)) {
-					if (!descendre()) {
+					if (!piece.descendre(grid)) {
 						state = State.POSE;
 					}
 					sum = 0f;
@@ -483,7 +449,7 @@ public class GameLogic {
 				if (sum > 0.5) {
 					boolean playGarbage = false;
 					for (Falling f : fallings) {
-						grid[f.getEnd().l][f.getEnd().c] = f.getEnd().coul;
+						grid[(int)f.getEnd().l][(int)f.getEnd().c] = f.getEnd().coul;
 						if(f.getEnd().coul == GARBAGE && f.getInitial().l >= LINES) {
 							playGarbage = true;
 						}
@@ -529,6 +495,8 @@ public class GameLogic {
 					sum = 0f;
 				}
 				break;
+			default:
+				break;
 			}
 		}
 	}
@@ -561,11 +529,11 @@ public class GameLogic {
 		return grid;
 	}
 
-	public Coord[] getPiece() {
+	public Piece getPiece() {
 		return piece;
 	}
 
-	public Coord[] getNextPiece() {
+	public Piece getNextPiece() {
 		return nextPiece;
 	}
 
