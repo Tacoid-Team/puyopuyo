@@ -24,8 +24,8 @@ public class PortraitPanelActor extends Actor {
 		
 		mainPanel.setPosition(280, 300);
 		topPanel.setPosition(360, 1190);
-		leftPanel.setPosition(40, 860);
-		leftPanel2.setPosition(20, 780);
+		leftPanel.setPosition(40, 830);
+		leftPanel2.setPosition(20, 750);
 	}
 	
 	@Override

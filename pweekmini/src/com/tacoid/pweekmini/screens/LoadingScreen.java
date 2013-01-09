@@ -5,7 +5,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,13 +19,12 @@ public class LoadingScreen implements Screen {
 	private static LoadingScreen instance = null;
 	public static boolean initialized;
 	private PweekMini puyopuyo;
-	private BitmapFont font;
 	private Stage stage;
 	
 	private Sprite logoSprite;
-	NinePatch patch;
+	private NinePatch patch;
 	
-	private class loadingActor extends Actor {
+	private class LoadingActor extends Actor {
 
 		@Override
 		public void draw(SpriteBatch batch, float delta) {
@@ -50,11 +48,9 @@ public class LoadingScreen implements Screen {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
 		patch = new NinePatch(new Texture(Gdx.files.internal("images/progress-patch.png")), 12, 12, 12, 12);
-		this.font = new BitmapFont();
-		font.setScale(1.0f);
 		this.logoSprite = new Sprite(new Texture(Gdx.files.internal("images/logo.png")));
 		this.logoSprite.setPosition(VIRTUAL_WIDTH/2 - logoSprite.getWidth()/2, VIRTUAL_HEIGHT/2 - logoSprite.getHeight()/2);
-		stage.addActor(new loadingActor());
+		stage.addActor(new LoadingActor());
 	}
 	
 	@Override
