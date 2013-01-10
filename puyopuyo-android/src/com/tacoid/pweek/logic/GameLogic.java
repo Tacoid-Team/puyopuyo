@@ -25,8 +25,6 @@ public class GameLogic {
 	int grid[][] = new int[LINES * 2][COLUMNS];
 	private Piece piece = new Piece();
 	private Piece nextPiece = new Piece();
-	private int rot = 0;
-	private int nextRot = 0;
 
 	public boolean gridFF[][];
 	private float sum = 0f;
@@ -49,6 +47,8 @@ public class GameLogic {
 	private int n_colors = 4;
 	private boolean cheatMode = false;
 	private float initialSpeed = 0.4f;
+	
+	public ArrayList<Explosion> explosions;
 
 	public GameLogic() {
 		init();
@@ -58,8 +58,6 @@ public class GameLogic {
 		fallings = null;
 		score = 0;
 		sum = 0;
-		rot = 0;
-		nextRot = 0;
 		speed = initialSpeed;
 		state = State.MOVE;
 		points = 0;
@@ -85,17 +83,8 @@ public class GameLogic {
 		
 		this.isIA = isIA;
 
-		// piece + next piece :
-		piece.coords[0] = new Coord(logic.piece.coords[0].l, logic.piece.coords[0].c,
-				logic.piece.coords[0].coul);
-		piece.coords[1] = new Coord(logic.piece.coords[1].l, logic.piece.coords[1].c,
-				logic.piece.coords[1].coul);
-		nextPiece.coords[0] = new Coord(logic.nextPiece.coords[0].l, logic.nextPiece.coords[0].c,
-				logic.nextPiece.coords[0].coul);
-		nextPiece.coords[1] = new Coord(logic.nextPiece.coords[1].l, logic.nextPiece.coords[1].c,
-				logic.nextPiece.coords[1].coul);
-		rot = logic.rot;
-		nextRot = logic.nextRot;
+		piece = new Piece(logic.piece, true);
+		nextPiece = new Piece(logic.nextPiece, true);
 
 		state = logic.state;
 		combo = 0;
@@ -124,10 +113,9 @@ public class GameLogic {
 		// Sens de la piece :
 		// [x] [x][ ] [ ] [ ][x]
 		// [ ] [x]
-		piece.coords[0] = nextPiece.coords[0];
-		piece.coords[1] = nextPiece.coords[1];
-		rot = nextRot;
-
+		
+		piece = new Piece(nextPiece);
+		
 		int coul1 = 1 + (int) (Math.random() * n_colors);
 		int coul2;
 		
@@ -140,9 +128,9 @@ public class GameLogic {
 		} else {
 			coul2 = 1 + (int) (Math.random() * n_colors);
 		}
-		nextRot = (int) (Math.random() * 4);
+		nextPiece.rot = (int) (Math.random() * 4);
 
-		switch (nextRot) {
+		switch (nextPiece.rot) {
 		case 0:
 			nextPiece.coords[0] = new Coord(LINES - 1, COLUMNS / 2, coul1);
 			nextPiece.coords[1] = new Coord(LINES, COLUMNS / 2, coul2);
@@ -169,54 +157,7 @@ public class GameLogic {
 			if(!isIA) {
 				SoundPlayer.getInstance().playSound(SoundType.ROTATE, 0.5f, true);
 			}
-			Coord newPiece[] = new Coord[2];
-			newPiece[0] = new Coord(piece.coords[0].l, piece.coords[0].c, piece.coords[0].coul);
-			newPiece[1] = new Coord(piece.coords[1].l, piece.coords[1].c, piece.coords[1].coul);
-
-			int decL = 0;
-			int decC = 0;
-			switch (rot) {
-			case 0:
-				decL = -1;
-				decC = 1;
-				break;
-			case 1:
-				decL = -1;
-				decC = -1;
-				break;
-			case 2:
-				decL = 1;
-				decC = -1;
-				break;
-			case 3:
-				decL = 1;
-				decC = 1;
-				break;
-			}
-			newPiece[1].c += decC;
-			newPiece[1].l += decL;
-
-			if (newPiece[1].c < 0) {
-				newPiece[1].c++;
-				newPiece[0].c++;
-			}
-
-			if (newPiece[1].c >= COLUMNS) {
-				newPiece[1].c--;
-				newPiece[0].c--;
-			}
-
-			if (newPiece[1].l < 0) {
-				newPiece[1].l++;
-				newPiece[0].l++;
-			}
-
-			if (grid[(int)newPiece[0].l][(int)newPiece[0].c] == 0
-					&& grid[(int)newPiece[1].l][(int)newPiece[1].c] == 0) {
-				piece.coords[0] = newPiece[0];
-				piece.coords[1] = newPiece[1];
-				rot = (rot + 1) % 4;
-			}
+			piece.rotateRight(grid);
 		}
 	}
 
@@ -225,54 +166,7 @@ public class GameLogic {
 			if(!isIA) {
 				SoundPlayer.getInstance().playSound(SoundType.ROTATE, 0.5f, true);
 			}
-			Coord newPiece[] = new Coord[2];
-			newPiece[0] = new Coord(piece.coords[0].l, piece.coords[0].c, piece.coords[0].coul);
-			newPiece[1] = new Coord(piece.coords[1].l, piece.coords[1].c, piece.coords[1].coul);
-
-			int decL = 0;
-			int decC = 0;
-			switch (rot) {
-			case 0:
-				decL = -1;
-				decC = -1;
-				break;
-			case 1:
-				decL = 1;
-				decC = -1;
-				break;
-			case 2:
-				decL = 1;
-				decC = 1;
-				break;
-			case 3:
-				decL = -1;
-				decC = 1;
-				break;
-			}
-			newPiece[1].c += decC;
-			newPiece[1].l += decL;
-
-			if (newPiece[1].c < 0) {
-				newPiece[1].c++;
-				newPiece[0].c++;
-			}
-
-			if (newPiece[1].c >= COLUMNS) {
-				newPiece[1].c--;
-				newPiece[0].c--;
-			}
-
-			if (newPiece[1].l < 0) {
-				newPiece[1].l++;
-				newPiece[0].l++;
-			}
-
-			if (grid[(int)newPiece[0].l][(int)newPiece[0].c] == 0
-					&& grid[(int)newPiece[1].l][(int)newPiece[1].c] == 0) {
-				piece.coords[0] = newPiece[0];
-				piece.coords[1] = newPiece[1];
-				rot = (rot + 3) % 4;
-			}
+			piece.rotateLeft(grid);
 		}
 	}
 

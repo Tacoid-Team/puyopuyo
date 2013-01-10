@@ -5,6 +5,12 @@ public class Coord {
 	public float c;
 	public int coul;
 	
+	public Coord(Coord old) {
+		this.l = old.l;
+		this.c = old.c;
+		this.coul = old.coul;
+	}
+	
 	public Coord(float l, float c, int coul) {
 		this.l = l;
 		this.c = c;

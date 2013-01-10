@@ -5,10 +5,13 @@ import java.util.ArrayList;
 class Explosion {
 	private int nbPuyos;
 	private int[][] DIR = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
-	
+	private ArrayList<Coord> removes;
+	private long explosionDate = 0;
 
 	public Explosion(GameLogic logic, ArrayList<Coord> removes) {
 		this.nbPuyos = removes.size();
+		this.removes = removes;
+		this.explosionDate = System.currentTimeMillis();
 
 		ArrayList<Coord> removeGarbage = new ArrayList<Coord>();
 		
@@ -33,5 +36,13 @@ class Explosion {
 
 	public int getNbPuyos() {
 		return nbPuyos;
+	}
+	
+	public ArrayList<Coord> getExplosions() {
+		return removes;
+	}
+	
+	public long getExplosionDate() {
+		return explosionDate;
 	}
 }
