@@ -1,12 +1,13 @@
 package com.tacoid.pweek.logic;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.tacoid.pweek.SoundPlayer;
 import com.tacoid.pweek.SoundPlayer.SoundType;
 
 public class GameLogic {
-	
+
 	public enum MoveType {
 		LEFT,
 		RIGHT,
@@ -40,20 +41,20 @@ public class GameLogic {
 	private int points = 0;
 	public int garbage = 0;
 	private float leftoverNuisance = 0f;
-	
+
 	protected boolean paused = false;
 
 	private boolean isIA;
 	private int n_colors = 4;
 	private boolean cheatMode = false;
 	private float initialSpeed = 0.4f;
-	
-	public ArrayList<Explosion> explosions;
+
+	public ArrayList<Explosion> explosions = new ArrayList<Explosion>();
 
 	public GameLogic() {
 		init();
 	}
-	
+
 	public void init() {
 		fallings = null;
 		score = 0;
@@ -63,7 +64,7 @@ public class GameLogic {
 		points = 0;
 		garbage = 0;
 		leftoverNuisance = 0f;
-	
+
 		for (int l = 0; l < LINES * 2; l++) {
 			for (int c = 0; c < COLUMNS; c++) {
 				grid[l][c] = 0;
@@ -80,7 +81,7 @@ public class GameLogic {
 				grid[l][c] = logic.grid[l][c];
 			}
 		}
-		
+
 		this.isIA = isIA;
 
 		piece = new Piece(logic.piece, true);
@@ -99,7 +100,7 @@ public class GameLogic {
 				counts[grid[l][c]]++;
 			}
 		}
-		
+
 		int max = 1;
 		for (int i = 1; i < GARBAGE; i++) {
 			if (counts[max] < counts[i]) {
@@ -108,17 +109,17 @@ public class GameLogic {
 		}
 		return max;
 	}
-	
+
 	private boolean generate() {
 		// Sens de la piece :
 		// [x] [x][ ] [ ] [ ][x]
 		// [ ] [x]
-		
+
 		piece = new Piece(nextPiece);
-		
+
 		int coul1 = 1 + (int) (Math.random() * n_colors);
 		int coul2;
-		
+
 		if (cheatMode) {
 			if (Math.random() < 0.5) {
 				coul2 = coul1;
@@ -190,7 +191,7 @@ public class GameLogic {
 		}
 		return false;
 	}
-	
+
 	public boolean moveRight() {
 		if (state == State.MOVE) {
 			if (piece.moveRight(grid)) {
@@ -202,7 +203,7 @@ public class GameLogic {
 		}
 		return false;
 	}
-	
+
 	public void dropPiece() {
 		if (state == State.MOVE) {
 			state = State.POSE;
@@ -287,7 +288,8 @@ public class GameLogic {
 
 			removes = resolve();
 			for (Explosion r : removes) {
-				points += r.getNbPuyos() * 10 * (r.getNbPuyos() - 3 + combo);
+				r.points = r.getNbPuyos() * 10 * (r.getNbPuyos() - 3 + combo);
+				points += r.points;
 			}
 			if (combo == 0)
 				combo = 8;
@@ -348,7 +350,7 @@ public class GameLogic {
 							playGarbage = true;
 						}
 					}
-					
+
 					if(playGarbage == true) {
 						SoundPlayer.getInstance().playSound(SoundType.NUISANCE, 0.5f, true);
 					}
@@ -362,17 +364,18 @@ public class GameLogic {
 				if (first) {
 					removes = resolve();
 					for (Explosion r : removes) {
-						int p = r.getNbPuyos() * 10 * (r.getNbPuyos() - 3 + combo);
+						r.points = r.getNbPuyos() * 10 * (r.getNbPuyos() - 3 + combo);
 						if (opponent != null) {
-							float nuisance = p / 70.0f + leftoverNuisance;
+							float nuisance = r.points / 70.0f + leftoverNuisance;
 							leftoverNuisance = nuisance - (int) nuisance;
 							opponent.sendGarbage((int) nuisance);
 						}
-						points += p;
+						points += r.points;
+						explosions.add(r);
 					}
 					first = false;
 				}
-				if (sum > 0.5) {
+				if (sum > 0.3) {
 					if (removes.size() > 0) {
 						state = State.GRAVITY;
 						first = true;
@@ -397,7 +400,7 @@ public class GameLogic {
 
 	private void generateGarbage() {
 		int l = LINES;
-		
+
 		while (garbage >= COLUMNS) {
 			for (int c = 0; c < COLUMNS; c++) {
 				grid[l][c] = GARBAGE;
@@ -410,7 +413,7 @@ public class GameLogic {
 		for (int c = 0; c < COLUMNS; c++) {
 			cols.add(c);
 		}
-		
+
 		for (int c = 0; c < garbage; c++) {
 			int i = (int)(Math.random() * cols.size());
 			grid[l][cols.get(i)] = GARBAGE;
@@ -461,33 +464,45 @@ public class GameLogic {
 			garbage = LINES * COLUMNS;
 		}
 	}
-	
+
 	public void pause() {
 		paused = true;
 	}
-	
+
 	public void resume() {
 		paused = false;
 	}
-	
+
 	public boolean isPaused() {
 		return paused;
 	}
-	
+
 	public void setInitialSpeed(float speed) {
 		this.initialSpeed = speed;
 		this.speed = speed;
 	}
-	
+
 	public void setSpeed(float speed) {
 		this.speed = speed;
 	}
-	
+
 	public void setNColors(int n) {
 		this.n_colors = n;
 	}
 
 	public void setCheatMode(boolean cheatMode) {
 		this.cheatMode = cheatMode;
+	}
+
+	public ArrayList<Explosion> getExplosions() {
+		long date = System.currentTimeMillis();
+		Iterator<Explosion> it = explosions.iterator();
+		while (it.hasNext()) {
+			Explosion e = it.next();
+			if (date - e.getExplosionDate() > 1000) {
+				it.remove();
+			}
+		}
+		return explosions;
 	}
 }

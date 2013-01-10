@@ -2,11 +2,13 @@ package com.tacoid.pweek.logic;
 
 import java.util.ArrayList;
 
-class Explosion {
+public class Explosion {
 	private int nbPuyos;
 	private int[][] DIR = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
 	private ArrayList<Coord> removes;
 	private long explosionDate = 0;
+	public int points = 0;
+	public double angle;
 
 	public Explosion(GameLogic logic, ArrayList<Coord> removes) {
 		this.nbPuyos = removes.size();
