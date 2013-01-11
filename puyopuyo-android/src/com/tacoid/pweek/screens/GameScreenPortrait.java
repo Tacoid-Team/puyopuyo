@@ -95,7 +95,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		
 		controller = new Controller(gameLogic, this, stage);
 
-		gridActor = new GridActor(Pweek.getInstance().atlasPuyo, gameLogic, 280, 325, 70, puyoSize);
+		gridActor = new GridActor(Pweek.getInstance().atlasPuyo, gameLogic, Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), 280, 325, 70, puyoSize);
 		nextPieceActor = new NextPieceActor(Pweek.getInstance().atlasPuyo, gameLogic, 68, 920, puyoSize);
 		ScoreActor scoreActor = new ScoreActor(Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), gameLogic, 520, 1245);
 		HighScoreActor highScoreActor = new HighScoreActor(Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), this, 218, 1250);

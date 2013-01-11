@@ -51,30 +51,30 @@ public class GameVersusScreen implements GameScreen {
 	protected float elapsedTime;
 
 	private int puyoSize = 48;
-	
+
 	private IA ia;
 	private InputProcessor controller;
 	private ControlerActor controllerActor;
 	private PauseMenu pauseMenu;
 	private PauseButton pauseButton;
 	private StartActor startActor;
-	
+
 	private GameOverActor gameOver;
 	private boolean gamePaused;
-	
+
 	private int level;
-	
+
 	private void addButton(Button button, int x, int y) {
 		stage.addActor(button);
 		button.setX(x);
 		button.setY(y);
 	}
-	
+
 	public class PauseButton extends Button {
 
 		public PauseButton(TextureRegion region) {
 			super(new TextureRegionDrawable(region));
-			
+
 			addListener(new InputListener() {
 				@Override
 				public boolean touchDown(InputEvent event, float x, float y,
@@ -94,11 +94,11 @@ public class GameVersusScreen implements GameScreen {
 		gameLogicIA.setOpponent(gameLogic);
 		elapsedTime = 0;
 	}
-	
+
 	public int getPuyoSize() {
 		return puyoSize;
 	}
-	
+
 	public void setLevel(int level) {
 		this.level = level;
 		if (level == 0) {
@@ -139,19 +139,19 @@ public class GameVersusScreen implements GameScreen {
 				false);
 		controller = new Controller(gameLogic, this, stage);
 
-		gridActor = new GridActor(Pweek.getInstance().atlasPuyo, gameLogic, 296, 26, 54, puyoSize);
+		gridActor = new GridActor(Pweek.getInstance().atlasPuyo, gameLogic,Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class),  296, 26, 54, puyoSize);
 		nextPieceActor = new NextPieceActor(Pweek.getInstance().atlasPuyo, gameLogic, 95, 500, puyoSize);
 		ScoreActor scoreActor = new ScoreActor(Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), gameLogic, 550, 743);
 
-		gridActorIA = new GridActor(Pweek.getInstance().atlasPuyo, gameLogicIA, 650, 26, 54, puyoSize);
+		gridActorIA = new GridActor(Pweek.getInstance().atlasPuyo, gameLogicIA,Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class),  650, 26, 54, puyoSize);
 		nextPieceActorIA = new NextPieceActor(Pweek.getInstance().atlasPuyo, gameLogicIA, 1066, 500, puyoSize);
 		ScoreActor scoreActorIA = new ScoreActor(Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), gameLogicIA, 830, 743);
-		
+
 		TextureRegion pauseRegion = new TextureRegion(Pweek.getInstance().atlasBouttons.findRegion("pause_button"));
 
 		stage.addActor(new BackgroundActor(ScreenOrientation.LANDSCAPE));
 		stage.addActor(new LandscapePanelActor());
-		
+
 		stage.addActor(gridActor);
 		stage.addActor(nextPieceActor);
 		stage.addActor(scoreActor);
@@ -161,13 +161,13 @@ public class GameVersusScreen implements GameScreen {
 
 		controllerActor = new ControlerActor(ScreenOrientation.LANDSCAPE, gameLogic);
 		stage.addActor(controllerActor);
-		
+
 		pauseButton = new PauseButton(pauseRegion);
 		addButton(pauseButton,10,VIRTUAL_HEIGHT-10-pauseRegion.getRegionHeight());
 		addButton(MusicButtonActor.createMusicButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-64, VIRTUAL_HEIGHT-64);
 		addButton(SoundButtonActor.createSoundButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-2*64-10, VIRTUAL_HEIGHT-64);
-		
-	
+
+
 		boolean show = false;
 		if (gameOver != null) {
 			show = gameOver.isVisible();
@@ -180,10 +180,10 @@ public class GameVersusScreen implements GameScreen {
 		} else {
 			gameOver.hide();
 		}
-		
+
 		pauseMenu = new PauseMenu(Pweek.getInstance().atlasPlank, this, Pweek.getInstance().getHandler(), ScreenOrientation.LANDSCAPE, !gamePaused);
 		stage.addActor(pauseMenu);
-		
+
 		show = true;
 		if (startActor != null) {
 			show = startActor.isVisible();
@@ -208,11 +208,11 @@ public class GameVersusScreen implements GameScreen {
 		}
 		return instance;
 	}
-	
+
 	public static void freeInstance() {
 		instance = null;
 	}
-	
+
 	@Override
 	public void dispose() {
 		Gdx.app.log("Versus", "paused");
@@ -234,13 +234,13 @@ public class GameVersusScreen implements GameScreen {
 	@Override
 	public void render(float delta) {
 		GLCommon gl = Gdx.gl;
-		
+
 		if (gameLogic.getState() != State.LOST
 				&& gameLogicIA.getState() != State.LOST) {
 			if (!gamePaused) {
 				this.elapsedTime += delta;
 			}
-			
+
 			// Update model
 			gameLogic.update(delta);
 			gameLogicIA.update(delta);
@@ -296,13 +296,13 @@ public class GameVersusScreen implements GameScreen {
 		controllerActor.setTouchable(Touchable.disabled);
 		pauseButton.setTouchable(Touchable.disabled);
 	}
-	
+
 	@Override
 	public void gamePause() {
 		gamePaused = true;
 		gameLogic.pause();
 		gameLogicIA.pause();
-		
+
 		gridActor.setVisible(false);
 		gridActorIA.setVisible(false);
 		nextPieceActor.setVisible(false);
@@ -316,7 +316,7 @@ public class GameVersusScreen implements GameScreen {
 		gamePaused = false;
 		gameLogic.resume();
 		gameLogicIA.resume();
-		
+
 
 		gridActor.setVisible(true);
 		gridActorIA.setVisible(true);
@@ -340,7 +340,7 @@ public class GameVersusScreen implements GameScreen {
 	public float getWidth() {
 		return VIRTUAL_WIDTH;
 	}
-	
+
 	@Override
 	public GameType getGameType() {
 		return GameType.VERSUS_IA;
@@ -354,7 +354,7 @@ public class GameVersusScreen implements GameScreen {
 			return gameLogic.getScore() + getTimeBonus();
 		}
 	}
-	
+
 	public int getTimeBonus() {
 		return Math.max(0, 25000 - (int)(elapsedTime * 50));
 	}
@@ -364,7 +364,7 @@ public class GameVersusScreen implements GameScreen {
 	public float getElapsedTime() {
 		return elapsedTime;
 	}
-	
+
 	@Override
 	public void quit() {
 		pauseMenu.hide();

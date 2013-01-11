@@ -2,7 +2,9 @@ package com.tacoid.pweek.actors;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.tacoid.pweek.logic.Explosion;
 import com.tacoid.pweek.logic.GameLogic;
 
 public class ScoreActor extends Actor {
@@ -27,6 +29,28 @@ public class ScoreActor extends Actor {
 		font.setColor(1f, 1f, 1f, 1f);
 		font.setScale(1.0f);
 		font.draw(batch, score, origX - font.getBounds(score).width, origY);
+		
+		long date = System.currentTimeMillis();
+		int offset = -30;
+		for (Explosion e : logic.getExplosions()) {
+			score = String.valueOf("+"+e.points+"!");
+			
+			float alphaFont;
+			if (date - e.getExplosionDate() < 100) {
+				alphaFont = Interpolation.linear.apply(0, 1, (date - e.getExplosionDate()) / 100.0f);
+			} else if (date - e.getExplosionDate() > 700) {
+				alphaFont = Interpolation.linear.apply(1, 0, (date - e.getExplosionDate() - 700) / 300.0f);
+			} else {
+				alphaFont = 1;
+			}
+			
+			font.setColor(0.0f, 0.0f, 0.0f, 0.8f * alphaFont);
+			font.draw(batch, score, origX - font.getBounds(score).width + 2, origY + 2 + offset);
+			font.setColor(1.0f, 1.0f, 1.0f, 1f * alphaFont);
+			font.draw(batch, score, origX - font.getBounds(score).width, origY + offset);
+			
+			offset -= font.getLineHeight() - 2;
+		}
 	}
 
 	@Override

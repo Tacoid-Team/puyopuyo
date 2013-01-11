@@ -38,11 +38,12 @@ public class GridActor extends Actor {
 	 * @param size Taille d'une colonne.
 	 * @param sizePuyo Taille d'un puyo
 	 */
-	public GridActor(TextureAtlas atlasPuyo, GameLogic logic, int origX, int origY, int size, int sizePuyo) {
+	public GridActor(TextureAtlas atlasPuyo, GameLogic logic, BitmapFont font, int origX, int origY, int size, int sizePuyo) {
 		this.origX = origX;
 		this.origY = origY;
 		this.logic = logic;
 		this.size = size;
+		this.font = font;
 		this.offWhite = (size - sizePuyo) / 2;
 		
 		boules[0] = atlasPuyo.findRegion("green_happy-" + sizePuyo);
@@ -82,8 +83,6 @@ public class GridActor extends Actor {
 		next_nuisance_small = atlasPuyo.findRegion("next_nuisance-" + (sizePuyo / 2));
 		
 		white = atlasPuyo.findRegion("white-" + sizePuyo);
-		
-		font = Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class);
 	}
 
 	@Override
