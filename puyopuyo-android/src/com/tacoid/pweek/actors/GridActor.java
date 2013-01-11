@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.logic.Coord;
 import com.tacoid.pweek.logic.Explosion;
 import com.tacoid.pweek.logic.Falling;
@@ -162,7 +161,7 @@ public class GridActor extends Actor {
 				y = c.l * size + origY - 0.001f * t*t + v * (float)Math.sin(c.angle) * t;
 				barryX += x;
 				barryY += y;
-				batch.draw(boules_fall[c.coul - 1], x, y);
+				batch.draw(boules_fall[c.coul - 1], x, y, size / 2.0f, size / 2.0f, (float)size, (float)size, 1f, 1f, (float)(0.2 * t * (e.angle - 1.5))); 
 			}
 			barryX = barryX / e.getExplosions().size();
 			barryY = barryY / e.getExplosions().size();

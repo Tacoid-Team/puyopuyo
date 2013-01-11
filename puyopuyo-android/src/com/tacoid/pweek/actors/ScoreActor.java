@@ -2,9 +2,7 @@ package com.tacoid.pweek.actors;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.tacoid.pweek.logic.Explosion;
 import com.tacoid.pweek.logic.GameLogic;
 
 public class ScoreActor extends Actor {
@@ -29,7 +27,8 @@ public class ScoreActor extends Actor {
 		font.setColor(1f, 1f, 1f, 1f);
 		font.setScale(1.0f);
 		font.draw(batch, score, origX - font.getBounds(score).width, origY);
-		
+
+		/*
 		long date = System.currentTimeMillis();
 		int offset = -30;
 		for (Explosion e : logic.getExplosions()) {
@@ -50,7 +49,7 @@ public class ScoreActor extends Actor {
 			font.draw(batch, score, origX - font.getBounds(score).width, origY + offset);
 			
 			offset -= font.getLineHeight() - 2;
-		}
+		}*/
 	}
 
 	@Override
