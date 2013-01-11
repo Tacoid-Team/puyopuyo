@@ -372,4 +372,14 @@ public class GameVersusScreen implements GameScreen {
 		TrackingManager.getTracker().trackEvent("UI", "button_click",type.toString()+" Level "+ getLevel() +" quit before end", null);
 		Pweek.getInstance().setScreen(MainMenuScreen.getInstance());
 	}
+
+	@Override
+	public boolean isGamePaused() {
+		return gamePaused;
+	}
+
+	@Override
+	public void hidePause() {
+		pauseMenu.hide();
+	}
 }

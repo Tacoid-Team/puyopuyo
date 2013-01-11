@@ -294,4 +294,14 @@ public abstract class GameScreenPortrait implements GameScreen {
 		TrackingManager.getTracker().trackEvent("UI", "button_click",type.toString() + " quit before end", null);
 		Pweek.getInstance().setScreen(MainMenuScreen.getInstance());
 	}
+	
+	@Override
+	public boolean isGamePaused() {
+		return gamePaused;
+	}
+	
+	@Override
+	public void hidePause() {
+		pauseMenu.hide();
+	}
 }

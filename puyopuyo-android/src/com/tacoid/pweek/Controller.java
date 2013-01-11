@@ -50,7 +50,12 @@ public class Controller implements InputProcessor {
 			gameLogic.dropPiece();
 			break;
 		case Keys.BACK:
-			gameScreen.quit();
+			if (gameScreen.isGamePaused()) {
+				//gameScreen.quit();
+				gameScreen.hidePause(); // C'est selon les gens...
+			} else {
+				gameScreen.pause();
+			}
 			break;
 		}
 		return false;

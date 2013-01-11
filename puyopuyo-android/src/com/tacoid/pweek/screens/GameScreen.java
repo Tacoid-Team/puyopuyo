@@ -10,6 +10,8 @@ public interface GameScreen extends Screen {
 	
 	public void gamePause(); 
 	
+	public boolean isGamePaused();
+	
 	public void gameResume();
 	
 	public ScreenOrientation getOrientation();
@@ -29,4 +31,6 @@ public interface GameScreen extends Screen {
 	public float getElapsedTime();
 
 	public void quit();
+	
+	public void hidePause();
 }
