@@ -1,9 +1,11 @@
 package com.tacoid.pweek.actors;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.logic.Coord;
 import com.tacoid.pweek.logic.Explosion;
 import com.tacoid.pweek.logic.Falling;
@@ -25,6 +27,8 @@ public class GridActor extends Actor {
 	private TextureRegion white;
 	private int size;
 	private int offWhite;
+	private BitmapFont font;
+	private String score;
 
 	/**
 	 * 
@@ -78,6 +82,8 @@ public class GridActor extends Actor {
 		next_nuisance_small = atlasPuyo.findRegion("next_nuisance-" + (sizePuyo / 2));
 		
 		white = atlasPuyo.findRegion("white-" + sizePuyo);
+		
+		font = Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class);
 	}
 
 	@Override
@@ -147,14 +153,34 @@ public class GridActor extends Actor {
 		
 		long date = System.currentTimeMillis();
 		for (Explosion e : logic.getExplosions()) {
+			float barryX = 0.0f;
+			float barryY = 0.0f;
 			for (Coord c : e.getExplosions()) {
 				float v = 0.5f;
 				float x, y;
 				float t = (date - e.getExplosionDate());
 				x = (c.c * (size + 1) + origX) + v * (float)Math.cos(c.angle) * t;
 				y = c.l * size + origY - 0.001f * t*t + v * (float)Math.sin(c.angle) * t;
+				barryX += x;
+				barryY += y;
 				batch.draw(boules_fall[c.coul - 1], x, y);
 			}
+			barryX = barryX / e.getExplosions().size();
+			barryY = barryY / e.getExplosions().size();
+			score = String.valueOf("+"+e.points+"!");
+			
+			font.setScale(Math.min(4.0f, 
+					               Math.max(1.0f, 
+					            		   ((float)e.points/200.0f)
+					            		   )
+					               )
+					      );
+			
+			font.setColor(0.0f, 0.0f, 0.0f, 0.8f);
+			font.draw(batch, score, barryX+2, barryY+102);
+			font.setColor(1.0f, 1.0f, 1.0f, 1f);
+			font.draw(batch, score, barryX, barryY+100);
+
 		}
 	}
 
