@@ -82,6 +82,8 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		}
 	};
 
+	private boolean isPortrait;
+
 	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -141,11 +143,12 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 
 	@Override
 	public void showAds(boolean show) {
-		handler.sendEmptyMessage(show ? SHOW_ADS : HIDE_ADS);
+		handler.sendEmptyMessage((show || isPortrait) ? SHOW_ADS : HIDE_ADS);
 	}
 
 	@Override
 	public void setPortrait(boolean isPortrait) {
+		this.isPortrait = isPortrait;
 		handler.sendEmptyMessage(isPortrait ? PORTRAIT_ADS : LANDSCAPE_ADS);
 	}
 

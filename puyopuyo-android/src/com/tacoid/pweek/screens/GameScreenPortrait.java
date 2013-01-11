@@ -223,7 +223,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 	@Override
 	public void show() {
 		Pweek.getInstance().getHandler().setPortrait(true);
-		Pweek.getInstance().getHandler().showAds(!startActor.isVisible() && (gamePaused || gameEnded()));
+		Pweek.getInstance().getHandler().showAds(true);
 		resize(0, 0);
 		Gdx.input.setInputProcessor(controller);
 	}
