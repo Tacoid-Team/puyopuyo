@@ -93,4 +93,10 @@ public class GameSoloScreen extends GameScreenPortrait {
 	public GameType getGameType() {
 		return GameType.SOLO;
 	}
+
+	@Override
+	public boolean isGamePaused() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

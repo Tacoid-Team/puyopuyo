@@ -41,5 +41,4 @@ public class GameTimeAttackScreen extends GameScreenPortrait implements IGameTim
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
 }
