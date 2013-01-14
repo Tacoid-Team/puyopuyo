@@ -1,6 +1,7 @@
 package com.tacoid.pweek;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,7 +22,7 @@ import com.google.analytics.tracking.android.EasyTracker;
 import com.tacoid.tracking.TrackingManager;
 import com.tacoid.tracking.TrackingManager.TrackerType;
 
-public class PweekAndroid extends AndroidApplication implements IActivityRequestHandler, AdListener
+public class PweekAndroid extends AndroidApplication implements IActivityRequestHandler, AdListener, ShareLauncher
 {	
 	private static AdView adView;
 
@@ -29,6 +30,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	private final static int LANDSCAPE_ADS = 2;
 	private final static int SHOW_ADS = 1;
 	private final static int HIDE_ADS = 0;
+	private final static int SHARE = 4;
 
 	static protected Handler handler = new Handler()
 	{
@@ -104,6 +106,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 
 		// Cr�ation de la vue libGdx
 		Pweek.setHandler(this);
+		Pweek.setShareLauncher(this);
 		View gameView = initializeForView(Pweek.getInstance(), config);
 
 		// Cr�ation de la vu adMob
@@ -176,6 +179,29 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	public void onReceiveAd(Ad arg0) {
 		TrackingManager.getTracker().trackEvent("Ads","adMob", "onReceiveAd", null);
 
+	}
+
+	@Override
+	public void share(String subject, String body) {
+		Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+
+		//set the type
+		shareIntent.setType("text/plain");
+	
+		//add a subject
+		shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, 
+		 subject);
+	
+		//build the body of the message to be shared
+		String shareMessage = body;
+	
+		//add the message
+		shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, 
+		 shareMessage);
+	
+		//start the chooser for sharing
+		startActivity(Intent.createChooser(shareIntent, 
+		 "Share Pweek!"));
 	}
 
 }

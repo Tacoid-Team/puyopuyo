@@ -31,6 +31,7 @@ public class Pweek extends Game {
 	private boolean desktopMode;
 	public static final int VIRTUAL_WIDTH = 1280;
 	public static final int VIRTUAL_HEIGHT = 768;
+	public ShareLauncher shareLauncher = null;
 	private LoadingScreen loadingScreen;
 	private boolean loaded = false;
 	private boolean justLaunched = true;
@@ -44,6 +45,10 @@ public class Pweek extends Game {
 	
 	public static void setHandler(IActivityRequestHandler handler) {
 		getInstance().myRequestHandler = handler;
+	}
+	
+	public static void setShareLauncher(ShareLauncher launcher) {
+		getInstance().shareLauncher = launcher;
 	}
 	
 	public static Pweek getInstance() {

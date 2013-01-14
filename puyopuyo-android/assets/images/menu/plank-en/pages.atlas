@@ -5,127 +5,134 @@ filter: Nearest,Nearest
 repeat: none
 foreground
   rotate: false
-  xy: 0, 656
+  xy: 0, 667
   size: 1280, 312
   orig: 1280, 312
   offset: 0, 0
   index: -1
 pweek
   rotate: false
-  xy: 0, 413
+  xy: 0, 424
   size: 800, 243
   orig: 800, 243
   offset: 0, 0
   index: -1
 perdu
   rotate: false
-  xy: 1280, 753
+  xy: 1280, 764
   size: 719, 215
   orig: 719, 215
   offset: 0, 0
   index: -1
 gameover
   rotate: false
-  xy: 0, 213
+  xy: 0, 224
   size: 655, 200
   orig: 655, 200
   offset: 0, 0
   index: -1
 gagne
   rotate: false
-  xy: 0, 0
+  xy: 0, 11
   size: 613, 213
   orig: 613, 213
   offset: 0, 0
   index: -1
 touchtostart
   rotate: false
-  xy: 800, 373
+  xy: 800, 384
   size: 358, 283
   orig: 358, 283
   offset: 0, 0
   index: -1
 continuer
   rotate: false
-  xy: 1280, 593
+  xy: 1280, 604
   size: 257, 160
   orig: 257, 160
   offset: 0, 0
   index: -1
 quitter
   rotate: false
-  xy: 1537, 593
+  xy: 1537, 604
   size: 257, 160
   orig: 257, 160
   offset: 0, 0
   index: -1
 chrono
   rotate: false
-  xy: 1794, 593
+  xy: 1794, 604
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 rejouer
   rotate: false
-  xy: 1158, 433
+  xy: 1158, 444
   size: 257, 160
   orig: 257, 160
   offset: 0, 0
   index: -1
 easy
   rotate: false
-  xy: 1415, 433
+  xy: 1415, 444
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 hard
   rotate: false
-  xy: 1668, 433
+  xy: 1668, 444
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 medium
   rotate: false
-  xy: 1158, 273
+  xy: 1158, 284
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 solo
   rotate: false
-  xy: 1411, 273
+  xy: 1411, 284
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 versus
   rotate: false
-  xy: 1664, 273
+  xy: 1664, 284
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 veryhard
   rotate: false
-  xy: 655, 213
+  xy: 655, 224
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 suivant
   rotate: false
-  xy: 613, 57
+  xy: 613, 68
   size: 251, 156
   orig: 251, 156
   offset: 0, 0
   index: -1
 redcross
   rotate: false
-  xy: 908, 265
+  xy: 908, 276
   size: 170, 108
   orig: 170, 108
+  offset: 0, 0
+  index: -1
+share
+  rotate: false
+  xy: 613, 0
+  size: 170, 68
+  orig: 170, 68
   offset: 0, 0
   index: -1
