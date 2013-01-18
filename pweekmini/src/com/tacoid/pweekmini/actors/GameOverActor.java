@@ -1,6 +1,7 @@
 package com.tacoid.pweekmini.actors;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -78,7 +79,6 @@ public class GameOverActor extends Group {
 	}
 
 	private Sprite gameOverSprite;
-	private Sprite scorePanelSprite;
 	private GameScreen gameScreen;
 	private SwingMenu menu;
 	private float x, y;
@@ -89,8 +89,9 @@ public class GameOverActor extends Group {
 	private BitmapFont font;
 
 	private I18nManager i18n;
+	private NinePatch scorePanelNinePatch;
 
-	public GameOverActor(TextureAtlas atlasPlank, TextureAtlas atlasPanels, BitmapFont font, GameScreen gs, float x, float y) {
+	public GameOverActor(TextureAtlas atlasPlank, TextureAtlas atlasPanels, TextureAtlas atlasButtons, BitmapFont font, GameScreen gs, float x, float y) {
 		this.x = x;
 		this.y = y;
 		gameScreen = gs;
@@ -100,8 +101,7 @@ public class GameOverActor extends Group {
 		TextureRegion quitterRegion = atlasPlank.findRegion("quitter");
 		TextureRegion rejouerRegion = atlasPlank.findRegion("rejouer");
 		gameOverSprite = new Sprite(atlasPlank.findRegion("gameover"));
-
-		scorePanelSprite = new Sprite(atlasPanels.findRegion("score-panel"));
+		scorePanelNinePatch = new NinePatch(atlasButtons.findRegion("frame-ninepatch"), 20, 20, 20, 20);
 
 		menu = new SwingMenu();
 		menu.initBegin("gameover-simple");
@@ -112,8 +112,6 @@ public class GameOverActor extends Group {
 		this.addActor(menu);
 
 		gameOverSprite.setPosition(x-gameOverSprite.getWidth()/2, y);
-
-		scorePanelSprite.setPosition(x - scorePanelSprite.getWidth() / 2, y - scorePanelSprite.getHeight() - 20);
 
 		this.font = font;
 		font.setScale(1f);
@@ -148,17 +146,19 @@ public class GameOverActor extends Group {
 		String message;
 		super.draw(batch,arg1);
 
-		scorePanelSprite.draw(batch);
 		font.setScale(1f);
 		font.setColor(1f, 1f, 1f, 1f);
 		message =  i18n.getString("score") + String.valueOf(gameScreen.getScore());
-		font.draw(batch, message, x / 2 - font.getBounds(message).width / 2, y - scorePanelSprite.getHeight() / 2 - 10);
+		
+		scorePanelNinePatch.draw(batch, x - 125, y - (40 + 2 * font.getBounds(message).height), 250, font.getBounds(message).height * 2 + 40);
+		
+		font.draw(batch, message, x - font.getBounds(message).width / 2, y - 15);
 		if (newHighScore) {
 			message = i18n.getString("nouveau_record");
-			font.draw(batch, i18n.getString("nouveau_record"), 3 * x / 2 - font.getBounds(message).width/2, y - scorePanelSprite.getHeight() / 2 - 10);
+			font.draw(batch, i18n.getString("nouveau_record"), x - font.getBounds(message).width/2, y - font.getBounds(message).height - 20);
 		} else {
 			message = i18n.getString("record") + String.valueOf(highScore);
-			font.draw(batch, i18n.getString("record") + String.valueOf(highScore), 3 * x / 2 - font.getBounds(message).width/2, y - scorePanelSprite.getHeight() / 2 - 10);
+			font.draw(batch, i18n.getString("record") + String.valueOf(highScore), x - font.getBounds(message).width/2, y - font.getBounds(message).height - 20);
 		}
 
 		gameOverSprite.draw(batch);

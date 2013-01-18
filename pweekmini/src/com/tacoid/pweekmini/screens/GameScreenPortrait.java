@@ -118,7 +118,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		if (gameOver != null) {
 			show = gameOver.isVisible();
 		}
-		gameOver = new GameOverActor(PweekMini.getInstance().atlasPlank, PweekMini.getInstance().atlasPanelsPortrait, PweekMini.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), this, VIRTUAL_WIDTH/2, 2*VIRTUAL_HEIGHT/3);
+		gameOver = new GameOverActor(PweekMini.getInstance().atlasPlank, PweekMini.getInstance().atlasPanelsPortrait, PweekMini.getInstance().atlasBouttons, PweekMini.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), this, VIRTUAL_WIDTH/2, 2*VIRTUAL_HEIGHT/3);
 		stage.addActor(gameOver);
 		if (show) {
 			gameOver();
