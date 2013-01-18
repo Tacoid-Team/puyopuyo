@@ -172,7 +172,7 @@ public class GameVersusScreen implements GameScreen {
 		if (gameOver != null) {
 			show = gameOver.isVisible();
 		}
-		gameOver = new GameOverActor(Pweek.getInstance().atlasPlank, Pweek.getInstance().atlasPanelsLandscape, Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), this, VIRTUAL_WIDTH/2, 8*VIRTUAL_HEIGHT/9-25);
+		gameOver = new GameOverActor(Pweek.getInstance().atlasPlank, Pweek.getInstance().atlasPanelsLandscape, Pweek.getInstance().atlasBouttons, Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), this, VIRTUAL_WIDTH/2, 8*VIRTUAL_HEIGHT/9-25);
 
 		stage.addActor(gameOver);
 		if (show) {

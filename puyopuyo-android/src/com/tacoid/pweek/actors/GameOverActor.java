@@ -1,9 +1,7 @@
 package com.tacoid.pweek.actors;
 
-import android.content.Intent;
-
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -135,7 +133,6 @@ public class GameOverActor extends Group {
 	private Sprite winSprite;
 	private Sprite loseSprite;
 	private Sprite gameOverSprite;
-	private Sprite scorePanelSprite;
 	private GameScreen gameScreen;
 	private SwingMenu menu;
 	private GameOverType type;
@@ -147,8 +144,9 @@ public class GameOverActor extends Group {
 	private BitmapFont font;
 	
 	private I18nManager i18n;
+	private NinePatch scorePanelNinePatch;
 	
-	public GameOverActor(TextureAtlas atlasPlank, TextureAtlas atlasPanels, BitmapFont font, GameScreen gs, float x, float y) {
+	public GameOverActor(TextureAtlas atlasPlank, TextureAtlas atlasPanels, TextureAtlas atlasButtons, BitmapFont font, GameScreen gs, float x, float y) {
 		gameScreen = gs;
 
 		i18n = I18nManager.getInstance();
@@ -169,7 +167,7 @@ public class GameOverActor extends Group {
 		}
 		gameOverSprite = new Sprite(atlasPlank.findRegion("gameover"));
 		
-		scorePanelSprite = new Sprite(atlasPanels.findRegion("score-panel"));
+		scorePanelNinePatch = new NinePatch(atlasButtons.findRegion("frame-ninepatch"), 20, 20, 20, 20);
 		
 		menu = new SwingMenu(gs.getOrientation());
 		menu.initBegin("gameover-simple");
@@ -192,12 +190,6 @@ public class GameOverActor extends Group {
 			loseSprite.setPosition(x-loseSprite.getWidth()/2, y-loseSprite.getHeight()/2);
 		}
 		gameOverSprite.setPosition(x-gameOverSprite.getWidth()/2, y-gameOverSprite.getHeight()/2);
-		
-		if(gameScreen.getOrientation() == ScreenOrientation.LANDSCAPE) {
-			scorePanelSprite.setPosition(x - scorePanelSprite.getWidth() / 2, 450);
-		} else {
-			scorePanelSprite.setPosition(x - scorePanelSprite.getWidth() / 2, 470);
-		}
 		
 		this.type = GameOverType.GAMEOVER;
 		this.addActor(shareButton);
@@ -264,10 +256,12 @@ public class GameOverActor extends Group {
 			y = 558;
 		}
 		if (gameScreen.getGameType() != GameType.VERSUS_IA) {
-			scorePanelSprite.draw(batch);
 			font.setScale(0.8f);
 			font.setColor(1f, 1f, 1f, 1f);
 			message =  i18n.getString("score") + String.valueOf(gameScreen.getScore());
+			
+			scorePanelNinePatch.draw(batch, x - 150, y - (40 + 2 * font.getBounds(message).height), 300, font.getBounds(message).height * 2 + 60);
+			
 			font.draw(batch, message, x-font.getBounds(message).width/2,y);
 			if(newHighScore) {
 				message = i18n.getString("nouveau_record");
@@ -278,7 +272,6 @@ public class GameOverActor extends Group {
 				font.draw(batch, i18n.getString("record") + String.valueOf(highScore), x-font.getBounds(message).width/2,y-30f);
 			}
 		} else if(newUnlock) {
-			scorePanelSprite.draw(batch);
 			String levelname;
 			font.setScale(0.8f);
 			font.setColor(1f, 1f, 1f, 1f);
@@ -296,6 +289,7 @@ public class GameOverActor extends Group {
 				levelname="Invalid level";
 			}
 			message = i18n.getString("niveau") + " " + levelname + " " + i18n.getString("deverrouille");
+			scorePanelNinePatch.draw(batch, x-font.getBounds(message).width/2 - 40, y - (20 + font.getBounds(message).height), font.getBounds(message).width + 80, font.getBounds(message).height + 40);
 			font.draw(batch, message, x-font.getBounds(message).width/2 ,y);
 		}
 
