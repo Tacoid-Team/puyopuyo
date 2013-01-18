@@ -147,13 +147,12 @@ public class IAEasy implements IA {
 	}
 
 	public void update(float delta) {
-		return;/*
 		if (logic.getState() == State.MOVE && !logic.paused) {
 			sum += delta;
 			if (sum > 0.2) {
 				sum = 0;
 				choice1();
 			}
-		}*/
+		}
 	}
 }
