@@ -13,7 +13,7 @@
    height="297mm"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.2 r9819"
    inkscape:export-filename="/home/max/git/puyopuyo/puyopuyo-android/assets/images/panels/landscape/score-panel.png"
    inkscape:export-xdpi="116.09771"
    inkscape:export-ydpi="116.09771"
@@ -28,16 +28,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="332.90212"
-     inkscape:cy="784.48935"
+     inkscape:cx="87.187836"
+     inkscape:cy="817.96286"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1364"
-     inkscape:window-height="747"
-     inkscape:window-x="0"
-     inkscape:window-y="19"
-     inkscape:window-maximized="0" />
+     inkscape:window-width="1680"
+     inkscape:window-height="988"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -46,7 +46,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -55,7 +55,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#b2b2b2;fill-opacity:0.8;stroke:#ffb900;stroke-width:6.84806824;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#6b3902;fill-opacity:0.80000001;stroke:#6b3902;stroke-width:6.84806823999999990;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect2996"
        width="366.73349"
        height="48.178947"
