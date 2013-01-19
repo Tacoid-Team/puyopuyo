@@ -20,6 +20,7 @@ import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.pweek.SoundPlayer.SoundType;
 import com.tacoid.pweek.actors.BackgroundActor;
 import com.tacoid.pweek.actors.ControlerActor;
+import com.tacoid.pweek.actors.ExplosionActor;
 import com.tacoid.pweek.actors.GameOverActor;
 import com.tacoid.pweek.actors.GridActor;
 import com.tacoid.pweek.actors.LandscapePanelActor;
@@ -63,6 +64,8 @@ public class GameVersusScreen implements GameScreen {
 	private boolean gamePaused;
 
 	private int level;
+	private ExplosionActor explosionActor;
+	private ExplosionActor explosionActorIA;
 
 	private void addButton(Button button, int x, int y) {
 		stage.addActor(button);
@@ -140,10 +143,12 @@ public class GameVersusScreen implements GameScreen {
 		controller = new Controller(gameLogic, this, stage);
 
 		gridActor = new GridActor(Pweek.getInstance().atlasPuyo, gameLogic,Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class),  296, 26, 54, puyoSize);
+		explosionActor = new ExplosionActor(Pweek.getInstance().atlasPuyo, gameLogic,Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class),  296, 26, 54, puyoSize);
 		nextPieceActor = new NextPieceActor(Pweek.getInstance().atlasPuyo, gameLogic, 95, 500, puyoSize);
 		ScoreActor scoreActor = new ScoreActor(Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), gameLogic, 550, 743);
 
 		gridActorIA = new GridActor(Pweek.getInstance().atlasPuyo, gameLogicIA,Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class),  650, 26, 54, puyoSize);
+		explosionActorIA = new ExplosionActor(Pweek.getInstance().atlasPuyo, gameLogicIA,Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class),  650, 26, 54, puyoSize);
 		nextPieceActorIA = new NextPieceActor(Pweek.getInstance().atlasPuyo, gameLogicIA, 1066, 500, puyoSize);
 		ScoreActor scoreActorIA = new ScoreActor(Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), gameLogicIA, 830, 743);
 
@@ -158,10 +163,13 @@ public class GameVersusScreen implements GameScreen {
 		stage.addActor(gridActorIA);
 		stage.addActor(nextPieceActorIA);
 		stage.addActor(scoreActorIA);
-
+		
 		controllerActor = new ControlerActor(ScreenOrientation.LANDSCAPE, gameLogic);
 		stage.addActor(controllerActor);
 
+		stage.addActor(explosionActorIA);
+		stage.addActor(explosionActor);
+		
 		pauseButton = new PauseButton(pauseRegion);
 		addButton(pauseButton,10,VIRTUAL_HEIGHT-10-pauseRegion.getRegionHeight());
 		addButton(MusicButtonActor.createMusicButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-64, VIRTUAL_HEIGHT-64);

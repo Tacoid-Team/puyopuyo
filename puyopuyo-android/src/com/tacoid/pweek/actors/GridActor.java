@@ -148,38 +148,6 @@ public class GridActor extends Actor {
 				}
 			}
 		}
-		
-		long date = System.currentTimeMillis();
-		for (Explosion e : logic.getExplosions()) {
-			float barryX = 0.0f;
-			float barryY = 0.0f;
-			for (Coord c : e.getExplosions()) {
-				float v = 0.5f;
-				float x, y;
-				float t = (date - e.getExplosionDate());
-				x = (c.c * (size + 1) + origX) + v * (float)Math.cos(c.angle) * t;
-				y = c.l * size + origY - 0.001f * t*t + v * (float)Math.sin(c.angle) * t;
-				barryX += x;
-				barryY += y;
-				batch.draw(boules_fall[c.coul - 1], x, y, size / 2.0f, size / 2.0f, (float)size, (float)size, 1f, 1f, (float)(0.2 * t * (e.angle - 1.5))); 
-			}
-			barryX = barryX / e.getExplosions().size();
-			barryY = barryY / e.getExplosions().size();
-			score = String.valueOf("+"+e.points+"!");
-			
-			font.setScale(Math.min(4.0f, 
-					               Math.max(1.0f, 
-					            		   ((float)e.points/200.0f)
-					            		   )
-					               )
-					      );
-			
-			font.setColor(0.0f, 0.0f, 0.0f, 0.8f);
-			font.draw(batch, score, barryX+2, barryY+102);
-			font.setColor(1.0f, 1.0f, 1.0f, 1f);
-			font.draw(batch, score, barryX, barryY+100);
-
-		}
 	}
 
 	@Override

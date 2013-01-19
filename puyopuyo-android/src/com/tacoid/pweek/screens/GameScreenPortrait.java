@@ -20,6 +20,7 @@ import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.pweek.SoundPlayer.SoundType;
 import com.tacoid.pweek.actors.BackgroundActor;
 import com.tacoid.pweek.actors.ControlerActor;
+import com.tacoid.pweek.actors.ExplosionActor;
 import com.tacoid.pweek.actors.GameOverActor;
 import com.tacoid.pweek.actors.GridActor;
 import com.tacoid.pweek.actors.HighScoreActor;
@@ -56,6 +57,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 	private GameOverActor gameOver;
 	private StartActor startActor;
 	private NextPieceActor nextPieceActor;
+	private ExplosionActor explosionActor;
 	
 	protected class PauseButton extends Button {
 
@@ -96,6 +98,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		controller = new Controller(gameLogic, this, stage);
 
 		gridActor = new GridActor(Pweek.getInstance().atlasPuyo, gameLogic, Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), 280, 325, 70, puyoSize);
+		explosionActor = new ExplosionActor(Pweek.getInstance().atlasPuyo, gameLogic, Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), 280, 325, 70, puyoSize);
 		nextPieceActor = new NextPieceActor(Pweek.getInstance().atlasPuyo, gameLogic, 68, 920, puyoSize);
 		ScoreActor scoreActor = new ScoreActor(Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), gameLogic, 520, 1245);
 		HighScoreActor highScoreActor = new HighScoreActor(Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), this, 218, 1250);
@@ -107,6 +110,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		stage.addActor(nextPieceActor);
 		stage.addActor(scoreActor);
 		stage.addActor(highScoreActor);
+		stage.addActor(explosionActor);
 
 		controllerActor = new ControlerActor(ScreenOrientation.PORTRAIT, gameLogic);
 		stage.addActor(controllerActor);
