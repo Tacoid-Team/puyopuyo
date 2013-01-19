@@ -54,7 +54,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 	private InputProcessor controller;
 	private ControlerActor controllerActor;
 	protected boolean gamePaused;
-	private GameOverActor gameOver;
+	protected GameOverActor gameOver;
 	private StartActor startActor;
 	private NextPieceActor nextPieceActor;
 	private ExplosionActor explosionActor;

@@ -192,7 +192,7 @@ public class GameOverActor extends Group {
 		gameOverSprite.setPosition(x-gameOverSprite.getWidth()/2, y-gameOverSprite.getHeight()/2);
 		
 		this.type = GameOverType.GAMEOVER;
-		this.addActor(shareButton);
+		//this.addActor(shareButton);
 		this.font = font;
 		font.setScale(0.8f);
 		

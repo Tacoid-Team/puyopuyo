@@ -18,7 +18,7 @@ public class GameSoloScreen extends GameScreenPortrait {
 	public void initGraphics() {
 		super.initGraphics();
 		LevelActor levelActor = new LevelActor(Pweek.getInstance().manager, this, 140, 800);
-		stage.addActor(levelActor);
+		stage.getRoot().addActorBefore(gameOver, levelActor);
 	}
 
 	@Override
