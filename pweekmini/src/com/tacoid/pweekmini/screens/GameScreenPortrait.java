@@ -27,6 +27,7 @@ import com.tacoid.pweek.actors.MusicButtonActor;
 import com.tacoid.pweek.actors.NextPieceActor;
 import com.tacoid.pweekmini.actors.PauseMenu;
 import com.tacoid.pweekmini.actors.PortraitPanelActor;
+import com.tacoid.pweek.actors.ExplosionActor;
 import com.tacoid.pweek.actors.ScoreActor;
 import com.tacoid.pweek.actors.SoundButtonActor;
 import com.tacoid.pweek.actors.StartActor;
@@ -96,6 +97,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		controller = new Controller(gameLogic, this, stage);
 
 		gridActor = new GridActor(PweekMini.getInstance().atlasPuyo, gameLogic, PweekMini.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), 148, 130, 50, puyoSize);
+		ExplosionActor explosionActor = new ExplosionActor(PweekMini.getInstance().atlasPuyo, gameLogic, PweekMini.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), 148, 130, 50, puyoSize);
 		nextPieceActor = new NextPieceActor(PweekMini.getInstance().atlasPuyo, gameLogic, 21, 590, puyoSize);
 		ScoreActor scoreActor = new ScoreActor(PweekMini.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), gameLogic, 300, 786);
 		HighScoreActor highScoreActor = new HighScoreActor(PweekMini.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), this, 76, 440);
@@ -108,6 +110,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		stage.addActor(nextPieceActor);
 		stage.addActor(scoreActor);
 		stage.addActor(highScoreActor);
+		stage.addActor(explosionActor);
 		
 		pauseButton = new PauseButton(pauseRegion);
 		addButton(pauseButton,10,VIRTUAL_HEIGHT-10-pauseRegion.getRegionHeight());
