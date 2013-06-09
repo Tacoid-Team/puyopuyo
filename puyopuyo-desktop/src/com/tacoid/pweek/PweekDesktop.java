@@ -29,4 +29,10 @@ public class PweekDesktop implements IActivityRequestHandler {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void saveScoreSolo(int score) {
+		// TODO Auto-generated method stub
+		
+	}
 }

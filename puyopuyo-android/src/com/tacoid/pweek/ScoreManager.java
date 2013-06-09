@@ -2,6 +2,7 @@ package com.tacoid.pweek;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.google.android.gms.games.GamesClient;
 import com.tacoid.tracking.TrackingManager;
 
 public class ScoreManager {
@@ -10,8 +11,11 @@ public class ScoreManager {
 		VERSUS_IA,
 		CHRONO
 	};
+	
 	/* Static part */
 	static ScoreManager instance = null;
+	
+	GamesClient mGamesClient;
 
 	static public ScoreManager getInstance() {
 		if(instance == null) {
@@ -36,6 +40,10 @@ public class ScoreManager {
 		pref.putInteger(type.toString(), score);
 		TrackingManager.getTracker().trackEvent("gameplay", "new_score", type.toString(), (long) score);
 		pref.flush();
+		
+		if (type == GameType.SOLO) {
+			Pweek.getInstance().getHandler().saveScoreSolo(score);
+		}
 	}
 	
 	public boolean isLevelUnlocked(GameType type, int level) {

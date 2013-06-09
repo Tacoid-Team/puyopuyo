@@ -19,10 +19,15 @@ import com.google.ads.AdRequest.ErrorCode;
 import com.google.ads.AdSize;
 import com.google.ads.AdView;
 import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
+import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.games.GamesClient;
 import com.tacoid.tracking.TrackingManager;
 import com.tacoid.tracking.TrackingManager.TrackerType;
 
-public class PweekAndroid extends AndroidApplication implements IActivityRequestHandler, AdListener, ShareLauncher
+public class PweekAndroid extends AndroidApplication implements IActivityRequestHandler, AdListener, ShareLauncher, ConnectionCallbacks, OnConnectionFailedListener
 {	
 	private static AdView adView;
 
@@ -86,6 +91,8 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 
 	private boolean isPortrait;
 
+	private GamesClient mGamesClient;
+
 	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -132,16 +139,29 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 
 		// Hook it all up
 		setContentView(layout);
+		
+
+		/*if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS) {
+			mGamesClient = (new GamesClient.Builder(this, this, this)).create();
+		}*/
 	}
 
 	protected void onStart() {
 		super.onStart();
 		TrackingManager.setTrackerType(TrackerType.GOOGLE_ANALYTICS);
 		EasyTracker.getInstance().activityStart(this);
+		
+		if (mGamesClient != null) {
+			mGamesClient.connect();
+		}
 	}
 	protected void onStop() {
 		super.onStop();
 		EasyTracker.getInstance().activityStop(this); 
+		
+		if (mGamesClient != null) {
+			mGamesClient.disconnect();
+		}
 	}
 
 	@Override
@@ -202,6 +222,33 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		//start the chooser for sharing
 		startActivity(Intent.createChooser(shareIntent, 
 		 "Share Pweek!"));
+	}
+
+	@Override
+	public void saveScoreSolo(int score) {		
+	    final String LEADERBOARD_SOLO = "CgkIxe3U-eUUEAIQAA";
+
+	    if (mGamesClient != null) {
+			mGamesClient.submitScore(LEADERBOARD_SOLO, score);
+		}
+	}
+
+	@Override
+	public void onConnectionFailed(ConnectionResult arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onConnected(Bundle arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onDisconnected() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
