@@ -191,6 +191,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 				public boolean touchDown(InputEvent event, float x, float y,
 						int pointer, int button) {
 					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
+					
 					return true;
 				}
 				
@@ -199,6 +200,13 @@ public class MainMenuScreen implements Screen, InputProcessor {
 						int pointer, int button) {
 					GameSoloScreen.getInstance().init();
 					TrackingManager.getTracker().trackEvent("gameplay", "game_start", "solo", null);
+					
+					if(Pweek.getInstance().getGameService().getSignedIn()) {
+						System.out.println("Signed in");
+						Pweek.getInstance().getGameService().getScores();
+					} else {
+						System.out.println("FAIL");
+					}
 					Pweek.getInstance().setScreen(GameSoloScreen.getInstance());
 				}
 			});

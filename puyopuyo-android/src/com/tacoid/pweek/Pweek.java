@@ -19,6 +19,7 @@ import com.tacoid.pweek.screens.MainMenuScreen;
 public class Pweek extends Game {
 	
 	private IActivityRequestHandler myRequestHandler;
+	private IGameService myGameService;
 
 	private static Pweek instance = null;
 	public AssetManager manager;
@@ -47,6 +48,16 @@ public class Pweek extends Game {
 		getInstance().myRequestHandler = handler;
 	}
 	
+	public static void setGameService(IGameService gameService) {
+		getInstance().myGameService = gameService;
+		
+	}
+	
+	public IGameService getGameService() {
+		return getInstance().myGameService;
+	}
+	
+	
 	public static void setShareLauncher(ShareLauncher launcher) {
 		getInstance().shareLauncher = launcher;
 	}
@@ -73,6 +84,7 @@ public class Pweek extends Game {
 				if(I18nManager.getInstance().setLanguage(language)) {
 					loadLocalizedAssets();
 					if (getScreen() == null) {
+						myGameService.Login();
 						setScreen(MainMenuScreen.getInstance());
 						myRequestHandler.showAds(true);
 					} else {
@@ -104,6 +116,7 @@ public class Pweek extends Game {
 	
 	@Override
 	public void create() {		
+		
 		loadingScreen = LoadingScreen.getInstance();		
 		LoadingScreen.getInstance().resize(0, 0);
 

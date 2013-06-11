@@ -6,7 +6,7 @@ import com.tacoid.pweek.Pweek;
 import com.tacoid.tracking.TrackingManager;
 import com.tacoid.tracking.TrackingManager.TrackerType;
 
-public class PweekDesktop implements IActivityRequestHandler {
+public class PweekDesktop implements IActivityRequestHandler, IGameService {
 	private static PweekDesktop application;
 	public static void main(String[] argv) {
 		if(application == null) {
@@ -30,9 +30,39 @@ public class PweekDesktop implements IActivityRequestHandler {
 		
 	}
 
+
 	@Override
-	public void saveScoreSolo(int score) {
-		// TODO Auto-generated method stub
+	public void Login() {
+		System.out.println("GameService : Login");
 		
+	}
+
+	@Override
+	public void LogOut() {
+		System.out.println("GameService : Logout");
+		
+	}
+
+	@Override
+	public boolean getSignedIn() {
+		System.out.println("GameService : getSignedIn");
+		return false;
+	}
+
+	@Override
+	public void submitScore(int score) {
+		System.out.println("GameService : submitScore");
+		
+	}
+
+	@Override
+	public void getScores() {
+		System.out.println("GameService : getScores");
+		
+	}
+
+	@Override
+	public void getScoresData() {
+		System.out.println("GameService : getScoresData");
 	}
 }

@@ -2,9 +2,12 @@ package com.tacoid.pweek;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.CharArrayBuffer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Parcel;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -23,20 +26,29 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
 import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.games.Game;
 import com.google.android.gms.games.GamesClient;
+import com.google.android.gms.games.leaderboard.LeaderboardBuffer;
+import com.google.android.gms.games.leaderboard.LeaderboardScoreBuffer;
+import com.google.android.gms.games.leaderboard.OnLeaderboardScoresLoadedListener;
+import com.tacoid.pweek.GameHelper.GameHelperListener;
 import com.tacoid.tracking.TrackingManager;
 import com.tacoid.tracking.TrackingManager.TrackerType;
 
-public class PweekAndroid extends AndroidApplication implements IActivityRequestHandler, AdListener, ShareLauncher, ConnectionCallbacks, OnConnectionFailedListener
+public class PweekAndroid extends AndroidApplication implements IActivityRequestHandler, AdListener, ShareLauncher, IGameService, GameHelperListener
 {	
 	private static AdView adView;
+	
+	/* Google Game Service attributes */
+	private GameHelper aHelper;
+	private OnLeaderboardScoresLoadedListener theLeaderboardListener;
 
 	private final static int PORTRAIT_ADS = 3;
 	private final static int LANDSCAPE_ADS = 2;
 	private final static int SHOW_ADS = 1;
 	private final static int HIDE_ADS = 0;
 	private final static int SHARE = 4;
-
+	
 	static protected Handler handler = new Handler()
 	{
 		@SuppressLint("NewApi")
@@ -93,6 +105,26 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 
 	private GamesClient mGamesClient;
 
+    public PweekAndroid() {
+	    aHelper = new GameHelper(this);
+	    aHelper.enableDebugLog(true, "GAME");
+	   
+	    //create a listener for getting raw data back from leaderboard
+	    theLeaderboardListener = new OnLeaderboardScoresLoadedListener() {
+	    				@Override
+	                    public void onLeaderboardScoresLoaded(int arg0, LeaderboardBuffer arg1,
+	                                    LeaderboardScoreBuffer arg2) {
+	                                   
+	                            System.out.println("In call back");
+	                           
+	                            for(int i = 0; i < arg2.getCount(); i++){
+	                                    System.out.println(arg2.get(i).getScoreHolderDisplayName() + " : " + arg2.get(i).getDisplayScore());
+	                            }
+	                    }
+
+	            };
+    }
+	
 	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -101,6 +133,8 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		// Cr�ation du layout
 		RelativeLayout layout = new RelativeLayout(this);
 
+		
+		
 		// Fait ce que "initialize" est sens� faire
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
@@ -112,10 +146,15 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		config.useGL20 = false;
 
 		// Cr�ation de la vue libGdx
+		
+		aHelper.setup(this);
+		Pweek.setGameService(this);
+		
 		Pweek.setHandler(this);
 		Pweek.setShareLauncher(this);
 		View gameView = initializeForView(Pweek.getInstance(), config);
-
+		
+		
 		// Cr�ation de la vu adMob
 		adView = new AdView(this, AdSize.BANNER, "a150a3f124cd8c4"); // Put in your secret key here
 		//adView = new AdView(this, AdSize.BANNER, "aaaaaaaaaaaaaaa"); // Put in your secret key here
@@ -139,29 +178,18 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 
 		// Hook it all up
 		setContentView(layout);
-		
-
-		/*if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS) {
-			mGamesClient = (new GamesClient.Builder(this, this, this)).create();
-		}*/
 	}
 
 	protected void onStart() {
 		super.onStart();
+		aHelper.onStart(this);
 		TrackingManager.setTrackerType(TrackerType.GOOGLE_ANALYTICS);
 		EasyTracker.getInstance().activityStart(this);
-		
-		if (mGamesClient != null) {
-			mGamesClient.connect();
-		}
 	}
 	protected void onStop() {
 		super.onStop();
+		aHelper.onStop();
 		EasyTracker.getInstance().activityStop(this); 
-		
-		if (mGamesClient != null) {
-			mGamesClient.disconnect();
-		}
 	}
 
 	@Override
@@ -225,30 +253,74 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	}
 
 	@Override
-	public void saveScoreSolo(int score) {		
-	    final String LEADERBOARD_SOLO = "CgkIxe3U-eUUEAIQAA";
-
-	    if (mGamesClient != null) {
-			mGamesClient.submitScore(LEADERBOARD_SOLO, score);
-		}
+	public void Login() {
+		aHelper.debugLog("=>LOGIN");
+        try {
+        runOnUiThread(new Runnable(){
+               
+                //@Override
+                public void run(){
+                        aHelper.beginUserInitiatedSignIn();
+                }
+                });
+        }catch (final Exception ex){
+               
+        }
 	}
 
 	@Override
-	public void onConnectionFailed(ConnectionResult arg0) {
+	public void LogOut() {
+		aHelper.debugLog("=>LOGOUT");
+        try {
+        runOnUiThread(new Runnable(){
+               
+                //@Override
+                public void run(){
+                        aHelper.signOut();
+                }
+                });
+        }catch (final Exception ex){
+               
+        }
+          
+	}
+
+	@Override
+	public boolean getSignedIn() {
+		aHelper.debugLog("=>GETSIGNEDIN");
+		return aHelper.isSignedIn();
+	}
+
+	@Override
+	public void submitScore(int score) {
+		aHelper.debugLog("=>SUBMITSCORE");
+        aHelper.getGamesClient().submitScore(getString(R.string.leaderBoardID), score);
+	}
+
+	@Override
+	public void getScores() {
+		aHelper.debugLog("=>GETSCORES");
+		startActivityForResult(aHelper.getGamesClient().getLeaderboardIntent(getString(R.string.leaderBoardID)), 105); 
+		
+	}
+
+	@Override
+	public void getScoresData() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onConnected(Bundle arg0) {
-		// TODO Auto-generated method stub
+	public void onSignInFailed() {
+		aHelper.debugLog("=>SIGNINFAILED");
+		System.out.println("sign in failed");
 		
 	}
 
 	@Override
-	public void onDisconnected() {
-		// TODO Auto-generated method stub
+	public void onSignInSucceeded() {
+		aHelper.debugLog("=>SIGNINSUCCEEDED");
+		System.out.println("sign in succeeded");
 		
 	}
-
 }

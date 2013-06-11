@@ -40,10 +40,6 @@ public class ScoreManager {
 		pref.putInteger(type.toString(), score);
 		TrackingManager.getTracker().trackEvent("gameplay", "new_score", type.toString(), (long) score);
 		pref.flush();
-		
-		if (type == GameType.SOLO) {
-			Pweek.getInstance().getHandler().saveScoreSolo(score);
-		}
 	}
 	
 	public boolean isLevelUnlocked(GameType type, int level) {
