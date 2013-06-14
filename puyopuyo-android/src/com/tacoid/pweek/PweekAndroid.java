@@ -323,4 +323,11 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		System.out.println("sign in succeeded");
 		
 	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		aHelper.debugLog("onActivityResult");
+		aHelper.onActivityResult(requestCode, resultCode, data);
+	}
 }
