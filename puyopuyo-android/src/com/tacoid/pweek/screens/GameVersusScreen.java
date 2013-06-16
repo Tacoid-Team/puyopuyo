@@ -66,6 +66,7 @@ public class GameVersusScreen implements GameScreen {
 	private int level;
 	private ExplosionActor explosionActor;
 	private ExplosionActor explosionActorIA;
+	private boolean started;
 
 	private void addButton(Button button, int x, int y) {
 		stage.addActor(button);
@@ -289,6 +290,7 @@ public class GameVersusScreen implements GameScreen {
 	@Override
 	public void init() {
 		elapsedTime = 0;
+		started = false;
 		gameLogic.init();
 		gameLogicIA.init();
 		gameOver.hide();
@@ -319,6 +321,11 @@ public class GameVersusScreen implements GameScreen {
 		pauseButton.setTouchable(Touchable.disabled);
 	}
 
+	public void gameStart() {
+		this.gameResume();
+		this.started = true;
+	}
+	
 	@Override
 	public void gameResume() {
 		gamePaused = false;
@@ -389,5 +396,10 @@ public class GameVersusScreen implements GameScreen {
 	@Override
 	public void hidePause() {
 		pauseMenu.hide();
+	}
+
+	@Override
+	public boolean isGameStarted() {
+		return started;
 	}
 }

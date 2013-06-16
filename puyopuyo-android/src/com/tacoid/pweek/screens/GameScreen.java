@@ -33,4 +33,8 @@ public interface GameScreen extends Screen {
 	public void quit();
 	
 	public void hidePause();
+
+	public void gameStart();
+
+	public boolean isGameStarted();
 }

@@ -54,7 +54,7 @@ public class StartActor extends Actor {
 	}
 	
 	public void hide() {
-		gameScreen.gameResume();
+		gameScreen.gameStart();
 		setVisible(false);
 		setTouchable(Touchable.disabled);
 	}

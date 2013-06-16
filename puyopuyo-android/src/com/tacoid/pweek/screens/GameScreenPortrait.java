@@ -58,6 +58,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 	private StartActor startActor;
 	private NextPieceActor nextPieceActor;
 	private ExplosionActor explosionActor;
+	private boolean started;
 	
 	protected class PauseButton extends Button {
 
@@ -242,6 +243,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		gameOver.hide();
 		startActor.show();
 		elapsedTime = 0;
+		started = false;
 	}
 
 	private void gameOver() {
@@ -261,6 +263,17 @@ public abstract class GameScreenPortrait implements GameScreen {
 		pauseButton.setTouchable(Touchable.disabled);
 	}
 
+	@Override
+	public void gameStart() {
+		this.gameResume();
+		this.started = true;
+	}
+	
+	@Override
+	public boolean isGameStarted() {
+		return this.started;
+	}
+	
 	@Override
 	public void gameResume() {
 		gamePaused = false;
