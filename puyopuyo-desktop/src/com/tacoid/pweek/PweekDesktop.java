@@ -3,6 +3,7 @@ package com.tacoid.pweek;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.tacoid.pweek.IActivityRequestHandler;
 import com.tacoid.pweek.Pweek;
+import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.tracking.TrackingManager;
 import com.tacoid.tracking.TrackingManager.TrackerType;
 
@@ -50,12 +51,6 @@ public class PweekDesktop implements IActivityRequestHandler, IGameService {
 	}
 
 	@Override
-	public void submitScore(int score) {
-		System.out.println("GameService : submitScore");
-		
-	}
-
-	@Override
 	public void showLeaderboard() {
 		System.out.println("GameService : getScores");
 		
@@ -64,5 +59,23 @@ public class PweekDesktop implements IActivityRequestHandler, IGameService {
 	@Override
 	public void getScoresData() {
 		System.out.println("GameService : getScoresData");
+	}
+
+	@Override
+	public void submitScore(GameType type, int score) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showAchievements() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void unlockAchievement(Achievement a) {
+		// TODO Auto-generated method stub
+		
 	}
 }
