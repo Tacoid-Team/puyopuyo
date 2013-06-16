@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_id">714561894085-qrh6844l25rcdv1gemkcf0gs7rs1mifr.apps.googleusercontent.com</string>
-    <string name="leaderBoardID">CgkIxe3U-eUUEAIQAA</string>    
+    <string name="app_id">714561894085</string>
+    <string name="solo_leaderboard">CgkIxe3U-eUUEAIQAA</string>
+    <string name="chrono_leaderboard">CgkIxe3U-eUUEAIQDw</string>    
+    <string name="ach_AFK">CgkIxe3U-eUUEAIQEw</string>
 </resources>

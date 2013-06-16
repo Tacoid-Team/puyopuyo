@@ -32,13 +32,13 @@ public class PweekDesktop implements IActivityRequestHandler, IGameService {
 
 
 	@Override
-	public void Login() {
+	public void login() {
 		System.out.println("GameService : Login");
 		
 	}
 
 	@Override
-	public void LogOut() {
+	public void logout() {
 		System.out.println("GameService : Logout");
 		
 	}
@@ -56,7 +56,7 @@ public class PweekDesktop implements IActivityRequestHandler, IGameService {
 	}
 
 	@Override
-	public void getScores() {
+	public void showLeaderboard() {
 		System.out.println("GameService : getScores");
 		
 	}

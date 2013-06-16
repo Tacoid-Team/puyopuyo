@@ -2,12 +2,9 @@ package com.tacoid.pweek;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.CharArrayBuffer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Parcel;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -22,16 +19,8 @@ import com.google.ads.AdRequest.ErrorCode;
 import com.google.ads.AdSize;
 import com.google.ads.AdView;
 import com.google.analytics.tracking.android.EasyTracker;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
-import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.games.Game;
-import com.google.android.gms.games.GamesClient;
-import com.google.android.gms.games.leaderboard.LeaderboardBuffer;
-import com.google.android.gms.games.leaderboard.LeaderboardScoreBuffer;
-import com.google.android.gms.games.leaderboard.OnLeaderboardScoresLoadedListener;
 import com.tacoid.pweek.GameHelper.GameHelperListener;
+import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.tracking.TrackingManager;
 import com.tacoid.tracking.TrackingManager.TrackerType;
 
@@ -41,13 +30,10 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	
 	/* Google Game Service attributes */
 	private GameHelper aHelper;
-	private OnLeaderboardScoresLoadedListener theLeaderboardListener;
-
 	private final static int PORTRAIT_ADS = 3;
 	private final static int LANDSCAPE_ADS = 2;
 	private final static int SHOW_ADS = 1;
 	private final static int HIDE_ADS = 0;
-	private final static int SHARE = 4;
 	
 	static protected Handler handler = new Handler()
 	{
@@ -103,26 +89,9 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 
 	private boolean isPortrait;
 
-	private GamesClient mGamesClient;
-
     public PweekAndroid() {
 	    aHelper = new GameHelper(this);
 	    aHelper.enableDebugLog(true, "GAME");
-	   
-	    //create a listener for getting raw data back from leaderboard
-	    theLeaderboardListener = new OnLeaderboardScoresLoadedListener() {
-	    				@Override
-	                    public void onLeaderboardScoresLoaded(int arg0, LeaderboardBuffer arg1,
-	                                    LeaderboardScoreBuffer arg2) {
-	                                   
-	                            System.out.println("In call back");
-	                           
-	                            for(int i = 0; i < arg2.getCount(); i++){
-	                                    System.out.println(arg2.get(i).getScoreHolderDisplayName() + " : " + arg2.get(i).getDisplayScore());
-	                            }
-	                    }
-
-	            };
     }
 	
 	@SuppressLint("NewApi")
@@ -187,9 +156,9 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		EasyTracker.getInstance().activityStart(this);
 	}
 	protected void onStop() {
-		super.onStop();
 		aHelper.onStop();
-		EasyTracker.getInstance().activityStop(this); 
+		EasyTracker.getInstance().activityStop(this);
+		super.onStop();
 	}
 
 	@Override
@@ -253,7 +222,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	}
 
 	@Override
-	public void Login() {
+	public void login() {
 		aHelper.debugLog("=>LOGIN");
         try {
         runOnUiThread(new Runnable(){
@@ -269,7 +238,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	}
 
 	@Override
-	public void LogOut() {
+	public void logout() {
 		aHelper.debugLog("=>LOGOUT");
         try {
         runOnUiThread(new Runnable(){
@@ -292,18 +261,32 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	}
 
 	@Override
-	public void submitScore(int score) {
+	public void submitScore(GameType type, int score) {
 		aHelper.debugLog("=>SUBMITSCORE");
-        aHelper.getGamesClient().submitScore(getString(R.string.leaderBoardID), score);
+		switch(type) {
+		case SOLO:
+			aHelper.getGamesClient().submitScore(getString(R.string.solo_leaderboard), score);
+			break;
+		case CHRONO:
+			aHelper.getGamesClient().submitScore(getString(R.string.chrono_leaderboard), score);
+			break;
+		default:
+			aHelper.debugLog("Invalid game type leaderboard");
+		}
 	}
 
 	@Override
-	public void getScores() {
+	public void showLeaderboard() {
 		aHelper.debugLog("=>GETSCORES");
-		startActivityForResult(aHelper.getGamesClient().getLeaderboardIntent(getString(R.string.leaderBoardID)), 105); 
-		
+		startActivityForResult(aHelper.getGamesClient().getLeaderboardIntent(getString(R.string.solo_leaderboard)), 105); 
 	}
 
+	@Override
+	public void showAchievements() {
+		aHelper.debugLog("=>GETACHIEVEMENTS");
+		startActivityForResult(aHelper.getGamesClient().getAchievementsIntent(), 106);
+	}
+	
 	@Override
 	public void getScoresData() {
 		// TODO Auto-generated method stub
@@ -329,5 +312,11 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		super.onActivityResult(requestCode, resultCode, data);
 		aHelper.debugLog("onActivityResult");
 		aHelper.onActivityResult(requestCode, resultCode, data);
+	}
+
+	@Override
+	public void unlockAchievement(Achievement a) {
+		aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_AFK));
+		//TODO: switch		
 	}
 }

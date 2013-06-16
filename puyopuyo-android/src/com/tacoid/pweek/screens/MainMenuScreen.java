@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.MusicPlayer;
 import com.tacoid.pweek.Pweek;
+import com.tacoid.pweek.R;
 import com.tacoid.pweek.ScoreManager;
 import com.tacoid.pweek.SoundPlayer;
 import com.tacoid.pweek.MusicPlayer.MusicType;
@@ -203,7 +204,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 					
 					if(Pweek.getInstance().getGameService().getSignedIn()) {
 						System.out.println("Signed in");
-						Pweek.getInstance().getGameService().getScores();
+						Pweek.getInstance().getGameService().showLeaderboard();
 					} else {
 						System.out.println("FAIL");
 					}
@@ -253,6 +254,12 @@ public class MainMenuScreen implements Screen, InputProcessor {
 					// TODO Auto-generated method stub
 					GameTimeAttackScreen.getInstance().init();
 					TrackingManager.getTracker().trackEvent("gameplay", "game_start", "chrono", null);
+					if(Pweek.getInstance().getGameService().getSignedIn()) {
+						System.out.println("Signed in");
+						Pweek.getInstance().getGameService().showAchievements();
+					} else {
+						System.out.println("FAIL");
+					}
 					Pweek.getInstance().setScreen(GameTimeAttackScreen.getInstance());
 				}
 			});

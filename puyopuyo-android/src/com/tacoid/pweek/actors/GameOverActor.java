@@ -16,6 +16,7 @@ import com.tacoid.pweek.I18nManager;
 import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.ScoreManager;
 import com.tacoid.pweek.SoundPlayer;
+import com.tacoid.pweek.IGameService.Achievement;
 import com.tacoid.pweek.Pweek.ScreenOrientation;
 import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.pweek.SoundPlayer.SoundType;
@@ -50,29 +51,6 @@ public class GameOverActor extends Group {
 						int pointer, int button) {
 					newUnlock = false;
 					Pweek.getInstance().setScreen(MainMenuScreen.getInstance());
-				}
-		
-			});
-		}		
-	}
-	
-	private class ShareButton extends Button {
-
-		public ShareButton(TextureRegion regionUp, TextureRegion regionDown) {
-			super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown));
-			
-			addListener(new InputListener() {
-				@Override
-				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
-					System.out.println("Share");
-					return true;
-				}
-				
-				@Override
-				public void touchUp(InputEvent event, float x, float y,
-						int pointer, int button) {
-					Pweek.getInstance().shareLauncher.share("Try Pweek!","Hello world #Pweek");
 				}
 		
 			});
@@ -153,12 +131,7 @@ public class GameOverActor extends Group {
 		
 		TextureRegion nextRegion = null;
 		TextureRegion quitterRegion = atlasPlank.findRegion("quitter");
-		TextureRegion rejouerRegion = atlasPlank.findRegion("rejouer");
-		TextureRegion shareRegion = atlasPlank.findRegion("share");
-		
-		Button shareButton = new ShareButton(shareRegion, shareRegion);
-		
-		
+		TextureRegion rejouerRegion = atlasPlank.findRegion("rejouer");		
 		
 		if (gameScreen.getGameType() == GameType.VERSUS_IA) {
 			nextRegion = atlasPlank.findRegion("suivant");
@@ -227,6 +200,10 @@ public class GameOverActor extends Group {
 		if(highScore < gameScreen.getScore() && gameScreen.getGameType() != GameType.VERSUS_IA) {
 			ScoreManager.getInstance().setScore(gameScreen.getGameType(), gameScreen.getScore());
 			this.newHighScore = true;
+		}
+		
+		if (gameScreen.getScore() == 0) {
+			Pweek.getInstance().getGameService().unlockAchievement(Achievement.AFK);
 		}
 
 		Pweek.getInstance().getHandler().showAds(true);

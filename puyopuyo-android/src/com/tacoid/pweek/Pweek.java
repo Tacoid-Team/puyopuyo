@@ -84,7 +84,7 @@ public class Pweek extends Game {
 				if(I18nManager.getInstance().setLanguage(language)) {
 					loadLocalizedAssets();
 					if (getScreen() == null) {
-						myGameService.Login();
+						myGameService.login();
 						setScreen(MainMenuScreen.getInstance());
 						myRequestHandler.showAds(true);
 					} else {

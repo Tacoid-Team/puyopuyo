@@ -37,7 +37,9 @@ public class ScoreManager {
 	}
 	
 	public void setScore(GameType type, int score) {
-		pref.putInteger(type.toString(), score);
+		pref.putInteger(type.toString(), score); 
+		Pweek.getInstance().getGameService().submitScore(type,score);
+		
 		TrackingManager.getTracker().trackEvent("gameplay", "new_score", type.toString(), (long) score);
 		pref.flush();
 	}
