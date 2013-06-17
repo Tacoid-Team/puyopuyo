@@ -316,7 +316,52 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 
 	@Override
 	public void unlockAchievement(Achievement a) {
-		aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_AFK));
-		//TODO: switch		
+		if (a.incremental) {
+			switch (a) {
+			case FANBOY:
+				aHelper.getGamesClient().incrementAchievement(getString(R.string.ach_FANBOY), 1);
+				break;
+
+			default:
+				System.out.println("Achievement non implémenté.");
+				break;
+			}
+		} else {
+			switch (a) {
+			case AFK:
+				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_AFK));
+				break;
+			case CHAIN:
+				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_CHAIN));
+				break;
+			case CURIOUS:
+				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_CURIOUS));
+				break;
+			case DEAF:
+				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_DEAF));
+				break;
+			case FIRST_COMBO:
+				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_FIRST_COMBO));
+				break;
+			case FOREVER_ALONE:
+				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_FOREVER_ALONE));
+				break;
+			case MASTERSTROKE:
+				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_MASTERSTROKE));
+				break;
+			case MEGA_EXPLODE:
+				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_MEGA_EXPLODE));
+				break;
+			case NINJA:
+				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_NINJA));
+				break;
+			case OCD:
+				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_OCD));
+				break;
+			default:
+				System.out.println("Achievement non implémenté.");
+				break;
+			}
+		}
 	}
 }

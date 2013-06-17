@@ -16,7 +16,6 @@ import com.tacoid.pweek.I18nManager;
 import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.ScoreManager;
 import com.tacoid.pweek.SoundPlayer;
-import com.tacoid.pweek.IGameService.Achievement;
 import com.tacoid.pweek.Pweek.ScreenOrientation;
 import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.pweek.SoundPlayer.SoundType;
@@ -200,10 +199,6 @@ public class GameOverActor extends Group {
 		if(highScore < gameScreen.getScore() && gameScreen.getGameType() != GameType.VERSUS_IA) {
 			ScoreManager.getInstance().setScore(gameScreen.getGameType(), gameScreen.getScore());
 			this.newHighScore = true;
-		}
-		
-		if (gameScreen.getScore() == 0) {
-			Pweek.getInstance().getGameService().unlockAchievement(Achievement.AFK);
 		}
 
 		Pweek.getInstance().getHandler().showAds(true);

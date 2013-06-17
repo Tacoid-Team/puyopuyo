@@ -92,8 +92,8 @@ public class GameVersusScreen implements GameScreen {
 	}
 
 	private GameVersusScreen() {
-		gameLogic = new GameLogic();
-		gameLogicIA = new GameLogic();
+		gameLogic = new GameLogic(false);
+		gameLogicIA = new GameLogic(true);
 		gameLogic.setOpponent(gameLogicIA);
 		gameLogicIA.setOpponent(gameLogic);
 		elapsedTime = 0;

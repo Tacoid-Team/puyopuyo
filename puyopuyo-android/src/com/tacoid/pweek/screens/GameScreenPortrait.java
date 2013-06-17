@@ -85,7 +85,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 
 	public GameScreenPortrait() {
 		elapsedTime = 0;
-		gameLogic = new GameLogic();
+		gameLogic = new GameLogic(false);
 	}
 	
 	public int getPuyoSize() {

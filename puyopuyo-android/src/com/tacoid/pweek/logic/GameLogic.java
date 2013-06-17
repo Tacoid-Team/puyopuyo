@@ -3,7 +3,9 @@ package com.tacoid.pweek.logic;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.SoundPlayer;
+import com.tacoid.pweek.IGameService.Achievement;
 import com.tacoid.pweek.SoundPlayer.SoundType;
 
 public class GameLogic {
@@ -44,15 +46,19 @@ public class GameLogic {
 
 	protected boolean paused = false;
 
-	private boolean isIA;
+	private boolean isIA = false;
 	private int n_colors = 4;
 	private boolean cheatMode = false;
 	private float initialSpeed = 0.4f;
 
 	public ArrayList<Explosion> explosions = new ArrayList<Explosion>();
 
-	public GameLogic() {
+	public GameLogic(boolean isIA) {
 		init();
+		this.isIA = isIA;
+		if (!isIA) {
+			Pweek.getInstance().getGameService().unlockAchievement(Achievement.FANBOY);
+		}
 	}
 
 	public void init() {
@@ -249,6 +255,9 @@ public class GameLogic {
 				if (grid[l][c] > 0 && grid[l][c] != GARBAGE) {
 					ArrayList<Coord> list = new ArrayList<Coord>();
 					if (floodfill(l, c, grid[l][c], list) >= 4) {
+						if (grid[l][c] == 5 && !isIA) {
+							Pweek.getInstance().getGameService().unlockAchievement(Achievement.NINJA);
+						}
 						remove.add(new Explosion(this, list));
 					}
 				}
@@ -316,6 +325,17 @@ public class GameLogic {
 				if (first) {
 					if (!generate()) {
 						state = State.LOST;
+						if (score == 0 && !isIA) {
+							Pweek.getInstance().getGameService().unlockAchievement(Achievement.AFK);
+						}
+					} else if (!isIA && score > 0) {
+						boolean ocd = true;
+						for (int col = 0; col < COLUMNS && ocd; col++) {
+							ocd = ocd && grid[0][col] == 0;
+						}
+						if (ocd) {
+							Pweek.getInstance().getGameService().unlockAchievement(Achievement.OCD);
+						}
 					}
 					first = false;
 				}
@@ -379,10 +399,14 @@ public class GameLogic {
 					if (removes.size() > 0) {
 						state = State.GRAVITY;
 						first = true;
-						if (combo == 0)
+						if (combo == 0) {
 							combo = 8;
-						else
+						} else {
+							if (!isIA) {
+								Pweek.getInstance().getGameService().unlockAchievement(Achievement.FIRST_COMBO);
+							}
 							combo *= 2;
+						}
 					} else {
 						state = State.GARBAGE;
 						score += points;
