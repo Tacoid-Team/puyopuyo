@@ -16,7 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.MusicPlayer;
 import com.tacoid.pweek.Pweek;
-import com.tacoid.pweek.R;
 import com.tacoid.pweek.ScoreManager;
 import com.tacoid.pweek.SoundPlayer;
 import com.tacoid.pweek.MusicPlayer.MusicType;

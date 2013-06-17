@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.tacoid.pweek.logic.Coord;
-import com.tacoid.pweek.logic.Explosion;
 import com.tacoid.pweek.logic.Falling;
 import com.tacoid.pweek.logic.GameLogic;
 import com.tacoid.pweek.logic.State;
@@ -27,7 +26,6 @@ public class GridActor extends Actor {
 	private int size;
 	private int offWhite;
 	private BitmapFont font;
-	private String score;
 
 	/**
 	 * 
