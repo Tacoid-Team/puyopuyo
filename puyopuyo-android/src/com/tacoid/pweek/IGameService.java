@@ -4,7 +4,17 @@ import com.tacoid.pweek.ScoreManager.GameType;
 
 public interface IGameService {
 	public enum Achievement {
-		AFK(false);
+		NINJA(false),
+		FOREVER_ALONE(false),
+		OCD(false),
+		CHAIN(false),
+		MEGA_EXPLODE(false),
+		MASTERSTROKE(false),
+		FIRST_COMBO(false),
+		AFK(false),
+		DEAF(false),
+		FANBOY(true),
+		CURIOUS(false);
 		
 		private Achievement(boolean i) {
 			incremental=i;
