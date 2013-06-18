@@ -22,7 +22,9 @@ import com.tacoid.pweek.MusicPlayer.MusicType;
 import com.tacoid.pweek.Pweek.ScreenOrientation;
 import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.pweek.SoundPlayer.SoundType;
+import com.tacoid.pweek.actors.AchievementButtonActor;
 import com.tacoid.pweek.actors.BackgroundActor;
+import com.tacoid.pweek.actors.LeaderboardButtonActor;
 import com.tacoid.pweek.actors.MusicButtonActor;
 import com.tacoid.pweek.actors.SoundButtonActor;
 import com.tacoid.pweek.actors.SwingMenu;
@@ -100,7 +102,9 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		stage.addActor(menu);
 		addButton(MusicButtonActor.createMusicButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-64, VIRTUAL_HEIGHT-64);
 		addButton(SoundButtonActor.createSoundButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-2*64-10, VIRTUAL_HEIGHT-64);
-		
+		addButton(LeaderboardButtonActor.createLeaderboardButton(Pweek.getInstance().atlasBouttons),0, VIRTUAL_HEIGHT-64);
+		addButton(AchievementButtonActor.createAchievementButton(Pweek.getInstance().atlasBouttons),64 + 10, VIRTUAL_HEIGHT-64);
+
 		menu.hideInstant();
 		menu.show("main");
 		
@@ -201,12 +205,6 @@ public class MainMenuScreen implements Screen, InputProcessor {
 					GameSoloScreen.getInstance().init();
 					TrackingManager.getTracker().trackEvent("gameplay", "game_start", "solo", null);
 					
-					if(Pweek.getInstance().getGameService().getSignedIn()) {
-						System.out.println("Signed in");
-						Pweek.getInstance().getGameService().showAllLeaderboards();
-					} else {
-						System.out.println("FAIL");
-					}
 					Pweek.getInstance().setScreen(GameSoloScreen.getInstance());
 				}
 			});
@@ -253,12 +251,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 					// TODO Auto-generated method stub
 					GameTimeAttackScreen.getInstance().init();
 					TrackingManager.getTracker().trackEvent("gameplay", "game_start", "chrono", null);
-					if(Pweek.getInstance().getGameService().getSignedIn()) {
-						System.out.println("Signed in");
-						Pweek.getInstance().getGameService().showAchievements();
-					} else {
-						System.out.println("FAIL");
-					}
+
 					Pweek.getInstance().setScreen(GameTimeAttackScreen.getInstance());
 				}
 			});
