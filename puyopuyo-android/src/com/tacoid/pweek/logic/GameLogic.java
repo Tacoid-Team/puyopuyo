@@ -54,14 +54,14 @@ public class GameLogic {
 	public ArrayList<Explosion> explosions = new ArrayList<Explosion>();
 
 	public GameLogic(boolean isIA) {
-		init();
 		this.isIA = isIA;
-		if (!isIA) {
-			Pweek.getInstance().getGameService().unlockAchievement(Achievement.FANBOY);
-		}
 	}
 
 	public void init() {
+		if (!isIA) {
+			Pweek.getInstance().getGameService().unlockAchievement(Achievement.FANBOY);
+		}
+		
 		fallings = null;
 		score = 0;
 		sum = 0;
