@@ -17,12 +17,7 @@ public class LeaderboardButtonActor extends Button {
 		this.addListener(new com.badlogic.gdx.scenes.scene2d.utils.ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				if(Pweek.getInstance().getGameService().getSignedIn()) {
-					System.out.println("Signed in");
-					Pweek.getInstance().getGameService().showAllLeaderboards();
-				} else {
-					System.out.println("FAIL");
-				}
+				Pweek.getInstance().getGameService().showAllLeaderboards();
 			}
 		});
 	}

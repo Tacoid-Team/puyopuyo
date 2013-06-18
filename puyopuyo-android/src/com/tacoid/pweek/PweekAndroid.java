@@ -262,6 +262,9 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 
 	@Override
 	public void submitScore(GameType type, int score) {
+		if (!Pweek.getInstance().getGameService().getSignedIn()) {
+			return;
+		}
 		aHelper.debugLog("=>SUBMITSCORE");
 		switch(type) {
 		case SOLO:
@@ -277,6 +280,9 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 
 	@Override
 	public void showAllLeaderboards() {
+		if (!Pweek.getInstance().getGameService().getSignedIn()) {
+			return;
+		}
 		aHelper.debugLog("=>GETSCORES");
 		startActivityForResult(aHelper.getGamesClient().getAllLeaderboardsIntent(), 105);
 		//startActivityForResult(aHelper.getGamesClient().getLeaderboardIntent(getString(R.string.solo_leaderboard)), 105); 
@@ -284,6 +290,9 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 
 	@Override
 	public void showAchievements() {
+		if (!Pweek.getInstance().getGameService().getSignedIn()) {
+			return;
+		}
 		aHelper.debugLog("=>GETACHIEVEMENTS");
 		startActivityForResult(aHelper.getGamesClient().getAchievementsIntent(), 106);
 	}
@@ -317,6 +326,10 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 
 	@Override
 	public void unlockAchievement(Achievement a) {
+		if (!Pweek.getInstance().getGameService().getSignedIn()) {
+			return;
+		}
+		
 		if (a.incremental) {
 			switch (a) {
 			case FANBOY:
