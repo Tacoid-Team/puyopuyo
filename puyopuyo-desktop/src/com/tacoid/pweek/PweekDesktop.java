@@ -51,7 +51,7 @@ public class PweekDesktop implements IActivityRequestHandler, IGameService {
 	}
 
 	@Override
-	public void showLeaderboard() {
+	public void showAllLeaderboards() {
 		System.out.println("GameService : getScores");
 		
 	}

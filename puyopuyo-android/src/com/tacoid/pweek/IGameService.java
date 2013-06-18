@@ -33,7 +33,7 @@ public interface IGameService {
 	public void submitScore(GameType type, int score);
 
 	//gets the scores and displays them threw googles default widget
-	public void showLeaderboard();
+	public void showAllLeaderboards();
 
 	public void showAchievements();
 	

@@ -25,7 +25,7 @@ public class GridActor extends Actor {
 	private TextureRegion white;
 	private int size;
 	private int offWhite;
-	private BitmapFont font;
+	//private BitmapFont font;
 
 	/**
 	 * 
@@ -40,7 +40,7 @@ public class GridActor extends Actor {
 		this.origY = origY;
 		this.logic = logic;
 		this.size = size;
-		this.font = font;
+		//this.font = font;
 		this.offWhite = (size - sizePuyo) / 2;
 		
 		boules[0] = atlasPuyo.findRegion("green_happy-" + sizePuyo);

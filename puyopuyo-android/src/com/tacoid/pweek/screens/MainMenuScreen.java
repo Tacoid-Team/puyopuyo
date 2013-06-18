@@ -203,7 +203,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 					
 					if(Pweek.getInstance().getGameService().getSignedIn()) {
 						System.out.println("Signed in");
-						Pweek.getInstance().getGameService().showLeaderboard();
+						Pweek.getInstance().getGameService().showAllLeaderboards();
 					} else {
 						System.out.println("FAIL");
 					}

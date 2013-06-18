@@ -276,9 +276,10 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	}
 
 	@Override
-	public void showLeaderboard() {
+	public void showAllLeaderboards() {
 		aHelper.debugLog("=>GETSCORES");
-		startActivityForResult(aHelper.getGamesClient().getLeaderboardIntent(getString(R.string.solo_leaderboard)), 105); 
+		startActivityForResult(aHelper.getGamesClient().getAllLeaderboardsIntent(), 105);
+		//startActivityForResult(aHelper.getGamesClient().getLeaderboardIntent(getString(R.string.solo_leaderboard)), 105); 
 	}
 
 	@Override
