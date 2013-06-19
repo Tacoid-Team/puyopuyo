@@ -402,10 +402,13 @@ public class GameLogic {
 						if (combo == 0) {
 							combo = 8;
 						} else {
+							combo *= 2;
 							if (!isIA) {
 								Pweek.getInstance().getGameService().unlockAchievement(Achievement.FIRST_COMBO);
+								if (combo == 8 * 2 * 2 * 2 * 2) {
+									Pweek.getInstance().getGameService().unlockAchievement(Achievement.CHAIN);
+								}
 							}
-							combo *= 2;
 						}
 					} else {
 						state = State.GARBAGE;
