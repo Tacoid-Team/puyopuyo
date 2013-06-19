@@ -23,7 +23,7 @@ public class LeaderboardButtonActor extends Button {
 	}
 
 	static public LeaderboardButtonActor createLeaderboardButton(TextureAtlas atlasButtons) {
-		TextureRegion onRegion = new TextureRegion(atlasButtons.findRegion("sound-on"));
+		TextureRegion onRegion = new TextureRegion(atlasButtons.findRegion("leaderboard"));
 		
 		return new LeaderboardButtonActor(onRegion, onRegion, onRegion);
 	}

@@ -3,44 +3,58 @@ pages.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-frame-ninepatch
+achievement
   rotate: false
   xy: 0, 64
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-music-off
+frame-ninepatch
   rotate: false
   xy: 0, 0
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-music-on
+leaderboard
   rotate: false
   xy: 64, 64
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-pause_button
+music-off
   rotate: false
   xy: 64, 0
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-sound-off
+music-on
   rotate: false
   xy: 128, 64
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-sound-on
+pause_button
   rotate: false
   xy: 128, 0
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+sound-off
+  rotate: false
+  xy: 192, 64
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+sound-on
+  rotate: false
+  xy: 192, 0
   size: 64, 64
   orig: 64, 64
   offset: 0, 0

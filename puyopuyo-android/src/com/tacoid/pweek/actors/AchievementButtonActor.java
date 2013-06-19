@@ -23,7 +23,7 @@ public class AchievementButtonActor extends Button {
 	}
 
 	static public AchievementButtonActor createAchievementButton(TextureAtlas atlasButtons) {
-		TextureRegion onRegion = new TextureRegion(atlasButtons.findRegion("sound-on"));
+		TextureRegion onRegion = new TextureRegion(atlasButtons.findRegion("achievement"));
 		
 		return new AchievementButtonActor(onRegion, onRegion, onRegion);
 	}

@@ -14,6 +14,7 @@ public class PweekDesktop implements IActivityRequestHandler, IGameService {
 			application = new PweekDesktop();
 		}
 		Pweek.getInstance().setDesktopMode(true);
+		Pweek.getInstance().setGameService(application);
 		TrackingManager.setTrackerType(TrackerType.DUMMY);
 		Pweek.setHandler(application);
 		new LwjglApplication(Pweek.getInstance(), "Pweek",  1280, 768, false);
@@ -35,7 +36,6 @@ public class PweekDesktop implements IActivityRequestHandler, IGameService {
 	@Override
 	public void login() {
 		System.out.println("GameService : Login");
-		
 	}
 
 	@Override
