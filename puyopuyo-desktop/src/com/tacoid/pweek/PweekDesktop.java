@@ -78,4 +78,10 @@ public class PweekDesktop implements IActivityRequestHandler, IGameService {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public int getVolume() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

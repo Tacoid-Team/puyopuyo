@@ -1,7 +1,9 @@
 package com.tacoid.pweek;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -377,5 +379,11 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 				break;
 			}
 		}
+	}
+	
+	@Override
+	public int getVolume() {
+		AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+		return audio.getStreamVolume(AudioManager.STREAM_MUSIC);
 	}
 }

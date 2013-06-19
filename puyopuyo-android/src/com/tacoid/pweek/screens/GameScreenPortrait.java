@@ -13,6 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.Controller;
+import com.tacoid.pweek.IGameService.Achievement;
+import com.tacoid.pweek.MusicPlayer;
 import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.SoundPlayer;
 import com.tacoid.pweek.Pweek.ScreenOrientation;
@@ -59,6 +61,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 	private NextPieceActor nextPieceActor;
 	private ExplosionActor explosionActor;
 	private boolean started;
+	private int volumeStart;
 	
 	protected class PauseButton extends Button {
 
@@ -247,6 +250,15 @@ public abstract class GameScreenPortrait implements GameScreen {
 	}
 
 	private void gameOver() {
+		int volumeEnd;
+		if (!MusicPlayer.getInstance().isMuted()) {
+			volumeEnd = Pweek.getInstance().getHandler().getVolume();
+		} else {
+			volumeEnd = 0;
+		}
+		if (volumeEnd > 5 && volumeStart > 5) {
+			Pweek.getInstance().getGameService().unlockAchievement(Achievement.DEAF);
+		}
 		controllerActor.setTouchable(Touchable.disabled);
 		pauseButton.setTouchable(Touchable.disabled);
 		gameOver.show(GameOverType.GAMEOVER);
@@ -265,6 +277,11 @@ public abstract class GameScreenPortrait implements GameScreen {
 
 	@Override
 	public void gameStart() {
+		if (!MusicPlayer.getInstance().isMuted()) {
+			this.volumeStart = Pweek.getInstance().getHandler().getVolume();
+		} else {
+			this.volumeStart = 0;
+		}
 		this.gameResume();
 		this.started = true;
 	}
