@@ -13,8 +13,10 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.Controller;
+import com.tacoid.pweek.MusicPlayer;
 import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.SoundPlayer;
+import com.tacoid.pweek.IGameService.Achievement;
 import com.tacoid.pweek.Pweek.ScreenOrientation;
 import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.pweek.SoundPlayer.SoundType;
@@ -67,6 +69,7 @@ public class GameVersusScreen implements GameScreen {
 	private ExplosionActor explosionActor;
 	private ExplosionActor explosionActorIA;
 	private boolean started;
+	private int volumeStart;
 
 	private void addButton(Button button, int x, int y) {
 		stage.addActor(button);
@@ -298,9 +301,22 @@ public class GameVersusScreen implements GameScreen {
 	}
 
 	private void gameOver() {
-		if(gameLogic.getState() == State.LOST){
+		int volumeEnd;
+		if (!MusicPlayer.getInstance().isMuted()) {
+			volumeEnd = Pweek.getInstance().getHandler().getVolume();
+		} else {
+			volumeEnd = 0;
+		}
+		if (volumeEnd > 5 && volumeStart > 5) {
+			Pweek.getInstance().getGameService().unlockAchievement(Achievement.DEAF);
+		}
+		
+		if (gameLogic.getState() == State.LOST){
 			gameOver.show(GameOverType.LOSE);
 		} else {
+			if (level == 3) {
+				Pweek.getInstance().getGameService().unlockAchievement(Achievement.FOREVER_ALONE);
+			}
 			gameOver.show(GameOverType.WIN);
 		}
 		controllerActor.setTouchable(Touchable.disabled);
@@ -322,6 +338,11 @@ public class GameVersusScreen implements GameScreen {
 	}
 
 	public void gameStart() {
+		if (!MusicPlayer.getInstance().isMuted()) {
+			this.volumeStart = Pweek.getInstance().getHandler().getVolume();
+		} else {
+			this.volumeStart = 0;
+		}
 		this.gameResume();
 		this.started = true;
 	}
