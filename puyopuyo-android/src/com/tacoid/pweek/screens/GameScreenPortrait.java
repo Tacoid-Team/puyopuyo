@@ -104,8 +104,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		gridActor = new GridActor(Pweek.getInstance().atlasPuyo, gameLogic, Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), 280, 325, 70, puyoSize);
 		explosionActor = new ExplosionActor(Pweek.getInstance().atlasPuyo, gameLogic, Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), 280, 325, 70, puyoSize);
 		nextPieceActor = new NextPieceActor(Pweek.getInstance().atlasPuyo, gameLogic, 68, 920, puyoSize);
-		ScoreActor scoreActor = new ScoreActor(Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), gameLogic, 520, 1245);
-		HighScoreActor highScoreActor = new HighScoreActor(Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), this, 218, 1250);
+		ScoreActor scoreActor = new ScoreActor(Pweek.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), gameLogic, 500, 1245);
 		
 		TextureRegion pauseRegion = new TextureRegion(Pweek.getInstance().atlasBouttons.findRegion("pause_button"));
 		stage.addActor(new BackgroundActor(ScreenOrientation.PORTRAIT));
@@ -113,7 +112,6 @@ public abstract class GameScreenPortrait implements GameScreen {
 		stage.addActor(gridActor);
 		stage.addActor(nextPieceActor);
 		stage.addActor(scoreActor);
-		stage.addActor(highScoreActor);
 		stage.addActor(explosionActor);
 
 		controllerActor = new ControlerActor(ScreenOrientation.PORTRAIT, gameLogic);
@@ -121,8 +119,8 @@ public abstract class GameScreenPortrait implements GameScreen {
 		
 		pauseButton = new PauseButton(pauseRegion);
 		addButton(pauseButton,10,VIRTUAL_HEIGHT-10-pauseRegion.getRegionHeight());
-		addButton(MusicButtonActor.createMusicButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-64, VIRTUAL_HEIGHT-64);
-		addButton(SoundButtonActor.createSoundButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-2*64-10, VIRTUAL_HEIGHT-64);
+		addButton(MusicButtonActor.createMusicButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-90, VIRTUAL_HEIGHT-90);
+		addButton(SoundButtonActor.createSoundButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-180, VIRTUAL_HEIGHT-90);
 		
 		boolean show = false;
 		if (gameOver != null) {
