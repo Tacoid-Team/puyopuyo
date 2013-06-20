@@ -384,6 +384,12 @@ public class GameLogic {
 				if (first) {
 					removes = resolve();
 					for (Explosion r : removes) {
+						if (r.getNbPuyos() >= 8) {
+							Pweek.getInstance().getGameService().unlockAchievement(Achievement.MEGA_EXPLODE);
+							if (r.getNbPuyos() >= 10) {
+								Pweek.getInstance().getGameService().unlockAchievement(Achievement.MASTERSTROKE);
+							}
+						}
 						r.points = r.getNbPuyos() * 10 * (r.getNbPuyos() - 3 + combo);
 						if (opponent != null) {
 							float nuisance = r.points / 70.0f + leftoverNuisance;
