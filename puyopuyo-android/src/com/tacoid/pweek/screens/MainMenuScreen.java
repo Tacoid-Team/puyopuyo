@@ -100,10 +100,10 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		menu.initEnd();
 		
 		stage.addActor(menu);
-		addButton(MusicButtonActor.createMusicButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-64, VIRTUAL_HEIGHT-64);
-		addButton(SoundButtonActor.createSoundButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-2*64-10, VIRTUAL_HEIGHT-64);
-		addButton(LeaderboardButtonActor.createLeaderboardButton(Pweek.getInstance().atlasBouttons),0, VIRTUAL_HEIGHT-64);
-		addButton(AchievementButtonActor.createAchievementButton(Pweek.getInstance().atlasBouttons),64 + 10, VIRTUAL_HEIGHT-64);
+		addButton(MusicButtonActor.createMusicButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-90, VIRTUAL_HEIGHT-90);
+		addButton(SoundButtonActor.createSoundButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-180, VIRTUAL_HEIGHT-90);
+		addButton(LeaderboardButtonActor.createLeaderboardButton(Pweek.getInstance().atlasBouttons), 10, VIRTUAL_HEIGHT-90);
+		addButton(AchievementButtonActor.createAchievementButton(Pweek.getInstance().atlasBouttons), 100, VIRTUAL_HEIGHT-90);
 
 		menu.hideInstant();
 		menu.show("main");

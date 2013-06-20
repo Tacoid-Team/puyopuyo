@@ -8,7 +8,7 @@
         minWidth: 16,
         minHeight: 16,
         maxWidth: 256,
-        maxHeight: 128,
+        maxHeight: 256,
         stripWhitespaceX: false,
         stripWhitespaceY: false,
         alphaThreshold: 0,

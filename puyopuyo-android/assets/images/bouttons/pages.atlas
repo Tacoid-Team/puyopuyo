@@ -5,56 +5,56 @@ filter: Nearest,Nearest
 repeat: none
 achievement
   rotate: false
-  xy: 0, 64
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-frame-ninepatch
-  rotate: false
-  xy: 0, 0
-  size: 64, 64
-  orig: 64, 64
+  xy: 0, 160
+  size: 80, 80
+  orig: 80, 80
   offset: 0, 0
   index: -1
 leaderboard
   rotate: false
-  xy: 64, 64
-  size: 64, 64
-  orig: 64, 64
+  xy: 0, 80
+  size: 80, 80
+  orig: 80, 80
   offset: 0, 0
   index: -1
 music-off
   rotate: false
-  xy: 64, 0
-  size: 64, 64
-  orig: 64, 64
+  xy: 80, 160
+  size: 80, 80
+  orig: 80, 80
   offset: 0, 0
   index: -1
 music-on
   rotate: false
-  xy: 128, 64
+  xy: 0, 0
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+sound-off
+  rotate: false
+  xy: 80, 80
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+sound-on
+  rotate: false
+  xy: 160, 160
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+frame-ninepatch
+  rotate: false
+  xy: 80, 16
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 pause_button
   rotate: false
-  xy: 128, 0
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-sound-off
-  rotate: false
-  xy: 192, 64
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-sound-on
-  rotate: false
-  xy: 192, 0
+  xy: 160, 96
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
