@@ -25,7 +25,6 @@ import com.tacoid.pweek.actors.ControlerActor;
 import com.tacoid.pweek.actors.ExplosionActor;
 import com.tacoid.pweek.actors.GameOverActor;
 import com.tacoid.pweek.actors.GridActor;
-import com.tacoid.pweek.actors.HighScoreActor;
 import com.tacoid.pweek.actors.MusicButtonActor;
 import com.tacoid.pweek.actors.NextPieceActor;
 import com.tacoid.pweek.actors.PauseMenu;

@@ -2,6 +2,7 @@ package com.tacoid.pweek.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
@@ -18,6 +19,7 @@ import com.tacoid.pweek.MusicPlayer;
 import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.ScoreManager;
 import com.tacoid.pweek.SoundPlayer;
+import com.tacoid.pweek.IGameService.Achievement;
 import com.tacoid.pweek.MusicPlayer.MusicType;
 import com.tacoid.pweek.Pweek.ScreenOrientation;
 import com.tacoid.pweek.ScoreManager.GameType;
@@ -38,6 +40,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 	private Stage stage;
 	private SwingMenu menu;
 	int i = 0;
+	private Preferences pref_game_played;
 	
 	private MainMenuScreen() {
 		//init();
@@ -50,6 +53,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 	}
 	
 	public void init() {
+		pref_game_played = Gdx.app.getPreferences("game_played");
 		MusicPlayer.getInstance().setVolume(0.8f);
 		MusicPlayer.getInstance().playMusic(MusicType.MAIN, true);
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
@@ -121,6 +125,16 @@ public class MainMenuScreen implements Screen, InputProcessor {
 			return instance;
 	}
 
+	protected void check_achievement_curious() {
+		boolean solo = pref_game_played.getBoolean("solo");
+		boolean chrono = pref_game_played.getBoolean("chrono");
+		boolean versus = pref_game_played.getBoolean("versus");
+		
+		if (solo && chrono && versus) {
+			Pweek.getInstance().getGameService().unlockAchievement(Achievement.CURIOUS);
+		}
+	}
+	
 	@Override
 	public void dispose() {
 		Gdx.app.log("MainScreen", "paused");
@@ -204,7 +218,9 @@ public class MainMenuScreen implements Screen, InputProcessor {
 						int pointer, int button) {
 					GameSoloScreen.getInstance().init();
 					TrackingManager.getTracker().trackEvent("gameplay", "game_start", "solo", null);
-					
+					pref_game_played.putBoolean("solo", true);
+					pref_game_played.flush();
+					check_achievement_curious();
 					Pweek.getInstance().setScreen(GameSoloScreen.getInstance());
 				}
 			});
@@ -251,7 +267,9 @@ public class MainMenuScreen implements Screen, InputProcessor {
 					// TODO Auto-generated method stub
 					GameTimeAttackScreen.getInstance().init();
 					TrackingManager.getTracker().trackEvent("gameplay", "game_start", "chrono", null);
-
+					pref_game_played.putBoolean("chrono", true);
+					pref_game_played.flush();
+					check_achievement_curious();
 					Pweek.getInstance().setScreen(GameTimeAttackScreen.getInstance());
 				}
 			});
@@ -305,6 +323,9 @@ public class MainMenuScreen implements Screen, InputProcessor {
 						GameVersusScreen.getInstance().init();
 						TrackingManager.getTracker().trackEvent("gameplay", "game_start", "versus_"+level, null);
 						Pweek.getInstance().getHandler().showAds(false);
+						pref_game_played.putBoolean("versus", true);
+						pref_game_played.flush();
+						check_achievement_curious();
 						Pweek.getInstance().setScreen(GameVersusScreen.getInstance());
 						menu.switchMenu("main");
 					}
