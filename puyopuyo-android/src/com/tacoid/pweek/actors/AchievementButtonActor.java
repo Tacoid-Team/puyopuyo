@@ -1,13 +1,11 @@
 package com.tacoid.pweek.actors;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.Pweek;
-import com.tacoid.pweek.SoundPlayer;
 
 public class AchievementButtonActor extends Button {
 
@@ -26,15 +24,5 @@ public class AchievementButtonActor extends Button {
 		TextureRegion onRegion = new TextureRegion(atlasButtons.findRegion("achievement"));
 		
 		return new AchievementButtonActor(onRegion, onRegion, onRegion);
-	}
-
-	public void draw (SpriteBatch batch, float parentAlpha) {
-		if(SoundPlayer.getInstance().isMuted()) {
-			this.setChecked(true);
-		} else {
-			this.setChecked(false);
-		}
-		super.draw(batch, parentAlpha);
-		
 	}
 }

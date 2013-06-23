@@ -3,6 +3,13 @@ package com.tacoid.pweek;
 import com.tacoid.pweek.ScoreManager.GameType;
 
 public interface IGameService {
+
+	public enum LeaderboardType {
+		SOLO,
+		CHRONO,
+		ALL
+	}
+	
 	public enum Achievement {
 		NINJA(false),
 		FOREVER_ALONE(false),
@@ -34,7 +41,7 @@ public interface IGameService {
 	public void submitScore(GameType type, int score);
 
 	//gets the scores and displays them threw googles default widget
-	public void showAllLeaderboards();
+	public void showLeaderboard(LeaderboardType type);
 
 	public void showAchievements();
 	

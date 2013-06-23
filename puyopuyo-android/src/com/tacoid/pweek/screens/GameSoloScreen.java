@@ -1,7 +1,9 @@
 package com.tacoid.pweek.screens;
 
 import com.tacoid.pweek.Pweek;
+import com.tacoid.pweek.IGameService.LeaderboardType;
 import com.tacoid.pweek.ScoreManager.GameType;
+import com.tacoid.pweek.actors.LeaderboardButtonActor;
 import com.tacoid.pweek.actors.LevelActor;
 
 public class GameSoloScreen extends GameScreenPortrait {
@@ -19,6 +21,7 @@ public class GameSoloScreen extends GameScreenPortrait {
 		super.initGraphics();
 		LevelActor levelActor = new LevelActor(Pweek.getInstance().manager, this, 140, 800);
 		stage.getRoot().addActorBefore(gameOver, levelActor);
+		addButton(LeaderboardButtonActor.createLeaderboardButton(Pweek.getInstance().atlasBouttons, LeaderboardType.SOLO), 100, VIRTUAL_HEIGHT-90);
 	}
 
 	@Override

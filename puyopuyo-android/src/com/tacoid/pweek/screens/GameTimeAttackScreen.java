@@ -1,7 +1,9 @@
 package com.tacoid.pweek.screens;
 
 import com.tacoid.pweek.Pweek;
+import com.tacoid.pweek.IGameService.LeaderboardType;
 import com.tacoid.pweek.ScoreManager.GameType;
+import com.tacoid.pweek.actors.LeaderboardButtonActor;
 import com.tacoid.pweek.actors.TimeActor;
 import com.tacoid.pweek.logic.State;
 
@@ -13,6 +15,7 @@ public class GameTimeAttackScreen extends GameScreenPortrait implements IGameTim
 		super.initGraphics();
 		TimeActor timeActor = new TimeActor(Pweek.getInstance().manager, this, 140, 800);
 		stage.getRoot().addActorBefore(gameOver, timeActor);
+		addButton(LeaderboardButtonActor.createLeaderboardButton(Pweek.getInstance().atlasBouttons, LeaderboardType.SOLO), 100, VIRTUAL_HEIGHT-90);
 	}
 
 	public static GameTimeAttackScreen getInstance() {

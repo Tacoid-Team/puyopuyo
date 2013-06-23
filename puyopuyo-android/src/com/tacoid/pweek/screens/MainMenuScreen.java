@@ -1,6 +1,7 @@
 package com.tacoid.pweek.screens;
 
 import com.badlogic.gdx.Gdx;
+
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
@@ -31,6 +32,7 @@ import com.tacoid.pweek.actors.MusicButtonActor;
 import com.tacoid.pweek.actors.SoundButtonActor;
 import com.tacoid.pweek.actors.SwingMenu;
 import com.tacoid.tracking.TrackingManager;
+import com.tacoid.pweek.IGameService.LeaderboardType;
 
 
 public class MainMenuScreen implements Screen, InputProcessor {
@@ -106,7 +108,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		stage.addActor(menu);
 		addButton(MusicButtonActor.createMusicButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-90, VIRTUAL_HEIGHT-90);
 		addButton(SoundButtonActor.createSoundButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-180, VIRTUAL_HEIGHT-90);
-		addButton(LeaderboardButtonActor.createLeaderboardButton(Pweek.getInstance().atlasBouttons), 10, VIRTUAL_HEIGHT-90);
+		addButton(LeaderboardButtonActor.createLeaderboardButton(Pweek.getInstance().atlasBouttons, LeaderboardType.ALL), 10, VIRTUAL_HEIGHT-90);
 		addButton(AchievementButtonActor.createAchievementButton(Pweek.getInstance().atlasBouttons), 100, VIRTUAL_HEIGHT-90);
 
 		menu.hideInstant();

@@ -39,8 +39,8 @@ import com.tacoid.tracking.TrackingManager;
 
 public abstract class GameScreenPortrait implements GameScreen {
 	
-	private static final int VIRTUAL_WIDTH = 768;
-	private static final int VIRTUAL_HEIGHT = 1280;
+	protected static final int VIRTUAL_WIDTH = 768;
+	protected static final int VIRTUAL_HEIGHT = 1280;
 	
 	private int puyoSize = 64;
 
@@ -79,7 +79,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		}
 	}
 
-	private void addButton(Button button, int x, int y) {
+	protected void addButton(Button button, int x, int y) {
 		stage.addActor(button);
 		button.setX(x);
 		button.setY(y);
