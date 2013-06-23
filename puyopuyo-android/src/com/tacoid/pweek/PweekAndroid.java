@@ -374,6 +374,9 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 			case OCD:
 				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_OCD));
 				break;
+			case P10K:
+				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_P10K));
+				break;
 			default:
 				System.out.println("Achievement non implémenté.");
 				break;

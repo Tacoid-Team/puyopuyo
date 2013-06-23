@@ -14,6 +14,7 @@ public interface IGameService {
 		AFK(false),
 		DEAF(false),
 		FANBOY(true),
+		P10K(false),
 		CURIOUS(false);
 		
 		private Achievement(boolean i) {
