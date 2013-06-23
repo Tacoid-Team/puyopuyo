@@ -253,7 +253,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		} else {
 			volumeEnd = 0;
 		}
-		if (volumeEnd > 80 && volumeStart > 80 && elapsedTime > 60) {
+		if (volumeEnd > 80 && volumeStart > 80 && elapsedTime > 600) {
 			Pweek.getInstance().getGameService().unlockAchievement(Achievement.DEAF);
 		}
 		controllerActor.setTouchable(Touchable.disabled);

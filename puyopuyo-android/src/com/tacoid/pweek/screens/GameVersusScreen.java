@@ -307,7 +307,7 @@ public class GameVersusScreen implements GameScreen {
 		} else {
 			volumeEnd = 0;
 		}
-		if (volumeEnd > 80 && volumeStart > 80 && elapsedTime > 60) {
+		if (volumeEnd > 80 && volumeStart > 80 && elapsedTime > 600) {
 			Pweek.getInstance().getGameService().unlockAchievement(Achievement.DEAF);
 		}
 		
