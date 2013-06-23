@@ -384,6 +384,8 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	@Override
 	public int getVolume() {
 		AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-		return audio.getStreamVolume(AudioManager.STREAM_MUSIC);
+		int vol = audio.getStreamVolume(AudioManager.STREAM_MUSIC) * 100;
+		
+		return vol / audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 	}
 }
