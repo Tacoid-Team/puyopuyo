@@ -3,6 +3,7 @@ package com.tacoid.pweek;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -61,14 +62,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 				adParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 				adParams.addRule(RelativeLayout.CENTER_VERTICAL);
 				adView.setLayoutParams(adParams);
-				if (android.os.Build.VERSION.SDK_INT >= 11) {
-					adView.setRotation(-90.0f);
-					if (adView.getWidth() > 0) {
-						adView.setTranslationX(adView.getWidth() / 2 - adView.getHeight() / 2);
-					} else {
-						adView.setTranslationX(AdSize.BANNER.getWidth() / 2 - AdSize.BANNER.getHeight() / 2);
-					}
-				}
+				
 				break;
 			}
 			case LANDSCAPE_ADS:
@@ -79,10 +73,6 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 				adParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 				adParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
 				adView.setLayoutParams(adParams);
-				if (android.os.Build.VERSION.SDK_INT >= 11) {
-					adView.setRotation(0.0f);
-					adView.setTranslationX(0.0f);
-				}
 				break;
 			}
 			}
@@ -171,7 +161,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	@Override
 	public void setPortrait(boolean isPortrait) {
 		this.isPortrait = isPortrait;
-		handler.sendEmptyMessage(isPortrait ? PORTRAIT_ADS : LANDSCAPE_ADS);
+		this.setRequestedOrientation(isPortrait ? ActivityInfo.SCREEN_ORIENTATION_PORTRAIT : ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 	}
 
 	@Override

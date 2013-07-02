@@ -5,7 +5,6 @@ import java.util.Calendar;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.tacoid.pweek.Pweek.ScreenOrientation;
 import com.tacoid.pweek.logic.GameLogic;
 import com.tacoid.pweek.screens.GameScreen;
 
@@ -87,25 +86,14 @@ public class Controller implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int x, int y, int pointer, int button) {
-		last = Calendar.getInstance().getTimeInMillis();
-		if (gameScreen.getOrientation() == ScreenOrientation.PORTRAIT) {
-			this.downX = -y;
-			this.downY = x;
-		} else {
-			this.downX = x;
-			this.downY = y;
-		}
+		last = Calendar.getInstance().getTimeInMillis();		
+		this.downX = x;
+		this.downY = y;
 		return stage.touchDown(x, y, pointer, button);
 	}
 
 	@Override
-	public boolean touchDragged(int x, int y, int arg2) {
-		if (gameScreen.getOrientation() == ScreenOrientation.PORTRAIT) {
-			int buf = x;
-			x = -y;
-			y = buf;
-		}
-		
+	public boolean touchDragged(int x, int y, int arg2) {		
 		if (x - downX > gameScreen.getPuyoSize()) {
 			if (gameLogic.moveRight()) {
 				downX = x;
@@ -131,12 +119,7 @@ public class Controller implements InputProcessor {
 	public boolean touchUp(int x, int y, int pointer, int button) {
 		if (stage.touchUp(x, y, pointer, button)) {
 			return true;
-		} else { 
-			if (gameScreen.getOrientation() == ScreenOrientation.PORTRAIT) {
-				int buf = x;
-				x = -y;
-				y = buf;
-			}
+		} else {
 			if (Math.abs(this.downX - x) < 20 && Math.abs(this.downY - y) < 20 &&    
 					Calendar.getInstance().getTimeInMillis() - last < 200) {
 				gameLogic.rotateLeft();

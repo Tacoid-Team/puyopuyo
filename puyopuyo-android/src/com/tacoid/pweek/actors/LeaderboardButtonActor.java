@@ -1,5 +1,6 @@
 package com.tacoid.pweek.actors;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -10,6 +11,8 @@ import com.tacoid.pweek.Pweek;
 
 public class LeaderboardButtonActor extends Button {
 	
+	private LeaderboardType toOpen;
+	
 	private LeaderboardButtonActor(TextureRegion regionUp, TextureRegion regionDown,
 			TextureRegion regionChecked) {
 		super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown), new TextureRegionDrawable(regionChecked));
@@ -18,15 +21,26 @@ public class LeaderboardButtonActor extends Button {
 	static public LeaderboardButtonActor createLeaderboardButton(TextureAtlas atlasButtons, final LeaderboardType type) {
 		TextureRegion onRegion = new TextureRegion(atlasButtons.findRegion("leaderboard"));
 		
-		LeaderboardButtonActor instance = new LeaderboardButtonActor(onRegion, onRegion, onRegion);
+		final LeaderboardButtonActor instance = new LeaderboardButtonActor(onRegion, onRegion, onRegion);
 		
 		instance.addListener(new com.badlogic.gdx.scenes.scene2d.utils.ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				Pweek.getInstance().getGameService().showLeaderboard(type);
+				instance.toOpen = type;
+
 			}
 		});
 		
 		return instance;
+	}
+	
+	@Override
+	public void draw(SpriteBatch arg0, float arg1) {
+		if (toOpen != null) {
+			Pweek.getInstance().getGameService().showLeaderboard(toOpen);
+			toOpen = null;
+		} else {
+			super.draw(arg0, arg1);
+		}
 	}
 }
