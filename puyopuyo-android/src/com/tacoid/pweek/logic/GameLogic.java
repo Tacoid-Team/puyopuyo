@@ -160,7 +160,7 @@ public class GameLogic {
 	}
 
 	public void rotateRight() {
-		if (state == State.MOVE) {
+		if (state == State.MOVE && !paused) {
 			if(!isIA) {
 				SoundPlayer.getInstance().playSound(SoundType.ROTATE, 0.5f, true);
 			}
@@ -169,7 +169,7 @@ public class GameLogic {
 	}
 
 	public void rotateLeft() {
-		if (state == State.MOVE) {
+		if (state == State.MOVE && !paused) {
 			if(!isIA) {
 				SoundPlayer.getInstance().playSound(SoundType.ROTATE, 0.5f, true);
 			}
@@ -178,7 +178,7 @@ public class GameLogic {
 	}
 
 	public void moveDown() {
-		if (state == State.MOVE) {
+		if (state == State.MOVE && !paused) {
 			piece.descendre(grid);
 			if(!isIA) {
 				SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.2f, true);
@@ -187,7 +187,7 @@ public class GameLogic {
 	}
 
 	public boolean moveLeft() {
-		if (state == State.MOVE) {
+		if (state == State.MOVE && !paused) {
 			if (piece.moveLeft(grid)) {
 				if(!isIA) {
 					SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.2f, true);
@@ -199,7 +199,7 @@ public class GameLogic {
 	}
 
 	public boolean moveRight() {
-		if (state == State.MOVE) {
+		if (state == State.MOVE && !paused) {
 			if (piece.moveRight(grid)) {
 				if(!isIA) {
 					SoundPlayer.getInstance().playSound(SoundType.MOVE, 0.2f, true);
@@ -211,7 +211,7 @@ public class GameLogic {
 	}
 
 	public void dropPiece() {
-		if (state == State.MOVE) {
+		if (state == State.MOVE && !paused) {
 			state = State.POSE;
 		}
 	}
