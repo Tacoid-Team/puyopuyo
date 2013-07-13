@@ -1,6 +1,8 @@
 package com.tacoid.pweekmini;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -141,6 +143,14 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	public void onReceiveAd(Ad arg0) {
 		TrackingManager.getTracker().trackEvent("Ads","adMob", "onReceiveAd", null);
 
+	}
+
+	@Override
+	public int getVolume() {
+		AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+		int vol = audio.getStreamVolume(AudioManager.STREAM_MUSIC) * 100;
+		
+		return vol / audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 	}
 
 }

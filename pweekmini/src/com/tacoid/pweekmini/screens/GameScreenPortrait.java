@@ -57,6 +57,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 	private GameOverActor gameOver;
 	private StartActor startActor;
 	private NextPieceActor nextPieceActor;
+	private boolean started = false;
 	
 	protected class PauseButton extends Button {
 
@@ -83,7 +84,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 
 	public GameScreenPortrait() {
 		elapsedTime = 0;
-		gameLogic = new GameLogic();
+		gameLogic = new GameLogic(false);
 	}
 	
 	public int getPuyoSize() {
@@ -229,6 +230,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		gameOver.hide();
 		startActor.show();
 		elapsedTime = 0;
+		started = false;
 	}
 
 	private void gameOver() {
@@ -292,5 +294,15 @@ public abstract class GameScreenPortrait implements GameScreen {
 	@Override
 	public boolean isGamePaused() {
 		return gamePaused;
+	}
+	
+	@Override
+	public void gameStart() {
+		started = true;
+	}
+	
+	@Override
+	public boolean isGameStarted() {
+		return this.started;
 	}
 }

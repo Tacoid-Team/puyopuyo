@@ -21,8 +21,7 @@ public interface IGameService {
 		AFK(false),
 		DEAF(false),
 		FANBOY(true),
-		P10K(false),
-		CURIOUS(false);
+		P10K(false);
 		
 		private Achievement(boolean i) {
 			incremental=i;

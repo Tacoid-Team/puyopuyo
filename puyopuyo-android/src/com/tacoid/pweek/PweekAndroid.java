@@ -337,9 +337,6 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 			case CHAIN:
 				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_CHAIN));
 				break;
-			case CURIOUS:
-				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_CURIOUS));
-				break;
 			case DEAF:
 				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_DEAF));
 				break;

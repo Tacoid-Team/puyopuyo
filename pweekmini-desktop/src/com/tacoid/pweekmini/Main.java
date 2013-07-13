@@ -38,4 +38,10 @@ public class Main implements IActivityRequestHandler {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public int getVolume() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
