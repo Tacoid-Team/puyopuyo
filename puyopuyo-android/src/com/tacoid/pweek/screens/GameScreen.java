@@ -13,9 +13,7 @@ public interface GameScreen extends Screen {
 	public boolean isGamePaused();
 	
 	public void gameResume();
-	
-	public ScreenOrientation getOrientation();
-	
+		
 	public float getHeight();
 	
 	public float getWidth();
@@ -37,4 +35,6 @@ public interface GameScreen extends Screen {
 	public void gameStart();
 
 	public boolean isGameStarted();
+
+	public ScreenOrientation getOrientation();
 }

@@ -33,7 +33,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	
 	/* Google Game Service attributes */
 	private GameHelper aHelper;
-	private final static int LANDSCAPE_ADS = 2;
+	private final static int SETUP_ADS = 2;
 	private final static int SHOW_ADS = 1;
 	private final static int HIDE_ADS = 0;
 	
@@ -53,7 +53,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 				adView.setVisibility(View.GONE);
 				break;
 			}
-			case LANDSCAPE_ADS:
+			case SETUP_ADS:
 			{
 				RelativeLayout.LayoutParams adParams = 
 						new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, 
@@ -149,7 +149,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	@Override
 	public void setPortrait(boolean isPortrait) {
 		this.isPortrait = isPortrait;
-		handler.sendEmptyMessage(LANDSCAPE_ADS);
+		handler.sendEmptyMessage(SETUP_ADS);
 		this.setRequestedOrientation(isPortrait ? ActivityInfo.SCREEN_ORIENTATION_PORTRAIT : ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 	}
 
