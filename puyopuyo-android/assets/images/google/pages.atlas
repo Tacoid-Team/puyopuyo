@@ -1,0 +1,26 @@
+
+pages.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+signin_Medium_base_44dp
+  rotate: false
+  xy: 1, 1
+  size: 320, 108
+  orig: 320, 108
+  offset: 0, 0
+  index: -1
+signin_Medium_hover_44dp
+  rotate: false
+  xy: 323, 1
+  size: 320, 108
+  orig: 320, 108
+  offset: 0, 0
+  index: -1
+signin_Medium_press_44dp
+  rotate: false
+  xy: 645, 1
+  size: 320, 108
+  orig: 320, 108
+  offset: 0, 0
+  index: -1

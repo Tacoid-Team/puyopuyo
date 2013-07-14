@@ -38,7 +38,8 @@ public class LanguageScreen implements Screen {
 					I18nManager.getInstance().setLanguage(lang);
 					PreferenceManager.getInstance().setPreference(Preference.LANGUAGE,lang.toString());
 					puyopuyo.loadLocalizedAssets();
-					puyopuyo.setScreen(MainMenuScreen.getInstance());				}
+					puyopuyo.setScreen(GameServicesScreen.getInstance());
+				}
 			});
 		}		
 	}
@@ -71,8 +72,6 @@ public class LanguageScreen implements Screen {
 		stage.addActor(new BackgroundActor(ScreenOrientation.LANDSCAPE));
 		stage.addActor(enButton);
 		stage.addActor(frButton);
-		
-		//stage.addActor(new loadingActor());
 	}
 
 	@Override

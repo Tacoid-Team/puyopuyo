@@ -24,6 +24,7 @@ public class PreferenceManager {
 		/* Lister ici l'ensemble des langages support�s */
 		LANGUAGE,
 		SOUND_STATE,
+		SIGNIN_GP,
 		MUSIC_STATE;
 	}
 	

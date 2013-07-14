@@ -34,12 +34,6 @@ public class LoadingScreen implements Screen {
 							  Math.max(puyopuyo.manager.getProgress() * (VIRTUAL_WIDTH-64),10), 
 							  32);
 		}
-
-		@Override
-		public Actor hit(float arg0, float arg1, boolean touchable) {
-			// TODO Auto-generated method stub
-			return null;
-		}
 		
 	}
 	

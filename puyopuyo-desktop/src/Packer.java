@@ -11,5 +11,6 @@ public class Packer {
         TexturePacker2.process("images_src/panels/landscape", "images/panels/landscape", "pages");
         TexturePacker2.process("images_src/panels/portrait", "images/panels/portrait", "pages");
         TexturePacker2.process("images_src/bouttons", "images/bouttons", "pages");
+        TexturePacker2.process("images_src/google", "images/google", "pages");
     }
 }

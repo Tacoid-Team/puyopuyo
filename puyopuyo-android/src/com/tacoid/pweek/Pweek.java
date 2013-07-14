@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.tacoid.pweek.PreferenceManager.Preference;
+import com.tacoid.pweek.screens.GameServicesScreen;
 import com.tacoid.pweek.screens.GameSoloScreen;
 import com.tacoid.pweek.screens.GameTimeAttackScreen;
 import com.tacoid.pweek.screens.GameVersusScreen;
@@ -29,6 +30,7 @@ public class Pweek extends Game {
 	public TextureAtlas atlasPanelsLandscape;
 	public TextureAtlas atlasPanelsPortrait;
 	public TextureAtlas atlasBouttons;
+	public TextureAtlas atlasGoogle;
 	private boolean desktopMode;
 	public static final int VIRTUAL_WIDTH = 1280;
 	public static final int VIRTUAL_HEIGHT = 768;
@@ -81,11 +83,11 @@ public class Pweek extends Game {
 				String language = PreferenceManager.getInstance().getPreference(Preference.LANGUAGE);
 				MusicPlayer.getInstance().init(manager.get("sounds/AnoyingMusic.mp3", Music.class));
 				SoundPlayer.getInstance().init(manager);
+				
 				if(I18nManager.getInstance().setLanguage(language)) {
 					loadLocalizedAssets();
 					if (getScreen() == null) {
-						myGameService.login();
-						setScreen(MainMenuScreen.getInstance());
+						setScreen(GameServicesScreen.getInstance());
 						myRequestHandler.showAds(true);
 					} else {
 						getScreen().show();
@@ -136,6 +138,7 @@ public class Pweek extends Game {
 		/* fonts */
 		manager.load("images/font_score.fnt", BitmapFont.class);
 		manager.load("images/font_level.fnt", BitmapFont.class);
+		manager.load("images/font64.fnt", BitmapFont.class);
 		
 		/* Textures du menu */
 		manager.load("images/menu/flag-fr.png", Texture.class);
@@ -150,6 +153,7 @@ public class Pweek extends Game {
 		atlasPanelsLandscape = new TextureAtlas(Gdx.files.internal("images/panels/landscape/pages.atlas"));
 		atlasPanelsPortrait = new TextureAtlas(Gdx.files.internal("images/panels/portrait/pages.atlas"));
 		atlasBouttons = new TextureAtlas(Gdx.files.internal("images/bouttons/pages.atlas"));
+		atlasGoogle = new TextureAtlas(Gdx.files.internal("images/google/pages.atlas"));
 		
 		/*** Son ***/
 		manager.load("sounds/bleep.wav", Sound.class);
