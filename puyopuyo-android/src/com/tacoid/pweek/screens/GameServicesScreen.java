@@ -123,7 +123,7 @@ public class GameServicesScreen implements Screen {
 			String text = "Sign in with Google to share your scores and achievements with your friends.";
 			font.setScale(0.5f);
 			font.setColor(0f, 0f, 0f, 1f);
-			font.drawWrapped(batch, text, VIRTUAL_WIDTH - 800, origY - 200, 700);
+			font.drawWrapped(batch, text, VIRTUAL_WIDTH - 750, origY - 200, 700);
 		}
 	}
 	

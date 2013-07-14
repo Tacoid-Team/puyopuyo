@@ -49,6 +49,6 @@ public class PreferenceManager {
 	}
 	
 	public String getPreference(Preference pref) {
-		return prefs.getString(pref.toString());
+		return prefs.getString(pref.toString(), undefPref);
 	}
 }
