@@ -75,8 +75,8 @@ public class MainMenuScreen implements Screen, InputProcessor {
 			menu.addButton(new ChronoButton(chronoRegion, chronoRegion));
 			
 			/* Exit BUTTON */
-			TextureRegion exitRegion = Pweek.getInstance().atlasPlank.findRegion("quitter");
-			menu.addButton(new ExitButton(exitRegion, exitRegion));
+			//TextureRegion exitRegion = Pweek.getInstance().atlasPlank.findRegion("quitter");
+			//menu.addButton(new ExitButton(exitRegion, exitRegion));
 		}	
 		menu.initEnd();
 		
@@ -105,9 +105,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		addButton(SoundButtonActor.createSoundButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-180, VIRTUAL_HEIGHT-90);
 		GooglePlayActor googlePlayActor = new GooglePlayActor(Pweek.getInstance().getGameService(), LeaderboardType.ALL, Pweek.getInstance().atlasBouttons, Pweek.getInstance().atlasGoogle);
 		addButton(googlePlayActor, 10, VIRTUAL_HEIGHT-90);
-		//addButton(LeaderboardButtonActor.createLeaderboardButton(Pweek.getInstance().atlasBouttons, LeaderboardType.ALL), 10, VIRTUAL_HEIGHT-90);
-		//addButton(AchievementButtonActor.createAchievementButton(Pweek.getInstance().atlasBouttons), 100, VIRTUAL_HEIGHT-90);
-
+		
 		menu.hideInstant();
 		menu.show("main");
 		
