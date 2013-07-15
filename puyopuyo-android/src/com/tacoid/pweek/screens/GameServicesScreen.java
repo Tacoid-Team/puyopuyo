@@ -6,41 +6,20 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.PreferenceManager;
 import com.tacoid.pweek.PreferenceManager.Preference;
 import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.Pweek.ScreenOrientation;
 import com.tacoid.pweek.actors.BackgroundActor;
+import com.tacoid.pweek.actors.SignInButton;
 
 public class GameServicesScreen implements Screen {
-
-	private class SignInButton extends Button {
-
-		public SignInButton() {
-			super(new TextureRegionDrawable(new TextureRegion(Pweek.getInstance().atlasGoogle.findRegion("signin_Medium_base_44dp"))),
-					new TextureRegionDrawable(new TextureRegion(Pweek.getInstance().atlasGoogle.findRegion("signin_Medium_press_44dp"))));
-			
-			this.addListener(new ClickListener() {
-				@Override
-				public void clicked(InputEvent event, float x, float y) {
-					PreferenceManager.getInstance().setPreference(Preference.SIGNIN_GP, String.valueOf(true));
-					Pweek.getInstance().getGameService().login();
-					Pweek.getInstance().setScreen(MainMenuScreen.getInstance());
-				}
-			});
-			
-			this.setPosition(VIRTUAL_WIDTH - 800 - this.getWidth(), 305);
-		}
-	}
 	
 	private class NoThxActor extends Actor {
 		private BitmapFont font;
@@ -138,7 +117,16 @@ public class GameServicesScreen implements Screen {
 		stage.addActor(new BackgroundActor(ScreenOrientation.LANDSCAPE));
 		stage.addActor(new TextSignIn());
 		stage.addActor(new NoThxActor());
-		stage.addActor(new SignInButton());
+		SignInButton signInButton = SignInButton.create(Pweek.getInstance().getGameService(), Pweek.getInstance().atlasGoogle, true, false);
+		signInButton.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				super.clicked(event, x, y);
+				Pweek.getInstance().setScreen(MainMenuScreen.getInstance());
+			}
+		});
+		signInButton.setPosition(VIRTUAL_WIDTH - 800 - signInButton.getWidth(), 305);
+		stage.addActor(signInButton);
 	}
 	
 	public static GameServicesScreen getInstance() {

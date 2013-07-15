@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GLCommon;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -79,7 +80,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		}
 	}
 
-	protected void addButton(Button button, int x, int y) {
+	protected void addButton(Actor button, int x, int y) {
 		stage.addActor(button);
 		button.setX(x);
 		button.setY(y);

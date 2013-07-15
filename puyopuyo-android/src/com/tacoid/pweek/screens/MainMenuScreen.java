@@ -23,9 +23,8 @@ import com.tacoid.pweek.MusicPlayer.MusicType;
 import com.tacoid.pweek.Pweek.ScreenOrientation;
 import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.pweek.SoundPlayer.SoundType;
-import com.tacoid.pweek.actors.AchievementButtonActor;
 import com.tacoid.pweek.actors.BackgroundActor;
-import com.tacoid.pweek.actors.LeaderboardButtonActor;
+import com.tacoid.pweek.actors.GooglePlayActor;
 import com.tacoid.pweek.actors.MusicButtonActor;
 import com.tacoid.pweek.actors.SoundButtonActor;
 import com.tacoid.pweek.actors.SwingMenu;
@@ -45,7 +44,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		//init();
 	}
 	
-	private void addButton(Button button, int x, int y) {
+	private void addButton(Actor button, int x, int y) {
 		stage.addActor(button);
 		button.setX(x);
 		button.setY(y);
@@ -104,8 +103,10 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		stage.addActor(menu);
 		addButton(MusicButtonActor.createMusicButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-90, VIRTUAL_HEIGHT-90);
 		addButton(SoundButtonActor.createSoundButton(Pweek.getInstance().atlasBouttons),VIRTUAL_WIDTH-180, VIRTUAL_HEIGHT-90);
-		addButton(LeaderboardButtonActor.createLeaderboardButton(Pweek.getInstance().atlasBouttons, LeaderboardType.ALL), 10, VIRTUAL_HEIGHT-90);
-		addButton(AchievementButtonActor.createAchievementButton(Pweek.getInstance().atlasBouttons), 100, VIRTUAL_HEIGHT-90);
+		GooglePlayActor googlePlayActor = new GooglePlayActor(Pweek.getInstance().getGameService(), LeaderboardType.ALL, Pweek.getInstance().atlasBouttons, Pweek.getInstance().atlasGoogle);
+		addButton(googlePlayActor, 10, VIRTUAL_HEIGHT-90);
+		//addButton(LeaderboardButtonActor.createLeaderboardButton(Pweek.getInstance().atlasBouttons, LeaderboardType.ALL), 10, VIRTUAL_HEIGHT-90);
+		//addButton(AchievementButtonActor.createAchievementButton(Pweek.getInstance().atlasBouttons), 100, VIRTUAL_HEIGHT-90);
 
 		menu.hideInstant();
 		menu.show("main");

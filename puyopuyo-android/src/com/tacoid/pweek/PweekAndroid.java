@@ -298,7 +298,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		System.out.println("sign in failed");
 		
 	}
-
+	
 	@Override
 	public void onSignInSucceeded() {
 		aHelper.debugLog("=>SIGNINSUCCEEDED");

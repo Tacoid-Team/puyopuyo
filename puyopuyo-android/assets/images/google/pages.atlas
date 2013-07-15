@@ -3,24 +3,45 @@ pages.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-signin_Medium_base_44dp
+Red-signin_Medium_base_44dp
+  rotate: false
+  xy: 1, 111
+  size: 320, 108
+  orig: 320, 108
+  offset: 0, 0
+  index: -1
+Red-signin_Medium_press_44dp
   rotate: false
   xy: 1, 1
   size: 320, 108
   orig: 320, 108
   offset: 0, 0
   index: -1
-signin_Medium_hover_44dp
+White-signin_Medium_base_32dp
   rotate: false
-  xy: 323, 1
-  size: 320, 108
-  orig: 320, 108
+  xy: 323, 135
+  size: 264, 84
+  orig: 264, 84
   offset: 0, 0
   index: -1
-signin_Medium_press_44dp
+White-signin_Medium_press_32dp
   rotate: false
-  xy: 645, 1
-  size: 320, 108
-  orig: 320, 108
+  xy: 323, 49
+  size: 264, 84
+  orig: 264, 84
+  offset: 0, 0
+  index: -1
+White-signin_Small_base_32dp
+  rotate: false
+  xy: 589, 135
+  size: 84, 84
+  orig: 84, 84
+  offset: 0, 0
+  index: -1
+White-signin_Small_press_32dp
+  rotate: false
+  xy: 589, 49
+  size: 84, 84
+  orig: 84, 84
   offset: 0, 0
   index: -1

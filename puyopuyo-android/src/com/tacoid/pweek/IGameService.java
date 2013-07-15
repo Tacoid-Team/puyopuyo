@@ -29,7 +29,7 @@ public interface IGameService {
 		
 		boolean incremental;
 	};
-	
+		
 	public void login();
 	public void logout();
 

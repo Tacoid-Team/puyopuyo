@@ -10,15 +10,17 @@ import com.tacoid.tracking.TrackingManager.TrackerType;
 public class PweekDesktop implements IActivityRequestHandler, IGameService {
 	private static PweekDesktop application;
 	public static void main(String[] argv) {
-		if(application == null) {
+		if (application == null) {
 			application = new PweekDesktop();
 		}
 		Pweek.getInstance().setDesktopMode(true);
-		Pweek.getInstance().setGameService(application);
+		Pweek.setGameService(application);
 		TrackingManager.setTrackerType(TrackerType.DUMMY);
 		Pweek.setHandler(application);
 		new LwjglApplication(Pweek.getInstance(), "Pweek",  1280, 768, false);
 	}
+
+	private boolean signedIn;
 
 	@Override
 	public void showAds(boolean show) {
@@ -36,18 +38,18 @@ public class PweekDesktop implements IActivityRequestHandler, IGameService {
 	@Override
 	public void login() {
 		System.out.println("GameService : Login");
+		signedIn = true;
 	}
 
 	@Override
 	public void logout() {
 		System.out.println("GameService : Logout");
-		
+		signedIn = false;
 	}
 
 	@Override
 	public boolean getSignedIn() {
-		System.out.println("GameService : getSignedIn");
-		return false;
+		return signedIn;
 	}
 
 	@Override
