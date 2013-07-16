@@ -9,7 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.IGameLoginListener;
 import com.tacoid.pweek.IGameService;
 import com.tacoid.pweek.Pweek;
+import com.tacoid.pweek.SoundPlayer;
 import com.tacoid.pweek.IGameService.LeaderboardType;
+import com.tacoid.pweek.SoundPlayer.SoundType;
 
 public class GooglePlayActor extends Group implements IGameLoginListener {
 
@@ -21,6 +23,7 @@ public class GooglePlayActor extends Group implements IGameLoginListener {
 			this.addListener(new com.badlogic.gdx.scenes.scene2d.utils.ClickListener() {
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
+					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
 					Pweek.getInstance().getGameService().showAchievements();
 				}
 			});
@@ -35,8 +38,7 @@ public class GooglePlayActor extends Group implements IGameLoginListener {
 			this.addListener(new com.badlogic.gdx.scenes.scene2d.utils.ClickListener() {
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
-					// TODO: play sound.
-					Pweek.getInstance().getGameService().login();
+					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
 					Pweek.getInstance().getGameService().showLeaderboard(type);
 				}
 			});
