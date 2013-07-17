@@ -17,44 +17,51 @@ leaderboard
   orig: 80, 80
   offset: 0, 0
   index: -1
-music-off
+logout_button
   rotate: false
   xy: 80, 160
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-music-on
+music-off
   rotate: false
   xy: 0, 0
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-sound-off
+music-on
   rotate: false
   xy: 80, 80
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-sound-on
+pause_button
   rotate: false
   xy: 160, 160
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-frame-ninepatch
+sound-off
   rotate: false
-  xy: 80, 16
-  size: 64, 64
-  orig: 64, 64
+  xy: 80, 0
+  size: 80, 80
+  orig: 80, 80
   offset: 0, 0
   index: -1
-pause_button
+sound-on
   rotate: false
-  xy: 160, 96
+  xy: 160, 80
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+frame-ninepatch
+  rotate: false
+  xy: 160, 16
   size: 64, 64
   orig: 64, 64
   offset: 0, 0

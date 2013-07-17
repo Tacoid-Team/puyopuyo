@@ -44,6 +44,21 @@ public class GooglePlayActor extends Group implements IGameLoginListener {
 			});
 		}
 	}
+	
+	public class LogoutButtonActor extends Button {
+		private LogoutButtonActor(TextureRegion regionUp, TextureRegion regionDown,
+				TextureRegion regionChecked) {
+			super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown), new TextureRegionDrawable(regionChecked));
+			
+			this.addListener(new com.badlogic.gdx.scenes.scene2d.utils.ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
+					Pweek.getInstance().getGameService().logout();
+				}
+			});
+		}
+	}
 
 	private final IGameService gs;
 	private final LeaderboardType type;
@@ -93,6 +108,14 @@ public class GooglePlayActor extends Group implements IGameLoginListener {
 		if (type == LeaderboardType.ALL) {
 			l.setX(90);
 		}
+		
+		if (type == LeaderboardType.ALL) {
+			TextureRegion onRegionLogout = new TextureRegion(atlasButtons.findRegion("logout_button"));
+			LogoutButtonActor logoutActor = new LogoutButtonActor(onRegionLogout, onRegionLogout, onRegionLogout);
+			logoutActor.setX(180);
+			addActor(logoutActor);
+		}
+		
 		addActor(l);
 	}
 

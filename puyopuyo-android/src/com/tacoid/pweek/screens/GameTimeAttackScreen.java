@@ -15,7 +15,7 @@ public class GameTimeAttackScreen extends GameScreenPortrait implements IGameTim
 		super.initGraphics();
 		TimeActor timeActor = new TimeActor(Pweek.getInstance().manager, this, 140, 800);
 		stage.getRoot().addActorBefore(gameOver, timeActor);
-		addButton(new GooglePlayActor(Pweek.getInstance().getGameService(), LeaderboardType.CHRONO, Pweek.getInstance().atlasBouttons, Pweek.getInstance().atlasGoogle), 90, VIRTUAL_HEIGHT-90);	}
+		addButton(new GooglePlayActor(Pweek.getInstance().getGameService(), LeaderboardType.CHRONO, Pweek.getInstance().atlasBouttons, Pweek.getInstance().atlasGoogle), 180, VIRTUAL_HEIGHT-90);	}
 
 	public static GameTimeAttackScreen getInstance() {
 		if (instance == null) {
