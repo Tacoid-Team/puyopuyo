@@ -153,7 +153,6 @@ public class Pweek extends Game {
 		atlasPanelsLandscape = new TextureAtlas(Gdx.files.internal("images/panels/landscape/pages.atlas"));
 		atlasPanelsPortrait = new TextureAtlas(Gdx.files.internal("images/panels/portrait/pages.atlas"));
 		atlasBouttons = new TextureAtlas(Gdx.files.internal("images/bouttons/pages.atlas"));
-		atlasGoogle = new TextureAtlas(Gdx.files.internal("images/google/pages.atlas"));
 		
 		/*** Son ***/
 		manager.load("sounds/bleep.wav", Sound.class);
@@ -169,6 +168,8 @@ public class Pweek extends Game {
 	public void loadLocalizedAssets() {
 
 		atlasPlank = new TextureAtlas(Gdx.files.internal("images/menu/plank-" + I18nManager.getInstance().getLanguage().toString() + "/pages.atlas"));
+		atlasGoogle = new TextureAtlas(Gdx.files.internal("images/google/" + I18nManager.getInstance().getLanguage().toString() + "/pages.atlas"));
+
 		MainMenuScreen.getInstance().init();
 		GameVersusScreen.getInstance().initGraphics();
 		GameSoloScreen.getInstance().initGraphics();
