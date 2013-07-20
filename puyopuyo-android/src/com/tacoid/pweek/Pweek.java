@@ -59,10 +59,10 @@ public class Pweek extends Game {
 		return getInstance().myGameService;
 	}
 	
-	
+	/*
 	public static void setShareLauncher(ShareLauncher launcher) {
 		getInstance().shareLauncher = launcher;
-	}
+	}*/
 	
 	public static Pweek getInstance() {
 

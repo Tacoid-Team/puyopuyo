@@ -257,6 +257,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		}
 	}
 	
+	/*
 	private class ExitButton extends Button{
 		public ExitButton(TextureRegion regionUp, TextureRegion regionDown) {
 			super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown));
@@ -277,7 +278,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 				}
 			});
 		}
-	}
+	}*/
 	
 	private class LevelButton extends Button{
 		private int level;

@@ -27,13 +27,12 @@ import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.tracking.TrackingManager;
 import com.tacoid.tracking.TrackingManager.TrackerType;
 
-public class PweekAndroid extends AndroidApplication implements IActivityRequestHandler, AdListener, ShareLauncher, IGameService, GameHelperListener
+public class PweekAndroid extends AndroidApplication implements IActivityRequestHandler, AdListener, /*ShareLauncher,*/ IGameService, GameHelperListener
 {	
 	private static AdView adView;
 	
 	/* Google Game Service attributes */
 	private GameHelper aHelper;
-	private final static int SETUP_ADS = 2;
 	private final static int SHOW_ADS = 1;
 	private final static int HIDE_ADS = 0;
 	
@@ -45,22 +44,14 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 			switch(msg.what) {
 			case SHOW_ADS:
 			{
+				System.out.println("show ad");
 				adView.setVisibility(View.VISIBLE);
 				break;
 			}
 			case HIDE_ADS:
 			{
+				System.out.println("hide ad");
 				adView.setVisibility(View.GONE);
-				break;
-			}
-			case SETUP_ADS:
-			{
-				RelativeLayout.LayoutParams adParams = 
-						new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, 
-								RelativeLayout.LayoutParams.WRAP_CONTENT);
-				adParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-				adParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-				adView.setLayoutParams(adParams);
 				break;
 			}
 			}
@@ -100,7 +91,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		Pweek.setGameService(this);
 		
 		Pweek.setHandler(this);
-		Pweek.setShareLauncher(this);
+		//Pweek.setShareLauncher(this);
 		View gameView = initializeForView(Pweek.getInstance(), config);
 		
 		
@@ -149,7 +140,6 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	@Override
 	public void setPortrait(boolean isPortrait) {
 		this.isPortrait = isPortrait;
-		handler.sendEmptyMessage(SETUP_ADS);
 		this.setRequestedOrientation(isPortrait ? ActivityInfo.SCREEN_ORIENTATION_PORTRAIT : ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 	}
 
@@ -179,6 +169,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 
 	}
 
+	/*
 	@Override
 	public void share(String subject, String body) {
 		Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
@@ -200,7 +191,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		//start the chooser for sharing
 		startActivity(Intent.createChooser(shareIntent, 
 		 "Share Pweek!"));
-	}
+	}*/
 
 	@Override
 	public void login() {
@@ -237,7 +228,6 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 
 	@Override
 	public boolean getSignedIn() {
-		aHelper.debugLog("=>GETSIGNEDIN");
 		return aHelper.isSignedIn();
 	}
 
