@@ -35,7 +35,6 @@ public class PauseMenu extends Group {
 				@Override
 				public void touchUp(InputEvent event, float x, float y,
 						int pointer, int button) {
-					handler.showAds(false);
 					hide();
 				}
 			});
@@ -91,6 +90,7 @@ public class PauseMenu extends Group {
 	}
 	
 	public void hide() {
+		handler.showAds(false);
 		gameScreen.gameResume();
 		menu.hideInstant();
 	}
