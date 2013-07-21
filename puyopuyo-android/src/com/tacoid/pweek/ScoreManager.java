@@ -38,11 +38,15 @@ public class ScoreManager {
 	}
 	
 	public void setScore(GameType type, int score) {
-		pref.putInteger(type.toString(), score); 
-		Pweek.getInstance().getGameService().submitScore(type,score);
+		int highScore = getScore(type);
+	
+		if(highScore < score && type != GameType.VERSUS_IA) {
+			pref.putInteger(type.toString(), score);
+			TrackingManager.getTracker().trackEvent("gameplay", "new_score", type.toString(), (long) score);
+			pref.flush();
+		}
 		
-		TrackingManager.getTracker().trackEvent("gameplay", "new_score", type.toString(), (long) score);
-		pref.flush();
+		Pweek.getInstance().getGameService().submitScore(type,score);
 		
 		if (type == GameType.SOLO && score >= 10000) {
 			Pweek.getInstance().getGameService().unlockAchievement(Achievement.P10K);
