@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.tacoid.pweek.logic.GameLogic;
 import com.tacoid.pweek.screens.GameScreen;
@@ -13,14 +14,18 @@ public class Controller implements InputProcessor {
 	private GameLogic gameLogic;
 	private Stage stage;
 	private GameScreen gameScreen;
-	private int downX;
-	private int downY;
+	private float downX;
+	private float downY;
 	private long last = 0;
+	private Vector2 topleft;
+	private Vector2 buttomright;
 
-	public Controller(GameLogic gameLogic, GameScreen gameScreen, Stage stage) {
+	public Controller(GameLogic gameLogic, GameScreen gameScreen, Stage stage, Vector2 topleft, Vector2 buttomright) {
 		this.gameLogic = gameLogic;
 		this.gameScreen = gameScreen;
 		this.stage = stage;
+		this.topleft = topleft;
+		this.buttomright = buttomright;
 	}
 	
 	@Override
@@ -85,31 +90,40 @@ public class Controller implements InputProcessor {
 	}
 
 	@Override
-	public boolean touchDown(int x, int y, int pointer, int button) {
-		last = Calendar.getInstance().getTimeInMillis();		
-		this.downX = x;
-		this.downY = y;
+	public boolean touchDown(int x, int y, int pointer, int button) {		
+		Vector2 sD = stage.screenToStageCoordinates(new Vector2(x, y));
+		if (inArea(sD)) {
+			this.downX = sD.x;
+			this.downY = sD.y;
+			last = Calendar.getInstance().getTimeInMillis();
+		} else {
+			this.downX = -1;
+			this.downY = -1;
+		}
 		return stage.touchDown(x, y, pointer, button);
 	}
 
 	@Override
-	public boolean touchDragged(int x, int y, int arg2) {		
-		if (x - downX > gameScreen.getPuyoSize()) {
-			if (gameLogic.moveRight()) {
-				downX = x;
-				downY = y;
+	public boolean touchDragged(int x, int y, int arg2) {
+		Vector2 s = stage.screenToStageCoordinates(new Vector2(x, y));
+		if (downX >= 0 && downY >= 0) {
+			if (s.x - downX > gameScreen.getPuyoSize()) {
+				if (gameLogic.moveRight()) {
+					downX = s.x;
+					downY = s.y;
+				}
+				last = 0;
+			} else if (s.x - downX < -gameScreen.getPuyoSize()) {
+				if (gameLogic.moveLeft()) {
+					downX = s.x;
+					downY = s.y;
+				}
+				last = 0;
+			} else if (downY - s.y > gameScreen.getPuyoSize() * 2) {
+				gameLogic.dropPiece();
+				downY = s.y;
+				last = 0;
 			}
-			last = 0;
-		} else if (x - downX < -gameScreen.getPuyoSize()) {
-			if (gameLogic.moveLeft()) {
-				downX = x;
-				downY = y;
-			}
-			last = 0;
-		} else if (y - downY > gameScreen.getPuyoSize() * 2) {
-			gameLogic.dropPiece();
-			downY = y;
-			last = 0;
 		}
 		
 		return stage.touchDragged(x, y, arg2);
@@ -117,20 +131,26 @@ public class Controller implements InputProcessor {
 
 	@Override
 	public boolean touchUp(int x, int y, int pointer, int button) {
+		Vector2 s = stage.screenToStageCoordinates(new Vector2(x, y));
+		
 		if (stage.touchUp(x, y, pointer, button)) {
 			return true;
 		} else {
-			if (Math.abs(this.downX - x) < 20 && Math.abs(this.downY - y) < 20 &&    
+			if (inArea(s) && Math.abs(this.downX - s.x) < 20 && Math.abs(this.downY - s.y) < 20 &&    
 					Calendar.getInstance().getTimeInMillis() - last < 200) {
 				gameLogic.rotateLeft();
 			}
 		}
 		return false;
 	}
-
+	
 	@Override
 	public boolean mouseMoved(int x, int y) {
 		return stage.mouseMoved(x, y);
 	}
 
+	private boolean inArea(Vector2 s) {
+		return (s.x >= topleft.x && s.x <= buttomright.x
+				&& s.y >= buttomright.y && s.y <= topleft.y);
+	}
 }
