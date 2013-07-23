@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.tacoid.pweek.I18nManager;
 import com.tacoid.pweek.PreferenceManager;
 import com.tacoid.pweek.PreferenceManager.Preference;
 import com.tacoid.pweek.Pweek;
@@ -31,7 +32,7 @@ public class GameServicesScreen implements Screen {
 		public NoThxActor() {
 			super();
 			font = Pweek.getInstance().manager.get("images/font64.fnt", BitmapFont.class);
-			str = "No Thanks";
+			str = I18nManager.getInstance().getString("nothanks");
 			
 			font.setScale(0.5f);
 			font.setColor(0.8f, 0.8f, 0.8f, 1f);
@@ -86,7 +87,7 @@ public class GameServicesScreen implements Screen {
 			int origX = VIRTUAL_WIDTH / 2;
 			int origY = 600;
 			
-			String str = "Sign-in with Google Play!";
+			String str = I18nManager.getInstance().getString("signin");
 			font.setScale(1f);
 			font.setColor(1f, 1f, 1f, 1f);
 			float x = origX - font.getBounds(str).width / 2;
@@ -99,7 +100,7 @@ public class GameServicesScreen implements Screen {
 			font.setColor(0f, 0f, 0f, 1f);
 			font.draw(batch, str, x, origY);
 			
-			String text = "Sign in with Google to share your scores and achievements with your friends.";
+			String text = I18nManager.getInstance().getString("signinfull");
 			font.setScale(0.5f);
 			font.setColor(0f, 0f, 0f, 1f);
 			font.drawWrapped(batch, text, VIRTUAL_WIDTH - 750, origY - 200, 700);
