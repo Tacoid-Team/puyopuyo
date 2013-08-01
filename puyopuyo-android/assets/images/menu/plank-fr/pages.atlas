@@ -5,134 +5,141 @@ filter: Nearest,Nearest
 repeat: none
 foreground
   rotate: false
-  xy: 0, 703
+  xy: 0, 689
   size: 1280, 312
   orig: 1280, 312
   offset: 0, 0
   index: -1
 touchtostart
   rotate: false
-  xy: 0, 417
+  xy: 0, 403
   size: 931, 286
   orig: 931, 286
   offset: 0, 0
   index: -1
 pweek
   rotate: false
-  xy: 0, 174
+  xy: 0, 160
   size: 800, 243
   orig: 800, 243
   offset: 0, 0
   index: -1
 gameover
   rotate: false
-  xy: 1280, 815
+  xy: 1280, 801
   size: 655, 200
   orig: 655, 200
   offset: 0, 0
   index: -1
 gagne
   rotate: false
-  xy: 1280, 559
+  xy: 1280, 545
   size: 512, 256
   orig: 512, 256
   offset: 0, 0
   index: -1
 continuer
   rotate: false
-  xy: 0, 14
+  xy: 0, 0
   size: 257, 160
   orig: 257, 160
   offset: 0, 0
   index: -1
 quitter
   rotate: false
-  xy: 931, 543
+  xy: 931, 529
   size: 257, 160
   orig: 257, 160
   offset: 0, 0
   index: -1
 perdu
   rotate: false
-  xy: 1188, 303
+  xy: 1188, 289
   size: 512, 256
   orig: 512, 256
   offset: 0, 0
   index: -1
 rejouer
   rotate: false
-  xy: 931, 383
+  xy: 931, 369
   size: 257, 160
   orig: 257, 160
   offset: 0, 0
   index: -1
 chrono
   rotate: false
-  xy: 257, 14
+  xy: 257, 0
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 easy
   rotate: false
-  xy: 510, 14
+  xy: 510, 0
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 hard
   rotate: false
-  xy: 1792, 655
+  xy: 1792, 641
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 medium
   rotate: false
-  xy: 1792, 495
+  xy: 1792, 481
+  size: 253, 160
+  orig: 253, 160
+  offset: 0, 0
+  index: -1
+multi
+  rotate: false
+  xy: 1700, 321
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 solo
   rotate: false
-  xy: 1700, 335
+  xy: 1700, 161
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 versus
   rotate: false
-  xy: 1700, 175
+  xy: 800, 209
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 veryhard
   rotate: false
-  xy: 800, 223
+  xy: 800, 49
   size: 253, 160
   orig: 253, 160
   offset: 0, 0
   index: -1
 suivant
   rotate: false
-  xy: 800, 67
+  xy: 1053, 133
   size: 251, 156
   orig: 251, 156
   offset: 0, 0
   index: -1
-share
-  rotate: false
-  xy: 763, 0
-  size: 170, 67
-  orig: 170, 67
-  offset: 0, 0
-  index: -1
 redcross
   rotate: false
-  xy: 1053, 195
+  xy: 1304, 181
   size: 170, 108
   orig: 170, 108
+  offset: 0, 0
+  index: -1
+share
+  rotate: false
+  xy: 1053, 66
+  size: 170, 67
+  orig: 170, 67
   offset: 0, 0
   index: -1
