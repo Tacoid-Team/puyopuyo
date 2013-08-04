@@ -16,6 +16,8 @@ package com.tacoid.pweek;
  * limitations under the License.
  */
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import android.app.Activity;
@@ -34,13 +36,20 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.Scopes;
+import com.google.android.gms.games.GamesActivityResultCodes;
 import com.google.android.gms.games.GamesClient;
 import com.google.android.gms.games.OnSignOutCompleteListener;
 import com.google.android.gms.games.multiplayer.Invitation;
+import com.google.android.gms.games.multiplayer.realtime.RealTimeMessage;
+import com.google.android.gms.games.multiplayer.realtime.RealTimeMessageReceivedListener;
+import com.google.android.gms.games.multiplayer.realtime.Room;
+import com.google.android.gms.games.multiplayer.realtime.RoomConfig;
+import com.google.android.gms.games.multiplayer.realtime.RoomStatusUpdateListener;
+import com.google.android.gms.games.multiplayer.realtime.RoomUpdateListener;
 import com.google.android.gms.plus.PlusClient;
 
 public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
-        GooglePlayServicesClient.OnConnectionFailedListener, OnSignOutCompleteListener {
+        GooglePlayServicesClient.OnConnectionFailedListener, OnSignOutCompleteListener, RoomUpdateListener, RealTimeMessageReceivedListener, RoomStatusUpdateListener {
 
     /** Listener for sign-in success or failure events. */
     public interface GameHelperListener {
@@ -77,6 +86,9 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
     // Request code when invoking Activities whose result we don't care about.
     final static int RC_UNUSED = 9002;
 
+	final static int RC_SELECT_PLAYERS = 10000;
+	final static int RC_WAITING_ROOM = 10002;
+	
     // Client objects we manage. If a given client is not enabled, it is null.
     GamesClient mGamesClient = null;
     PlusClient mPlusClient = null;
@@ -400,6 +412,12 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
         // connected til we get onSignOutComplete()
         killConnections(CLIENT_ALL & ~CLIENT_GAMES);
     }
+    
+    private RoomConfig.Builder makeBasicRoomConfigBuilder() {
+        return RoomConfig.builder(this)
+                .setMessageReceivedListener(this)
+                .setRoomStatusUpdateListener(this);
+    }
 
     /**
      * Handle activity result. Call this method from your Activity's
@@ -424,6 +442,63 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
                 debugLog("responseCode != RESULT_OK, so not reconnecting.");
                 giveUp();
             }
+        } else if (requestCode == RC_WAITING_ROOM) {
+            if (responseCode == Activity.RESULT_OK) {
+                // (start game)
+            }
+            else if (responseCode == Activity.RESULT_CANCELED) {
+                // Waiting room was dismissed with the back button. The meaning of this
+                // action is up to the game. You may choose to leave the room and cancel the
+                // match, or do something else like minimize the waiting room and
+                // continue to connect in the background.
+
+                // in this example, we take the simple approach and just leave the room:
+                //getGamesClient().leaveRoom(this, mRoomId);
+               // getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            }
+            else if (responseCode == GamesActivityResultCodes.RESULT_LEFT_ROOM) {
+                // player wants to leave the room.
+                //getGamesClient().leaveRoom(this, mRoomId);
+                //getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            }
+        } else if (requestCode == RC_SELECT_PLAYERS) {
+        	
+            if (responseCode != Activity.RESULT_OK) {
+                // user canceled
+                return;
+            }
+
+            // get the invitee list
+            Bundle extras = intent.getExtras();
+            final ArrayList<String> invitees =
+                intent.getStringArrayListExtra(GamesClient.EXTRA_PLAYERS);
+
+            // get automatch criteria
+            Bundle autoMatchCriteria = null;
+            int minAutoMatchPlayers =
+                intent.getIntExtra(GamesClient.EXTRA_MIN_AUTOMATCH_PLAYERS, 0);
+            int maxAutoMatchPlayers =
+                intent.getIntExtra(GamesClient.EXTRA_MAX_AUTOMATCH_PLAYERS, 0);
+
+            if (minAutoMatchPlayers > 0) {
+                autoMatchCriteria =
+                    RoomConfig.createAutoMatchCriteria(
+                        minAutoMatchPlayers, maxAutoMatchPlayers, 0);
+            } else {
+                autoMatchCriteria = null;
+            }
+
+            // create the room and specify a variant if appropriate
+            RoomConfig.Builder roomConfigBuilder = makeBasicRoomConfigBuilder();
+            roomConfigBuilder.addPlayersToInvite(invitees);
+            if (autoMatchCriteria != null) {
+                roomConfigBuilder.setAutoMatchCriteria(autoMatchCriteria);
+            }
+            RoomConfig roomConfig = roomConfigBuilder.build();
+            getGamesClient().createRoom(roomConfig);
+
+            // prevent screen from sleeping during handshake
+            //getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
     }
 
@@ -755,4 +830,126 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
         if (mGamesClient.isConnected())
             mGamesClient.disconnect();
     }
+    
+	@Override
+	public void onJoinedRoom(int statusCode, Room room) {
+	    if (statusCode != GamesClient.STATUS_OK) {
+	        // display error
+	        return;  
+	     }
+
+	     // get waiting room intent
+	     Intent i = getGamesClient().getRealTimeWaitingRoomIntent(room, Integer.MAX_VALUE);
+	     mActivity.startActivityForResult(i, RC_WAITING_ROOM);
+	}
+	
+	@Override
+	public void onRoomCreated(int statusCode, Room room) {
+	    if (statusCode != GamesClient.STATUS_OK) {
+	        // display error
+	        return;
+	    }
+
+	    // get waiting room intent
+	    Intent i = getGamesClient().getRealTimeWaitingRoomIntent(room, Integer.MAX_VALUE);
+	    mActivity.startActivityForResult(i, RC_WAITING_ROOM);
+	}
+
+	@Override
+	public void onConnectedToRoom(Room arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onDisconnectedFromRoom(Room arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onPeerDeclined(Room arg0, List<String> arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onPeerInvitedToRoom(Room arg0, List<String> arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onPeerJoined(Room arg0, List<String> arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onPeerLeft(Room arg0, List<String> arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onPeersConnected(Room arg0, List<String> arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onPeersDisconnected(Room arg0, List<String> arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onRoomAutoMatching(Room arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onRoomConnecting(Room arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onRealTimeMessageReceived(RealTimeMessage arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onLeftRoom(int arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onRoomConnected(int arg0, Room arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void createMatchMakingRoom() {
+	    // automatch criteria to invite 1 random automatch opponent.  
+	    // You can also specify more opponents (up to 3). 
+		RoomConfig.builder(this);
+	    Bundle am = RoomConfig.createAutoMatchCriteria(1, 1, 0);
+
+	    // build the room config:
+	    RoomConfig.Builder roomConfigBuilder = makeBasicRoomConfigBuilder();
+	    roomConfigBuilder.setAutoMatchCriteria(am);
+	    RoomConfig roomConfig = roomConfigBuilder.build();
+
+	    // create room:
+	    getGamesClient().createRoom(roomConfig);
+
+	    // prevent screen from sleeping during handshake
+	    //getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+	    
+
+	}
 }

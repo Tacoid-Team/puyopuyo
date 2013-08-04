@@ -1,5 +1,6 @@
 package com.tacoid.pweek;
 
+import com.google.android.gms.games.multiplayer.realtime.Room;
 import com.tacoid.pweek.ScoreManager.GameType;
 
 public interface IGameService {
@@ -44,7 +45,13 @@ public interface IGameService {
 
 	public void showAchievements();
 	
+	public void showFriendSelector();
+	
 	public void unlockAchievement(Achievement a);
+	
+	public void startQuickGame();
+	
+	public void showWaitingRoom(Room r);
 	
 	//gets the score and gives access to the raw score data
 	public void getScoresData();
