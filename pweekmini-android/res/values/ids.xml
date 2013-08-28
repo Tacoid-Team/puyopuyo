@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string translatable="false" name="app_id">714561894085</string>
+    <string translatable="false" name="solo_leaderboard">CgkIxe3U-eUUEAIQAA</string>
+    <string translatable="false" name="chrono_leaderboard">CgkIxe3U-eUUEAIQDw</string>    
+    <string translatable="false" name="ach_NINJA">CgkIxe3U-eUUEAIQAg</string>
+    <string translatable="false" name="ach_FOREVER_ALONE">CgkIxe3U-eUUEAIQBA</string>
+    <string translatable="false" name="ach_OCD">CgkIxe3U-eUUEAIQBQ</string>
+    <string translatable="false" name="ach_CHAIN">CgkIxe3U-eUUEAIQBg</string>
+    <string translatable="false" name="ach_MEGA_EXPLODE">CgkIxe3U-eUUEAIQEA</string>
+    <string translatable="false" name="ach_MASTERSTROKE">CgkIxe3U-eUUEAIQEQ</string>
+    <string translatable="false" name="ach_FIRST_COMBO">CgkIxe3U-eUUEAIQEg</string>
+    <string translatable="false" name="ach_AFK">CgkIxe3U-eUUEAIQEw</string>
+    <string translatable="false" name="ach_DEAF">CgkIxe3U-eUUEAIQFA</string>
+    <string translatable="false" name="ach_FANBOY">CgkIxe3U-eUUEAIQFQ</string>
+    <string translatable="false" name="ach_P10K">CgkIxe3U-eUUEAIQFw</string>
+</resources>

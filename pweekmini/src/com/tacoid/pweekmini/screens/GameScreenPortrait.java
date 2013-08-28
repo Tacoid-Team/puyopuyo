@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GLCommon;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -95,7 +96,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				false);
 		
-		controller = new Controller(gameLogic, this, stage);
+		controller = new Controller(gameLogic, this, stage, new Vector2(0, 0), new Vector2(VIRTUAL_WIDTH, VIRTUAL_HEIGHT));
 
 		gridActor = new GridActor(PweekMini.getInstance().atlasPuyo, gameLogic, PweekMini.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), 148, 130, 50, puyoSize);
 		ExplosionActor explosionActor = new ExplosionActor(PweekMini.getInstance().atlasPuyo, gameLogic, PweekMini.getInstance().manager.get("images/font_score.fnt", BitmapFont.class), 148, 130, 50, puyoSize);

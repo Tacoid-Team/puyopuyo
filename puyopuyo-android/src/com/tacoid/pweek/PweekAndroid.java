@@ -24,6 +24,7 @@ import com.google.ads.AdView;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.tacoid.pweek.GameHelper.GameHelperListener;
 import com.tacoid.pweek.ScoreManager.GameType;
+import com.tacoid.pweekmini.R;
 import com.tacoid.tracking.TrackingManager;
 import com.tacoid.tracking.TrackingManager.TrackerType;
 
