@@ -1,6 +1,7 @@
 package com.tacoid.pweek;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.google.android.gms.games.multiplayer.realtime.Room;
 import com.tacoid.pweek.IActivityRequestHandler;
 import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.ScoreManager.GameType;
@@ -85,5 +86,23 @@ public class PweekDesktop implements IActivityRequestHandler, IGameService {
 	public int getVolume() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void showFriendSelector() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void startQuickGame() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showWaitingRoom(Room r) {
+		// TODO Auto-generated method stub
+		
 	}
 }

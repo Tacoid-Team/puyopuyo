@@ -22,6 +22,9 @@ import com.google.ads.AdRequest.ErrorCode;
 import com.google.ads.AdSize;
 import com.google.ads.AdView;
 import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.games.multiplayer.realtime.Room;
+import com.google.android.gms.games.multiplayer.realtime.RoomConfig;
+import com.google.android.gms.games.multiplayer.realtime.RoomUpdateListener;
 import com.tacoid.pweek.GameHelper.GameHelperListener;
 import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.pweekmini.R;
@@ -36,7 +39,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	private GameHelper aHelper;
 	private final static int SHOW_ADS = 1;
 	private final static int HIDE_ADS = 0;
-	
+
 	static protected Handler handler = new Handler()
 	{
 		@SuppressLint("NewApi")
@@ -294,7 +297,6 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	public void onSignInSucceeded() {
 		aHelper.debugLog("=>SIGNINSUCCEEDED");
 		System.out.println("sign in succeeded");
-		
 	}
 	
 	@Override
@@ -365,5 +367,29 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		int vol = audio.getStreamVolume(AudioManager.STREAM_MUSIC) * 100;
 		
 		return vol / audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+	}
+
+	@Override
+	public void showFriendSelector() {
+
+
+		// launch the player selection screen
+		// minimum: 1 other player; maximum: 3 other players
+		Intent intent = aHelper.getGamesClient().getSelectPlayersIntent(1, 1);
+		startActivityForResult(intent, GameHelper.RC_SELECT_PLAYERS);
+	}
+
+	@Override
+	public void startQuickGame() {
+		
+		aHelper.createMatchMakingRoom();
+
+	    // go to game screen
+	}
+	
+	public void showWaitingRoom(Room r) {
+		
+	     Intent i = aHelper.getGamesClient().getRealTimeWaitingRoomIntent(r, Integer.MAX_VALUE);
+	     startActivityForResult(i, GameHelper.RC_WAITING_ROOM);
 	}
 }

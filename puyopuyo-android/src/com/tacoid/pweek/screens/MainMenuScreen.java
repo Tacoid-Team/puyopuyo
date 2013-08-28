@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.tacoid.pweek.IGameService;
 import com.tacoid.pweek.MusicPlayer;
 import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.ScoreManager;
@@ -70,13 +71,14 @@ public class MainMenuScreen implements Screen, InputProcessor {
 			TextureRegion playRegion =  Pweek.getInstance().atlasPlank.findRegion("solo");
 			menu.addButton(new SoloButton(playRegion, playRegion));
 			
+			/* MULTIPLAYER BUTTON */
+			TextureRegion multiRegion = Pweek.getInstance().atlasPlank.findRegion("multi");
+			menu.addButton(new MultiButton(multiRegion, multiRegion));
+			
 			/* CHRONO BUTTON */
 			TextureRegion chronoRegion = Pweek.getInstance().atlasPlank.findRegion("chrono");
 			menu.addButton(new ChronoButton(chronoRegion, chronoRegion));
 			
-			/* Exit BUTTON */
-			//TextureRegion exitRegion = Pweek.getInstance().atlasPlank.findRegion("quitter");
-			//menu.addButton(new ExitButton(exitRegion, exitRegion));
 		}	
 		menu.initEnd();
 		
@@ -97,6 +99,20 @@ public class MainMenuScreen implements Screen, InputProcessor {
 			/* VERY HARD BUTTON */
 			TextureRegion vhardRegion = Pweek.getInstance().atlasPlank.findRegion("veryhard");
 			menu.addButton(new LevelButton(3, vhardRegion, vhardRegion));
+		}	
+		menu.initEnd();
+		
+		menu.initBegin("multiplayer");
+		{
+			/* PLAY WITH FRIENDS BUTTON */
+			TextureRegion friendsRegion =  Pweek.getInstance().atlasPlank.findRegion("easy");
+			menu.addButton(new FriendGameButton(friendsRegion, friendsRegion));
+			
+			
+			/* QUICK GAME BUTTON */
+			TextureRegion quickRegion = Pweek.getInstance().atlasPlank.findRegion("multi");
+			menu.addButton(new QuickGameButton(quickRegion, quickRegion));
+			
 		}	
 		menu.initEnd();
 		
@@ -257,11 +273,10 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		}
 	}
 	
-	/*
-	private class ExitButton extends Button{
-		public ExitButton(TextureRegion regionUp, TextureRegion regionDown) {
+	private class MultiButton extends Button{
+		public MultiButton(TextureRegion regionUp, TextureRegion regionDown) {
 			super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown));
-			
+
 			addListener(new InputListener() {
 				@Override
 				public boolean touchDown(InputEvent event, float x, float y,
@@ -273,12 +288,62 @@ public class MainMenuScreen implements Screen, InputProcessor {
 				@Override
 				public void touchUp(InputEvent event, float x, float y,
 						int pointer, int button) {
-					TrackingManager.getTracker().trackEvent("UI", "button_click", "quit", null);
-					Gdx.app.exit();
+					menu.switchMenuAnimated("multiplayer");
+					//GameTimeAttackScreen.getInstance().init();
+					//TrackingManager.getTracker().trackEvent("gameplay", "game_start", "chrono", null);
+					//Pweek.getInstance().setScreen(GameTimeAttackScreen.getInstance());
 				}
 			});
 		}
-	}*/
+	}
+	
+	private class QuickGameButton extends Button{
+		IGameService gs;
+		public QuickGameButton(TextureRegion regionUp, TextureRegion regionDown) {
+			super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown));
+			
+			gs = Pweek.getInstance().getGameService();
+
+			addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
+					return true;
+				}
+				
+				@Override
+				public void touchUp(InputEvent event, float x, float y,
+						int pointer, int button) {
+					gs.startQuickGame();
+				}
+			});
+		}
+	}
+	
+	private class FriendGameButton extends Button{
+		IGameService gs;
+		public FriendGameButton(TextureRegion regionUp, TextureRegion regionDown) {
+			super(new TextureRegionDrawable(regionUp), new TextureRegionDrawable(regionDown));
+			
+			gs = Pweek.getInstance().getGameService();
+
+			addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					SoundPlayer.getInstance().playSound(SoundType.TOUCH_MENU, 0.5f, true);
+					return true;
+				}
+				
+				@Override
+				public void touchUp(InputEvent event, float x, float y,
+						int pointer, int button) {
+					gs.showFriendSelector();
+				}
+			});
+		}
+	}
 	
 	private class LevelButton extends Button{
 		private int level;
