@@ -1,6 +1,5 @@
 package com.tacoid.pweekmini;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
@@ -21,11 +20,10 @@ import com.google.ads.AdRequest.ErrorCode;
 import com.google.ads.AdSize;
 import com.google.ads.AdView;
 import com.google.analytics.tracking.android.EasyTracker;
-import com.tacoid.pweek.GameHelper;
-import com.tacoid.pweek.GameServiceManager;
+import com.tacoid.pweekmini.GameHelper;
 import com.tacoid.pweek.IActivityRequestHandler;
 import com.tacoid.pweek.Pweek;
-import com.tacoid.pweek.GameHelper.GameHelperListener;
+import com.tacoid.pweekmini.GameHelper.GameHelperListener;
 import com.tacoid.tracking.TrackingManager;
 import com.tacoid.tracking.TrackingManager.TrackerType;
 
@@ -45,7 +43,6 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	
 	static protected Handler handler = new Handler()
 	{
-		@SuppressLint("NewApi")
 		@Override
 		public void handleMessage(Message msg) {
 			switch(msg.what) {
@@ -63,7 +60,6 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		}
 	};
 
-	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

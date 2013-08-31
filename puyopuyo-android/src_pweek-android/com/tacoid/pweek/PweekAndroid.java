@@ -23,6 +23,7 @@ import com.google.ads.AdSize;
 import com.google.ads.AdView;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.games.multiplayer.realtime.Room;
+import com.tacoid.pweek.GameServiceManager;
 import com.tacoid.pweek.GameHelper.GameHelperListener;
 import com.tacoid.tracking.TrackingManager;
 import com.tacoid.tracking.TrackingManager.TrackerType;

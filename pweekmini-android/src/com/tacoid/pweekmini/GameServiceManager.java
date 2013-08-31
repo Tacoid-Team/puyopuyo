@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.google.android.gms.games.multiplayer.realtime.Room;
-import com.tacoid.pweek.GameHelper;
+import com.tacoid.pweekmini.GameHelper;
 import com.tacoid.pweek.IGameService;
 import com.tacoid.pweek.ScoreManager.GameType;
 
