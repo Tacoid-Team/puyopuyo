@@ -129,7 +129,7 @@ public class GameOverActor extends Group {
 		if(highScore < gameScreen.getScore() && gameScreen.getGameType() != GameType.VERSUS_IA) {
 			this.newHighScore = true;
 		}
-		ScoreManager.getInstance().setScore(gameScreen.getGameType(), gameScreen.getScore());
+		ScoreManager.getInstance().setScore(PweekMini.getInstance().getGameService(), gameScreen.getGameType(), gameScreen.getScore());
 
 		PweekMini.getInstance().getHandler().showAds(true);
 

@@ -23,15 +23,11 @@ import com.google.ads.AdSize;
 import com.google.ads.AdView;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.games.multiplayer.realtime.Room;
-import com.google.android.gms.games.multiplayer.realtime.RoomConfig;
-import com.google.android.gms.games.multiplayer.realtime.RoomUpdateListener;
 import com.tacoid.pweek.GameHelper.GameHelperListener;
-import com.tacoid.pweek.ScoreManager.GameType;
-import com.tacoid.pweekmini.R;
 import com.tacoid.tracking.TrackingManager;
 import com.tacoid.tracking.TrackingManager.TrackerType;
 
-public class PweekAndroid extends AndroidApplication implements IActivityRequestHandler, AdListener, /*ShareLauncher,*/ IGameService, GameHelperListener
+public class PweekAndroid extends AndroidApplication implements IActivityRequestHandler, AdListener, GameHelperListener
 {	
 	private static AdView adView;
 	
@@ -92,7 +88,7 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		// Cr�ation de la vue libGdx
 		
 		aHelper.setup(this);
-		Pweek.setGameService(this);
+		Pweek.setGameService(new GameServiceManager(aHelper, this, this));
 		
 		Pweek.setHandler(this);
 		//Pweek.setShareLauncher(this);
@@ -198,95 +194,6 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 	}*/
 
 	@Override
-	public void login() {
-		aHelper.debugLog("=>LOGIN");
-        try {
-        runOnUiThread(new Runnable(){
-               
-                //@Override
-                public void run(){
-                        aHelper.beginUserInitiatedSignIn();
-                }
-                });
-        }catch (final Exception ex){
-               
-        }
-	}
-
-	@Override
-	public void logout() {
-		aHelper.debugLog("=>LOGOUT");
-        try {
-        runOnUiThread(new Runnable(){
-               
-                //@Override
-                public void run(){
-                        aHelper.signOut();
-                }
-                });
-        }catch (final Exception ex){
-               
-        }
-          
-	}
-
-	@Override
-	public boolean getSignedIn() {
-		return aHelper.isSignedIn();
-	}
-
-	@Override
-	public void submitScore(GameType type, int score) {
-		if (!Pweek.getInstance().getGameService().getSignedIn()) {
-			return;
-		}
-		aHelper.debugLog("=>SUBMITSCORE");
-		switch(type) {
-		case SOLO:
-			aHelper.getGamesClient().submitScore(getString(R.string.solo_leaderboard), score);
-			break;
-		case CHRONO:
-			aHelper.getGamesClient().submitScore(getString(R.string.chrono_leaderboard), score);
-			break;
-		default:
-			aHelper.debugLog("Invalid game type leaderboard");
-		}
-	}
-
-	@Override
-	public void showLeaderboard(LeaderboardType type) {
-		if (!Pweek.getInstance().getGameService().getSignedIn()) {
-			return;
-		}
-		aHelper.debugLog("=>GETSCORES");
-		switch (type) {
-		case SOLO:
-			startActivityForResult(aHelper.getGamesClient().getLeaderboardIntent(getString(R.string.solo_leaderboard)), 105);
-			break;
-		case CHRONO:
-			startActivityForResult(aHelper.getGamesClient().getLeaderboardIntent(getString(R.string.chrono_leaderboard)), 105);
-			break;
-		default:
-			startActivityForResult(aHelper.getGamesClient().getAllLeaderboardsIntent(), 105);
-		} 
-	}
-
-	@Override
-	public void showAchievements() {
-		if (!Pweek.getInstance().getGameService().getSignedIn()) {
-			return;
-		}
-		aHelper.debugLog("=>GETACHIEVEMENTS");
-		startActivityForResult(aHelper.getGamesClient().getAchievementsIntent(), 106);
-	}
-	
-	@Override
-	public void getScoresData() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void onSignInFailed() {
 		aHelper.debugLog("=>SIGNINFAILED");
 		System.out.println("sign in failed");
@@ -305,61 +212,6 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		aHelper.debugLog("onActivityResult");
 		aHelper.onActivityResult(requestCode, resultCode, data);
 	}
-
-	@Override
-	public void unlockAchievement(Achievement a) {
-		if (!Pweek.getInstance().getGameService().getSignedIn()) {
-			return;
-		}
-		
-		if (a.incremental) {
-			switch (a) {
-			case FANBOY:
-				aHelper.getGamesClient().incrementAchievement(getString(R.string.ach_FANBOY), 1);
-				break;
-
-			default:
-				System.out.println("Achievement non implémenté.");
-				break;
-			}
-		} else {
-			switch (a) {
-			case AFK:
-				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_AFK));
-				break;
-			case CHAIN:
-				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_CHAIN));
-				break;
-			case DEAF:
-				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_DEAF));
-				break;
-			case FIRST_COMBO:
-				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_FIRST_COMBO));
-				break;
-			case FOREVER_ALONE:
-				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_FOREVER_ALONE));
-				break;
-			case MASTERSTROKE:
-				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_MASTERSTROKE));
-				break;
-			case MEGA_EXPLODE:
-				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_MEGA_EXPLODE));
-				break;
-			case NINJA:
-				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_NINJA));
-				break;
-			case OCD:
-				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_OCD));
-				break;
-			case P10K:
-				aHelper.getGamesClient().unlockAchievement(getString(R.string.ach_P10K));
-				break;
-			default:
-				System.out.println("Achievement non implémenté.");
-				break;
-			}
-		}
-	}
 	
 	@Override
 	public int getVolume() {
@@ -367,24 +219,6 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		int vol = audio.getStreamVolume(AudioManager.STREAM_MUSIC) * 100;
 		
 		return vol / audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-	}
-
-	@Override
-	public void showFriendSelector() {
-
-
-		// launch the player selection screen
-		// minimum: 1 other player; maximum: 3 other players
-		Intent intent = aHelper.getGamesClient().getSelectPlayersIntent(1, 1);
-		startActivityForResult(intent, GameHelper.RC_SELECT_PLAYERS);
-	}
-
-	@Override
-	public void startQuickGame() {
-		
-		aHelper.createMatchMakingRoom();
-
-	    // go to game screen
 	}
 	
 	public void showWaitingRoom(Room r) {

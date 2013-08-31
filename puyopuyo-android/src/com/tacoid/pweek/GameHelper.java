@@ -86,8 +86,8 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
     // Request code when invoking Activities whose result we don't care about.
     final static int RC_UNUSED = 9002;
 
-	final static int RC_SELECT_PLAYERS = 10000;
-	final static int RC_WAITING_ROOM = 10002;
+	public final static int RC_SELECT_PLAYERS = 10000;
+	public final static int RC_WAITING_ROOM = 10002;
 	
     // Client objects we manage. If a given client is not enabled, it is null.
     GamesClient mGamesClient = null;
@@ -819,7 +819,7 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
                 .setNeutralButton(android.R.string.ok, null).create();
     }
 
-    void debugLog(String message) {
+    public void debugLog(String message) {
         if (mDebugLog)
             Log.d(mDebugTag, message);
     }

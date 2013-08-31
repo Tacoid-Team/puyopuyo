@@ -28,7 +28,7 @@ public interface IGameService {
 			incremental=i;
 		}
 		
-		boolean incremental;
+		public boolean incremental;
 	};
 		
 	public void login();

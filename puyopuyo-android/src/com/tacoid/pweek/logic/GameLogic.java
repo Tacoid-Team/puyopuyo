@@ -3,7 +3,7 @@ package com.tacoid.pweek.logic;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import com.tacoid.pweek.Pweek;
+import com.tacoid.pweek.IGameService;
 import com.tacoid.pweek.SoundPlayer;
 import com.tacoid.pweek.IGameService.Achievement;
 import com.tacoid.pweek.SoundPlayer.SoundType;
@@ -52,14 +52,16 @@ public class GameLogic {
 	private float initialSpeed = 0.4f;
 
 	public ArrayList<Explosion> explosions = new ArrayList<Explosion>();
+	private IGameService gameService;
 
-	public GameLogic(boolean isIA) {
+	public GameLogic(IGameService gameService, boolean isIA) {
 		this.isIA = isIA;
+		this.gameService = gameService;
 	}
 
 	public void init() {
 		if (!isIA) {
-			Pweek.getInstance().getGameService().unlockAchievement(Achievement.FANBOY);
+			gameService.unlockAchievement(Achievement.FANBOY);
 		}
 		
 		fallings = null;
@@ -256,7 +258,7 @@ public class GameLogic {
 					ArrayList<Coord> list = new ArrayList<Coord>();
 					if (floodfill(l, c, grid[l][c], list) >= 4) {
 						if (grid[l][c] == 5 && !isIA) {
-							Pweek.getInstance().getGameService().unlockAchievement(Achievement.NINJA);
+							gameService.unlockAchievement(Achievement.NINJA);
 						}
 						remove.add(new Explosion(this, list));
 					}
@@ -326,7 +328,7 @@ public class GameLogic {
 					if (!generate()) {
 						state = State.LOST;
 						if (score == 0 && !isIA) {
-							Pweek.getInstance().getGameService().unlockAchievement(Achievement.AFK);
+							gameService.unlockAchievement(Achievement.AFK);
 						}
 					} else if (!isIA && score > 0) {
 						boolean ocd = true;
@@ -334,7 +336,7 @@ public class GameLogic {
 							ocd = ocd && grid[0][col] == 0;
 						}
 						if (ocd) {
-							Pweek.getInstance().getGameService().unlockAchievement(Achievement.OCD);
+							gameService.unlockAchievement(Achievement.OCD);
 						}
 					}
 					first = false;
@@ -385,9 +387,9 @@ public class GameLogic {
 					removes = resolve();
 					for (Explosion r : removes) {
 						if (r.getNbPuyos() >= 8) {
-							Pweek.getInstance().getGameService().unlockAchievement(Achievement.MEGA_EXPLODE);
+							gameService.unlockAchievement(Achievement.MEGA_EXPLODE);
 							if (r.getNbPuyos() >= 10) {
-								Pweek.getInstance().getGameService().unlockAchievement(Achievement.MASTERSTROKE);
+								gameService.unlockAchievement(Achievement.MASTERSTROKE);
 							}
 						}
 						r.points = r.getNbPuyos() * 10 * (r.getNbPuyos() - 3 + combo);
@@ -410,9 +412,9 @@ public class GameLogic {
 						} else {
 							combo *= 2;
 							if (!isIA) {
-								Pweek.getInstance().getGameService().unlockAchievement(Achievement.FIRST_COMBO);
+								gameService.unlockAchievement(Achievement.FIRST_COMBO);
 								if (combo == 8 * 2 * 2 * 2 * 2) {
-									Pweek.getInstance().getGameService().unlockAchievement(Achievement.CHAIN);
+									gameService.unlockAchievement(Achievement.CHAIN);
 								}
 							}
 						}

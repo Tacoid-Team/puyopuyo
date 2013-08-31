@@ -2,6 +2,7 @@ package com.tacoid.pweekmini;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,18 +21,28 @@ import com.google.ads.AdRequest.ErrorCode;
 import com.google.ads.AdSize;
 import com.google.ads.AdView;
 import com.google.analytics.tracking.android.EasyTracker;
+import com.tacoid.pweek.GameHelper;
+import com.tacoid.pweek.GameServiceManager;
 import com.tacoid.pweek.IActivityRequestHandler;
+import com.tacoid.pweek.Pweek;
+import com.tacoid.pweek.GameHelper.GameHelperListener;
 import com.tacoid.tracking.TrackingManager;
 import com.tacoid.tracking.TrackingManager.TrackerType;
 
-public class PweekAndroid extends AndroidApplication implements IActivityRequestHandler, AdListener
+public class PweekAndroid extends AndroidApplication implements IActivityRequestHandler, AdListener, GameHelperListener
 {	
 	private static AdView adView;
+	private GameHelper aHelper;
 
 	private final static int PORTRAIT_ADS = 3;
 	private final static int SHOW_ADS = 1;
 	private final static int HIDE_ADS = 0;
 
+	public PweekAndroid() {
+	    aHelper = new GameHelper(this);
+	    aHelper.enableDebugLog(true, "GAME");
+	}
+	
 	static protected Handler handler = new Handler()
 	{
 		@SuppressLint("NewApi")
@@ -80,6 +91,9 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		adView.setAdListener(this);
 
 
+		aHelper.setup(this);
+		Pweek.setGameService(new GameServiceManager(aHelper, this, this));
+		
 		// Ajout de la vu libGdx au layout
 		layout.addView(gameView);     
 
@@ -145,6 +159,28 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 
 	}
 
+
+	@Override
+	public void onSignInFailed() {
+		aHelper.debugLog("=>SIGNINFAILED");
+		System.out.println("sign in failed");
+		
+	}
+	
+	@Override
+	public void onSignInSucceeded() {
+		aHelper.debugLog("=>SIGNINSUCCEEDED");
+		System.out.println("sign in succeeded");
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		aHelper.debugLog("onActivityResult");
+		aHelper.onActivityResult(requestCode, resultCode, data);
+	}
+
+	
 	@Override
 	public int getVolume() {
 		AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -152,5 +188,4 @@ public class PweekAndroid extends AndroidApplication implements IActivityRequest
 		
 		return vol / audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 	}
-
 }

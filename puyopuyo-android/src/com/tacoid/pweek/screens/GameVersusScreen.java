@@ -96,8 +96,8 @@ public class GameVersusScreen implements GameScreen {
 	}
 
 	private GameVersusScreen() {
-		gameLogic = new GameLogic(false);
-		gameLogicIA = new GameLogic(true);
+		gameLogic = new GameLogic(Pweek.getInstance().getGameService(), false);
+		gameLogicIA = new GameLogic(Pweek.getInstance().getGameService(), true);
 		gameLogic.setOpponent(gameLogicIA);
 		gameLogicIA.setOpponent(gameLogic);
 		elapsedTime = 0;

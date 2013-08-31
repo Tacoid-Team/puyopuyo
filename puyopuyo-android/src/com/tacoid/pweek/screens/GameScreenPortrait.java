@@ -15,9 +15,9 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.Controller;
-import com.tacoid.pweek.IGameService.Achievement;
 import com.tacoid.pweek.MusicPlayer;
 import com.tacoid.pweek.Pweek;
+import com.tacoid.pweek.IGameService.Achievement;
 import com.tacoid.pweek.Pweek.ScreenOrientation;
 import com.tacoid.pweek.SoundPlayer;
 import com.tacoid.pweek.ScoreManager.GameType;
@@ -89,7 +89,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 
 	public GameScreenPortrait() {
 		elapsedTime = 0;
-		gameLogic = new GameLogic(false);
+		gameLogic = new GameLogic(Pweek.getInstance().getGameService(), false);
 	}
 	
 	public int getPuyoSize() {

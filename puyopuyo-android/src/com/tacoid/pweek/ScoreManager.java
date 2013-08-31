@@ -37,7 +37,7 @@ public class ScoreManager {
 		return pref.getInteger(type.toString(), 0);
 	}
 	
-	public void setScore(GameType type, int score) {
+	public void setScore(IGameService gameService, GameType type, int score) {
 		int highScore = getScore(type);
 	
 		if(highScore < score && type != GameType.VERSUS_IA) {
@@ -46,7 +46,7 @@ public class ScoreManager {
 			pref.flush();
 		}
 		
-		Pweek.getInstance().getGameService().submitScore(type,score);
+		gameService.submitScore(type,score);
 		
 		if (type == GameType.SOLO && score >= 10000) {
 			Pweek.getInstance().getGameService().unlockAchievement(Achievement.P10K);

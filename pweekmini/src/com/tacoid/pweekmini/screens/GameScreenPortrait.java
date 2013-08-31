@@ -16,8 +16,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.tacoid.pweek.Controller;
+import com.tacoid.pweek.MusicPlayer;
 import com.tacoid.pweekmini.PweekMini;
 import com.tacoid.pweek.SoundPlayer;
+import com.tacoid.pweek.IGameService.Achievement;
 import com.tacoid.pweek.Pweek.ScreenOrientation;
 import com.tacoid.pweek.ScoreManager.GameType;
 import com.tacoid.pweek.SoundPlayer.SoundType;
@@ -59,6 +61,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 	private StartActor startActor;
 	private NextPieceActor nextPieceActor;
 	private boolean started = false;
+	private int volumeStart;
 	
 	protected class PauseButton extends Button {
 
@@ -85,7 +88,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 
 	public GameScreenPortrait() {
 		elapsedTime = 0;
-		gameLogic = new GameLogic(false);
+		gameLogic = new GameLogic(PweekMini.getInstance().getGameService(), false);
 	}
 	
 	public int getPuyoSize() {
@@ -235,6 +238,16 @@ public abstract class GameScreenPortrait implements GameScreen {
 	}
 
 	private void gameOver() {
+		int volumeEnd;
+		if (!MusicPlayer.getInstance().isMuted()) {
+			volumeEnd = PweekMini.getInstance().getHandler().getVolume();
+		} else {
+			volumeEnd = 0;
+		}
+		if (volumeEnd > 80 && volumeStart > 80 && elapsedTime > 600) {
+			PweekMini.getInstance().getGameService().unlockAchievement(Achievement.DEAF);
+		}
+		
 		pauseButton.setTouchable(Touchable.disabled);
 		gameOver.show(GameOverType.GAMEOVER);
 	}
@@ -260,8 +273,7 @@ public abstract class GameScreenPortrait implements GameScreen {
 	}
 	
 	public ScreenOrientation getOrientation() {
-		return ScreenOrientation.LANDSCAPE;
-		// Ceci est un hack : en gros, en landscape les acteurs ne font pas de rotation.
+		return ScreenOrientation.PORTRAIT;
 	}	
 	
 	@Override
@@ -299,7 +311,13 @@ public abstract class GameScreenPortrait implements GameScreen {
 	
 	@Override
 	public void gameStart() {
-		started = true;
+		if (!MusicPlayer.getInstance().isMuted()) {
+			this.volumeStart = PweekMini.getInstance().getHandler().getVolume();
+		} else {
+			this.volumeStart = 0;
+		}
+		this.gameResume();
+		this.started = true;
 	}
 	
 	@Override

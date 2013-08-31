@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.tacoid.pweek.I18nManager;
 import com.tacoid.pweek.IActivityRequestHandler;
+import com.tacoid.pweek.IGameService;
 import com.tacoid.pweek.MusicPlayer;
 import com.tacoid.pweek.PreferenceManager;
 import com.tacoid.pweek.PreferenceManager.Preference;
@@ -25,6 +26,8 @@ public class PweekMini extends Game {
 	
 	private static PweekMini instance = null;
 	private IActivityRequestHandler myRequestHandler;
+	private IGameService myGameService;
+
 	public AssetManager manager;
 	public TextureAtlas atlasPuyo;
 	public TextureAtlas atlasControls;
@@ -48,6 +51,15 @@ public class PweekMini extends Game {
 	
 	public static void setHandler(IActivityRequestHandler handler) {
 		getInstance().myRequestHandler = handler;
+	}
+	
+	public static void setGameService(IGameService gameService) {
+		getInstance().myGameService = gameService;
+		
+	}
+	
+	public IGameService getGameService() {
+		return getInstance().myGameService;
 	}
 	
 	public static PweekMini getInstance() {

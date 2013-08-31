@@ -20,6 +20,7 @@ import com.tacoid.pweek.MusicPlayer;
 import com.tacoid.pweek.Pweek;
 import com.tacoid.pweek.ScoreManager;
 import com.tacoid.pweek.SoundPlayer;
+import com.tacoid.pweek.IGameService.LeaderboardType;
 import com.tacoid.pweek.MusicPlayer.MusicType;
 import com.tacoid.pweek.Pweek.ScreenOrientation;
 import com.tacoid.pweek.ScoreManager.GameType;
@@ -30,7 +31,6 @@ import com.tacoid.pweek.actors.MusicButtonActor;
 import com.tacoid.pweek.actors.SoundButtonActor;
 import com.tacoid.pweek.actors.SwingMenu;
 import com.tacoid.tracking.TrackingManager;
-import com.tacoid.pweek.IGameService.LeaderboardType;
 
 
 public class MainMenuScreen implements Screen, InputProcessor {
@@ -71,14 +71,13 @@ public class MainMenuScreen implements Screen, InputProcessor {
 			TextureRegion playRegion =  Pweek.getInstance().atlasPlank.findRegion("solo");
 			menu.addButton(new SoloButton(playRegion, playRegion));
 			
-			/* MULTIPLAYER BUTTON */
-			TextureRegion multiRegion = Pweek.getInstance().atlasPlank.findRegion("multi");
-			menu.addButton(new MultiButton(multiRegion, multiRegion));
-			
 			/* CHRONO BUTTON */
 			TextureRegion chronoRegion = Pweek.getInstance().atlasPlank.findRegion("chrono");
 			menu.addButton(new ChronoButton(chronoRegion, chronoRegion));
 			
+			/* MULTIPLAYER BUTTON */
+			TextureRegion multiRegion = Pweek.getInstance().atlasPlank.findRegion("multi");
+			menu.addButton(new MultiButton(multiRegion, multiRegion));
 		}	
 		menu.initEnd();
 		
@@ -113,7 +112,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 			TextureRegion quickRegion = Pweek.getInstance().atlasPlank.findRegion("multi");
 			menu.addButton(new QuickGameButton(quickRegion, quickRegion));
 			
-		}	
+		}
 		menu.initEnd();
 		
 		stage.addActor(menu);
@@ -126,8 +125,6 @@ public class MainMenuScreen implements Screen, InputProcessor {
 		menu.show("main");
 		
 		stage.addActor(new PweekLogo());
-		
-	
 	}
 	
 	static public MainMenuScreen getInstance()
